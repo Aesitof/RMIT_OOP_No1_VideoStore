@@ -5,4 +5,6 @@ module com.example.latdoi {
 
     opens com.no1.geniestore to javafx.fxml;
     exports com.no1.geniestore;
+    exports com.no1.geniestore.controllers;
+    opens com.no1.geniestore.controllers to javafx.fxml;
 }

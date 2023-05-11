@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane styleClass="whole-window" stylesheets="@style/loginpage.css">
+         <children>
+            <Pane layoutX="205.0" layoutY="25.0" prefHeight="536.0" prefWidth="390.0" styleClass="login-form" stylesheets="@style/loginpage.css">
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="gainsboro" offsetX="5.0" offsetY="5.0" />
+               </effect>
+               <children>
+                  <Label layoutX="153.0" layoutY="25.0" text="Sign In" textFill="#61ad68">
+                     <font>
+                        <Font name="Eras Bold ITC" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="48.0" layoutY="226.0" prefHeight="52.0" prefWidth="294.0" promptText="Username" styleClass="textfield" stylesheets="@style/loginpage.css">
+                     <font>
+                        <Font name="Candara Light" size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="48.0" layoutY="325.0" prefHeight="52.0" prefWidth="294.0" promptText="Password" styleClass="textfield" stylesheets="@style/loginpage.css">
+                     <font>
+                        <Font name="Candara Light" size="17.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="50.0" layoutY="190.0" prefHeight="22.0" prefWidth="222.0" text="Username">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="48.0" layoutY="426.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="294.0" styleClass="login-btn" stylesheets="@style/loginpage.css" text="Sign in">
+                     <font>
+                        <Font name="Candara Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="50.0" layoutY="294.0" prefHeight="22.0" prefWidth="222.0" text="Password">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="68.0" fitWidth="66.0" layoutX="162.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/logo1.png" />
+                     </image>
+                  </ImageView>
+                  <HBox layoutX="48.0" layoutY="59.0" prefHeight="28.0" prefWidth="294.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="22.0" prefWidth="234.0" text="Don't have an account?">
+                           <font>
+                              <Font name="Candara" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="22.0" prefWidth="132.0" text="Register" textFill="#537dd8">
+                           <font>
+                              <Font name="Candara" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
