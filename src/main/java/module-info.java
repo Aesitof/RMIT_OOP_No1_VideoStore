@@ -3,6 +3,6 @@ module com.example.latdoi {
     requires javafx.fxml;
 
 
-    opens com.example.latdoi to javafx.fxml;
-    exports com.example.latdoi;
+    opens com.no1.geniestore to javafx.fxml;
+    exports com.no1.geniestore;
 }
