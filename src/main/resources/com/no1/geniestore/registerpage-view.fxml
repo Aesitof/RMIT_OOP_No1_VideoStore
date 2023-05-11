@@ -7,7 +7,7 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -15,9 +15,9 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" styleClass="whole-window" stylesheets="@style/loginpage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane styleClass="whole-window" stylesheets="@style/loginpage.css">
-            <children>
-                <Pane layoutX="305.0" layoutY="25.0" prefHeight="701.0" prefWidth="390.0" styleClass="login-form" stylesheets="@style/loginpage.css">
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <center>
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="701.0" prefWidth="390.0" styleClass="login-form" stylesheets="@style/loginpage.css" BorderPane.alignment="CENTER">
                     <effect>
                         <DropShadow blurType="GAUSSIAN" color="gainsboro" offsetX="5.0" offsetY="5.0" />
                     </effect>
@@ -105,7 +105,7 @@
                   <PasswordField layoutX="48.0" layoutY="561.0" prefHeight="40.0" prefWidth="294.0" promptText="Repeat your password" styleClass="textfield" stylesheets="@style/loginpage.css" />
                     </children>
                 </Pane>
-            </children>
-        </AnchorPane>
+         </center>
+      </BorderPane>
     </children>
 </StackPane>

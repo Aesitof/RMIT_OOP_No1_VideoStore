@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" styleClass="whole-window" stylesheets="@style/loginpage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane styleClass="whole-window" stylesheets="@style/loginpage.css">
-         <children>
-            <Pane layoutX="205.0" layoutY="25.0" prefHeight="536.0" prefWidth="390.0" styleClass="login-form" stylesheets="@style/loginpage.css">
+      <BorderPane prefHeight="750.0" prefWidth="1000.0">
+         <center>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="390.0" styleClass="login-form" stylesheets="@style/loginpage.css">
                <effect>
                   <DropShadow blurType="GAUSSIAN" color="gainsboro" offsetX="5.0" offsetY="5.0" />
                </effect>
@@ -63,7 +65,7 @@
                               <Font name="Candara" size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="22.0" prefWidth="132.0" text="Register" textFill="#537dd8">
+                        <Label prefHeight="22.0" prefWidth="132.0" styleClass="register-label" stylesheets="@style/loginpage.css" text="Register" textFill="#537dd8">
                            <font>
                               <Font name="Candara" size="18.0" />
                            </font>
@@ -71,8 +73,14 @@
                      </children>
                   </HBox>
                </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </Pane>
-         </children>
-      </AnchorPane>
+         </center>
+      </BorderPane>
    </children>
 </StackPane>
