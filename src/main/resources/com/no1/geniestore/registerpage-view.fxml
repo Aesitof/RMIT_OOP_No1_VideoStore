@@ -27,7 +27,7 @@
                                 <Font name="Eras Bold ITC" size="24.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="48.0" layoutY="178.0" prefHeight="40.0" prefWidth="294.0" promptText="What is your name?" styleClass="textfield" stylesheets="@style/loginpage.css">
+                        <TextField layoutX="48.0" layoutY="178.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your name" styleClass="textfield" stylesheets="@style/loginpage.css">
                             <font>
                                 <Font name="Candara Light" size="17.0" />
                             </font>
@@ -81,7 +81,7 @@
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="48.0" layoutY="328.0" prefHeight="40.0" prefWidth="294.0" promptText="Where are you living?" styleClass="textfield" stylesheets="@style/loginpage.css">
+                  <TextField layoutX="48.0" layoutY="328.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your address" styleClass="textfield" stylesheets="@style/loginpage.css">
                      <font>
                         <Font name="Candara Light" size="17.0" />
                      </font>
