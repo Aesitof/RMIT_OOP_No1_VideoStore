@@ -14,6 +14,7 @@ public class Item {
     private double rentalFee;
     private boolean rentalStatus;
     private Genre genre;
+    private String image;
 
     public Item(ItemType itemType, int year, String id, String title, LoanType loanType, double rentalFee, boolean rentalStatus, Genre genre) {
         this.itemType = itemType;
@@ -25,7 +26,15 @@ public class Item {
         this.rentalStatus = rentalStatus;
         this.genre = genre;
     }
-
+    
+    public String getImage(){
+        return image;
+    }
+    
+    public setImage(String image){
+        this.image = image;
+    }
+    
     public ItemType getItemType() {
         return itemType;
     }
