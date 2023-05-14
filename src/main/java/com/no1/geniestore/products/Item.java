@@ -5,15 +5,18 @@ import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
 
+import java.util.Scanner;
+
 public class Item {
     private final ItemType itemType;
-    private final int year;
+    private int year;
     private String id;
     private final String title;
     private LoanType loanType;
     private double rentalFee;
     private boolean rentalStatus;
     private Genre genre;
+
 
     public Item(ItemType itemType, int year, String id, String title, LoanType loanType, double rentalFee, boolean rentalStatus, Genre genre) {
         this.itemType = itemType;
@@ -24,6 +27,7 @@ public class Item {
         this.rentalFee = rentalFee;
         this.rentalStatus = rentalStatus;
         this.genre = genre;
+
     }
 
     public ItemType getItemType() {
@@ -58,6 +62,7 @@ public class Item {
         return genre;
     }
 
+
     public void addItem(){}
 
     public void removeItem(){}
@@ -76,8 +81,32 @@ public class Item {
         this.genre = genre;
     }
 
+    // Generate ID for Items
+    public String latestItemID(){
+        // take the latest ID in the item list (cho Anh tao Stock)
+        String latestIDCode = null;
+        return latestIDCode;
+    }
 
-//    public String generateID(int year){} // generate the id based on the year
+    public String generateItemID(){
+        String latestIDCode = latestItemID();
+        int code = Integer.parseInt(latestIDCode);
+        code = code + 1;
+
+        String itemID = "I";
+
+        if (code >= 1 && code <= 9){
+            itemID = itemID + "00" + code + "-" + getYear();
+        }
+        else if (code >= 10 && code <= 99){
+            itemID = itemID + "0" + code + "-" + getYear();
+        }
+        else if (code >= 100 && code <= 999){
+            itemID = itemID + "" + code + "-" + getYear();
+        }
+
+        return itemID;
+    }
 
     public String checkStatus(String title){
         return "Available";

@@ -18,6 +18,8 @@ abstract public class Account {
         this.password = password;
     }
 
+
+
     public String getId() {
         return id;
     }
@@ -60,5 +62,31 @@ abstract public class Account {
 
     public String createUsername() {
         // the username contains up to 15 characters,
+    }
+
+    //Generate ID Cho Accounts
+
+    public String latestAccountID(){
+        // take the latest ID in an account list
+        String latestIDCode = null;
+        return latestIDCode;
+    }
+
+    public String generateAccountID(){
+        String latestIDCode = latestAccountID();
+        int code = Integer.parseInt(latestIDCode);
+        code = code + 1;
+        String accountID = "C";
+
+        if (code >= 1 && code <= 9){
+            accountID = accountID + "00" + code;
+        }
+        else if (code >= 10 && code <= 99){
+            accountID = accountID + "0" + code;
+        }
+        else if (code >= 100 && code <= 999){
+            accountID = accountID + "" + code;
+        }
+        return accountID;
     }
 }
