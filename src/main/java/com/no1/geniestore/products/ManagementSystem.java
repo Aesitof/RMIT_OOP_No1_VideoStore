@@ -13,10 +13,10 @@ public class ManagementSystem {
     private ArrayList<Order> orderList = new ArrayList<Order>();//TAO CLASS ORDER BO SUNG
 
 
-    private void addItem(Item item) {
+    public void addItem(Item item) {
         itemList.add(item);
     }
-    private  void removeItem(Item item) {
+    public void removeItem(Item item) {
         itemList.remove(item);
     }
 
