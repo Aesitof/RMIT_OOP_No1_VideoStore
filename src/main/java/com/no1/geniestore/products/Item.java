@@ -5,6 +5,8 @@ import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Item {
@@ -14,20 +16,23 @@ public class Item {
     private final String title;
     private LoanType loanType;
     private double rentalFee;
-    private boolean rentalStatus;
+    private boolean rentalStatus;//Available or not Avalable
     private Genre genre;
+    private Integer totalCopies;
+    private Integer remainingCopies;
+    private List<Item> itemList = new ArrayList<>();//Quăng vô managesystem
 
 
-    public Item(ItemType itemType, int year, String id, String title, LoanType loanType, double rentalFee, boolean rentalStatus, Genre genre) {
+    public Item(ItemType itemType, int year, String id, String title, LoanType loanType, double rentalFee, Integer totalCopies) {
         this.itemType = itemType;
         this.year = year;
         this.id = id;
         this.title = title;
         this.loanType = loanType;
         this.rentalFee = rentalFee;
-        this.rentalStatus = rentalStatus;
-        this.genre = genre;
-
+//        this.rentalStatus = rentalStatus;
+//        this.genre = genre;
+        this.totalCopies = totalCopies;
     }
 
     public ItemType getItemType() {
@@ -65,7 +70,9 @@ public class Item {
 
     public void addItem(){}
 
-    public void removeItem(){}
+    public void removeItem(String id){
+        itemList.removeIf(item -> item.id.equals(id));
+    }
 
     // only loanType, rentalFee, and genre can be updated
 
@@ -96,13 +103,16 @@ public class Item {
         String itemID = "I";
 
         if (code >= 1 && code <= 9){
-            itemID = itemID + "00" + code + "-" + getYear();
+//            itemID = itemID + "00" + code + "-" + getYear();
+            itemID = String.format("%s%s%s%s%s", itemID, "00", code, "-", getYear());
         }
         else if (code >= 10 && code <= 99){
-            itemID = itemID + "0" + code + "-" + getYear();
+//            itemID = itemID + "0" + code + "-" + getYear();
+            itemID = String.format("%s%s%s%s%s", itemID, "0", code, "-", getYear());
         }
         else if (code >= 100 && code <= 999){
-            itemID = itemID + "" + code + "-" + getYear();
+//            itemID = itemID + "" + code + "-" + getYear();
+            itemID = String.format("%s%s%s%s%s", itemID, "", code, "-", getYear());
         }
 
         return itemID;

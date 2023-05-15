@@ -79,13 +79,16 @@ abstract public class Account {
         String accountID = "C";
 
         if (code >= 1 && code <= 9){
-            accountID = accountID + "00" + code;
+//            accountID = accountID + "00" + code;
+            accountID = String.format("%s%s%s", accountID, "00", code);
         }
         else if (code >= 10 && code <= 99){
-            accountID = accountID + "0" + code;
+//            accountID = accountID + "0" + code;
+            accountID = String.format("%s%s%s", accountID, "0", code);
         }
         else if (code >= 100 && code <= 999){
-            accountID = accountID + "" + code;
+//            accountID = accountID + "" + code;
+            accountID = String.format("%s%s%s", accountID, "", code);
         }
         return accountID;
     }

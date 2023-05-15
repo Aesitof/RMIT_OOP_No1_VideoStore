@@ -1,14 +1,18 @@
 
+import com.no1.geniestore.products.Item;
+
 import java.util.HashMap;
 
 
 public class Stock {
     private  String id;
-    private Integer numOfCopies;
-    HashMap<String, Integer> stockList = new HashMap<>();
+    private Integer totalCopies;//add thêm current
+    private Integer remainingCopies;
 
-    public String getId() {
-        return id;
+    HashMap<Item, Integer> stockList = new HashMap<>();
+
+    public String getItem() {
+        return Item;
     }
 
     public Integer getNumOfCopies() {
@@ -33,7 +37,7 @@ public class Stock {
     public void updateCopyNum(String id, Integer updatedCopyNum) {
         stockList.put(id, updatedCopyNum);
     }
-    public void updateCopyNumPerLoan(String id) {
-        stockList.put(id, stockList.get(id) + 1);
+    public void updateCopyNumPerLoan(String id, Integer amount) {
+        stockList.put(id, stockList.get(id) - amount);
     }
 }
