@@ -1,0 +1,75 @@
+.top-form {
+    -fx-background-color:#fff;
+    -fx-border-color:#000;
+    -fx-border-width:.4px .4px .2px .4px;
+}
+
+.semi-top-form {
+    -fx-background-color:#efefef;
+    -fx-border-color:#000;
+    -fx-border-width:.2px .4px .8px .4px;
+}
+
+.close {
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+
+.close:hover {
+    -fx-background-color:#ff3547;
+}
+
+.minimize {
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+
+.minimize:hover {
+    -fx-background-color:#ddd;
+}
+
+.nav-bar {
+    -fx-background-color:#d9ead3;
+}
+
+.nav-btn {
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-font-family:"Candara";
+    -fx-font-size:15px;
+    -fx-text-fill:#000000;
+    -fx-alignment:CENTER-LEFT;
+}
+
+.logout {
+    -fx-background-color:#e06666;
+    -fx-text-fill:#fff;
+    -fx-border-radius:5px;
+    -fx-cursor:hand;
+}
+
+.logout:hover {
+    -fx-background-color:#F5C9C9;
+}
+
+.shadow {
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 6,0,0,0);
+}
+
+.white-background {
+    -fx-background-color:#fff;
+    -fx-background-radius:8px;
+}
+
+/*  Color constants
+- dark green: #1e4622
+- light green: #d9ead3
+- pink: #F5C9C9
+- red: #e06666
+*/
+
+/* Other conventions
+- Page size: 1000px * 750px (width * height)
+- Shop name font: Franklin Gothic Heavy
+- Big text font: Leelawadee UI
+*/

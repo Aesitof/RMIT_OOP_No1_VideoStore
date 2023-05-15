@@ -17,42 +17,42 @@
     <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
-                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="701.0" prefWidth="390.0" styleClass="login-form" stylesheets="@style/loginpage.css" BorderPane.alignment="CENTER">
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="696.0" prefWidth="390.0" styleClass="login-form" stylesheets="@style/loginpage.css" BorderPane.alignment="CENTER">
                     <effect>
                         <DropShadow blurType="GAUSSIAN" color="gainsboro" offsetX="5.0" offsetY="5.0" />
                     </effect>
                     <children>
-                        <Label layoutX="145.0" layoutY="25.0" text="Register" textFill="#1e4622">
+                        <Label layoutX="145.0" layoutY="18.0" text="Register" textFill="#1e4622">
                             <font>
                                 <Font name="Eras Bold ITC" size="24.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="48.0" layoutY="178.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your name" styleClass="textfield" stylesheets="@style/loginpage.css">
+                        <TextField layoutX="48.0" layoutY="168.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your name" styleClass="textfield" stylesheets="@style/loginpage.css">
                             <font>
                                 <Font name="Candara Light" size="17.0" />
                             </font>
                         </TextField>
-                        <Label layoutX="48.0" layoutY="151.0" prefHeight="22.0" prefWidth="222.0" text="Name">
+                        <Label layoutX="48.0" layoutY="141.0" prefHeight="22.0" prefWidth="222.0" text="Name">
                             <font>
                                 <Font name="Candara" size="18.0" />
                             </font>
                         </Label>
-                        <Button layoutX="48.0" layoutY="628.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="294.0" styleClass="login-btn" stylesheets="@style/loginpage.css" text="Sign up">
+                        <Button layoutX="48.0" layoutY="618.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="294.0" styleClass="login-btn" stylesheets="@style/loginpage.css" text="Sign up">
                             <font>
                                 <Font name="Candara Bold" size="20.0" />
                             </font>
                         </Button>
-                        <Label layoutX="48.0" layoutY="458.0" prefHeight="22.0" prefWidth="222.0" text="Password">
+                        <Label layoutX="48.0" layoutY="448.0" prefHeight="22.0" prefWidth="222.0" text="Password">
                             <font>
                                 <Font name="Candara" size="18.0" />
                             </font>
                         </Label>
-                        <ImageView fitHeight="68.0" fitWidth="66.0" layoutX="162.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="68.0" fitWidth="66.0" layoutX="162.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@assets/logo1.png" />
                             </image>
                         </ImageView>
-                        <HBox layoutX="48.0" layoutY="59.0" prefHeight="28.0" prefWidth="294.0">
+                        <HBox layoutX="48.0" layoutY="50.0" prefHeight="28.0" prefWidth="294.0">
                             <children>
                                 <Label alignment="CENTER" prefHeight="22.0" prefWidth="266.0" text="Already have an account?">
                                     <font>
@@ -66,46 +66,56 @@
                                 </Label>
                             </children>
                         </HBox>
-                  <Label layoutX="48.0" layoutY="226.0" prefHeight="22.0" prefWidth="222.0" text="Phone">
+                  <Label layoutX="48.0" layoutY="216.0" prefHeight="22.0" prefWidth="222.0" text="Phone">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="48.0" layoutY="253.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your phone number" styleClass="textfield" stylesheets="@style/loginpage.css">
+                  <TextField layoutX="48.0" layoutY="243.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your phone number" styleClass="textfield" stylesheets="@style/loginpage.css">
                      <font>
                         <Font name="Candara Light" size="17.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="48.0" layoutY="301.0" prefHeight="22.0" prefWidth="222.0" text="Address">
+                  <Label layoutX="48.0" layoutY="291.0" prefHeight="22.0" prefWidth="222.0" text="Address">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="48.0" layoutY="328.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your address" styleClass="textfield" stylesheets="@style/loginpage.css">
+                  <TextField layoutX="48.0" layoutY="318.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your address" styleClass="textfield" stylesheets="@style/loginpage.css">
                      <font>
                         <Font name="Candara Light" size="17.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="48.0" layoutY="376.0" prefHeight="22.0" prefWidth="222.0" text="Username">
+                  <Label layoutX="48.0" layoutY="366.0" prefHeight="22.0" prefWidth="222.0" text="Username">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="48.0" layoutY="405.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your username" styleClass="textfield" stylesheets="@style/loginpage.css">
+                  <TextField layoutX="48.0" layoutY="395.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your username" styleClass="textfield" stylesheets="@style/loginpage.css">
                      <font>
                         <Font name="Candara Light" size="17.0" />
                      </font>
                   </TextField>
-                  <PasswordField layoutX="48.0" layoutY="486.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your password" styleClass="textfield" stylesheets="@style/loginpage.css" />
-                  <Label layoutX="48.0" layoutY="535.0" prefHeight="22.0" prefWidth="222.0" text="Repeat password">
+                  <PasswordField layoutX="48.0" layoutY="476.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your password" styleClass="textfield" stylesheets="@style/loginpage.css" />
+                  <Label layoutX="48.0" layoutY="525.0" prefHeight="22.0" prefWidth="222.0" text="Repeat password">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <PasswordField layoutX="48.0" layoutY="561.0" prefHeight="40.0" prefWidth="294.0" promptText="Repeat your password" styleClass="textfield" stylesheets="@style/loginpage.css" />
+                  <PasswordField layoutX="48.0" layoutY="551.0" prefHeight="40.0" prefWidth="294.0" promptText="Repeat your password" styleClass="textfield" stylesheets="@style/loginpage.css" />
                     </children>
                 </Pane>
          </center>
+         <top>
+            <Button fx:id="close" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@style/homepage.css" text="Close" BorderPane.alignment="TOP_RIGHT">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Button>
+         </top>
+         <bottom>
+            <Pane prefHeight="27.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
     </children>
 </StackPane>

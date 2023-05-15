@@ -1,0 +1,85 @@
+.color-behind {
+    -fx-background-color:#d9ead3;
+}
+
+.upper-choice:hover {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color:white;
+    -fx-text-fill:white;
+}
+
+.navbar-button {
+    -fx-background-color:#1e4622;
+    -fx-text-fill:#ffffff;
+    -fx-font-size:30px;
+    -fx-font-family:"Candara";
+}
+
+.with-search {
+    -fx-background-color:#ffffff;
+}
+
+.split-menu-button .label {
+    -fx-background-color:#1e4622;
+    -fx-text-fill:#ffffff;
+    -fx-font-size:30px;
+    -fx-font-family:"Candara";
+    -fx-border:none;
+}
+
+
+.split-menu-button .arrow {
+    -fx-background-color:#ffffff;
+}
+
+.split-menu-button .arrow-button {
+    -fx-background-color:#1e4622;
+}
+
+.split-menu-button .menu-item .label {
+    -fx-background-color: white;
+    -fx-text-fill:black;
+}
+
+.search-bar {
+    -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
+    -fx-background-radius:4px;
+    -fx-border-color:#1e4622;
+    -fx-border-width:1px;
+    -fx-border-radius:4px 0px 0px 4px;
+    -fx-font-size:17px;
+    -fx-font-family:"Candara Light";
+}
+
+
+.search-button {
+    -fx-color:white;
+    -fx-background-color:#1e4622;
+}
+
+.search-icon:hover {
+    -fx-background-color:#e06666;
+}
+
+.close {
+    -fx-background-color:transparent;
+    -fx-text-fill:black;
+    -fx-cursor:hand;
+}
+.close:hover {
+    -fx-background-color:#bf0a0a;
+    -fx-text-fill:#FAEBD7;
+}
+
+/*  Color constants
+- dark green: #1e4622
+- light green: #d9ead3
+- pink: #F5C9C9
+- red: #e06666
+*/
+
+/* Other conventions
+- Page size: 1000px * 750px (width * height)
+- Shop name font: Franklin Gothic Heavy
+- Big text font: Leelawadee UI
+*/

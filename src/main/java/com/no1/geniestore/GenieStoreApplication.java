@@ -2,18 +2,24 @@ package com.no1.geniestore;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 public class GenieStoreApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(GenieStoreApplication.class.getResource("homepage-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        Parent root = FXMLLoader.load(getClass().getResource("homepage-view.fxml"));
+
+        Scene scene = new Scene(root);
+
+        stage.initStyle(StageStyle.TRANSPARENT);
+
         stage.setScene(scene);
+        stage.setTitle("Genie Video Store");
         stage.show();
     }
 

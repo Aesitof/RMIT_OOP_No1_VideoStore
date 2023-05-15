@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" styleClass="whole-window" stylesheets="@style/loginpage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" styleClass="whole-window" stylesheets="@style/loginpage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.no1.geniestore.controllers.LoginPageController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -41,7 +41,7 @@
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="48.0" layoutY="426.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="294.0" styleClass="login-btn" stylesheets="@style/loginpage.css" text="Sign in">
+                  <Button layoutX="48.0" layoutY="426.0" mnemonicParsing="false" onAction="#onRegisterBtnAction" prefHeight="52.0" prefWidth="294.0" styleClass="login-btn" stylesheets="@style/loginpage.css" text="Sign in">
                      <font>
                         <Font name="Candara Bold" size="20.0" />
                      </font>
@@ -63,7 +63,7 @@
                               <Font name="Candara" size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="22.0" prefWidth="132.0" styleClass="register-label" stylesheets="@style/loginpage.css" text="Register" textFill="#537dd8">
+                        <Label onMouseClicked="#onRegisterBtnAction" prefHeight="22.0" prefWidth="132.0" styleClass="register-label" stylesheets="@style/loginpage.css" text="Register" textFill="#537dd8">
                            <font>
                               <Font name="Candara" size="18.0" />
                            </font>
@@ -73,6 +73,13 @@
                </children>
             </Pane>
          </center>
+         <top>
+            <Button fx:id="close" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@style/homepage.css" text="Close" BorderPane.alignment="TOP_RIGHT">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Button>
+         </top>
       </BorderPane>
    </children>
 </StackPane>

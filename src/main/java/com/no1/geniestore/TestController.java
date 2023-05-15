@@ -1,4 +1,4 @@
-package com.no1.geniestore.controllers;
+package com.no1.geniestore;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,33 +17,25 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HomePageController implements Initializable {
+public class TestController {
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
     private Button close;
-    @FXML
-    private Button searchBtn;
-
-    @FXML
-    private Label signInTab;
-
-    public void close() {
+    public void close(ActionEvent event) {
         System.exit(0);
     }
 
-    public void onSignInBtnClick(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource(("/com/no1/geniestore/loginpage-view.fxml")));
+    @FXML
+    public void onRegisterBtnAction (ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource(("registerpage-view.fxml")));
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        stage = new Stage();
         scene = new Scene(root);
+        stage.setTitle("About Us Description");
         stage.setScene(scene);
         stage.show();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

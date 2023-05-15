@@ -58,7 +58,7 @@ abstract public class Account {
         this.password = password;
     }
 
-    public String createUsername() {
-        // the username contains up to 15 characters,
-    }
+//    public String createUsername() {
+//        // the username contains up to 15 characters,
+//    }
 }
