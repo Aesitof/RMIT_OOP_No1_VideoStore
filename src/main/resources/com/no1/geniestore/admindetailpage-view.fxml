@@ -3,7 +3,9 @@
 <?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -15,9 +17,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.no1.geniestore.controllers.AdminDetailPageController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
             <BorderPane layoutX="291.0" layoutY="219.0" prefHeight="750.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
@@ -38,8 +40,8 @@
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor>
                               </Label>
-                              <Button layoutX="941.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="close" stylesheets="@style/admindetailpage.css" text="Close" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" />
-                              <Button layoutX="868.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="minimize" stylesheets="@style/admindetailpage.css" text="Minimize" AnchorPane.rightAnchor="65.0" />
+                              <Button fx:id="close" layoutX="941.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="82.0" styleClass="close" stylesheets="@style/admindetailpage.css" text="Close" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" />
+                              <Button fx:id="minimize" layoutX="939.1999999999998" layoutY="1.0" mnemonicParsing="false" onAction="#minimize" prefHeight="25.0" prefWidth="82.0" styleClass="minimize" stylesheets="@style/admindetailpage.css" text="Minimize" AnchorPane.rightAnchor="82.0" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -60,20 +62,20 @@
                                     <Font name="Leelawadee UI" size="17.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutY="194.0" prefHeight="26.0" prefWidth="200.0" text="Admin">
+                              <Label fx:id="username" alignment="CENTER" layoutY="194.0" prefHeight="26.0" prefWidth="200.0" text="Admin">
                                  <font>
                                     <Font name="Leelawadee UI Bold" size="17.0" />
                                  </font>
                               </Label>
                               <Line endX="119.33332824707031" layoutX="54.0" layoutY="230.0" startX="-31.5" />
-                              <Button layoutX="11.0" layoutY="269.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@style/admindetailpage.css" text="Home">
+                              <Button fx:id="ordersBtn" layoutX="11.0" layoutY="269.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="50.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@style/admindetailpage.css" text="Orders">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="11.0" layoutY="319.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@style/admindetailpage.css" text="Items" />
-                              <Button layoutX="10.0" layoutY="368.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@style/admindetailpage.css" text="Customers" />
-                              <Button layoutX="19.0" layoutY="656.0" mnemonicParsing="false" stylesheets="@style/admindetailpage.css" text="Log out" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+                              <Button fx:id="itemsBtn" layoutX="11.0" layoutY="319.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="50.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@style/admindetailpage.css" text="Items" />
+                              <Button fx:id="customersBtn" layoutX="11.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="50.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@style/admindetailpage.css" text="Customers" />
+                              <Button fx:id="logout" layoutX="19.0" layoutY="656.0" mnemonicParsing="false" onAction="#logout" stylesheets="@style/admindetailpage.css" text="Log out" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
                                  <font>
                                     <Font name="Candara" size="15.0" />
                                  </font>
@@ -90,7 +92,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="705.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="addItemForm" layoutX="14.0" layoutY="14.0" prefHeight="705.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="677.0" prefWidth="773.0" stylesheets="@style/admindetailpage.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -104,22 +106,132 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <TableView layoutX="10.0" layoutY="47.0" prefHeight="282.0" prefWidth="752.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                          <TableView fx:id="addItemTableView" layoutX="10.0" layoutY="47.0" prefHeight="282.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                             <columns>
-                                                <TableColumn prefWidth="75.0" text="ID" />
-                                              <TableColumn prefWidth="75.0" text="Type" />
-                                              <TableColumn prefWidth="104.5" text="Published Year" />
-                                                <TableColumn prefWidth="104.5" text="Loan Type" />
-                                                <TableColumn prefWidth="104.5" text="Rental Fee" />
+                                                <TableColumn fx:id="addItemColId" prefWidth="62.5" text="ID" />
+                                                <TableColumn prefWidth="188.5" text="Title" />
+                                              <TableColumn fx:id="addItemColYear" minWidth="6.0" prefWidth="61.5" text="Year" />
+                                              <TableColumn fx:id="addItemColType" minWidth="3.499969482421875" prefWidth="109.0" text="Type" />
+                                                <TableColumn fx:id="addItemColGenre" prefWidth="92.5" text="Genre" />
+                                                <TableColumn fx:id="addItemColLoanType" prefWidth="109.0" text="Loan Type" />
+                                                <TableColumn fx:id="addItemColRentalFee" text="Rental Fee" />
+                                                <TableColumn fx:id="addItemColCopies" prefWidth="73.0" text="Copies" />
+                                                <TableColumn fx:id="addItemColRemaining" prefWidth="75.0" text="Remaining" />
+                                                <TableColumn prefWidth="188.5" text="Title" />
                                             </columns>
                                           </TableView>
-                                          <TextField layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="312.0" promptText="Search" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                          <TextField fx:id="addItemSearch" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="312.0" promptText="Search..." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
                                        </children>
                                     </AnchorPane>
+                                    <TextField fx:id="itemId" layoutX="95.0" layoutY="370.0" prefWidth="250.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="373.0" prefWidth="68.0" text="Item ID:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="itemTitle" layoutX="95.0" layoutY="402.0" prefWidth="250.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="404.0" prefWidth="68.0" text="Title:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="434.0" prefWidth="68.0" text="Year:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="yearComboBox" editable="true" layoutX="95.0" layoutY="431.0" prefHeight="23.0" prefWidth="250.0" promptText="Select a year ..." styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="465.0" prefWidth="68.0" text="Type:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="typeComboBox" layoutX="95.0" layoutY="462.0" prefHeight="23.0" prefWidth="250.0" promptText="Select a type ..." styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="496.0" prefWidth="68.0" text="Genre:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="genreComboBox" layoutX="95.0" layoutY="493.0" prefHeight="23.0" prefWidth="250.0" promptText="Select a genre ..." styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="527.0" prefWidth="68.0" text="Loan Type:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="loanTypeComboBox" layoutX="95.0" layoutY="524.0" prefHeight="23.0" prefWidth="250.0" promptText="Select a type of loan ..." styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="559.0" prefWidth="68.0" text="Rental Fee:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Spinner fx:id="copies" editable="true" layoutX="95.0" layoutY="587.0" prefWidth="100.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <TextField fx:id="rentalFee" alignment="CENTER_RIGHT" layoutX="95.0" layoutY="556.0" prefWidth="100.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="591.0" prefWidth="68.0" text="Copies:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Spinner fx:id="remaining" editable="true" layoutX="96.0" layoutY="617.0" prefWidth="100.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="621.0" prefWidth="68.0" text="Remaining:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <AnchorPane layoutX="644.0" layoutY="354.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@style/admindetailpage.css" AnchorPane.rightAnchor="28.0">
+                                       <styleClass>
+                                          <String fx:value="white-background" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" />
+                                          <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" styleClass="import-btn" stylesheets="@style/admindetailpage.css" text="Import" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <Button layoutX="692.0" layoutY="620.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Add" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="90.0">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="add-btn" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button layoutX="592.0" layoutY="620.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Update" AnchorPane.bottomAnchor="17.0">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="update-btn" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button layoutX="465.0" layoutY="617.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Delete" AnchorPane.bottomAnchor="17.0">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="delete-btn" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button layoutX="365.0" layoutY="617.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Clear" AnchorPane.bottomAnchor="17.0">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="clear-btn" />
+                                       </styleClass>
+                                    </Button>
+                                    <Label fx:id="rentalFeeError" layoutX="202.0" layoutY="559.0" prefHeight="17.0" prefWidth="146.0" text="Please enter a number!!!" textFill="#d30000">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="yearComboBoxError" layoutX="363.0" layoutY="434.0" prefHeight="17.0" prefWidth="146.0" text="Invalid year!!!" textFill="#d30000">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="itemTitleError" layoutX="363.0" layoutY="404.0" prefHeight="17.0" prefWidth="166.0" text="Item title can't be empty!!!" textFill="#d30000">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
+                        <AnchorPane fx:id="addOrderForm" prefHeight="705.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <AnchorPane fx:id="addCustomerForm" prefHeight="705.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </center>
