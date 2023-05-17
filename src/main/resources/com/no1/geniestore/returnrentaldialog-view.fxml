@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.no1.geniestore.controllers.HomePageController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Pane prefHeight="62.0" prefWidth="600.0" stylesheets="@style/homepage.css">
+               <children>
+                  <Label layoutX="32.0" layoutY="24.0" text="Order #120322">
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="doneBtn" layoutX="483.0" layoutY="6.0" mnemonicParsing="false" onAction="#onUsePointDoneBtnAction" prefHeight="40.0" prefWidth="102.0" styleClass="pay-now-btn" stylesheets="@style/homepage.css" text="Done" />
+               </children>
+            </Pane>
+            <ScrollPane layoutY="62.0" prefHeight="339.0" prefWidth="600.0" stylesheets="@style/homepage.css">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="585.0">
+                     <children>
+                        <VBox layoutX="70.0" layoutY="41.0" prefHeight="344.0" prefWidth="585.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="124.0" prefWidth="585.0">
+                                 <children>
+                                    <ImageView fitHeight="103.0" fitWidth="108.0" layoutX="14.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@assets/pubg.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Text layoutX="110.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PUBG">
+                                       <font>
+                                          <Font name="Leelawadee" size="18.0" />
+                                       </font>
+                                    </Text>
+                                    <Text layoutX="110.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" AnchorPane.leftAnchor="110.0">
+                                       <font>
+                                          <Font name="Arial" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Label layoutX="173.0" layoutY="67.0" text="2" textFill="#3fabc9">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Text layoutX="110.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due date" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="110.0">
+                                       <font>
+                                          <Font name="Arial" size="15.0" />
+                                       </font>
+                                    </Text>
+                                    <Label layoutX="177.0" layoutY="92.0" text="May 20, 2023" textFill="#3fabc9" AnchorPane.bottomAnchor="15.0">
+                                       <font>
+                                          <Font name="Arial Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="429.0" layoutY="13.0" text="All items returned" textAlignment="RIGHT" textFill="#1bab3d" AnchorPane.rightAnchor="23.5">
+                                       <font>
+                                          <Font name="Arial" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="429.0" layoutY="42.0" text="0 items returned" textFill="#1bab3d" AnchorPane.rightAnchor="23.5">
+                                       <font>
+                                          <Font name="Arial" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="429.0" layoutY="74.0" text="1 items returned" textFill="#1bab3d" AnchorPane.rightAnchor="23.5">
+                                       <font>
+                                          <Font name="Arial" size="17.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

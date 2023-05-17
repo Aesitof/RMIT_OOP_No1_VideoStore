@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -27,17 +28,42 @@ public class HomePageController implements Initializable {
     private Parent root;
     @FXML
     private Button close;
+
+    @FXML
+    private AnchorPane homeView;
+
+    @FXML
+    private AnchorPane productView;
+
+    @FXML
+    private AnchorPane cartView;
+
+    @FXML
+    private AnchorPane accountDetailView;
+
     @FXML
     private Button searchBtn;
 
     @FXML
-    private Label signInTab;
+    private SplitMenuButton myAccountBtn;
 
     @FXML
     private SplitMenuButton videoBtn;
 
     @FXML
     private Button doneBtn;
+
+    @FXML
+    private Button accountSettingsBtn;
+
+    @FXML
+    private AnchorPane accountSettingsView;
+
+    @FXML
+    private Button myOrdersBtn;
+
+    @FXML
+    private AnchorPane myOrdersView;
 
     private double x;
     private double y;
@@ -60,7 +86,7 @@ public class HomePageController implements Initializable {
             stage.setY(event.getScreenY() - y);
         });
 
-        stage = (Stage)signInTab.getScene().getWindow();
+        stage = (Stage)myAccountBtn.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -69,6 +95,32 @@ public class HomePageController implements Initializable {
     MenuItem dvd = new MenuItem(ItemType.DVD.toString());
     MenuItem game = new MenuItem(ItemType.GAME.toString());
     MenuItem videoRecord = new MenuItem(ItemType.VIDEO_RECORD.toString());
+
+    /* Home View */
+    public void toHomeView() {
+        homeView.setVisible(true);
+        productView.setVisible(false);
+        cartView.setVisible(false);
+        accountDetailView.setVisible(false);
+    }
+
+    /* Product View */
+    public void toProductView() {
+        homeView.setVisible(false);
+        productView.setVisible(true);
+        cartView.setVisible(false);
+        accountDetailView.setVisible(false);
+    }
+
+
+    /* Cart View */
+    public void toCartView() {
+        homeView.setVisible(false);
+        productView.setVisible(false);
+        cartView.setVisible(true);
+        accountDetailView.setVisible(false);
+    }
+
 
     // Show dialog
     public void onUsePointBtnAction(ActionEvent event) throws IOException {
@@ -83,9 +135,48 @@ public class HomePageController implements Initializable {
         dialogStage.showAndWait();
     }
 
-    public void onUsePointDoneBtnAction() {
-        Stage stage = (Stage) doneBtn.getScene().getWindow();
+    public void onUsePointDoneBtnAction(ActionEvent event) {
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    /* My Account View */
+    public void toAccountDetailView() {
+        homeView.setVisible(false);
+        productView.setVisible(false);
+        cartView.setVisible(false);
+        accountDetailView.setVisible(true);
+    }
+
+    public void toAccountSettingsView() {
+        toAccountDetailView();
+        accountSettingsView.setVisible(true);
+        myOrdersView.setVisible(false);
+
+        accountSettingsBtn.setStyle("-fx-background-color:#a8ed8a;-fx-text-fill:#1e4622");
+        myOrdersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+    }
+
+    public void toMyOrdersView() {
+        toAccountDetailView();
+        accountSettingsView.setVisible(false);
+        myOrdersView.setVisible(true);
+
+        myOrdersBtn.setStyle("-fx-background-color:#a8ed8a;-fx-text-fill:#1e4622");
+        accountSettingsBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+    }
+
+
+    /**
+     * Switch between 2 views of My Account using the Buttons
+     * @param event
+     */
+    public void switchAccountView(ActionEvent event) {
+        if (event.getSource() == accountSettingsBtn) {
+            toAccountSettingsView();
+        } else if (event.getSource() == myOrdersBtn) {
+            toMyOrdersView();
+        }
     }
 
     public void onChangePasswordBtnAction(ActionEvent event) throws IOException {
@@ -104,5 +195,6 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        videoBtn.getItems().addAll(dvd, game, videoRecord);
+        toHomeView();
     }
 }

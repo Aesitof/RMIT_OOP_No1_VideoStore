@@ -6,6 +6,10 @@
     -fx-background-color:#fff
 }
 
+.upper-choice {
+    -fx-background-color:transparent;
+}
+
 .upper-choice:hover {
     -fx-border-width: 0 0 1 0;
     -fx-border-color:white;
@@ -14,6 +18,7 @@
 
 .navbar-button {
     -fx-background-color:#1e4622;
+    -fx-border-color:#d9ead3;
     -fx-text-fill:#ffffff;
     -fx-font-size:30px;
     -fx-font-family:"Candara";
@@ -23,25 +28,42 @@
     -fx-background-color:#ffffff;
 }
 
+
 .split-menu-button .label {
-    -fx-background-color:#1e4622;
-    -fx-text-fill:#ffffff;
-    -fx-font-size:30px;
+    -fx-background-color:transparent;
+    -fx-text-fill:black;
+    -fx-font-size:20px;
     -fx-font-family:"Candara";
     -fx-border:none;
 }
 
-
 .split-menu-button .arrow {
-    -fx-background-color:#ffffff;
+    -fx-background-color:black;
 }
 
 .split-menu-button .arrow-button {
-    -fx-background-color:#1e4622;
+    -fx-background-color:transparent;
+}
+
+.split-menu-button .menu-item {
+    -fx-background-color: #fff;
 }
 
 .split-menu-button .menu-item .label {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
+    -fx-text-fill:black;
+}
+
+.split-menu-button:hover .arrow {
+    -fx-background-color:#ffffff;
+}
+
+.split-menu-button:hover .label {
+    -fx-text-fill:#ffffff;
+}
+
+.split-menu-button .menu-item:hover {
+    -fx-background-color: #eeeeee;
     -fx-text-fill:black;
 }
 

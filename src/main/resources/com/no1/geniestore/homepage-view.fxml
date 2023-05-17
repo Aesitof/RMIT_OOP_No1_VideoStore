@@ -8,6 +8,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitMenuButton?>
@@ -41,8 +42,8 @@
                         <GridPane layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="141.0" prefWidth="1101.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.6666717529297" minWidth="10.0" prefWidth="304.6666717529297" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="362.5" minWidth="10.0" prefWidth="262.8333740234375" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="380.8333740234375" minWidth="10.0" prefWidth="293.6666259765625" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="362.5" minWidth="10.0" prefWidth="255.83331298828125" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="380.8333740234375" minWidth="10.0" prefWidth="301.66668701171875" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.33331298828125" minWidth="10.0" prefWidth="239.33331298828125" />
                            </columnConstraints>
                            <rowConstraints>
@@ -52,7 +53,7 @@
                            <children>
                               <Pane prefHeight="83.0" prefWidth="286.0" styleClass="color-behind" stylesheets="@style/homepage.css">
                                  <children>
-                                    <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="5.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="5.0" layoutY="4.0" onMouseClicked="#toHomeView" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@assets/logo1.png" />
                                        </image>
@@ -60,7 +61,7 @@
                                           <Cursor fx:constant="OPEN_HAND" />
                                        </cursor>
                                     </ImageView>
-                                    <Label layoutX="86.0" layoutY="24.0" text="Genie's Store" textFill="#1e4622">
+                                    <Label layoutX="86.0" layoutY="24.0" onMouseClicked="#toHomeView" text="Genie's Store" textFill="#1e4622">
                                        <font>
                                           <Font name="Franklin Gothic Heavy" size="30.0" />
                                        </font>
@@ -86,12 +87,7 @@
                               </Pane>
                               <Pane prefHeight="83.0" prefWidth="100.0" styleClass="color-behind" stylesheets="@style/homepage.css" GridPane.columnIndex="3">
                                  <children>
-                                    <Label layoutX="38.0" layoutY="27.0" prefHeight="34.0" prefWidth="37.0" styleClass="upper-choice" stylesheets="@style/homepage.css" text="Cart">
-                                       <font>
-                                          <Font name="Candara" size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="signInTab" layoutX="97.0" layoutY="29.0" onMouseClicked="#onSignInBtnClick" prefHeight="32.0" prefWidth="100.0" styleClass="upper-choice" stylesheets="@style/homepage.css" text="My account">
+                                    <Label layoutX="9.0" layoutY="36.0" onMouseClicked="#toCartView" prefHeight="34.0" prefWidth="37.0" styleClass="upper-choice" stylesheets="@style/homepage.css" text="Cart">
                                        <font>
                                           <Font name="Candara" size="20.0" />
                                        </font>
@@ -101,20 +97,30 @@
                                           <Font name="Arial" size="15.0" />
                                        </font>
                                     </Button>
-                                 </children>
-                              </Pane>
-                              <Pane prefHeight="63.0" prefWidth="482.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
-                                 <children>
-                                    <SplitMenuButton fx:id="videoBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="59.0" prefWidth="571.0" stylesheets="@style/homepage.css" text="Videos">
+                                    <SplitMenuButton fx:id="myAccountBtn" layoutX="62.0" layoutY="32.0" mnemonicParsing="false" onAction="#toAccountSettingsView" styleClass="upper-choice" stylesheets="@style/homepage.css" text="My Account">
+                                      <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#toAccountSettingsView" text="Account Settings" />
+                                        <MenuItem mnemonicParsing="false" onAction="#toMyOrdersView" text="My Orders" />
+                                          <MenuItem mnemonicParsing="false" onAction="#onSignInBtnClick" style="-fx-text-fill: red;" text="Log out" />
+                                      </items>
                                        <font>
-                                          <Font name="Candara" size="30.0" />
+                                          <Font name="Candara" size="20.0" />
                                        </font>
                                     </SplitMenuButton>
                                  </children>
                               </Pane>
+                              <Pane prefHeight="63.0" prefWidth="482.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                 <children>
+                                    <Button layoutX="1.0" layoutY="1.0" mnemonicParsing="false" onAction="#toProductView" prefHeight="57.0" prefWidth="560.0" styleClass="navbar-button" stylesheets="@style/homepage.css" text="Videos">
+                                       <font>
+                                          <Font name="Candara" size="30.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </Pane>
                               <Pane prefHeight="58.0" prefWidth="524.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1">
                                  <children>
-                                    <Button layoutX="-1.0" layoutY="1.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="534.0" styleClass="navbar-button" stylesheets="@style/homepage.css" text="Return Rental">
+                                    <Button layoutX="-1.0" layoutY="1.0" mnemonicParsing="false" onAction="#toMyOrdersView" prefHeight="57.0" prefWidth="542.0" styleClass="navbar-button" stylesheets="@style/homepage.css" text="Order Lookup">
                                        <font>
                                           <Font name="Candara" size="30.0" />
                                        </font>
@@ -131,9 +137,9 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="homeView" prefHeight="612.0" prefWidth="1101.0" stylesheets="@style/homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="homeView" prefHeight="612.0" prefWidth="1101.0" stylesheets="@style/homepage.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="612.0" prefWidth="1100.0" vbarPolicy="ALWAYS" visible="false">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="612.0" prefWidth="1100.0" vbarPolicy="ALWAYS">
                            <content>
                               <AnchorPane prefHeight="612.0" prefWidth="1100.0">
                                  <children>
@@ -209,7 +215,7 @@
                         </ScrollPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="productView" prefHeight="612.0" prefWidth="1101.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="productView" prefHeight="612.0" prefWidth="1101.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label layoutX="786.0" layoutY="26.0" text="Sort by title" />
                         <ComboBox layoutX="869.0" layoutY="22.0" prefHeight="27.0" prefWidth="170.0" />
@@ -357,7 +363,7 @@
                                                       <Font size="15.0" />
                                                    </font>
                                                 </Text>
-                                                <Button layoutX="610.0" layoutY="135.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="173.0" text="Add to Cart" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="90.0">
+                                                <Button layoutX="610.0" layoutY="135.0" mnemonicParsing="false" onAction="#toCartView" prefHeight="66.0" prefWidth="173.0" text="Add to Cart" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="90.0">
                                                    <stylesheets>
                                                       <URL value="@style/homepage.css" />
                                                       <URL value="@style/admindetailpage.css" />
@@ -431,7 +437,7 @@
                                                       <Font size="15.0" />
                                                    </font>
                                                 </Text>
-                                                <Button disable="true" layoutX="610.0" layoutY="151.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="173.0" text="Add to Cart" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="90.0">
+                                                <Button disable="true" layoutX="610.0" layoutY="151.0" mnemonicParsing="false" onAction="#toCartView" prefHeight="66.0" prefWidth="173.0" text="Add to Cart" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="90.0">
                                                    <stylesheets>
                                                       <URL value="@style/homepage.css" />
                                                       <URL value="@style/admindetailpage.css" />
@@ -508,7 +514,7 @@
                                                       <Font size="15.0" />
                                                    </font>
                                                 </Text>
-                                                <Button layoutX="610.0" layoutY="151.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="173.0" text="Add to Cart" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="90.0">
+                                                <Button layoutX="610.0" layoutY="151.0" mnemonicParsing="false" onAction="#toCartView" prefHeight="66.0" prefWidth="173.0" text="Add to Cart" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="90.0">
                                                    <stylesheets>
                                                       <URL value="@style/homepage.css" />
                                                       <URL value="@style/admindetailpage.css" />
@@ -686,16 +692,16 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="accountDetailView" prefHeight="612.0" prefWidth="1102.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="accountDetailView" prefHeight="612.0" prefWidth="1102.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="24.0" layoutY="60.0" prefHeight="102.0" prefWidth="207.0" styleClass="switch-account-view-pane" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="60.0">
                            <children>
-                              <Button layoutY="8.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="207.0" styleClass="switch-account-view-btn" stylesheets="@style/homepage.css" text="Account settings" AnchorPane.topAnchor="8.0">
+                              <Button fx:id="accountSettingsBtn" layoutY="8.0" mnemonicParsing="false" onAction="#switchAccountView" prefHeight="42.0" prefWidth="207.0" styleClass="switch-account-view-btn" stylesheets="@style/homepage.css" text="Account settings" AnchorPane.topAnchor="8.0">
                                  <font>
                                     <Font name="Leelawadee" size="18.0" />
                                  </font>
                               </Button>
-                              <Button layoutY="51.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="207.0" styleClass="switch-account-view-btn" stylesheets="@style/homepage.css" text="My orders" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0">
+                              <Button fx:id="myOrdersBtn" layoutY="51.0" mnemonicParsing="false" onAction="#switchAccountView" prefHeight="42.0" prefWidth="207.0" styleClass="switch-account-view-btn" stylesheets="@style/homepage.css" text="My orders" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0">
                                  <font>
                                     <Font name="Leelawadee" size="18.0" />
                                  </font>

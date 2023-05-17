@@ -41,7 +41,7 @@
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="48.0" layoutY="426.0" mnemonicParsing="false" onAction="#onRegisterBtnAction" prefHeight="52.0" prefWidth="294.0" styleClass="login-btn" stylesheets="@style/loginpage.css" text="Sign in">
+                  <Button layoutX="48.0" layoutY="426.0" mnemonicParsing="false" onAction="#onSignInBtnAction" prefHeight="52.0" prefWidth="294.0" styleClass="login-btn" stylesheets="@style/loginpage.css" text="Sign in">
                      <font>
                         <Font name="Candara Bold" size="20.0" />
                      </font>
