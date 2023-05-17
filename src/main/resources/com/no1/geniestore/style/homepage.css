@@ -2,6 +2,10 @@
     -fx-background-color:#d9ead3;
 }
 
+.white-bg-product {
+    -fx-background-color:#fff
+}
+
 .upper-choice:hover {
     -fx-border-width: 0 0 1 0;
     -fx-border-color:white;
@@ -70,6 +74,154 @@
     -fx-background-color:#bf0a0a;
     -fx-text-fill:#FAEBD7;
 }
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+
+.item-pane {
+    -fx-background-color:#fff;
+    -fx-background-radius:10px;
+    -fx-border-color:#eeeeee;
+    -fx-border-radius:10px;
+}
+
+.sort-pane {
+    -fx-background-color:#d9ead3;
+    -fx-background-radius:10px;
+}
+
+.add-to-cart-btn {
+    -fx-background-radius:8px;
+    -fx-text-fill:#000;
+    -fx-font-size:18px;
+    -fx-font-family:"Candara";
+    -fx-cursor:hand;
+    -fx-background-color:#F5C9C9;
+}
+
+.add-to-cart-btn:hover {
+    -fx-background-color:#1e4622;
+    -fx-text-fill:#fff;
+    -fx-font-weight:bold;
+}
+
+.home-shadow {
+    -fx-effect:dropshadow(gaussian, rgba(0,0,0,0.5), 6,0,1,1);
+}
+
+.order-summary-pane {
+    -fx-background-color:#fff;
+    -fx-background-radius:10px;
+    -fx-border-color:#e06666;
+    -fx-border-width:8px 0 0 0;
+}
+
+.pay-now-btn {
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:28px;
+    -fx-font-family:"Candara";
+    -fx-cursor:hand;
+    -fx-background-color:#49c555;
+}
+
+.pay-now-btn:hover {
+    -fx-background-color:#368514;
+}
+
+.rent-duration-label {
+    -fx-background-color:rgba(107,185,232, 0.3);
+    -fx-background-radius:5px;
+}
+
+.use-point-btn {
+    -fx-background-radius:20px;
+    -fx-text-fill:#fff;
+    -fx-font-family:"Leelawadee UI";
+    -fx-font-size:18px;
+    -fx-cursor:hand;
+    -fx-background-color:#e06666;
+}
+
+.use-point-btn:hover {
+    -fx-background-radius:20px;
+    -fx-text-fill:#fff;
+    -fx-font-family:"Leelawadee UI";
+    -fx-font-size:18px;
+    -fx-cursor:hand;
+    -fx-background-color:#e06666;
+    -fx-effect:dropshadow(gaussian, rgba(0,0,0,0.5), 6,0,1,1);
+}
+
+.dialog-use-point-btn {
+    -fx-background-radius:20px;
+    -fx-text-fill:#fff;
+    -fx-font-family:"Leelawadee UI";
+    -fx-font-size:12px;
+    -fx-cursor:hand;
+    -fx-background-color:#e06666;
+}
+
+.dialog-use-point-btn:hover {
+    -fx-background-radius:20px;
+    -fx-text-fill:#fff;
+    -fx-font-family:"Leelawadee UI";
+    -fx-font-size:12px;
+    -fx-cursor:hand;
+    -fx-background-color:#c34b4b;
+}
+
+.switch-account-view-pane {
+    -fx-background-color:white;
+    -fx-background-radius:10px;
+    -fx-effect:dropshadow(gaussian, rgba(0,0,0,0.5), 6,0,0,0);
+}
+
+.switch-account-view-btn {
+    -fx-background-color:white;
+    -fx-cursor:hand;
+}
+
+.textfield {
+     -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
+     -fx-background-radius:4px;
+     -fx-border-color:#000;
+     -fx-border-width:.4px;
+     -fx-border-radius:4px;
+     -fx-font-size:17px;
+     -fx-font-family:"Candara Light";
+}
+
+.textfield:focused {
+    -fx-background-color:#fff;
+    -fx-border-width:1px;
+    -fx-border-color:#1e4622;
+}
+
+.cancel-btn {
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:28px;
+    -fx-font-family:"Candara";
+    -fx-cursor:hand;
+    -fx-background-color:#3d85c6;
+}
+
+.cancel-btn:hover {
+    -fx-background-color:#1034A6;
+}
+
+.show-details {
+    -fx-text-fill:black;
+}
+
+.show-details:hover {
+    -fx-text-fill:#368514;
+    -fx-border-width:0px 0px .8px 0px;
+    -fx-border-color:#368514;
+}
+
 
 /*  Color constants
 - dark green: #1e4622

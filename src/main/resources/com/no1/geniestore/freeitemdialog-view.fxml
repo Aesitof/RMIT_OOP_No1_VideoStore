@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.no1.geniestore.controllers.HomePageController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Pane prefHeight="62.0" prefWidth="600.0" styleClass="sort-pane" stylesheets="@style/homepage.css">
+               <children>
+                  <Label layoutX="325.0" layoutY="21.0" text="150" textFill="#4ba649">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="366.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="points">
+                     <font>
+                        <Font name="Leelawadee UI" size="20.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="32.0" layoutY="24.0" text="Choose the item you want to get free!" textFill="#e06666">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="doneBtn" layoutX="485.0" layoutY="6.0" mnemonicParsing="false" onAction="#onUsePointDoneBtnAction" styleClass="pay-now-btn" stylesheets="@style/homepage.css" text="Done" />
+               </children>
+            </Pane>
+            <ScrollPane hbarPolicy="NEVER" layoutY="62.0" prefHeight="339.0" prefWidth="600.0" styleClass="white-bg-product" stylesheets="@style/homepage.css">
+              <content>
+                <AnchorPane>
+                     <children>
+                        <VBox layoutX="136.0" layoutY="41.0" prefWidth="600.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Pane prefHeight="54.0" prefWidth="600.0">
+                                 <children>
+                                    <CheckBox layoutX="35.0" layoutY="14.0" mnemonicParsing="false" text="PUBG">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <Button layoutX="465.0" layoutY="15.0" mnemonicParsing="false" styleClass="dialog-use-point-btn" stylesheets="@style/homepage.css" text="Use 100 points" textFill="#c34b4b" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
