@@ -59,6 +59,10 @@ abstract public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 
     public String createUsername() {
         // the username contains up to 15 characters,
