@@ -1,4 +1,4 @@
-package com.no1.geniestore.products;
+package com.no1.geniestore.accounts;
 
 
 abstract public class Account {
