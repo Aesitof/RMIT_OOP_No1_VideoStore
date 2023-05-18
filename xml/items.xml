@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><items>
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
     <item>
         <id>I001-2001</id>
         <title>Last Christmas</title>
@@ -15,7 +16,7 @@
         <title>PUBG</title>
         <year>2013</year>
         <itemType>Game</itemType>
-        <loanType>1 week</loanType>
+        <loanType>7 days</loanType>
         <rentalFee>50.99</rentalFee>
         <copies>3</copies>
         <remaining>2</remaining>

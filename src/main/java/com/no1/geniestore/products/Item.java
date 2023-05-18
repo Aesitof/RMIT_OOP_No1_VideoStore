@@ -31,7 +31,7 @@ public class Item {
         return image;
     }
     
-    public setImage(String image){
+    public void setImage(String image){
         this.image = image;
     }
     

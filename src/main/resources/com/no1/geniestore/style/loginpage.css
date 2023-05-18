@@ -10,6 +10,12 @@
     -fx-font-size:18px;
     -fx-font-family:"Candara";
     -fx-text-fill:#527dda;
+    -fx-cursor:hand;
+}
+
+.register-label:hover {
+    -fx-border-width:0 0 2 0;
+    -fx-border-color:#527dda;
 }
 
 .textfield {
