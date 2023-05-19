@@ -5,11 +5,7 @@ import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-public class Item {
+public class Item extends Stock {
     private final ItemType itemType;
     private int year;
     private String id;
@@ -100,15 +96,8 @@ public class Item {
         this.genre = genre;
     }
 
-    // Generate ID for Items
-    public String latestItemID(){
-        // take the latest ID in the item list (cho Anh tao Stock)
-        String latestIDCode = null;
-        return latestIDCode;
-    }
-
     public String generateItemID(){
-        String latestIDCode = latestItemID();
+        String latestIDCode = getTheLatestID();
         int code = Integer.parseInt(latestIDCode);
         code = code + 1;
 

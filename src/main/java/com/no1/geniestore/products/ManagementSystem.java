@@ -4,18 +4,17 @@ import com.no1.geniestore.accounts.Account;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ManagementSystem {
     private ArrayList<Account> accountList;
     private ArrayList<Order> orderList;//TAO CLASS ORDER BO SUNG
-    private HashMap <Item, Stock> itemList;
+    private HashMap<Item, Stock> itemList;
     private Account currentUser;
 
     public ManagementSystem() {
         this.accountList = new ArrayList<>();
         this.orderList = new ArrayList<>();
-        this.itemList = new HashMap<>();
+        this.itemList = new HashMap<Item, Stock>();
         this.currentUser = null;
     }
 

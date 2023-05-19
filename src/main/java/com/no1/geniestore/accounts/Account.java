@@ -11,8 +11,7 @@ public class Account {
     private int totalReturnedItems;
     private int rewardPoints;
     private String accountType;
-
-
+    private static int idCounter = 0;
 
 
     public Account(String name, String address, String phone, String username, String password, String accountType) {
@@ -116,16 +115,16 @@ public class Account {
     }
 
     //Generate ID Cho Accounts
-
-    public String latestAccountID(){
-        // take the latest ID in an account list
-        String latestIDCode = null;
-        return latestIDCode;
-    }
+//    public String latestAccountID(){
+//        // take the latest ID in an account list
+//        idCounter++;
+//        String latestIDCode = ;
+//        return latestIDCode;
+//    }
 
     public String generateAccountID(){
-        String latestIDCode = latestAccountID();
-        int code = Integer.parseInt(latestIDCode);
+        idCounter++;
+        int code = idCounter;
         code = code + 1;
         String accountID = "C";
 

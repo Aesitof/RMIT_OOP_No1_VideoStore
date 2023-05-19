@@ -14,6 +14,7 @@ public class Order {
     private String orderID;
     private Account owner;
     HashMap<Item, OrderDetails> order = new HashMap<>();
+    private static int idCounter = 0;
 
     public Order(Account owner) {
         this.orderID = generateOrderID();
@@ -63,6 +64,13 @@ public class Order {
             getOwner().setTotalReturnedItems(getOwner().getTotalReturnedItems() + 1); //Not sure about this
         }
     }
+
+    public String generateOrderID() {
+        idCounter++;
+        orderID = "" + idCounter;
+        return orderID;
+    }
+
 }
 
 //public class Order implements OrderDetails{

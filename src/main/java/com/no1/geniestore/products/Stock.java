@@ -1,19 +1,14 @@
 package com.no1.geniestore.products;
 
-import com.no1.geniestore.constants.Genre;
-import com.no1.geniestore.constants.ItemType;
-import com.no1.geniestore.constants.LoanType;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
-public class StockChau {
+public class Stock {
     private int count;
     private HashMap<String, Integer> itemAndQuantity = new HashMap<>();
     private ArrayList<Item> itemStock;
 
-    public StockChau() {
+    public Stock() {
         itemStock = new ArrayList<Item>();
     }
 
@@ -54,7 +49,7 @@ public class StockChau {
     protected String getTheLatestID(){
             String latestID = "";
             Item latestItem = itemStock.get(itemStock.size() - 1);
-            latestID = latestID + latestItem.getID();
+            latestID = latestID + latestItem.getId();
             return latestID;
         }
 
