@@ -5,16 +5,37 @@ import com.no1.geniestore.constants.LoanType;
 import java.util.Date;
 import java.util.HashMap;
 
+
+
 public class Order {
     private final static long weekLoan = 86400000 * 7;
     private final static long dayLoan = 86400000 * 2;
     private String orderID;
+    private Account owner;
     HashMap<Item, OrderDetails> order = new HashMap<>();
 
-    public Order(String orderID) {
+    public Order(Account owner) {
+        this.orderID = generateOrderID();
+        this.owner = owner;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
-    public void addItem(Item item, Date loanDate, int amount) {
+
+    public Account getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Account owner) {
+        this.owner = owner;
+    }
+
+    public void addItemForRent(Item item, Date loanDate, int amount) {
         long currentTimeMillis = System.currentTimeMillis();
 
         OrderDetails orderDetail = new OrderDetails();
@@ -32,6 +53,14 @@ public class Order {
     }
     public void removeItem(Item item) {
         order.remove(item);
+    }
+    public void returnItemInOrder(Item item, int amount) {
+        order.get(item).setAmount(order.get(item).getAmount() - amount);
+        item.setRemainingCopies(item.getRemainingCopies() + amount);//trả về kho
+        if (order.get(item).getAmount() == 0) {
+            order.get(item).setReturned(true);
+            getOwner().setTotalReturnedItems(getOwner().getTotalReturnedItems() + 1); //Not sure about this
+        }
     }
 }
 

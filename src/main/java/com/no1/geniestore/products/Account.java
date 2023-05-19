@@ -1,70 +1,117 @@
 package com.no1.geniestore.products;
 
 
-abstract public class Account {
+public class Account {
     private String id;
     private String name;
     private String address;
     private String phone;
     private String username;
     private String password;
+    private int totalReturnedItems;
+    private int rewardPoints;
+    private String accountType;
 
-    public Account(String id, String name, String address, String phone, String username, String password) {
-        this.id = id;
+
+
+
+    public Account(String name, String address, String phone, String username, String password, String accountType) {
+        this.id = generateAccountID();
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.username = username;
         this.password = password;
+        this.totalReturnedItems = 0;
+        this.rewardPoints = 0;
+        this.accountType = accountType;
     }
 
-
+    public Account() {
+        this.id = generateAccountID();
+        this.name = "default";
+        this.address = "default";
+        this.phone = "default";
+        this.username = "default";
+        this.password = "default";
+        this.totalReturnedItems = 0;
+        this.rewardPoints = 0;
+        this.accountType = "Guest";
+    }
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setUsername(String username) {
-        this.username = username;
+
+    public int getTotalReturnedItems() {
+        return totalReturnedItems;
     }
 
+    public void setTotalReturnedItems(int totalReturnedItems) {
+        this.totalReturnedItems = totalReturnedItems;
+    }
 
-    public String createUsername() {
+    public int getRewardPoints() {
+        return rewardPoints;
+    }
+
+    public void setRewardPoints(int rewardPoints) {
+        this.rewardPoints = rewardPoints;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public void createUsername() {
         // the username contains up to 15 characters,
     }
 

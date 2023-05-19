@@ -18,21 +18,21 @@ public class Item {
     private double rentalFee;
     private boolean rentalStatus;//Available or not Avalable
     private Genre genre;
-    private Integer totalCopies;
-    private Integer remainingCopies;
-    private List<Item> itemList = new ArrayList<>();//Quăng vô managesystem
+//    private Integer totalCopies;
+//    private Integer remainingCopies;
 
 
-    public Item(ItemType itemType, int year, String id, String title, LoanType loanType, double rentalFee, Integer totalCopies) {
+
+    public Item(ItemType itemType, int year, String title, LoanType loanType, double rentalFee, Genre genre, Integer totalCopies, Integer remainingCopies) {
         this.itemType = itemType;
         this.year = year;
-        this.id = id;
+        this.id = generateItemID();
         this.title = title;
         this.loanType = loanType;
         this.rentalFee = rentalFee;
-//        this.rentalStatus = rentalStatus;
-//        this.genre = genre;
-        this.totalCopies = totalCopies;
+        this.genre = genre;
+//        this.totalCopies = totalCopies;
+//        this.remainingCopies = remainingCopies;
     }
 
     public ItemType getItemType() {
@@ -43,8 +43,16 @@ public class Item {
         return year;
     }
 
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -59,20 +67,13 @@ public class Item {
         return rentalFee;
     }
 
-    public boolean isRentalStatus() {
-        return rentalStatus;
-    }
-
     public Genre getGenre() {
         return genre;
     }
 
 
-    public void addItem(){}
 
-    public void removeItem(String id){
-        itemList.removeIf(item -> item.id.equals(id));
-    }
+
 
     // only loanType, rentalFee, and genre can be updated
 
@@ -122,5 +123,8 @@ public class Item {
         return "Available";
     } // return Available or Not Available
 
+    public void stockArrive(Item item, int amount) {
+        item.setTotalCopies(item.getTotalCopies() + amount);
+    }
 }
 

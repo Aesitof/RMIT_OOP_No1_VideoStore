@@ -6,16 +6,19 @@ public class OrderDetails {
     private Date returnDate;
     private Date loanDate;
     private int amount;
+    private boolean isReturned;
 
     public OrderDetails(Date returnDate, Date loanDate, int amount) {
         this.returnDate = returnDate;
         this.loanDate = loanDate;
         this.amount = amount;
+        this.isReturned = false;
     }
     public OrderDetails() {
         this.returnDate = new Date(System.currentTimeMillis());
         this.loanDate = new Date(System.currentTimeMillis());
         this.amount = 0;
+        this.isReturned = false;
     }
 
     public Date getReturnDate() {
@@ -41,7 +44,16 @@ public class OrderDetails {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public boolean isReturned() {
+        return isReturned;
+    }
+
+    public void setReturned(boolean returned) {
+        isReturned = returned;
+    }
 }
+
 
 //public interface OrderDetails {
 //    public void durationCalculate();
