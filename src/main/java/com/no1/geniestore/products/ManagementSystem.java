@@ -5,22 +5,31 @@ import com.no1.geniestore.accounts.Account;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.no1.geniestore.products.Stock.itemStock;
+
 public class ManagementSystem {
     private ArrayList<Account> accountList;
     private ArrayList<Order> orderList;//TAO CLASS ORDER BO SUNG
-    private HashMap<Item, Stock> itemList;
+    private HashMap<Item, Integer> itemList;
     private Account currentUser;
 
     public ManagementSystem() {
         this.accountList = new ArrayList<>();
         this.orderList = new ArrayList<>();
-        this.itemList = new HashMap<Item, Stock>();
+        this.itemList = new HashMap<>();
         this.currentUser = null;
     }
 
 //ITEM METHODS
-    public void addItem(Item item, Stock stock) {
-        itemList.put(item, stock);
+    public void addItem(Item item, Integer stock) {
+        if (itemList.get(item) != null) {
+            int countItem = itemList.get(item);
+            countItem += stock;
+            itemList.put(item, countItem);
+        } else {
+            itemList.put(item, stock);
+            itemStock.add(item);
+        }
     }
     public void removeItem(Item item) {
         itemList.remove(item);

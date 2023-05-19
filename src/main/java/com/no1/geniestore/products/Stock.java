@@ -4,46 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Stock {
-    private int count;
-    private HashMap<String, Integer> itemAndQuantity = new HashMap<>();
-    private ArrayList<Item> itemStock;
+    private HashMap<Item, Integer> stockList = new HashMap<>();
+    protected static ArrayList<Item> itemStock;
 
     public Stock() {
         itemStock = new ArrayList<Item>();
     }
 
     // ADD ITEMS TO THE STOCK
-//    public void addItem(){
-//        Item item = new Item();
-//        Scanner scan = new Scanner(System.in);
-//
-//        ItemType inputItemType = ItemType.valueOf(scan.nextLine());
-//        item.setItemType(inputItemType);
-//
-//        int inputYear = scan.nextInt(); scan.nextLine();
-//        item.setYear(inputYear);
-//
-//
-//        String inputTitle = scan.nextLine();
-//        item.setTitle(inputTitle);
-//
-//        LoanType inputLoanType = LoanType.valueOf(scan.nextLine());
-//        item.setLoanType(inputLoanType);
-//
-//        item.setID(generateItemID());
-//
-//        double inputRentalFee = scan.nextDouble(); scan.nextLine();
-//        item.setRentalFee(inputRentalFee);
-//
-//        // con thang rentalStatus, quay lai sau
-//
-//        Genre inputGenre = Genre.valueOf(scan.nextLine());
-//        item.setGenre(inputGenre);
-//
-//        itemStock.add(item);
-//
-//        count = count + 1;
-//
+//    public void addStock(Item item, Integer stock){
+//        if (stockList.get(item) != null) {
+//            int countItem = stockList.get(item);
+//            countItem = countItem + stock;
+//            stockList.put(item, countItem);
+//        } else {
+//            stockList.put(item, stock);
+//            itemStock.add(item);
+//        }
 //    }
 
     protected String getTheLatestID(){
@@ -52,8 +29,4 @@ public class Stock {
             latestID = latestID + latestItem.getId();
             return latestID;
         }
-
-
-
-
 }
