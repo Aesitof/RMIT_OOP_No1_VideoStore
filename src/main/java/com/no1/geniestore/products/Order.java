@@ -1,5 +1,6 @@
 package com.no1.geniestore.products;
 
+import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.constants.LoanType;
 
 import java.util.Date;

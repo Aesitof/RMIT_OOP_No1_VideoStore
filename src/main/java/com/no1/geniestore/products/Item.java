@@ -16,10 +16,9 @@ public class Item {
     private final String title;
     private LoanType loanType;
     private double rentalFee;
-    private boolean rentalStatus;//Available or not Avalable
     private Genre genre;
-//    private Integer totalCopies;
-//    private Integer remainingCopies;
+    private Integer totalCopies;
+    private Integer remainingCopies;
 
 
 
@@ -31,8 +30,8 @@ public class Item {
         this.loanType = loanType;
         this.rentalFee = rentalFee;
         this.genre = genre;
-//        this.totalCopies = totalCopies;
-//        this.remainingCopies = remainingCopies;
+        this.totalCopies = totalCopies;
+        this.remainingCopies = remainingCopies;
     }
 
     public ItemType getItemType() {
@@ -71,9 +70,21 @@ public class Item {
         return genre;
     }
 
+    public Integer getTotalCopies() {
+        return totalCopies;
+    }
 
+    public void setTotalCopies(Integer totalCopies) {
+        this.totalCopies = totalCopies;
+    }
 
+    public Integer getRemainingCopies() {
+        return remainingCopies;
+    }
 
+    public void setRemainingCopies(Integer remainingCopies) {
+        this.remainingCopies = remainingCopies;
+    }
 
     // only loanType, rentalFee, and genre can be updated
 
