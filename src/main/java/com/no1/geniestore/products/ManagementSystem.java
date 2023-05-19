@@ -1,8 +1,6 @@
 package com.no1.geniestore.products;
 
-import com.no1.geniestore.constants.Genre;
-import com.no1.geniestore.constants.ItemType;
-import com.no1.geniestore.constants.LoanType;
+import com.no1.geniestore.accounts.Account;
 
 import java.util.ArrayList;
 import java.util.HashMap;
