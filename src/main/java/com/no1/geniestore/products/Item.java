@@ -4,6 +4,7 @@ package com.no1.geniestore.products;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
+import  com.no1.geniestore.products.Stock;
 
 public class Item extends Stock {
     private final ItemType itemType;
@@ -13,12 +14,10 @@ public class Item extends Stock {
     private LoanType loanType;
     private double rentalFee;
     private Genre genre;
-    private Integer totalCopies;
-    private Integer remainingCopies;
 
 
 
-    public Item(ItemType itemType, int year, String title, LoanType loanType, double rentalFee, Genre genre, Integer totalCopies, Integer remainingCopies) {
+    public Item(ItemType itemType, int year, String title, LoanType loanType, double rentalFee, Genre genre) {
         this.itemType = itemType;
         this.year = year;
         this.id = generateItemID();
@@ -26,8 +25,6 @@ public class Item extends Stock {
         this.loanType = loanType;
         this.rentalFee = rentalFee;
         this.genre = genre;
-        this.totalCopies = totalCopies;
-        this.remainingCopies = remainingCopies;
     }
 
     public ItemType getItemType() {
@@ -66,21 +63,7 @@ public class Item extends Stock {
         return genre;
     }
 
-    public Integer getTotalCopies() {
-        return totalCopies;
-    }
 
-    public void setTotalCopies(Integer totalCopies) {
-        this.totalCopies = totalCopies;
-    }
-
-    public Integer getRemainingCopies() {
-        return remainingCopies;
-    }
-
-    public void setRemainingCopies(Integer remainingCopies) {
-        this.remainingCopies = remainingCopies;
-    }
 
     // only loanType, rentalFee, and genre can be updated
 
@@ -123,8 +106,5 @@ public class Item extends Stock {
         return "Available";
     } // return Available or Not Available
 
-    public void stockArrive(Item item, int amount) {
-        item.setTotalCopies(item.getTotalCopies() + amount);
-    }
 }
 

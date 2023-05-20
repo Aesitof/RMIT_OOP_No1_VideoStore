@@ -58,7 +58,8 @@ public class Order {
     }
     public void returnItemInOrder(Item item, int amount) {
         order.get(item).setAmount(order.get(item).getAmount() - amount);
-        item.setRemainingCopies(item.getRemainingCopies() + amount);//trả về kho
+//        item.setRemainingCopies(item.getRemainingCopies() + amount);//trả về kho
+
         if (order.get(item).getAmount() == 0) {
             order.get(item).setReturned(true);
             getOwner().setTotalReturnedItems(getOwner().getTotalReturnedItems() + 1); //Not sure about this

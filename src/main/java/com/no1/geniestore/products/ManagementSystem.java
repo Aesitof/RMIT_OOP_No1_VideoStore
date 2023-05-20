@@ -21,7 +21,7 @@ public class ManagementSystem {
     }
 
 //ITEM METHODS
-    public void addItem(Item item, Integer stock) {
+    public void addItem(Item item, Integer stock) {//Add Item to the stock
         if (itemList.get(item) != null) {
             int countItem = itemList.get(item);
             countItem += stock;
@@ -31,6 +31,9 @@ public class ManagementSystem {
             itemStock.add(item);
         }
     }
+    public void stockArrive(Item item, int amount) {
+        itemList.put(item, itemList.get(item) + amount);
+    }
     public void removeItem(Item item) {
         itemList.remove(item);
     }
@@ -38,10 +41,10 @@ public class ManagementSystem {
     //ACCOUNTS METHODS
     public void addAccount(Account account) {
         accountList.add(account);
-    }
+    }//Add accounts to the list
     public void removeAccount(String accountID) {//Remove using ID
         accountList.removeIf(i -> i.getId().equals(accountID));
-    }
+    }//Remove accounts from the list
     public void promote(Account account) {
         if (account.getAccountType().equals("Guest")
             && account.getTotalReturnedItems() == 3) {
@@ -55,14 +58,17 @@ public class ManagementSystem {
     }
 
     //ORDER METHODS
-    public void returnItem(String orderID, Item item, int amount) {
+    public void returnItem(String orderID, Item item, int amount) {//Return SINGLE item with SPECIFIED amount
         for (Order order : orderList) {
             if (order.getOrderID().equals(orderID)) {
                 order.returnItemInOrder(item, amount);
+                itemList.put(item, itemList.get(item) + amount);// return back to the stock
+                promote(order.getOwner());
             }
         }
     }
     public void makeOrder(Account account) {
         Order order = new Order(account);
     }
+
 }
