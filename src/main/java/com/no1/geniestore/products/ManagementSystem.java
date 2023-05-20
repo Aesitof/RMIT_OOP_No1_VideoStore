@@ -78,4 +78,20 @@ public class ManagementSystem {
         Order order = new Order(account);
     }
 
+//    DISPLAY ALL ITEMS IN THE STORE HAS
+    public void displayAllItems() {
+        for (Item item : itemStock){
+            item.toString();
+        }
+    }
+
+//    DISPLAY OUT OF STOCK ITEMS
+    public void displayOutOfStock() {
+        for (Item item : itemStock) {
+            if (stockList.get(item) == 0) {
+                item.toString();
+            }
+        }
+    }
+
 }

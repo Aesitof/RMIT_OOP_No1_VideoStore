@@ -28,5 +28,5 @@ public class Stock {
             Item latestItem = itemStock.get(itemStock.size() - 1);
             latestID = latestID + latestItem.getId();
             return latestID;
-        }
+    }
 }

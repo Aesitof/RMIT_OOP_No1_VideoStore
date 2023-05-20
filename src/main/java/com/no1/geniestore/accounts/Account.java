@@ -3,14 +3,14 @@ package com.no1.geniestore.accounts;
 
 public class Account {
     private String id;
+    private String username;
     private String name;
+    private String accountType;
     private String address;
     private String phone;
-    private String username;
     private String password;
     private int totalReturnedItems;
     private int rewardPoints;
-    private String accountType;
     private static int idCounter = 0;
 
 
@@ -141,5 +141,18 @@ public class Account {
             accountID = String.format("%s%s%s", accountID, "", code);
         }
         return accountID;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", accountType='" + accountType + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", rewardPoints=" + rewardPoints +
+                '}';
     }
 }
