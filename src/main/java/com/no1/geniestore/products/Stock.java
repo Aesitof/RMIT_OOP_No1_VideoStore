@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Stock {
-    protected static HashMap<Item, Integer> stockList = new HashMap<>();
-    protected static ArrayList<Item> itemStock;
+    protected static HashMap<Item, Integer> stockList = new HashMap<>();//Map the current copies each Item
+    protected static ArrayList<Item> itemStock;//A list to take the latest ID
 
     public Stock() {
         itemStock = new ArrayList<Item>();

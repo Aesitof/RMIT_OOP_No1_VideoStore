@@ -42,17 +42,17 @@ public class ManagementSystem {
     }
     public void removeItem(Item item) {
         itemList.remove(item);
-    }
+    }//Remove item including it's stock
 
     //ACCOUNTS METHODS
     public void addAccount(Account account) {
         accountList.add(account);
     }//Add accounts to the list
-    public void removeAccount(String accountID) {//Remove using ID
+    public void removeAccount(String accountID) {//Remove account using ID
         accountList.removeIf(i -> i.getId().equals(accountID));
     }//Remove accounts from the list
 
-    public void promote(Account account) {
+    public void promote(Account account) {//Auto promote whenever return item
         if (account.getAccountType().equals("Guest")
             && account.getTotalReturnedItems() == 3) {
             account.setAccountType("Regular");
@@ -76,7 +76,7 @@ public class ManagementSystem {
     }
     public void makeOrder(Account account) {
         Order order = new Order(account);
-    }
+    }//make a list contain orderDetails
 
 //    DISPLAY ALL ITEMS IN THE STORE HAS
     public void displayAllItems() {
