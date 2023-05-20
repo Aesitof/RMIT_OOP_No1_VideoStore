@@ -5,12 +5,12 @@ import com.no1.geniestore.accounts.Account;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.no1.geniestore.products.Stock.itemStock;
+import static com.no1.geniestore.products.Stock.*;
 
 public class ManagementSystem {
     private ArrayList<Account> accountList;
     private ArrayList<Order> orderList;//TAO CLASS ORDER BO SUNG
-    private HashMap<Item, Integer> itemList;
+    private HashMap<Item, Integer> itemList; // Total item copies
     private Account currentUser;
 
     public ManagementSystem() {
@@ -20,15 +20,21 @@ public class ManagementSystem {
         this.currentUser = null;
     }
 
-//ITEM METHODS
+    //ITEM METHODS
     public void addItem(Item item, Integer stock) {//Add Item to the stock
-        if (itemList.get(item) != null) {
+        if (itemList.get(item) != null) { // if already have that item in itemList
+            // add to total
             int countItem = itemList.get(item);
             countItem += stock;
             itemList.put(item, countItem);
-        } else {
+
+            // add to current stock
+            int countStock = stockList.get(item) + stock;
+            stockList.put(item, countStock);
+        } else { // if the item is completely brand new
             itemList.put(item, stock);
-            itemStock.add(item);
+            itemStock.add(item); // add new item in itemStock using for generate id
+            stockList.put(item, stock); // add stock to current stock
         }
     }
     public void stockArrive(Item item, int amount) {
@@ -45,6 +51,7 @@ public class ManagementSystem {
     public void removeAccount(String accountID) {//Remove using ID
         accountList.removeIf(i -> i.getId().equals(accountID));
     }//Remove accounts from the list
+
     public void promote(Account account) {
         if (account.getAccountType().equals("Guest")
             && account.getTotalReturnedItems() == 3) {

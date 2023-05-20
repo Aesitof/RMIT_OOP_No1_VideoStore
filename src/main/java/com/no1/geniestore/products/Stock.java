@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Stock {
-    private HashMap<Item, Integer> stockList = new HashMap<>();
+    protected static HashMap<Item, Integer> stockList = new HashMap<>();
     protected static ArrayList<Item> itemStock;
 
     public Stock() {

@@ -16,7 +16,6 @@ public class Item extends Stock {
     private Genre genre;
 
 
-
     public Item(ItemType itemType, int year, String title, LoanType loanType, double rentalFee, Genre genre) {
         this.itemType = itemType;
         this.year = year;
@@ -63,10 +62,7 @@ public class Item extends Stock {
         return genre;
     }
 
-
-
     // only loanType, rentalFee, and genre can be updated
-
     public void setLoanType(LoanType loanType) {
         this.loanType = loanType;
     }

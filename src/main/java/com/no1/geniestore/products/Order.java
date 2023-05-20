@@ -2,6 +2,8 @@ package com.no1.geniestore.products;
 
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.constants.LoanType;
+import static com.no1.geniestore.products.Stock.itemStock;
+import static com.no1.geniestore.products.Stock.stockList;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -37,13 +39,14 @@ public class Order {
         this.owner = owner;
     }
 
-    public void addItemForRent(Item item, Date loanDate, int amount) {
+    public void addItemForRent(Item item, Date loanDate, int amount) { // hình như kh cần loanDate trong này
         long currentTimeMillis = System.currentTimeMillis();
-
         OrderDetails orderDetail = new OrderDetails();
+
         orderDetail.setLoanDate(loanDate);
         orderDetail.setAmount(amount);
         long returnDate;
+
         if (item.getLoanType().equals(LoanType.TWO_DAY_LOAN)) {
             returnDate = orderDetail.getLoanDate().getTime() + dayLoan;
         } else {
@@ -51,7 +54,12 @@ public class Order {
         }
         orderDetail.setReturnDate(new Date(returnDate));//chuyển về lại Date
 
-        order.put(item, orderDetail);
+        if (amount <= stockList.get(item)) {
+            order.put(item, orderDetail);
+            int stockRemaining = stockList.get(item) - amount;
+            stockList.put(item,stockRemaining);
+        }
+
     }
     public void removeItem(Item item) {
         order.remove(item);
