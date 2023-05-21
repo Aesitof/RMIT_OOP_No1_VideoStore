@@ -4,37 +4,27 @@ package com.no1.geniestore.products;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
+import  com.no1.geniestore.products.Stock;
 
-public class Item {
-    private final ItemType itemType;
-    private final int year;
+public class Item extends Stock {
     private String id;
     private final String title;
-    private LoanType loanType;
-    private double rentalFee;
-    private boolean rentalStatus;
+    private int year;
+    private final ItemType itemType;
     private Genre genre;
-    private String image;
+    private double rentalFee;
+    private LoanType loanType;
 
-    public Item(ItemType itemType, int year, String id, String title, LoanType loanType, double rentalFee, boolean rentalStatus, Genre genre) {
+    public Item(ItemType itemType, int year, String title, LoanType loanType, double rentalFee, Genre genre) {
         this.itemType = itemType;
         this.year = year;
-        this.id = id;
+        this.id = generateItemID();
         this.title = title;
         this.loanType = loanType;
         this.rentalFee = rentalFee;
-        this.rentalStatus = rentalStatus;
         this.genre = genre;
     }
-    
-    public String getImage(){
-        return image;
-    }
-    
-    public void setImage(String image){
-        this.image = image;
-    }
-    
+
     public ItemType getItemType() {
         return itemType;
     }
@@ -43,8 +33,16 @@ public class Item {
         return year;
     }
 
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -59,20 +57,11 @@ public class Item {
         return rentalFee;
     }
 
-    public boolean isRentalStatus() {
-        return rentalStatus;
-    }
-
     public Genre getGenre() {
         return genre;
     }
 
-    public void addItem(){}
-
-    public void removeItem(){}
-
     // only loanType, rentalFee, and genre can be updated
-
     public void setLoanType(LoanType loanType) {
         this.loanType = loanType;
     }
@@ -85,12 +74,38 @@ public class Item {
         this.genre = genre;
     }
 
+    public String generateItemID() {
+        String latestIDCode = getTheLatestID();
+        int code = Integer.parseInt(latestIDCode);
+        code = code + 1;
 
-//    public String generateID(int year){} // generate the id based on the year
+        String itemID = "I";
 
-    public String checkStatus(String title){
-        return "Available";
-    } // return Available or Not Available
+        if (code >= 1 && code <= 9) {
+//            itemID = itemID + "00" + code + "-" + getYear();
+            itemID = String.format("%s%s%s%s%s", itemID, "00", code, "-", getYear());
+        } else if (code >= 10 && code <= 99) {
+//            itemID = itemID + "0" + code + "-" + getYear();
+            itemID = String.format("%s%s%s%s%s", itemID, "0", code, "-", getYear());
+        } else if (code >= 100 && code <= 999) {
+//            itemID = itemID + "" + code + "-" + getYear();
+            itemID = String.format("%s%s%s%s%s", itemID, "", code, "-", getYear());
+        }
 
+        return itemID;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", year=" + year +
+                ", itemType=" + itemType +
+                ", genre=" + genre +
+                ", rentalFee=" + rentalFee +
+                ", loanType=" + loanType +
+                '}';
+    }
 }
 
