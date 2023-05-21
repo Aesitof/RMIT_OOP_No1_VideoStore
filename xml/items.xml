@@ -8,6 +8,7 @@
         <genre>Drama</genre>
         <loanType>2 days</loanType>
         <rentalFee>23.99</rentalFee>
+        <image>lastchristmas.jpg</image>
         <copies>5</copies>
         <remaining>5</remaining>
     </item>
@@ -18,44 +19,47 @@
         <itemType>Game</itemType>
         <loanType>7 days</loanType>
         <rentalFee>50.99</rentalFee>
+        <image>pubg.jpg</image>
         <copies>3</copies>
         <remaining>2</remaining>
     </item>
     <item>
-        <id>I003-1999</id>
+        <id>I003-1997</id>
         <title>Titanic</title>
-        <year>1999</year>
+        <year>1997</year>
         <itemType>Video Record</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
         <rentalFee>12.59</rentalFee>
+        <image>titanic.jpg</image>
         <copies>3</copies>
         <remaining>3</remaining>
     </item>
     <item>
-        <id>I004-2004</id>
-        <title>Welcome to the life</title>
-        <year>2004</year>
+        <id>I004-2019</id>
+        <title>Parasite</title>
+        <year>2019</year>
         <itemType>Video Record</itemType>
-        <genre>Comedy</genre>
+        <genre>Drama</genre>
         <loanType>2 days</loanType>
         <rentalFee>12.99</rentalFee>
+        <image>parasite.jpg</image>
         <copies>5</copies>
         <remaining>5</remaining>
     </item>
     <item>
-        <id>I005-2004</id>
-        <title>Holiday</title>
+        <id>I005-2010</id>
+        <title>Speak Now</title>
         <year>2004</year>
-        <itemType>Video Record</itemType>
-        <genre>Comedy</genre>
+        <itemType>DVD</itemType>
+        <genre>Drama</genre>
         <loanType>2 days</loanType>
         <rentalFee>12.99</rentalFee>
         <copies>4</copies>
         <remaining>3</remaining>
     </item>
     <item>
-        <id>I006-2021</id>
+        <id>I006-2022</id>
         <title>Stranger Things 4</title>
         <year>2022</year>
         <itemType>Video Record</itemType>

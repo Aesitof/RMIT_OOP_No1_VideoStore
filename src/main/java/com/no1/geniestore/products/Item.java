@@ -12,10 +12,12 @@ public class Item extends Stock {
     private int year;
     private final ItemType itemType;
     private Genre genre;
-    private double rentalFee;
     private LoanType loanType;
+    private double rentalFee;
+    private String image;
 
-    public Item(ItemType itemType, int year, String title, LoanType loanType, double rentalFee, Genre genre) {
+    
+    public Item(String title, int year, ItemType itemType, Genre genre, LoanType loanType, double rentalFee){
         this.itemType = itemType;
         this.year = year;
         this.id = generateItemID();
