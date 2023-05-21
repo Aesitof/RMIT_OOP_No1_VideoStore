@@ -14,6 +14,17 @@ public enum LoanType {
         return name;
     }
 
+    public static LoanType byName(String name) {
+        LoanType returnValue = null;
+        for (LoanType loanType : values()) {
+            if (loanType.getName().equals(name)) {
+                returnValue = loanType;
+                return returnValue;
+            }
+        }
+        return returnValue;
+    }
+
     @Override
     public String toString() {
         return  getName();

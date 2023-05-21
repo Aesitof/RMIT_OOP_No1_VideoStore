@@ -14,6 +14,17 @@ public enum Genre {
     public String getName()  {
         return name;
     }
+
+    public static Genre byName(String name) {
+        Genre returnValue = null;
+        for (Genre genre : values()) {
+            if (genre.getName().equals(name)) {
+                returnValue = genre;
+                return returnValue;
+            }
+        }
+        return returnValue;
+    }
     @Override
     public String toString() {
         return getName();

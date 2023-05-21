@@ -15,6 +15,17 @@ public enum ItemType {
         return name;
     }
 
+    public static ItemType byName(String name) {
+        ItemType returnValue = null;
+        for (ItemType itemType : values()) {
+            if (itemType.getName().equals(name)) {
+                returnValue = itemType;
+                return returnValue;
+            }
+        }
+        return returnValue;
+    }
+
     @Override
     public String toString() {
         return getName();

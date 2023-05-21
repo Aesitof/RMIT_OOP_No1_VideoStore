@@ -16,7 +16,7 @@ public class Item extends Stock {
     private double rentalFee;
     private String image;
 
-    
+
     public Item(String title, int year, ItemType itemType, Genre genre, LoanType loanType, double rentalFee){
         this.itemType = itemType;
         this.year = year;
@@ -25,6 +25,17 @@ public class Item extends Stock {
         this.loanType = loanType;
         this.rentalFee = rentalFee;
         this.genre = genre;
+    }
+
+    public Item(String id, String title, int year, ItemType itemType, Genre genre, LoanType loanType, double rentalFee, String image){
+        this.id = id;
+        this.itemType = itemType;
+        this.year = year;
+        this.title = title;
+        this.loanType = loanType;
+        this.rentalFee = rentalFee;
+        this.genre = genre;
+        this.image = image;
     }
 
     public ItemType getItemType() {
@@ -105,8 +116,9 @@ public class Item extends Stock {
                 ", year=" + year +
                 ", itemType=" + itemType +
                 ", genre=" + genre +
-                ", rentalFee=" + rentalFee +
                 ", loanType=" + loanType +
+                ", rentalFee=" + rentalFee +
+                ", image='" + image + '\'' +
                 '}';
     }
 }
