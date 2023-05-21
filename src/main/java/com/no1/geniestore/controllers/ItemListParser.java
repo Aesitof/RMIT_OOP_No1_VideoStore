@@ -1,9 +1,11 @@
-package com.no1.geniestore;
+package com.no1.geniestore.controllers;
 
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
 import com.no1.geniestore.products.Item;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -18,7 +20,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ItemListParser {
      * Parses an XML file containing an item list. returns an array list
      * containing all items in the XML file
      */
-    public List<Item> parse(String fileName) throws SAXException, IOException {
+    public ObservableList<ItemData> parse(String fileName) throws SAXException, IOException {
         // get the <items> root element
         Element root = builder.parse(new File(fileName)).getDocumentElement();
         return getItems(root);
@@ -48,8 +49,8 @@ public class ItemListParser {
      * Obtains an array of items from a DOM element e an <items> element returns
      * the children of e, an array of all items
      */
-    private List<Item> getItems(Element e) {
-        List<Item> items = new ArrayList<>();
+    private ObservableList<ItemData> getItems(Element e) {
+        ObservableList<ItemData> items = FXCollections.observableArrayList();
         NodeList children = e.getChildNodes();
 
         for (int i = 0; i < children.getLength(); i++)
@@ -59,10 +60,67 @@ public class ItemListParser {
             {
                 Element childElement = (Element) childNode;
                 if (childElement.getTagName().equals("item"))
-                    items.add(getItem(childElement));
+                    items.add(getItemData(childElement));
             }
         }
         return items;
+    }
+
+    public ItemData getItemData(Element e) {
+        NodeList children = e.getChildNodes();
+        String id = null;
+        String title = null;
+        int year = 0;
+        ItemType itemType = null;
+        Genre genre = null;
+        LoanType loanType = null;
+        double rentalFee = 0.0;
+        String image = null;
+        int totalCopies = 0;
+        int remainingCopies = 0;
+
+        for (int j = 0; j < children.getLength(); j++)
+        {
+            Node childNode = children.item(j);
+            if (childNode instanceof Element)
+            {
+                Element childElement = (Element) childNode;
+                String tagName = childElement.getTagName();
+                String data = ((Text) childElement.getFirstChild()).getData();
+                if (tagName.equals("id")) {
+                    id = data;
+                }
+                else if (tagName.equals("title")) {
+                    title = data;
+                }
+                else if (tagName.equals("year")) {
+                    year = Integer.parseInt(data);
+                }
+                else if (tagName.equals("itemType")) {
+                    itemType = ItemType.byName(data);
+                }
+                else if (tagName.equals("genre")) {
+                    genre = Genre.byName(data);
+                }
+                else if (tagName.equals("loanType")) {
+                    loanType = LoanType.byName(data);
+                }
+                else if (tagName.equals("rentalFee"))
+                {
+                    rentalFee = Double.parseDouble(data);
+                }
+                else if (tagName.equals("image")) {
+                    image = data;
+                }
+                else if (tagName.equals("copies")) {
+                    totalCopies = Integer.parseInt(data);
+                }
+                else if (tagName.equals("remaining")) {
+                    remainingCopies = Integer.parseInt(data);
+                }
+            }
+        }
+        return new ItemData(id, title, year, itemType, genre, loanType, rentalFee, image, totalCopies, remainingCopies);
     }
 
     /**

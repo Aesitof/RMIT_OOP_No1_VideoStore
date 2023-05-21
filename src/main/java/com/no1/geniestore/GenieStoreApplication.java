@@ -1,5 +1,6 @@
 package com.no1.geniestore;
 
+import com.no1.geniestore.products.ManagementSystem;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,7 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 public class GenieStoreApplication extends Application {
@@ -15,7 +18,7 @@ public class GenieStoreApplication extends Application {
     double y;
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("loginpage-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("admindetailpage-view.fxml"));
 
         Scene scene = new Scene(root);
 
@@ -37,8 +40,9 @@ public class GenieStoreApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
         launch();
+        ManagementSystem.main();
     }
 
 }

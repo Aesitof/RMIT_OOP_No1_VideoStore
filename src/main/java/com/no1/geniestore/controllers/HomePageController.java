@@ -92,6 +92,12 @@ public class HomePageController implements Initializable {
         stage.show();
     }
 
+    public void logout() throws IOException {
+        onSignInBtnClick();
+        // add alert for Confirmation
+        // write all list to file
+    }
+
     MenuItem dvd = new MenuItem(ItemType.DVD.toString());
     MenuItem game = new MenuItem(ItemType.GAME.toString());
     MenuItem videoRecord = new MenuItem(ItemType.VIDEO_RECORD.toString());

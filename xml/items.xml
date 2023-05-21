@@ -55,6 +55,7 @@
         <genre>Drama</genre>
         <loanType>2 days</loanType>
         <rentalFee>12.99</rentalFee>
+        <image>speaknow.jpg</image>
         <copies>4</copies>
         <remaining>3</remaining>
     </item>
@@ -66,6 +67,7 @@
         <genre>Horror</genre>
         <loanType>1 week</loanType>
         <rentalFee>25.99</rentalFee>
+        <image>strangerthings4.jpg</image>
         <copies>2</copies>
         <remaining>0</remaining>
     </item>

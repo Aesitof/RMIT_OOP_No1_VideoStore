@@ -106,18 +106,17 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <TableView fx:id="addItemTableView" layoutX="10.0" layoutY="47.0" prefHeight="282.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                          <TableView fx:id="addItemTableView" layoutX="10.0" layoutY="47.0" onMouseClicked="#addItemSelect" prefHeight="282.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                             <columns>
                                                 <TableColumn fx:id="addItemColId" prefWidth="62.5" text="ID" />
-                                                <TableColumn prefWidth="188.5" text="Title" />
+                                                <TableColumn fx:id="addItemColTitle" prefWidth="188.5" text="Title" />
                                               <TableColumn fx:id="addItemColYear" minWidth="6.0" prefWidth="61.5" text="Year" />
                                               <TableColumn fx:id="addItemColType" minWidth="3.499969482421875" prefWidth="109.0" text="Type" />
                                                 <TableColumn fx:id="addItemColGenre" prefWidth="92.5" text="Genre" />
-                                                <TableColumn fx:id="addItemColLoanType" prefWidth="109.0" text="Loan Type" />
-                                                <TableColumn fx:id="addItemColRentalFee" text="Rental Fee" />
-                                                <TableColumn fx:id="addItemColCopies" prefWidth="73.0" text="Copies" />
-                                                <TableColumn fx:id="addItemColRemaining" prefWidth="75.0" text="Remaining" />
-                                                <TableColumn prefWidth="188.5" text="Title" />
+                                                <TableColumn fx:id="addItemColLoanType" prefWidth="92.5" text="Loan Type" />
+                                                <TableColumn fx:id="addItemColRentalFee" minWidth="0.0" prefWidth="98.0" text="Rental Fee" />
+                                                <TableColumn fx:id="addItemColCopies" minWidth="9.5" prefWidth="71.5" text="Copies" />
+                                                <TableColumn fx:id="addItemColRemaining" prefWidth="74.0" text="Remaining" />
                                             </columns>
                                           </TableView>
                                           <TextField fx:id="addItemSearch" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="312.0" promptText="Search..." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
@@ -183,8 +182,8 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" />
-                                          <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" styleClass="import-btn" stylesheets="@style/admindetailpage.css" text="Import" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+                                          <ImageView fx:id="addItemImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" />
+                                          <Button mnemonicParsing="false" onAction="#addItemInsertImage" prefHeight="35.0" prefWidth="200.0" styleClass="import-btn" stylesheets="@style/admindetailpage.css" text="Import" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <Button layoutX="692.0" layoutY="620.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Add" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="90.0">
@@ -193,7 +192,7 @@
                                           <String fx:value="add-btn" />
                                        </styleClass>
                                     </Button>
-                                    <Button layoutX="592.0" layoutY="620.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Update" AnchorPane.bottomAnchor="17.0">
+                                    <Button layoutX="592.0" layoutY="620.0" mnemonicParsing="false" onAction="#updateItem" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Update" AnchorPane.bottomAnchor="17.0">
                                        <styleClass>
                                           <String fx:value="btn" />
                                           <String fx:value="update-btn" />
@@ -226,6 +225,7 @@
                                           <Font name="Arial" size="13.0" />
                                        </font>
                                     </Label>
+                                    <Label fx:id="imagePath" layoutX="650.0" layoutY="570.0" prefHeight="17.0" prefWidth="201.0" text="Label" />
                                  </children>
                               </AnchorPane>
                            </children>

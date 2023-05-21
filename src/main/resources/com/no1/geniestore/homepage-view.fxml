@@ -101,7 +101,7 @@
                                       <items>
                                         <MenuItem mnemonicParsing="false" onAction="#toAccountSettingsView" text="Account Settings" />
                                         <MenuItem mnemonicParsing="false" onAction="#toMyOrdersView" text="My Orders" />
-                                          <MenuItem mnemonicParsing="false" onAction="#onSignInBtnClick" style="-fx-text-fill: red;" text="Log out" />
+                                          <MenuItem mnemonicParsing="false" onAction="#logout" style="-fx-text-fill: red;" text="Log out" />
                                       </items>
                                        <font>
                                           <Font name="Candara" size="20.0" />

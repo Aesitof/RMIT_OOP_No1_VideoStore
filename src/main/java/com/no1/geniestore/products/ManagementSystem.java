@@ -1,23 +1,32 @@
 package com.no1.geniestore.products;
 
+import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.no1.geniestore.products.Stock.*;
 
 public class ManagementSystem {
-    private ArrayList<Account> accountList;
-    private ArrayList<Order> orderList;//TAO CLASS ORDER BO SUNG
-    private HashMap<Item, Integer> itemList; // Total item copies
-    private Account currentUser;
+    private static ArrayList<Account> accountList;
+    private static ArrayList<Order> orderList;//TAO CLASS ORDER BO SUNG
+    private static HashMap<Item, Integer> itemList; // Total item copies
+    private static Account currentUser;
 
     public ManagementSystem() {
         this.accountList = new ArrayList<>();
         this.orderList = new ArrayList<>();
         this.itemList = new HashMap<>();
         this.currentUser = null;
+    }
+
+    public static void main() throws ParserConfigurationException, IOException, SAXException {
+        itemList = new ItemListParser().parseItemTotal("xml/items.xml");
+        stockList = new ItemListParser().parseStockList("xml/items.xml");
     }
 
     //ITEM METHODS
@@ -93,5 +102,4 @@ public class ManagementSystem {
             }
         }
     }
-
 }
