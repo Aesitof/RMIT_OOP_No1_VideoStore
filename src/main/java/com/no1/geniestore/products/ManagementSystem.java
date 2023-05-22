@@ -1,5 +1,7 @@
 package com.no1.geniestore.products;
 
+import com.no1.geniestore.constants.Genre;
+import com.no1.geniestore.constants.LoanType;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
 import org.xml.sax.SAXException;
@@ -61,6 +63,16 @@ public class ManagementSystem {
         accountList.removeIf(i -> i.getId().equals(accountID));
     }//Remove accounts from the list
 
+    //    DISPLAY USERS
+    public void displayUsers() {
+        StringBuilder str;
+        str = new StringBuilder();
+        for (Account user : accountList) {
+            str.append(user.toString());
+            str.append(" ");
+        }
+    }
+
     public void promote(Account account) {//Auto promote whenever return item
         if (account.getAccountType().equals("Guest")
             && account.getTotalReturnedItems() == 3) {
@@ -89,17 +101,30 @@ public class ManagementSystem {
 
 //    DISPLAY ALL ITEMS IN THE STORE HAS
     public void displayAllItems() {
+        StringBuilder str;
+        str = new StringBuilder();
         for (Item item : itemStock){
-            item.toString();
+            str.append(item.toString());
+            str.append(" ");
         }
     }
 
 //    DISPLAY OUT OF STOCK ITEMS
     public void displayOutOfStock() {
+        StringBuilder str;
+        str = new StringBuilder();
         for (Item item : itemStock) {
             if (stockList.get(item) == 0) {
-                item.toString();
+                str.append(item.toString());
+                str.append(" ");
             }
         }
+    }
+
+    public static void updateItem(Item item, String title, LoanType loanType, double rentalFee, Genre genre) {
+        item.setTitle(title);
+        item.setLoanType(loanType);
+        item.setRentalFee(rentalFee);
+        item.setGenre(genre);
     }
 }

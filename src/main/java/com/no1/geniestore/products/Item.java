@@ -8,9 +8,9 @@ import  com.no1.geniestore.products.Stock;
 
 public class Item extends Stock {
     private String id;
-    private final String title;
+    private String title;
     private int year;
-    private final ItemType itemType;
+    private ItemType itemType;
     private Genre genre;
     private LoanType loanType;
     private double rentalFee;
@@ -85,6 +85,14 @@ public class Item extends Stock {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
     }
 
     public String generateItemID() {
