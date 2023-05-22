@@ -18,7 +18,7 @@ public class GenieStoreApplication extends Application {
     double y;
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("admindetailpage-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("homepage-view.fxml"));
 
         Scene scene = new Scene(root);
 
@@ -41,8 +41,8 @@ public class GenieStoreApplication extends Application {
     }
 
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
-        launch();
         ManagementSystem.main();
+        launch();
     }
 
 }

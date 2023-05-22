@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Stock {
-    protected static HashMap<Item, Integer> stockList = new HashMap<>(); // current stock
+    public static HashMap<Item, Integer> stockList = new HashMap<>(); // current stock
     protected static ArrayList<Item> itemStock = new ArrayList<>(); // List of items using to generate itemID
 
 //    get latest itemID by itemStock

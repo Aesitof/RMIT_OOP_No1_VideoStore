@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="229.0" prefWidth="839.0" styleClass="item-pane" stylesheets="@style/homepage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.no1.geniestore.controllers.ProductCardController">
+    <children>
+        <ImageView fx:id="productCardImageView" fitHeight="198.0" fitWidth="188.0" layoutX="25.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="10.0" />
+        <Label fx:id="productCardTitle" layoutX="242.0" layoutY="20.0" text="The Beatles: Eight days a Week">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <Text layoutX="246.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Published Year:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Label fx:id="productCardYear" layoutX="354.0" layoutY="82.0" text="1970">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Text fx:id="productCardGenreText" layoutX="246.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Label fx:id="productCardGenre" layoutX="354.0" layoutY="108.0" text="Comedy">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Text layoutX="246.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rent for:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Label fx:id="productCardRentalFee" layoutX="354.0" layoutY="163.0" text="\$10">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Text layoutX="246.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rent duration:">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Label fx:id="productCardLoanType" layoutX="354.0" layoutY="188.0" text="1 week">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="productCardType" layoutX="246.0" layoutY="54.0" text="DVD" textFill="#c90909">
+            <font>
+                <Font name="Leelawadee Bold" size="20.0" />
+            </font>
+        </Label>
+        <Text fx:id="productCardRemaining" layoutX="615.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5 items left" textAlignment="RIGHT" wrappingWidth="163.47003173828125" AnchorPane.rightAnchor="90.0">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Text>
+        <Button fx:id="addToCartBtn" layoutX="610.0" layoutY="135.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="66.0" prefWidth="173.0" text="Add to Cart" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="90.0">
+            <stylesheets>
+                <URL value="@style/homepage.css" />
+                <URL value="@style/admindetailpage.css" />
+            </stylesheets>
+            <styleClass>
+                <String fx:value="add-to-cart-btn" />
+                <String fx:value="shadow" />
+            </styleClass>
+        </Button>
+    </children>
+</AnchorPane>

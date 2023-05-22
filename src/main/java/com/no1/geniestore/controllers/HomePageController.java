@@ -1,6 +1,7 @@
 package com.no1.geniestore.controllers;
 
 import com.no1.geniestore.constants.ItemType;
+import com.no1.geniestore.products.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -22,6 +25,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static com.no1.geniestore.products.Stock.stockList;
+
 public class HomePageController implements Initializable {
     private Stage stage;
     private Scene scene;
@@ -30,16 +35,16 @@ public class HomePageController implements Initializable {
     private Button close;
 
     @FXML
-    private AnchorPane homeView;
+    AnchorPane homeView;
 
     @FXML
-    private AnchorPane productView;
+    AnchorPane productView;
 
     @FXML
-    private AnchorPane cartView;
+    AnchorPane cartView;
 
     @FXML
-    private AnchorPane accountDetailView;
+    AnchorPane accountDetailView;
 
     @FXML
     private Button searchBtn;
@@ -65,8 +70,31 @@ public class HomePageController implements Initializable {
     @FXML
     private AnchorPane myOrdersView;
 
+    @FXML
+    private VBox productListVBox;
+
+    @FXML
+    private TextField topSearchTextField;
+
+    @FXML
+    private VBox cartListVBox;
+
+    @FXML
+    private Text orderTotal;
+
+    @FXML
+    private Text orderSubtotal;
+
+    @FXML
+    private Text orderDiscount;
+
+    @FXML
+    private Button payNowBtn;
+
     private double x;
     private double y;
+
+    private static ObservableList<CartData> cartDataList = FXCollections.observableArrayList();
 
 
     public void close() {
@@ -118,6 +146,39 @@ public class HomePageController implements Initializable {
         accountDetailView.setVisible(false);
     }
 
+    public void loadProductList() throws IOException {
+        topSearchTextField.setText("starting...");
+
+
+        for (Item item : stockList.keySet()) {
+            topSearchTextField.setText("loading...");
+//            try {
+                FXMLLoader loader = new FXMLLoader();
+//                loader.getClass().getResource("/com/no1/geniestore/productcard-view.fxml");
+                loader.setLocation(getClass().getResource("/com/no1/geniestore/productcard-view.fxml"));
+//                AnchorPane pane = loader.load(getClass().getResource("/com/no1/geniestore/productcard-view.fxml"));
+                AnchorPane pane = loader.load();
+
+                ProductCardController productCardController = loader.getController();
+                productCardController.productHomeView = homeView;
+                productCardController.productProductView = productView;
+                productCardController.productCartView = cartView;
+                productCardController.productAccountDetailView = accountDetailView;
+                productCardController.productCartDataList = cartDataList;
+                productCardController.productCartListVBox = cartListVBox;
+                productCardController.productOrderTotal = orderTotal;
+                productCardController.productOrderSubtotal = orderSubtotal;
+                productCardController.productOrderDiscount = orderDiscount;
+
+                productCardController.setData(item, stockList.get(item));
+
+                productListVBox.getChildren().add(pane);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+        }
+    }
+
 
     /* Cart View */
     public void toCartView() {
@@ -126,6 +187,16 @@ public class HomePageController implements Initializable {
         cartView.setVisible(true);
         accountDetailView.setVisible(false);
     }
+
+//    public static void updateOrderTotal() {
+//        double total = 0.0;
+//        for (CartData c : cartDataList) {
+//            total += c.getItemFee();
+//        }
+//
+//        orderTotal.setText("$" + total);
+//    }
+
 
 
     // Show dialog
@@ -200,7 +271,14 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        videoBtn.getItems().addAll(dvd, game, videoRecord);
+        try {
+            loadProductList();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         toHomeView();
+        orderTotal.setText("$0.00");
+        orderSubtotal.setText("$0.00");
+        orderDiscount.setText("$0.00");
     }
 }

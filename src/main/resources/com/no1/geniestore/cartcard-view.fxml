@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="229.0" prefWidth="750.0" styleClass="item-pane" stylesheets="@style/homepage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.no1.geniestore.controllers.CartCardController">
+   <children>
+      <ImageView fx:id="cartCardImageView" fitHeight="198.0" fitWidth="188.0" layoutX="25.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="10.0" />
+      <Label fx:id="cartCardTitle" layoutX="231.0" layoutY="8.0" text="PUBG">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Text layoutX="235.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Published Year:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="cartCardYear" layoutX="343.0" layoutY="70.0" text="2015">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Text fx:id="cartCardGenreText" layoutX="235.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="cartCardGenre" layoutX="343.0" layoutY="96.0" text="Action">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="cartCardType" layoutX="235.0" layoutY="42.0" text="Game" textFill="#c90909">
+         <font>
+            <Font name="Leelawadee Bold" size="20.0" />
+         </font>
+      </Label>
+      <Text layoutX="445.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return day" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="35.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <Label fx:id="cartCardReturnDate" layoutX="523.0" layoutY="38.0" text="May 28, 2023" textFill="#d05959" AnchorPane.topAnchor="35.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="cartCardLoanType" alignment="CENTER" layoutX="388.0" layoutY="69.0" prefHeight="42.0" prefWidth="111.0" styleClass="rent-duration-label" stylesheets="@style/homepage.css" text="7 days" textAlignment="CENTER" AnchorPane.leftAnchor="400.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Text layoutX="372.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" AnchorPane.leftAnchor="400.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <Spinner fx:id="cartCardQty" layoutX="524.0" layoutY="136.0" prefHeight="25.0" prefWidth="66.0" />
+      <Text fx:id="cartCardItemFee" layoutX="591.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$10" textAlignment="RIGHT" wrappingWidth="135.5" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font name="Arial Bold" size="25.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="deleteBtn" fitHeight="31.0" fitWidth="29.0" layoutX="709.0" layoutY="32.0" onMouseClicked="#delete" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <image>
+            <Image url="@assets/bin.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</AnchorPane>
