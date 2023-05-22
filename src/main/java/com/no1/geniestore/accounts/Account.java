@@ -1,6 +1,5 @@
 package com.no1.geniestore.accounts;
 
-
 public class Account {
     private String id;
     private String username;
@@ -13,7 +12,7 @@ public class Account {
     private int rewardPoints;
     private static int idCounter = 0;
 
-
+//    Constructor method
     public Account(String name, String address, String phone, String username, String password, String accountType) {
         this.id = generateAccountID();
         this.name = name;
@@ -26,6 +25,7 @@ public class Account {
         this.accountType = accountType;
     }
 
+//    Default Constructor
     public Account() {
         this.id = generateAccountID();
         this.name = "default";
@@ -38,6 +38,7 @@ public class Account {
         this.accountType = "Guest";
     }
 
+//    Getter and Setter
     public String getId() {
         return id;
     }
@@ -110,36 +111,20 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public void createUsername() {
-        // the username contains up to 15 characters,
-    }
-
-    //Generate ID Cho Accounts
-//    public String latestAccountID(){
-//        // take the latest ID in an account list
-//        idCounter++;
-//        String latestIDCode = ;
-//        return latestIDCode;
-//    }
-
     public String generateAccountID(){
         idCounter++;
         int code = idCounter;
         code = code + 1;
         String accountID = "C";
 
-        if (code >= 1 && code <= 9){
-//            accountID = accountID + "00" + code;
+        if (code >= 1 && code <= 9) {
             accountID = String.format("%s%s%s", accountID, "00", code);
-        }
-        else if (code >= 10 && code <= 99){
-//            accountID = accountID + "0" + code;
+        } else if (code >= 10 && code <= 99){
             accountID = String.format("%s%s%s", accountID, "0", code);
-        }
-        else if (code >= 100 && code <= 999){
-//            accountID = accountID + "" + code;
+        } else if (code >= 100 && code <= 999){
             accountID = String.format("%s%s%s", accountID, "", code);
         }
+
         return accountID;
     }
 

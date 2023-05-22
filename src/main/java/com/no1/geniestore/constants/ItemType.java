@@ -4,7 +4,6 @@ public enum ItemType {
     DVD("DVD"),
     GAME("Game"),
     VIDEO_RECORD("Video Record");
-
     private final String name;
 
     ItemType(String name) {
@@ -16,14 +15,14 @@ public enum ItemType {
     }
 
     public static ItemType byName(String name) {
-        ItemType returnValue = null;
+        ItemType returnValue;
         for (ItemType itemType : values()) {
             if (itemType.getName().equals(name)) {
                 returnValue = itemType;
                 return returnValue;
             }
         }
-        return returnValue;
+        return null;
     }
 
     @Override

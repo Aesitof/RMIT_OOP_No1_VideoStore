@@ -4,7 +4,6 @@ package com.no1.geniestore.products;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
-import  com.no1.geniestore.products.Stock;
 
 public class Item extends Stock {
     private String id;
@@ -95,6 +94,7 @@ public class Item extends Stock {
         this.itemType = itemType;
     }
 
+//    Auto Generator for itemID
     public String generateItemID() {
         String latestIDCode = getTheLatestID();
         int code = Integer.parseInt(latestIDCode);
@@ -102,14 +102,12 @@ public class Item extends Stock {
 
         String itemID = "I";
 
+//        itemID format: IXXX-YYYY
         if (code >= 1 && code <= 9) {
-//            itemID = itemID + "00" + code + "-" + getYear();
             itemID = String.format("%s%s%s%s%s", itemID, "00", code, "-", getYear());
         } else if (code >= 10 && code <= 99) {
-//            itemID = itemID + "0" + code + "-" + getYear();
             itemID = String.format("%s%s%s%s%s", itemID, "0", code, "-", getYear());
         } else if (code >= 100 && code <= 999) {
-//            itemID = itemID + "" + code + "-" + getYear();
             itemID = String.format("%s%s%s%s%s", itemID, "", code, "-", getYear());
         }
 

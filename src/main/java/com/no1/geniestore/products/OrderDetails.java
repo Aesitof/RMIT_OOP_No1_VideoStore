@@ -1,5 +1,6 @@
 package com.no1.geniestore.products;
 
+import java.lang.reflect.Constructor;
 import java.util.Date;
 
 public class OrderDetails {
@@ -8,12 +9,15 @@ public class OrderDetails {
     private int amount;
     private boolean isReturned;
 
+//    Constructor
     public OrderDetails(Date returnDate, Date loanDate, int amount) {
         this.returnDate = returnDate;
         this.loanDate = loanDate;
         this.amount = amount;
         this.isReturned = false;
     }
+
+//    Default Constructor
     public OrderDetails() {
         this.returnDate = new Date(System.currentTimeMillis());
         this.loanDate = new Date(System.currentTimeMillis());
@@ -21,6 +25,7 @@ public class OrderDetails {
         this.isReturned = false;
     }
 
+//    Getter and Setter
     public Date getReturnDate() {
         return returnDate;
     }
@@ -53,8 +58,3 @@ public class OrderDetails {
         isReturned = returned;
     }
 }
-
-
-//public interface OrderDetails {
-//    public void durationCalculate();
-//}

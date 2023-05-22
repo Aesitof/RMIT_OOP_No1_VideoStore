@@ -20,10 +20,10 @@ public class ManagementSystem {
     private static Account currentUser;
 
     public ManagementSystem() {
-        this.accountList = new ArrayList<>();
-        this.orderList = new ArrayList<>();
-        this.itemList = new HashMap<>();
-        this.currentUser = null;
+        accountList = new ArrayList<>();
+        orderList = new ArrayList<>();
+        itemList = new HashMap<>();
+        currentUser = null;
     }
 
     public static void main() throws ParserConfigurationException, IOException, SAXException {
@@ -31,8 +31,8 @@ public class ManagementSystem {
         stockList = new ItemListParser().parseStockList("xml/items.xml");
     }
 
-    //ITEM METHODS
-    public void addItem(Item item, Integer stock) {//Add Item to the stock
+//    ITEM METHODS
+    public void addItem(Item item, Integer stock) { // Add Item to the stock
         if (itemList.get(item) != null) { // if already have that item in itemList
             // add to total
             int countItem = itemList.get(item);
@@ -43,8 +43,8 @@ public class ManagementSystem {
             int countStock = stockList.get(item) + stock;
             stockList.put(item, countStock);
         } else { // if the item is completely brand new
-            itemList.put(item, stock);
-            itemStock.add(item); // add new item in itemStock using for generate id
+            itemList.put(item, stock); // add new item and its stock to total item
+            itemStock.add(item); // add new item in itemStock using for generate itemID
             stockList.put(item, stock); // add stock to current stock
         }
     }
@@ -55,13 +55,42 @@ public class ManagementSystem {
         itemList.remove(item);
     }//Remove item including it's stock
 
-    //ACCOUNTS METHODS
+//    ACCOUNTS METHODS
     public void addAccount(Account account) {
         accountList.add(account);
     }//Add accounts to the list
-    public void removeAccount(String accountID) {//Remove account using ID
-        accountList.removeIf(i -> i.getId().equals(accountID));
-    }//Remove accounts from the list
+    public void removeAccount(String accountID) { // Remove account using ID
+        accountList.removeIf(i -> i.getId().equals(accountID)); // remove from account list
+    }
+
+    public void createUsername(Account account, String username, String password) {
+        for (Account acc : accountList) {
+            if (acc.getUsername().equals(username)) {
+                break; // stop if that username is already exist
+            }
+
+//            set username and password then add it to the account list
+            account.setUsername(username);
+            account.setPassword(password);
+            addAccount(account);
+        }
+    }
+
+    public void promote(Account account, int amount) { // Auto promote whenever return item
+        if (account.getTotalReturnedItems() > 9) {
+            account.setRewardPoints(account.getRewardPoints() + 10 * amount);
+        } else if (account.getTotalReturnedItems() == 9) {
+            account.setAccountType("Vip");
+        } else if (account.getTotalReturnedItems() == 4) {
+            account.setAccountType("Regular");
+        }
+    }
+
+    public void useRewardPoints(Account account) {
+        if (account.getRewardPoints() >= 100) {
+            account.setRewardPoints(account.getRewardPoints() - 100);
+        }
+    }
 
     //    DISPLAY USERS
     public void displayUsers() {
@@ -73,25 +102,13 @@ public class ManagementSystem {
         }
     }
 
-    public void promote(Account account) {//Auto promote whenever return item
-        if (account.getAccountType().equals("Guest")
-            && account.getTotalReturnedItems() == 3) {
-            account.setAccountType("Regular");
-        } else if (account.getAccountType().equals("Regular")
-            && account.getTotalReturnedItems() == 8) {
-            account.setAccountType("Vip");
-        } else {
-            account.setRewardPoints(account.getRewardPoints() + 10);//If a Vip, then +10 points
-        }
-    }
-
     //ORDER METHODS
     public void returnItem(String orderID, Item item, int amount) {//Return SINGLE item with SPECIFIED amount
         for (Order order : orderList) {
             if (order.getOrderID().equals(orderID)) {
                 order.returnItemInOrder(item, amount);
                 itemList.put(item, itemList.get(item) + amount);// return back to the stock
-                promote(order.getOwner());
+                promote(order.getOwner(), amount);
             }
         }
     }

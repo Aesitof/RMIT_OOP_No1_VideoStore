@@ -5,8 +5,8 @@ public enum Genre {
     HORROR("Horror"),
     DRAMA("Drama"),
     COMEDY("Comedy");
-
     private final String name;
+
     Genre(String name) {
         this.name = name;
     }
@@ -16,15 +16,16 @@ public enum Genre {
     }
 
     public static Genre byName(String name) {
-        Genre returnValue = null;
+        Genre returnValue;
         for (Genre genre : values()) {
             if (genre.getName().equals(name)) {
                 returnValue = genre;
                 return returnValue;
             }
         }
-        return returnValue;
+        return null;
     }
+
     @Override
     public String toString() {
         return getName();
