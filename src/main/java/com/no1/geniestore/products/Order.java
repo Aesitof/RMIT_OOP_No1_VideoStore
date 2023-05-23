@@ -57,8 +57,7 @@ public class Order {
         this.totalDiscount = totalDiscount;
     }
 
-    public void addItemForRent(Item item, Date loanDate, int amount, boolean isDiscountApplied) {
-//        long currentTimeMillis = System.currentTimeMillis();
+    public void addItemForRent(Item item, Date loanDate, int amount, boolean isDiscountApplied, int discountApplied) {
         if (amount <= stockList.get(item)) {
             OrderDetails orderDetail = new OrderDetails();
             orderDetail.setLoanDate(loanDate);
@@ -74,9 +73,11 @@ public class Order {
             orderDetail.setReturnDate(new Date(returnDate)); // set return date to order details
 
             if (isDiscountApplied) {
-                useRewardPoints(owner);
-                order.get(item).setDiscount(item.getRentalFee()); // discount for each item in order
-                setTotalDiscount(getTotalDiscount() + item.getRentalFee()); // total discount for that order
+                for (int i = 0; i < discountApplied; i++) {
+                    useRewardPoints(owner);
+                }
+                order.get(item).setDiscount(item.getRentalFee() * discountApplied); // discount for each item in order
+                setTotalDiscount(getTotalDiscount() + item.getRentalFee() * discountApplied); // total discount for that order
             }
             order.put(item, orderDetail);
             setTotal(getTotal() + item.getRentalFee() * amount - order.get(item).getDiscount()); // add fee to total
@@ -85,7 +86,6 @@ public class Order {
             int stockRemaining = stockList.get(item) - amount;
             stockList.put(item,stockRemaining);
         }
-
     }
 
     public void removeItem(Item item) {
