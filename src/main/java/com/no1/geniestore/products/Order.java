@@ -3,6 +3,7 @@ package com.no1.geniestore.products;
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.constants.LoanType;
 import static com.no1.geniestore.products.Stock.stockList;
+import com.no1.geniestore.products.ManagementSystem;
 
 import java.lang.reflect.Constructor;
 import java.util.Date;
@@ -15,6 +16,8 @@ public class Order {
     private Account owner;
     HashMap<Item, OrderDetails> order = new HashMap<>();//One order has multiple orderDetails
     private static int idCounter = 0;
+    private double total = 0;
+    private double totalDiscount = 0;
 
 //    Constructor
     public Order(Account owner) {
@@ -38,24 +41,46 @@ public class Order {
         this.owner = owner;
     }
 
-    public void addItemForRent(Item item, Date loanDate, int amount) {
-        long currentTimeMillis = System.currentTimeMillis();
-        OrderDetails orderDetail = new OrderDetails();
-        orderDetail.setLoanDate(loanDate);
-        orderDetail.setAmount(amount);
-        long returnDate;
+    public double getTotal() {
+        return total;
+    }
 
-        if (item.getLoanType().equals(LoanType.TWO_DAY_LOAN)) { // set return date based on loan type
-            returnDate = orderDetail.getLoanDate().getTime() + dayLoan;
-        } else {
-            returnDate = orderDetail.getLoanDate().getTime() + weekLoan;
-        }
+    public void setTotal(double total) {
+        this.total = total;
+    }
 
-        orderDetail.setReturnDate(new Date(returnDate)); // set return date to order details
+    public double getTotalDiscount() {
+        return totalDiscount;
+    }
 
-//         if have enough stock then accept order
+    public void setTotalDiscount(double totalDiscount) {
+        this.totalDiscount = totalDiscount;
+    }
+
+    public void addItemForRent(Item item, Date loanDate, int amount, boolean isDiscountApplied, int discountApplied) {
         if (amount <= stockList.get(item)) {
+            OrderDetails orderDetail = new OrderDetails();
+            orderDetail.setLoanDate(loanDate);
+            orderDetail.setAmount(amount);
+            long returnDate;
+
+            if (item.getLoanType().equals(LoanType.TWO_DAY_LOAN)) { // set return date based on loan type
+                returnDate = orderDetail.getLoanDate().getTime() + dayLoan;
+            } else {
+                returnDate = orderDetail.getLoanDate().getTime() + weekLoan;
+            }
+
+            orderDetail.setReturnDate(new Date(returnDate)); // set return date to order details
+
+            if (isDiscountApplied) {
+                for (int i = 0; i < discountApplied; i++) {
+                    useRewardPoints(owner);
+                }
+                order.get(item).setDiscount(item.getRentalFee() * discountApplied); // discount for each item in order
+                setTotalDiscount(getTotalDiscount() + item.getRentalFee() * discountApplied); // total discount for that order
+            }
             order.put(item, orderDetail);
+            setTotal(getTotal() + item.getRentalFee() * amount - order.get(item).getDiscount()); // add fee to total
 
 //             change the remaining stock
             int stockRemaining = stockList.get(item) - amount;
@@ -81,9 +106,16 @@ public class Order {
         }
     }
 
+    public void useRewardPoints(Account account) {
+        if (account.getRewardPoints() >= 100) {
+            account.setRewardPoints(account.getRewardPoints() - 100);
+        }
+    }
     public String generateOrderID() {
         idCounter++;
         orderID = "" + idCounter;
         return orderID;
     }
+
+
 }
