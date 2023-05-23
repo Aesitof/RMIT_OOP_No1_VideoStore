@@ -5,6 +5,8 @@ import com.no1.geniestore.constants.LoanType;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
 import org.xml.sax.SAXException;
+import com.no1.geniestore.products.Order;
+
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -86,11 +88,7 @@ public class ManagementSystem {
         }
     }
 
-    public void useRewardPoints(Account account) {
-        if (account.getRewardPoints() >= 100) {
-            account.setRewardPoints(account.getRewardPoints() - 100);
-        }
-    }
+
 
     //    DISPLAY USERS
     public void displayUsers() {
@@ -144,4 +142,6 @@ public class ManagementSystem {
         item.setRentalFee(rentalFee);
         item.setGenre(genre);
     }
+
+
 }
