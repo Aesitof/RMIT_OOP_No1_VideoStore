@@ -5,12 +5,14 @@ import com.no1.geniestore.constants.LoanType;
 import com.no1.geniestore.controllers.AccountListParser;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
+import com.no1.geniestore.controllers.OrderListParser;
 import org.xml.sax.SAXException;
 import com.no1.geniestore.products.Order;
 
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -29,10 +31,11 @@ public class ManagementSystem {
         currentUser = null;
     }
 
-    public static void main() throws ParserConfigurationException, IOException, SAXException {
+    public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException {
         itemList = new ItemListParser().parseItemTotal("xml/items.xml");
         stockList = new ItemListParser().parseStockList("xml/items.xml");
         accountList = (ArrayList<Account>) new AccountListParser().parse("xml/accounts.xml"); // get successfully
+        orderList = (ArrayList<Order>) new OrderListParser().parse("xml/orders.xml"); // get successfully
     }
 
 //    ITEM METHODS

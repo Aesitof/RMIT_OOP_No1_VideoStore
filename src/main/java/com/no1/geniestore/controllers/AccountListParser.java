@@ -62,9 +62,9 @@ public class AccountListParser {
 
     /**
      * Obtains an item from a DOM element. Argument passed e an <account> element
-     * returns the item described by the given element
+     * returns the order described by the given element
      */
-    private Account getAccount(Element e)
+    public Account getAccount(Element e)
     {
         NodeList children = e.getChildNodes();
         String id = null;

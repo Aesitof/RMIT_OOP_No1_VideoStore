@@ -15,7 +15,7 @@
             <totalReturnedItems>0</totalReturnedItems>
             <rewardPoints>0</rewardPoints>
         </owner>
-        <orderList>
+        <itemList>
             <singleItem>
                 <item>
                     <id>I004-2019</id>
@@ -36,7 +36,7 @@
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
-        </orderList>
+        </itemList>
         <total>38.97</total>
         <totalDiscount>0</totalDiscount>
     </order>
@@ -55,7 +55,7 @@
             <totalReturnedItems>0</totalReturnedItems>
             <rewardPoints>70</rewardPoints>
         </owner>
-        <orderList>
+        <itemList>
             <singleItem>
                 <item>
                     <id>I002-2013</id>
@@ -94,7 +94,7 @@
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
-        </orderList>
+        </itemList>
         <total>197.94</total>
         <totalDiscount>0</totalDiscount>
     </order>
@@ -113,7 +113,7 @@
             <totalReturnedItems>3</totalReturnedItems>
             <rewardPoints>0</rewardPoints>
         </owner>
-        <orderList>
+        <itemList>
             <singleItem>
                 <item>
                     <id>I001-2001</id>
@@ -154,7 +154,7 @@
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
-        </orderList>
+        </itemList>
         <total>73.96</total>
         <totalDiscount>0</totalDiscount>
     </order>
@@ -173,7 +173,7 @@
             <totalReturnedItems>7</totalReturnedItems>
             <rewardPoints>0</rewardPoints>
         </owner>
-        <orderList>
+        <itemList>
             <singleItem>
                 <item>
                     <id>I003-1997</id>
@@ -193,7 +193,7 @@
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
-        </orderList>
+        </itemList>
         <total>12.59</total>
         <totalDiscount>0</totalDiscount>
     </order>
@@ -212,7 +212,7 @@
             <totalReturnedItems>6</totalReturnedItems>
             <rewardPoints>0</rewardPoints>
         </owner>
-        <orderList>
+        <itemList>
             <singleItem>
                 <item>
                     <id>I004-2019</id>
@@ -233,7 +233,7 @@
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
-        </orderList>
+        </itemList>
         <total>64.95</total>
         <totalDiscount>0</totalDiscount>
     </order>
@@ -252,7 +252,7 @@
             <totalReturnedItems>0</totalReturnedItems>
             <rewardPoints>0</rewardPoints>
         </owner>
-        <orderList>
+        <itemList>
             <singleItem>
                 <item>
                     <id>I003-1997</id>
@@ -273,7 +273,7 @@
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
-        </orderList>
+        </itemList>
         <total>37.77</total>
         <totalDiscount>0</totalDiscount>
     </order>
@@ -292,7 +292,7 @@
             <totalReturnedItems>3</totalReturnedItems>
             <rewardPoints>0</rewardPoints>
         </owner>
-        <orderList>
+        <itemList>
             <singleItem>
                 <item>
                     <id>I001-2001</id>
@@ -313,7 +313,7 @@
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
-        </orderList>
+        </itemList>
         <total>47.98</total>
         <totalDiscount>0</totalDiscount>
     </order>
@@ -332,7 +332,7 @@
             <totalReturnedItems>9</totalReturnedItems>
             <rewardPoints>0</rewardPoints>
         </owner>
-        <orderList>
+        <itemList>
             <singleItem>
                 <item>
                     <id>I003-1997</id>
@@ -353,7 +353,7 @@
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
-        </orderList>
+        </itemList>
         <total>12.59</total>
         <totalDiscount>0</totalDiscount>
     </order>
@@ -372,7 +372,7 @@
             <totalReturnedItems>11</totalReturnedItems>
             <rewardPoints>20</rewardPoints>
         </owner>
-        <orderList>
+        <itemList>
             <singleItem>
                 <item>
                     <id>I003-1997</id>
@@ -393,7 +393,7 @@
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
-        </orderList>
+        </itemList>
         <totalDiscount>0</totalDiscount>
     </order>
 </orders>

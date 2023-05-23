@@ -20,7 +20,15 @@ public class OrderDetails {
         this.discount = discount;
     }
 
-//    Default Constructor
+    public OrderDetails(Date returnDate, Date loanDate, int amount, boolean isReturned, double discount) {
+        this.returnDate = returnDate;
+        this.loanDate = loanDate;
+        this.amount = amount;
+        this.isReturned = isReturned;
+        this.discount = discount;
+    }
+
+    //    Default Constructor
     public OrderDetails() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 23);
@@ -76,5 +84,16 @@ public class OrderDetails {
 
     public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetails{" +
+                "returnDate=" + returnDate +
+                ", loanDate=" + loanDate +
+                ", amount=" + amount +
+                ", isReturned=" + isReturned +
+                ", discount=" + discount +
+                '}';
     }
 }

@@ -25,6 +25,14 @@ public class Order {
         this.owner = owner;
     }
 
+    public Order(String orderID, Account owner, HashMap<Item, OrderDetails> order, double total, double totalDiscount) {
+        this.orderID = orderID;
+        this.owner = owner;
+        this.order = order;
+        this.total = total;
+        this.totalDiscount = totalDiscount;
+    }
+
     public String getOrderID() {
         return orderID;
     }
@@ -117,5 +125,14 @@ public class Order {
         return orderID;
     }
 
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderID='" + orderID + '\'' +
+                ", owner=" + owner +
+                ", order=" + order +
+                ", total=" + total +
+                ", totalDiscount=" + totalDiscount +
+                '}';
+    }
 }

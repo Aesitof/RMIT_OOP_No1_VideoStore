@@ -143,11 +143,11 @@ public class ItemListParser {
      */
     public HashMap<Item, Integer> getItemListTotal(Element e) {
         HashMap<Item, Integer> itemListTotal = new HashMap<>();
-        NodeList children = e.getChildNodes();
+        NodeList children = e.getChildNodes(); // list of singleItem
 
         for (int i = 0; i < children.getLength(); i++)
         {
-            Node childNode = children.item(i);
+            Node childNode = children.item(i); //
             if (childNode instanceof Element)
             {
                 Element childElement = (Element) childNode;
@@ -183,7 +183,7 @@ public class ItemListParser {
         return stockList;
     }
 
-    private Item getItem(Element e) {
+    Item getItem(Element e) {
         NodeList children = e.getChildNodes();
         String id = null;
         String title = null;
