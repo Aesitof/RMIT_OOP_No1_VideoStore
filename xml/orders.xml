@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <orders>
     <!--ID-Owner-Amount-->
     <!--1-4-3-->
@@ -25,8 +26,6 @@
                     <loanType>2 days</loanType>
                     <rentalFee>12.99</rentalFee>
                     <image>parasite.jpg</image>
-                    <copies>5</copies>
-                    <remaining>5</remaining>
                 </item>
                 <orderDetail>
                     <!--C004-->
@@ -66,8 +65,6 @@
                     <loanType>7 days</loanType>
                     <rentalFee>50.99</rentalFee>
                     <image>pubg.jpg</image>
-                    <copies>3</copies>
-                    <remaining>2</remaining>
                 </item>
                 <orderDetail>
                     <returnDate>30-12-2022</returnDate>
@@ -87,8 +84,6 @@
                     <loanType>2 days</loanType>
                     <rentalFee>23.99</rentalFee>
                     <image>lastchristmas.jpg</image>
-                    <copies>5</copies>
-                    <remaining>5</remaining>
                 </item>
                 <orderDetail>
                     <!--C002-->
@@ -129,8 +124,6 @@
                     <loanType>2 days</loanType>
                     <rentalFee>23.99</rentalFee>
                     <image>lastchristmas.jpg</image>
-                    <copies>5</copies>
-                    <remaining>5</remaining>
                 </item>
                 <orderDetail>
                     <!--C004-->
@@ -151,8 +144,6 @@
                     <loanType>2 days</loanType>
                     <rentalFee>12.99</rentalFee>
                     <image>speaknow.jpg</image>
-                    <copies>4</copies>
-                    <remaining>3</remaining>
                 </item>
                 <orderDetail>
                     <!--C004-->
@@ -193,8 +184,6 @@
                     <loanType>2 days</loanType>
                     <rentalFee>12.59</rentalFee>
                     <image>titanic.jpg</image>
-                    <copies>3</copies>
-                    <remaining>3</remaining>
                 </item>
                 <orderDetail>
                     <returnDate>08-07-2023</returnDate>
@@ -234,8 +223,6 @@
                     <loanType>2 days</loanType>
                     <rentalFee>12.99</rentalFee>
                     <image>parasite.jpg</image>
-                    <copies>5</copies>
-                    <remaining>5</remaining>
                 </item>
                 <orderDetail>
                     <!--C002R-->
@@ -276,8 +263,6 @@
                     <loanType>2 days</loanType>
                     <rentalFee>12.59</rentalFee>
                     <image>titanic.jpg</image>
-                    <copies>3</copies>
-                    <remaining>3</remaining>
                 </item>
                 <orderDetail>
                     <!--C003-->
@@ -318,8 +303,6 @@
                     <loanType>2 days</loanType>
                     <rentalFee>23.99</rentalFee>
                     <image>lastchristmas.jpg</image>
-                    <copies>5</copies>
-                    <remaining>5</remaining>
                 </item>
                 <orderDetail>
                     <!--C003-->
@@ -360,8 +343,6 @@
                     <loanType>2 days</loanType>
                     <rentalFee>12.59</rentalFee>
                     <image>titanic.jpg</image>
-                    <copies>3</copies>
-                    <remaining>3</remaining>
                 </item>
                 <orderDetail>
                     <!--C002-->
@@ -402,8 +383,6 @@
                     <loanType>2 days</loanType>
                     <rentalFee>12.59</rentalFee>
                     <image>titanic.jpg</image>
-                    <copies>3</copies>
-                    <remaining>3</remaining>
                 </item>
                 <orderDetail>
                     <!--C002-->
@@ -417,6 +396,4 @@
         </orderList>
         <totalDiscount>0</totalDiscount>
     </order>
-
-
 </orders>

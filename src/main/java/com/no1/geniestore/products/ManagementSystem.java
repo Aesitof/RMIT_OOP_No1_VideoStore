@@ -2,6 +2,7 @@ package com.no1.geniestore.products;
 
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.LoanType;
+import com.no1.geniestore.controllers.AccountListParser;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
 import org.xml.sax.SAXException;
@@ -31,6 +32,7 @@ public class ManagementSystem {
     public static void main() throws ParserConfigurationException, IOException, SAXException {
         itemList = new ItemListParser().parseItemTotal("xml/items.xml");
         stockList = new ItemListParser().parseStockList("xml/items.xml");
+        accountList = (ArrayList<Account>) new AccountListParser().parse("xml/accounts.xml"); // get successfully
     }
 
 //    ITEM METHODS

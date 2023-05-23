@@ -41,8 +41,8 @@ public class GenieStoreApplication extends Application {
     }
 
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
-        launch();
         ManagementSystem.main();
+        launch();
     }
 
 }

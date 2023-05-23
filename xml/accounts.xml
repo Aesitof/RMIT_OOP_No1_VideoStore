@@ -1,4 +1,4 @@
-<accounts>
+<?xml version="1.0" encoding="UTF-8"?><accounts>
     <account>
         <id>C001</id>
         <username>Hings1949</username>
@@ -41,6 +41,17 @@
         <phone>079 4498 4190</phone>
         <password>aFoto</password>
         <totalReturnedItems>8</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
+    </account>
+    <account>
+        <id>C005</id>
+        <username>traveloka</username>
+        <name>Henry Parker</name>
+        <accountType>Guest</accountType>
+        <address>23A Beidei Road TX</address>
+        <phone>09232322783</phone>
+        <password>thisismypw</password>
+        <totalReturnedItems>0</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>
 </accounts>
