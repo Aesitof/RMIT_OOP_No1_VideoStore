@@ -14,6 +14,8 @@ public class CartData {
     private int qty;
     private Date returnDate;
     private double itemFee;
+    private boolean freeItem;
+    private int freeItemQty;
 
 //    public CartData() {
 //        this.item = new Item()
@@ -24,6 +26,8 @@ public class CartData {
         this.qty = qty;
         this.returnDate = returnDate;
         this.itemFee = itemFee;
+        this.freeItem = false;
+        this.freeItemQty = 0;
     }
 
     public CartData(Item item, int remaining) {
@@ -38,6 +42,8 @@ public class CartData {
         calendar.add(Calendar.DATE, 2);
         this.returnDate = calendar.getTime();
         this.itemFee = getItem().getRentalFee();
+        this.freeItem = false;
+        this.freeItemQty = 0;
     }
 
     public Item getItem() {
@@ -60,12 +66,28 @@ public class CartData {
         return itemFee;
     }
 
+    public boolean isFreeItem() {
+        return freeItem;
+    }
+
+    public int getFreeItemQty() {
+        return freeItemQty;
+    }
+
     public void setQty(int qty) {
         this.qty = qty;
     }
 
     public void resetItemFee() {
         this.itemFee = getItem().getRentalFee() * this.qty;
+    }
+
+    public void setFreeItem(boolean freeItem) {
+        this.freeItem = freeItem;
+    }
+
+    public void setFreeItemQty(int freeItemQty) {
+        this.freeItemQty = freeItemQty;
     }
 
     @Override
