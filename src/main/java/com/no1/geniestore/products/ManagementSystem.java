@@ -92,6 +92,18 @@ public class ManagementSystem {
         }
     }
 
+    public String login(String username, String password) {
+        for (int i = 0; i <= accountList.size(); i++) {
+            if(accountList.get(i).getUsername().equals(username)) {
+                if (accountList.get(i).getPassword().equals(password)) {
+                    currentUser = accountList.get(i);
+                    return "loginSuccess";
+                } else
+                    return "wrongPassword";
+                }
+        }
+        return "notExist";
+    }
     //    DISPLAY USERS
     public void displayUsers() {
         StringBuilder str;

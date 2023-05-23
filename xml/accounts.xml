@@ -1,0 +1,46 @@
+<accounts>
+    <account>
+        <id>C001</id>
+        <username>Hings1949</username>
+        <name>Tyler T. Appell</name>
+        <accountType>Guest</accountType>
+        <address>2885 White Oak Drive</address>
+        <phone>816-623-5844</phone>
+        <password>Deipei</password>
+        <totalReturnedItems>0</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
+    </account>
+    <account>
+        <id>C002</id>
+        <username>earlyPainting</username>
+        <name>Earl M. Painter</name>
+        <accountType>Vip</accountType>
+        <address>6 Ton-bridge Rd</address>
+        <phone>079 6159 9152</phone>
+        <password>di0nly</password>
+        <totalReturnedItems>15</totalReturnedItems>
+        <rewardPoints>70</rewardPoints>
+    </account>
+    <account>
+        <id>C003</id>
+        <username>Dingethey</username>
+        <name>Charles K. Leonard</name>
+        <accountType>Regular</accountType>
+        <address>Charles K. Leonard</address>
+        <phone>077 6868 7535</phone>
+        <password>chienooGh0</password>
+        <totalReturnedItems>5</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
+    </account>
+    <account>
+        <id>C004</id>
+        <username>Thicautmout38</username>
+        <name>Patrick J. Harlow</name>
+        <accountType>Vip</accountType>
+        <address>67 Asfordby Rd</address>
+        <phone>079 4498 4190</phone>
+        <password>aFoto</password>
+        <totalReturnedItems>8</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
+    </account>
+</accounts>

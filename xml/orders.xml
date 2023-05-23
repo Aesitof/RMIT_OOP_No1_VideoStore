@@ -1,0 +1,422 @@
+<orders>
+    <!--ID-Owner-Amount-->
+    <!--1-4-3-->
+    <order>
+        <orderID>1</orderID>
+        <owner>
+            <id>C004</id>
+            <username>Thicautmout38</username>
+            <name>Patrick J. Harlow</name>
+            <accountType>Guest</accountType>
+            <address>67 Asfordby Rd</address>
+            <phone>079 4498 4190</phone>
+            <password>aFoto</password>
+            <totalReturnedItems>0</totalReturnedItems>
+            <rewardPoints>0</rewardPoints>
+        </owner>
+        <orderList>
+            <singleItem>
+                <item>
+                    <id>I004-2019</id>
+                    <title>Parasite</title>
+                    <year>2019</year>
+                    <itemType>Video Record</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>12.99</rentalFee>
+                    <image>parasite.jpg</image>
+                    <copies>5</copies>
+                    <remaining>5</remaining>
+                </item>
+                <orderDetail>
+                    <!--C004-->
+                    <returnDate>13-01-2023</returnDate>
+                    <loanDate>06-01-2023</loanDate>
+                    <amount>3</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+        </orderList>
+        <total>38.97</total>
+        <totalDiscount>0</totalDiscount>
+    </order>
+
+    <!--2-2-2+4-->
+    <order>
+        <orderID>2</orderID>
+        <owner>
+            <id>C002</id>
+            <username>earlyPainting</username>
+            <name>Earl M. Painter</name>
+            <accountType>Vip</accountType>
+            <address>6 Ton-bridge Rd</address>
+            <phone>079 6159 9152</phone>
+            <password>di0nly</password>
+            <totalReturnedItems>0</totalReturnedItems>
+            <rewardPoints>70</rewardPoints>
+        </owner>
+        <orderList>
+            <singleItem>
+                <item>
+                    <id>I002-2013</id>
+                    <title>PUBG</title>
+                    <year>2013</year>
+                    <itemType>Game</itemType>
+                    <loanType>7 days</loanType>
+                    <rentalFee>50.99</rentalFee>
+                    <image>pubg.jpg</image>
+                    <copies>3</copies>
+                    <remaining>2</remaining>
+                </item>
+                <orderDetail>
+                    <returnDate>30-12-2022</returnDate>
+                    <loanDate>23-12-2022</loanDate>
+                    <amount>2</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+            <singleItem>
+                <item>
+                    <id>I001-2001</id>
+                    <title>Last Christmas</title>
+                    <year>2001</year>
+                    <itemType>DVD</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>23.99</rentalFee>
+                    <image>lastchristmas.jpg</image>
+                    <copies>5</copies>
+                    <remaining>5</remaining>
+                </item>
+                <orderDetail>
+                    <!--C002-->
+                    <returnDate>08-04-2023</returnDate>
+                    <loanDate>01-04-2023</loanDate>
+                    <amount>4</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+        </orderList>
+        <total>197.94</total>
+        <totalDiscount>0</totalDiscount>
+    </order>
+
+    <!--3-4-4-->
+    <order>
+        <orderID>3</orderID>
+        <owner>
+            <id>C004</id>
+            <username>Thicautmout38</username>
+            <name>Patrick J. Harlow</name>
+            <accountType>Regular</accountType>
+            <address>67 Asfordby Rd</address>
+            <phone>079 4498 4190</phone>
+            <password>aFoto</password>
+            <totalReturnedItems>3</totalReturnedItems>
+            <rewardPoints>0</rewardPoints>
+        </owner>
+        <orderList>
+            <singleItem>
+                <item>
+                    <id>I001-2001</id>
+                    <title>Last Christmas</title>
+                    <year>2001</year>
+                    <itemType>DVD</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>23.99</rentalFee>
+                    <image>lastchristmas.jpg</image>
+                    <copies>5</copies>
+                    <remaining>5</remaining>
+                </item>
+                <orderDetail>
+                    <!--C004-->
+                    <returnDate>19-04-2023</returnDate>
+                    <loanDate>12-04-2023</loanDate>
+                    <amount>2</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+            <singleItem>
+                <item>
+                    <id>I005-2010</id>
+                    <title>Speak Now</title>
+                    <year>2004</year>
+                    <itemType>DVD</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>12.99</rentalFee>
+                    <image>speaknow.jpg</image>
+                    <copies>4</copies>
+                    <remaining>3</remaining>
+                </item>
+                <orderDetail>
+                    <!--C004-->
+                    <returnDate>27-09-2022</returnDate>
+                    <loanDate>20-09-2022</loanDate>
+                    <amount>2</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+        </orderList>
+        <total>73.96</total>
+        <totalDiscount>0</totalDiscount>
+    </order>
+
+    <!--4-4-1-->
+    <order>
+        <orderID>4</orderID>
+        <owner>
+            <id>C004</id>
+            <username>Thicautmout38</username>
+            <name>Patrick J. Harlow</name>
+            <accountType>Vip</accountType>
+            <address>67 Asfordby Rd</address>
+            <phone>079 4498 4190</phone>
+            <password>aFoto</password>
+            <totalReturnedItems>7</totalReturnedItems>
+            <rewardPoints>0</rewardPoints>
+        </owner>
+        <orderList>
+            <singleItem>
+                <item>
+                    <id>I003-1997</id>
+                    <title>Titanic</title>
+                    <year>1997</year>
+                    <itemType>Video Record</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>12.59</rentalFee>
+                    <image>titanic.jpg</image>
+                    <copies>3</copies>
+                    <remaining>3</remaining>
+                </item>
+                <orderDetail>
+                    <returnDate>08-07-2023</returnDate>
+                    <loanDate>01-07-2023</loanDate>
+                    <amount>1</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+        </orderList>
+        <total>12.59</total>
+        <totalDiscount>0</totalDiscount>
+    </order>
+
+    <!--5-2-5-->
+    <order>
+        <orderID>5</orderID>
+        <owner>
+            <id>C002</id>
+            <username>earlyPainting</username>
+            <name>Earl M. Painter</name>
+            <accountType>Regular</accountType>
+            <address>6 Ton-bridge Rd</address>
+            <phone>079 6159 9152</phone>
+            <password>di0nly</password>
+            <totalReturnedItems>6</totalReturnedItems>
+            <rewardPoints>0</rewardPoints>
+        </owner>
+        <orderList>
+            <singleItem>
+                <item>
+                    <id>I004-2019</id>
+                    <title>Parasite</title>
+                    <year>2019</year>
+                    <itemType>Video Record</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>12.99</rentalFee>
+                    <image>parasite.jpg</image>
+                    <copies>5</copies>
+                    <remaining>5</remaining>
+                </item>
+                <orderDetail>
+                    <!--C002R-->
+                    <returnDate>12-05-2023</returnDate>
+                    <loanDate>05-05-2023</loanDate>
+                    <amount>5</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+        </orderList>
+        <total>64.95</total>
+        <totalDiscount>0</totalDiscount>
+    </order>
+
+    <!--6-3-3-->
+    <order>
+        <orderID>6</orderID>
+        <owner>
+            <id>C003</id>
+            <username>Dingethey</username>
+            <name>Charles K. Leonard</name>
+            <accountType>Guest</accountType>
+            <address>Charles K. Leonard</address>
+            <phone>077 6868 7535</phone>
+            <password>chienooGh0</password>
+            <totalReturnedItems>0</totalReturnedItems>
+            <rewardPoints>0</rewardPoints>
+        </owner>
+        <orderList>
+            <singleItem>
+                <item>
+                    <id>I003-1997</id>
+                    <title>Titanic</title>
+                    <year>1997</year>
+                    <itemType>Video Record</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>12.59</rentalFee>
+                    <image>titanic.jpg</image>
+                    <copies>3</copies>
+                    <remaining>3</remaining>
+                </item>
+                <orderDetail>
+                    <!--C003-->
+                    <returnDate>14-03-2023</returnDate>
+                    <loanDate>07-03-2023</loanDate>
+                    <amount>3</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+        </orderList>
+        <total>37.77</total>
+        <totalDiscount>0</totalDiscount>
+    </order>
+
+    <!--7-3-2-->
+    <order>
+        <orderID>7</orderID>
+        <owner>
+            <id>C003</id>
+            <username>Dingethey</username>
+            <name>Charles K. Leonard</name>
+            <accountType>Regular</accountType>
+            <address>Charles K. Leonard</address>
+            <phone>077 6868 7535</phone>
+            <password>chienooGh0</password>
+            <totalReturnedItems>3</totalReturnedItems>
+            <rewardPoints>0</rewardPoints>
+        </owner>
+        <orderList>
+            <singleItem>
+                <item>
+                    <id>I001-2001</id>
+                    <title>Last Christmas</title>
+                    <year>2001</year>
+                    <itemType>DVD</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>23.99</rentalFee>
+                    <image>lastchristmas.jpg</image>
+                    <copies>5</copies>
+                    <remaining>5</remaining>
+                </item>
+                <orderDetail>
+                    <!--C003-->
+                    <returnDate>20-04-2023</returnDate>
+                    <loanDate>13-04-2023</loanDate>
+                    <amount>2</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+        </orderList>
+        <total>47.98</total>
+        <totalDiscount>0</totalDiscount>
+    </order>
+
+    <!--8-2-1-->
+    <order>
+        <orderID>8</orderID>
+        <owner>
+            <id>C002</id>
+            <username>earlyPainting</username>
+            <name>Earl M. Painter</name>
+            <accountType>Vip</accountType>
+            <address>6 Ton-bridge Rd</address>
+            <phone>079 6159 9152</phone>
+            <password>di0nly</password>
+            <totalReturnedItems>9</totalReturnedItems>
+            <rewardPoints>0</rewardPoints>
+        </owner>
+        <orderList>
+            <singleItem>
+                <item>
+                    <id>I003-1997</id>
+                    <title>Titanic</title>
+                    <year>1997</year>
+                    <itemType>Video Record</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>12.59</rentalFee>
+                    <image>titanic.jpg</image>
+                    <copies>3</copies>
+                    <remaining>3</remaining>
+                </item>
+                <orderDetail>
+                    <!--C002-->
+                    <returnDate>08-07-2023</returnDate>
+                    <loanDate>01-07-2023</loanDate>
+                    <amount>1</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+        </orderList>
+        <total>12.59</total>
+        <totalDiscount>0</totalDiscount>
+    </order>
+
+    <!--9-2-3-->
+    <order>
+        <orderID>9</orderID>
+        <owner>
+            <id>C002</id>
+            <username>earlyPainting</username>
+            <name>Earl M. Painter</name>
+            <accountType>Vip</accountType>
+            <address>6 Ton-bridge Rd</address>
+            <phone>079 6159 9152</phone>
+            <password>di0nly</password>
+            <totalReturnedItems>11</totalReturnedItems>
+            <rewardPoints>20</rewardPoints>
+        </owner>
+        <orderList>
+            <singleItem>
+                <item>
+                    <id>I003-1997</id>
+                    <title>Titanic</title>
+                    <year>1997</year>
+                    <itemType>Video Record</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>12.59</rentalFee>
+                    <image>titanic.jpg</image>
+                    <copies>3</copies>
+                    <remaining>3</remaining>
+                </item>
+                <orderDetail>
+                    <!--C002-->
+                    <returnDate>29-11-2022</returnDate>
+                    <loanDate>27-11-2022</loanDate>
+                    <amount>3</amount>
+                    <isReturned>true</isReturned>
+                    <discount>0</discount>
+                </orderDetail>
+            </singleItem>
+        </orderList>
+        <totalDiscount>0</totalDiscount>
+    </order>
+
+
+</orders>
