@@ -34,6 +34,11 @@ public class ManagementSystem {
     public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException {
         itemList = new ItemListParser().parseItemTotal("xml/items.xml");
         stockList = new ItemListParser().parseStockList("xml/items.xml");
+
+        System.out.println("Hello");
+        for (Item item : stockList.keySet()) {
+            System.out.println(item + "remaining: " + stockList.get(item));
+        }
         accountList = (ArrayList<Account>) new AccountListParser().parse("xml/accounts.xml"); // get successfully
         orderList = (ArrayList<Order>) new OrderListParser().parse("xml/orders.xml"); // get successfully
     }

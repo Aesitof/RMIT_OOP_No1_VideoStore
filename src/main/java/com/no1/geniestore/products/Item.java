@@ -73,6 +73,10 @@ public class Item extends Stock {
         return genre;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     // only loanType, rentalFee, and genre can be updated
     public void setLoanType(LoanType loanType) {
         this.loanType = loanType;

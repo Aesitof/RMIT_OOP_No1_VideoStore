@@ -50,7 +50,7 @@
     <item>
         <id>I005-2010</id>
         <title>Speak Now</title>
-        <year>2004</year>
+        <year>2010</year>
         <itemType>DVD</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
@@ -65,7 +65,7 @@
         <year>2022</year>
         <itemType>Video Record</itemType>
         <genre>Horror</genre>
-        <loanType>1 week</loanType>
+        <loanType>7 days</loanType>
         <rentalFee>25.99</rentalFee>
         <image>strangerthings4.jpg</image>
         <copies>2</copies>
