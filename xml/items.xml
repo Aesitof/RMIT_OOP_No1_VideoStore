@@ -1,5 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<items>
+<?xml version="1.0" encoding="UTF-8"?><items>
+    <item>
+        <id>I005-2010</id>
+        <title>Speak Now</title>
+        <year>2010</year>
+        <itemType>DVD</itemType>
+        <genre>Drama</genre>
+        <loanType>2 days</loanType>
+        <rentalFee>12.99</rentalFee>
+        <image>speaknow.jpg</image>
+        <copies>4</copies>
+        <remaining>3</remaining>
+    </item>
+    <item>
+        <id>I003-1997</id>
+        <title>Titanic</title>
+        <year>1997</year>
+        <itemType>Video Record</itemType>
+        <genre>Drama</genre>
+        <loanType>2 days</loanType>
+        <rentalFee>12.59</rentalFee>
+        <image>titanic.jpg</image>
+        <copies>3</copies>
+        <remaining>3</remaining>
+    </item>
+    <item>
+        <id>I007 - 2011</id>
+        <title>Minecraft</title>
+        <year>2011</year>
+        <itemType>Game</itemType>
+        <loanType>7 days</loanType>
+        <rentalFee>19.59</rentalFee>
+        <image>minecraft.png</image>
+        <copies>5</copies>
+        <remaining>5</remaining>
+    </item>
+    <item>
+        <id>I004-2019</id>
+        <title>Parasite</title>
+        <year>2019</year>
+        <itemType>Video Record</itemType>
+        <genre>Drama</genre>
+        <loanType>2 days</loanType>
+        <rentalFee>12.99</rentalFee>
+        <image>parasite.jpg</image>
+        <copies>5</copies>
+        <remaining>5</remaining>
+    </item>
     <item>
         <id>I001-2001</id>
         <title>Last Christmas</title>
@@ -22,42 +68,6 @@
         <image>pubg.jpg</image>
         <copies>3</copies>
         <remaining>2</remaining>
-    </item>
-    <item>
-        <id>I003-1997</id>
-        <title>Titanic</title>
-        <year>1997</year>
-        <itemType>Video Record</itemType>
-        <genre>Drama</genre>
-        <loanType>2 days</loanType>
-        <rentalFee>12.59</rentalFee>
-        <image>titanic.jpg</image>
-        <copies>3</copies>
-        <remaining>3</remaining>
-    </item>
-    <item>
-        <id>I004-2019</id>
-        <title>Parasite</title>
-        <year>2019</year>
-        <itemType>Video Record</itemType>
-        <genre>Drama</genre>
-        <loanType>2 days</loanType>
-        <rentalFee>12.99</rentalFee>
-        <image>parasite.jpg</image>
-        <copies>5</copies>
-        <remaining>5</remaining>
-    </item>
-    <item>
-        <id>I005-2010</id>
-        <title>Speak Now</title>
-        <year>2010</year>
-        <itemType>DVD</itemType>
-        <genre>Drama</genre>
-        <loanType>2 days</loanType>
-        <rentalFee>12.99</rentalFee>
-        <image>speaknow.jpg</image>
-        <copies>4</copies>
-        <remaining>3</remaining>
     </item>
     <item>
         <id>I006-2022</id>

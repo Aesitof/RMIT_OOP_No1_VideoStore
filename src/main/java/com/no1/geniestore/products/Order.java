@@ -65,6 +65,10 @@ public class Order {
         this.totalDiscount = totalDiscount;
     }
 
+    public HashMap<Item, OrderDetails> getOrder() {
+        return order;
+    }
+
     public void addItemForRent(Item item, Date loanDate, int amount, boolean isDiscountApplied, int discountApplied) {
         if (amount <= stockList.get(item)) {
             OrderDetails orderDetail = new OrderDetails();

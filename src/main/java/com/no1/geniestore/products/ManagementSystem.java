@@ -1,6 +1,7 @@
 package com.no1.geniestore.products;
 
 import com.no1.geniestore.constants.Genre;
+import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
 import com.no1.geniestore.controllers.AccountListParser;
 import com.no1.geniestore.controllers.ItemListParser;
@@ -11,6 +12,7 @@ import com.no1.geniestore.products.Order;
 
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -20,8 +22,8 @@ import static com.no1.geniestore.products.Stock.*;
 
 public class ManagementSystem {
     private static ArrayList<Account> accountList;
-    private static ArrayList<Order> orderList;//TAO CLASS ORDER BO SUNG
-    private static HashMap<Item, Integer> itemList; // Total item copies
+    public static ArrayList<Order> orderList;//TAO CLASS ORDER BO SUNG
+    public static HashMap<Item, Integer> itemList; // Total item copies
     private static Account currentUser;
 
     public ManagementSystem() {
@@ -31,16 +33,25 @@ public class ManagementSystem {
         currentUser = null;
     }
 
-    public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException {
-        itemList = new ItemListParser().parseItemTotal("xml/items.xml");
-        stockList = new ItemListParser().parseStockList("xml/items.xml");
+    public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException, TransformerException {
+        ItemListParser itemListParser = new ItemListParser();
+        itemList = itemListParser.parseItemTotal("xml/items.xml");
+        stockList = itemListParser.parseStockList("xml/items.xml");
 
-        System.out.println("Hello");
-        for (Item item : stockList.keySet()) {
-            System.out.println(item + "remaining: " + stockList.get(item));
-        }
+//        System.out.println("Hello");
+//        for (Item item : stockList.keySet()) {
+//            System.out.println(item + "remaining: " + stockList.get(item));
+//        }
         accountList = (ArrayList<Account>) new AccountListParser().parse("xml/accounts.xml"); // get successfully
         orderList = (ArrayList<Order>) new OrderListParser().parse("xml/orders.xml"); // get successfully
+
+        for (Order order : orderList) {
+            System.out.println(order);
+        }
+
+//        ItemListParser.saveItemFile();
+
+//        OrderListParser.saveOrderFile();
     }
 
 //    ITEM METHODS

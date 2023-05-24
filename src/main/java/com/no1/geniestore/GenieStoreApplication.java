@@ -11,6 +11,7 @@ import javafx.stage.StageStyle;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -41,7 +42,7 @@ public class GenieStoreApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException, ParseException {
+    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException, ParseException, TransformerException {
         ManagementSystem.main();
         launch();
     }

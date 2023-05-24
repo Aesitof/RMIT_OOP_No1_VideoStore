@@ -37,6 +37,17 @@ public class Item extends Stock {
         this.image = image;
     }
 
+    public Item(String id, String title, int year, ItemType itemType, LoanType loanType, double rentalFee, String image){
+        this.id = id;
+        this.itemType = itemType;
+        this.year = year;
+        this.title = title;
+        this.loanType = loanType;
+        this.rentalFee = rentalFee;
+        this.genre = null;
+        this.image = image;
+    }
+
     public ItemType getItemType() {
         return itemType;
     }

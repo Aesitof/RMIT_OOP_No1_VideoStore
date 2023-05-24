@@ -1,19 +1,18 @@
 package com.no1.geniestore.controllers;
 
+import com.no1.geniestore.Parser;
 import com.no1.geniestore.accounts.Account;
-import com.no1.geniestore.products.Item;
-import com.no1.geniestore.products.Order;
-import com.no1.geniestore.products.OrderDetails;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
+import com.no1.geniestore.products.*;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.no1.geniestore.products.ManagementSystem.orderList;
 
 public class OrderListParser {
     private DocumentBuilder builder;
@@ -151,8 +152,8 @@ public class OrderListParser {
         return item;
     }
 
-    //Create the Date format using SimpleDateFormat
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+
 
     public OrderDetails getOrderDetails(Element e) throws ParseException {
         NodeList children = e.getChildNodes();
@@ -162,6 +163,9 @@ public class OrderListParser {
         boolean isReturned = false;
         double discount = 0.0;
 
+        //Create the Date format using SimpleDateFormat
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
         for (int j = 0; j < children.getLength(); j++)
         {
             Node childNode = children.item(j);
@@ -169,26 +173,130 @@ public class OrderListParser {
             {
                 Element childElement = (Element) childNode;
                 String tagName = childElement.getTagName();
-                String data = ((Text) childElement.getFirstChild()).getData();
-                if (tagName.equals("returnDate")) {
-                    returnDate = dateFormat.parse(data);
+                if (tagName.equals("orderDetail")) {
+                    NodeList orderDetailChildren = childElement.getChildNodes();
+
+                    for (int i = 0; i < orderDetailChildren.getLength(); i++) {
+                        Node orderDetailChildNode = orderDetailChildren.item(i);
+                        if (orderDetailChildNode instanceof Element) {
+                            Element orderDetailChildElement = (Element) orderDetailChildNode;
+                            String childTagName = orderDetailChildElement.getTagName();
+                            String data = ((Text) orderDetailChildElement.getFirstChild()).getData();
+                            if (childTagName.equals("returnDate")) {
+                                returnDate = dateFormat.parse(data);
+                            }
+                            else if (childTagName.equals("loanDate")) {
+                                loanDate = dateFormat.parse(data);
+                            }
+                            else if (childTagName.equals("amount")) {
+                                amount = Integer.parseInt(data);
+                            }
+                            else if (childTagName.equals("isReturned")) {
+                                isReturned = (data.equals("true")) ? true : false;
+                            }
+                            else if (childTagName.equals("discount")) {
+                                discount = Double.parseDouble(data);
+                            }
+                        }
+                    }
+
                 }
-                else if (tagName.equals("loanDate")) {
-                    loanDate = dateFormat.parse(data);
-                }
-                else if (tagName.equals("amount")) {
-                    amount = Integer.parseInt(data);
-                }
-                else if (tagName.equals("isReturned")) {
-                    isReturned = (data.equals("true")) ? true : false;
-                }
-                else if (tagName.equals("discount")) {
-                    discount = Double.parseDouble(data);
-                }
+
             }
         }
 
         return new OrderDetails(returnDate, loanDate, amount, isReturned, discount);
+    }
+
+    /**
+     * Save the in-use list of Order to the XML file when needed
+     * @param
+     * @throws ParserConfigurationException
+     */
+    public static void saveOrderFile() throws ParserConfigurationException, FileNotFoundException, TransformerException {
+        // new DOM
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        Document document = documentBuilder.newDocument();
+        // root Element
+        Element root = document.createElement("orders");
+        document.appendChild(root);
+
+        // Create child nodes
+        for (Order order : orderList) {
+            root.appendChild(orderToXML(order, document));
+        }
+
+        Parser.writeXml(document, new FileOutputStream("xml/ordertest.xml"));
+    }
+
+    public static Element orderToXML(Order newOrder, Document document) {
+        Element order = document.createElement("order");
+
+        Element orderID = document.createElement("orderID");
+        orderID.setTextContent(newOrder.getOrderID());
+        order.appendChild(orderID);
+
+        // owner (Account)
+        order.appendChild(AccountListParser.accountToXML(newOrder.getOwner(), document, "owner"));
+
+        Element itemList = document.createElement("itemList");
+        for (Item orderItem : newOrder.getOrder().keySet()) {
+            itemList.appendChild(itemListToXML(orderItem, newOrder.getOrder().get(orderItem), document));
+        }
+        order.appendChild(itemList);
+
+        Element total = document.createElement("total");
+        total.setTextContent(String.valueOf(newOrder.getTotal()));
+        order.appendChild(total);
+
+        Element totalDiscount = document.createElement("totalDiscount");
+        totalDiscount.setTextContent(String.valueOf(newOrder.getTotalDiscount()));
+        order.appendChild(totalDiscount);
+
+        return order;
+    }
+
+    public static Element itemListToXML(Item orderItem, OrderDetails orderDetails, Document document) {
+        Element singleItem = document.createElement("singleItem");
+
+        // orderItem (Item)
+        singleItem.appendChild(ItemListParser.orderItemToXML(orderItem, document));
+
+        // orderDetails (OrderDetails)
+        singleItem.appendChild(orderDetailsToXML(orderDetails, document));
+
+        return singleItem;
+    }
+
+    public static Element orderDetailsToXML(OrderDetails newOrderDetail, Document document) {
+        Element orderDetail = document.createElement("orderDetail");
+
+        //Create the Date format using SimpleDateFormat
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        Element returnDate = document.createElement("returnDate");
+        returnDate.setTextContent(dateFormat.format(newOrderDetail.getReturnDate()));
+        orderDetail.appendChild(returnDate);
+
+        Element loanDate = document.createElement("loanDate");
+        loanDate.setTextContent(dateFormat.format(newOrderDetail.getLoanDate()));
+        orderDetail.appendChild(loanDate);
+
+        Element amount = document.createElement("amount");
+        amount.setTextContent(String.valueOf(newOrderDetail.getAmount()));
+        orderDetail.appendChild(amount);
+
+        Element isReturned = document.createElement("isReturned");
+        isReturned.setTextContent(newOrderDetail.isReturned() == true ? "true" : "false");
+        orderDetail.appendChild(isReturned);
+
+        Element discount = document.createElement("discount");
+        discount.setTextContent(String.valueOf(newOrderDetail.getDiscount()));
+        orderDetail.appendChild(discount);
+
+
+        return orderDetail;
     }
 
 

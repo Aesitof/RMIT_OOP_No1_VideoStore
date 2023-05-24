@@ -5,6 +5,8 @@ import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
 import com.no1.geniestore.products.Item;
+import com.no1.geniestore.products.ManagementSystem;
+import com.no1.geniestore.products.Stock;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.w3c.dom.*;
@@ -275,38 +277,13 @@ public class ItemListParser {
         return remainingCopies;
     }
 
-    /**
-     * The content of this method should appear in the addItem method of Manager class
-     * @param items, newItem
-     * @throws ParserConfigurationException
-     * @throws IOException
-     * @throws SAXException
-     * @throws TransformerException
-     */
-    public static void addItemToFile(List<Item> items, Item newItem) throws ParserConfigurationException, IOException, SAXException, TransformerException {
-        items.add(newItem);
-        saveItemFile(items);
-//        // Get Element from XML file using DOM
-//        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-//        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-//        Document document = documentBuilder.parse(new File("xml/items.xml"));
-//
-//        Element root = document.getDocumentElement();
-//
-//        Element item = itemToXML(newItem, document);
-//
-//        // Add new item childNode to items root element
-//        root.appendChild(item);
-//
-//        writeXml(document, new FileOutputStream("xml/items.xml"));
-    }
 
     /**
      * Save the in-use list of Item to the XML file when needed
-     * @param items
+     * @param
      * @throws ParserConfigurationException
      */
-    public static void saveItemFile(List<Item> items) throws ParserConfigurationException, FileNotFoundException, TransformerException {
+    public static void saveItemFile() throws ParserConfigurationException, FileNotFoundException, TransformerException {
         // new DOM
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -316,14 +293,14 @@ public class ItemListParser {
         document.appendChild(root);
 
         // Create child nodes
-        for (Item item : items) {
-            root.appendChild(itemToXML(item, document));
+        for (Item item : ManagementSystem.itemList.keySet()) {
+            root.appendChild(itemToXML(item, document, ManagementSystem.itemList.get(item)));
         }
 
         Parser.writeXml(document, new FileOutputStream("xml/items.xml"));
     }
 
-    public static Element itemToXML(Item newItem, Document document) {
+    public static Element itemToXML(Item newItem, Document document, int totalCopies) {
         Element item = document.createElement("item");
 
         Element id = document.createElement("id");
@@ -360,7 +337,62 @@ public class ItemListParser {
 
         Element image = document.createElement("image");
         image.setTextContent(newItem.getImage());
+        item.appendChild(image);
+
+        Element copies = document.createElement("copies");
+        copies.setTextContent(String.valueOf(totalCopies));
+        item.appendChild(copies);
+
+        Element remaining = document.createElement("remaining");
+        for (Item stock : Stock.stockList.keySet()) {
+            if (stock.getId().equals(newItem.getId())) {
+                remaining.setTextContent(String.valueOf(Stock.stockList.get(stock)));
+                break;
+            }
+        }
+        item.appendChild(remaining);
+
+        return item;
+    }
+
+    public static Element orderItemToXML(Item newItem, Document document) {
+        Element item = document.createElement("item");
+
+        Element id = document.createElement("id");
+        id.setTextContent(newItem.getId());
+        item.appendChild(id);
+
+        Element title = document.createElement("title");
+        title.setTextContent(newItem.getTitle());
+        item.appendChild(title);
+
+        Element year = document.createElement("year");
+        year.setTextContent(String.valueOf(newItem.getYear()));
+        item.appendChild(year);
+
+        Element itemType = document.createElement("itemType");
+        itemType.setTextContent(newItem.getItemType().toString());
+        item.appendChild(itemType);
+
+        try {
+            Element genre = document.createElement("genre");
+            genre.setTextContent(newItem.getGenre().toString());
+            item.appendChild(genre);
+        } catch (NullPointerException exception) {
+//            exception.printStackTrace();
+        }
+
+        Element loanType = document.createElement("loanType");
+        loanType.setTextContent(newItem.getLoanType().toString());
+        item.appendChild(loanType);
+
+        Element rentalFee = document.createElement("rentalFee");
+        rentalFee.setTextContent(String.valueOf(newItem.getRentalFee()));
         item.appendChild(rentalFee);
+
+        Element image = document.createElement("image");
+        image.setTextContent(newItem.getImage());
+        item.appendChild(image);
 
         return item;
     }

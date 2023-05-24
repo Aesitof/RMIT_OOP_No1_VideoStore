@@ -132,14 +132,14 @@ public class AccountListParser {
 
         // Create child nodes
         for (Account account : accounts) {
-            root.appendChild(accountToXML(account, document));
+            root.appendChild(accountToXML(account, document, "account"));
         }
 
         Parser.writeXml(document, new FileOutputStream("xml/accounts.xml"));
     }
 
-    public static Element accountToXML(Account newAccount, Document document) {
-        Element account = document.createElement("account");
+    public static Element accountToXML(Account newAccount, Document document, String tagName) {
+        Element account = document.createElement(tagName);
 
         Element id = document.createElement("id");
         id.setTextContent(newAccount.getId());
