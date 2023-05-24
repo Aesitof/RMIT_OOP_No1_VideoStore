@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.text.ParseException;
 
 public class GenieStoreApplication extends Application {
     double x;
@@ -40,7 +41,7 @@ public class GenieStoreApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
+    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException, ParseException {
         ManagementSystem.main();
         launch();
     }

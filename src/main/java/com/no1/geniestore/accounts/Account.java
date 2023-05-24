@@ -25,7 +25,19 @@ public class Account {
         this.accountType = accountType;
     }
 
-//    Default Constructor
+    public Account(String id, String username, String name, String accountType, String address, String phone, String password, int totalReturnedItems, int rewardPoints) {
+        this.id = id;
+        this.username = username;
+        this.name = name;
+        this.accountType = accountType;
+        this.address = address;
+        this.phone = phone;
+        this.password = password;
+        this.totalReturnedItems = totalReturnedItems;
+        this.rewardPoints = rewardPoints;
+    }
+
+    //    Default Constructor
     public Account() {
         this.id = generateAccountID();
         this.name = "default";
@@ -137,6 +149,8 @@ public class Account {
                 ", accountType='" + accountType + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", totalReturnedItems=" + totalReturnedItems +
                 ", rewardPoints=" + rewardPoints +
                 '}';
     }

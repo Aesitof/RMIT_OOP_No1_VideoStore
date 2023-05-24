@@ -2,12 +2,17 @@ package com.no1.geniestore.products;
 
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.LoanType;
+import com.no1.geniestore.controllers.AccountListParser;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
+import com.no1.geniestore.controllers.OrderListParser;
 import org.xml.sax.SAXException;
+import com.no1.geniestore.products.Order;
+
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,7 +31,7 @@ public class ManagementSystem {
         currentUser = null;
     }
 
-    public static void main() throws ParserConfigurationException, IOException, SAXException {
+    public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException {
         itemList = new ItemListParser().parseItemTotal("xml/items.xml");
         stockList = new ItemListParser().parseStockList("xml/items.xml");
 
@@ -34,6 +39,8 @@ public class ManagementSystem {
         for (Item item : stockList.keySet()) {
             System.out.println(item + "remaining: " + stockList.get(item));
         }
+        accountList = (ArrayList<Account>) new AccountListParser().parse("xml/accounts.xml"); // get successfully
+        orderList = (ArrayList<Order>) new OrderListParser().parse("xml/orders.xml"); // get successfully
     }
 
 //    ITEM METHODS
@@ -91,12 +98,20 @@ public class ManagementSystem {
         }
     }
 
-    public void useRewardPoints(Account account) {
-        if (account.getRewardPoints() >= 100) {
-            account.setRewardPoints(account.getRewardPoints() - 100);
-        }
-    }
 
+
+    public String login(String username, String password) {
+        for (int i = 0; i <= accountList.size(); i++) {
+            if(accountList.get(i).getUsername().equals(username)) {
+                if (accountList.get(i).getPassword().equals(password)) {
+                    currentUser = accountList.get(i);
+                    return "loginSuccess";
+                } else
+                    return "wrongPassword";
+                }
+        }
+        return "notExist";
+    }
     //    DISPLAY USERS
     public void displayUsers() {
         StringBuilder str;
@@ -149,4 +164,6 @@ public class ManagementSystem {
         item.setRentalFee(rentalFee);
         item.setGenre(genre);
     }
+
+
 }

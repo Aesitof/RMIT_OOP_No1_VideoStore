@@ -1,6 +1,7 @@
 package com.no1.geniestore.products;
 
 import java.lang.reflect.Constructor;
+import java.util.Calendar;
 import java.util.Date;
 
 public class OrderDetails {
@@ -8,21 +9,40 @@ public class OrderDetails {
     private Date loanDate;
     private int amount;
     private boolean isReturned;
+    private double discount;
 
 //    Constructor
-    public OrderDetails(Date returnDate, Date loanDate, int amount) {
+    public OrderDetails(Date returnDate, Date loanDate, int amount, double discount) {
         this.returnDate = returnDate;
         this.loanDate = loanDate;
         this.amount = amount;
         this.isReturned = false;
+        this.discount = discount;
     }
 
-//    Default Constructor
+    public OrderDetails(Date returnDate, Date loanDate, int amount, boolean isReturned, double discount) {
+        this.returnDate = returnDate;
+        this.loanDate = loanDate;
+        this.amount = amount;
+        this.isReturned = isReturned;
+        this.discount = discount;
+    }
+
+    //    Default Constructor
     public OrderDetails() {
-        this.returnDate = new Date(System.currentTimeMillis());
-        this.loanDate = new Date(System.currentTimeMillis());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.DATE, 1);
+//        this.returnDate = new Date(System.currentTimeMillis());
+//        this.loanDate = new Date(System.currentTimeMillis());
+        this.returnDate = calendar.getTime();
+        this.loanDate = calendar.getTime();
         this.amount = 0;
         this.isReturned = false;
+        this.discount = 0;
     }
 
 //    Getter and Setter
@@ -56,5 +76,24 @@ public class OrderDetails {
 
     public void setReturned(boolean returned) {
         isReturned = returned;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetails{" +
+                "returnDate=" + returnDate +
+                ", loanDate=" + loanDate +
+                ", amount=" + amount +
+                ", isReturned=" + isReturned +
+                ", discount=" + discount +
+                '}';
     }
 }
