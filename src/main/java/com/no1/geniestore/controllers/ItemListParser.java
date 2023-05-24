@@ -1,5 +1,6 @@
 package com.no1.geniestore.controllers;
 
+import com.no1.geniestore.Parser;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
@@ -319,7 +320,7 @@ public class ItemListParser {
             root.appendChild(itemToXML(item, document));
         }
 
-        writeXml(document, new FileOutputStream("xml/items.xml"));
+        Parser.writeXml(document, new FileOutputStream("xml/items.xml"));
     }
 
     public static Element itemToXML(Item newItem, Document document) {
@@ -357,31 +358,10 @@ public class ItemListParser {
         rentalFee.setTextContent(String.valueOf(newItem.getRentalFee()));
         item.appendChild(rentalFee);
 
+        Element image = document.createElement("image");
+        image.setTextContent(newItem.getImage());
+        item.appendChild(rentalFee);
+
         return item;
-    }
-
-    /**
-     * Write new Doc to XML file
-     * @param doc
-     * @param output
-     * @throws TransformerException
-     */
-    private static void writeXml(Document doc,
-                                 OutputStream output)
-            throws TransformerException {
-        // XSLT for XML file format
-        String XSLT_FILENAME = "xslt/format.xslt";
-
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer(new StreamSource(new File(XSLT_FILENAME)));
-
-        // pretty print XML
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-        DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(output);
-
-        transformer.transform(source, result);
-
     }
 }
