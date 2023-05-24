@@ -86,10 +86,10 @@ public class ManagementSystem {
         accountList.removeIf(i -> i.getId().equals(accountID)); // remove from account list
     }
 
-    public void createUsername(Account account, String username, String password) {
+    public boolean createUsername(Account account, String username, String password) {
         for (Account acc : accountList) {
             if (acc.getUsername().equals(username)) {
-                break; // stop if that username is already exist
+                return false; // stop if that username is already exist
             }
 
 //            set username and password then add it to the account list
@@ -97,6 +97,7 @@ public class ManagementSystem {
             account.setPassword(password);
             addAccount(account);
         }
+        return true;
     }
 
     public void promote(Account account, int amount) { // Auto promote whenever return item
