@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.no1.geniestore.controllers.AdminDetailPageController">
    <children>
@@ -192,7 +193,7 @@
                                           <String fx:value="add-btn" />
                                        </styleClass>
                                     </Button>
-                                    <Button layoutX="592.0" layoutY="620.0" mnemonicParsing="false" onAction="#updateItem" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Update" AnchorPane.bottomAnchor="17.0">
+                                    <Button layoutX="592.0" layoutY="620.0" mnemonicParsing="false" onAction="#updateItemView" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Update" AnchorPane.bottomAnchor="17.0">
                                        <styleClass>
                                           <String fx:value="btn" />
                                           <String fx:value="update-btn" />
@@ -230,8 +231,188 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="addOrderForm" prefHeight="705.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <AnchorPane fx:id="addCustomerForm" prefHeight="705.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <AnchorPane fx:id="addOrderForm" prefHeight="705.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="677.0" prefWidth="773.0" stylesheets="@style/admindetailpage.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                 <styleClass>
+                                    <String fx:value="white-background" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="8.0" prefHeight="409.0" prefWidth="629.0" stylesheets="@style/admindetailpage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="white-background" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <TableView fx:id="orderTableView" layoutX="10.0" layoutY="47.0" onMouseClicked="#orderListSelect" prefHeight="351.0" prefWidth="609.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                             <columns>
+                                                <TableColumn fx:id="orderColOrderId" prefWidth="62.5" text="OrderID" />
+                                                <TableColumn fx:id="orderColCustomerId" prefWidth="97.16668701171875" text="Customer ID" />
+                                                <TableColumn fx:id="orderColCustomerName" minWidth="6.0" prefWidth="152.83328247070312" text="Customer Name" />
+                                                <TableColumn fx:id="orderColDate" minWidth="3.499969482421875" prefWidth="109.0" text="Date" />
+                                                <TableColumn fx:id="orderColDiscount" prefWidth="92.5" text="Discount ($)" />
+                                                <TableColumn fx:id="orderColTotal" prefWidth="92.5" text="Total ($)" />
+                                             </columns>
+                                          </TableView>
+                                          <TextField fx:id="addItemSearch1" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="312.0" promptText="Search..." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="-1.0" layoutY="332.0" prefHeight="207.0" prefWidth="872.0" stylesheets="@style/admindetailpage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="white-background" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <TableView fx:id="orderRentTableView" layoutX="10.0" layoutY="47.0" onMouseClicked="#rentalListSelect" prefHeight="282.0" prefWidth="800.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="9.0">
+                                             <columns>
+                                                <TableColumn fx:id="orderColRentId" prefWidth="95.83335876464844" text="ItemID" />
+                                                <TableColumn fx:id="orderColRentTitle" prefWidth="208.66665649414062" text="Title" />
+                                                <TableColumn fx:id="orderColRentItemType" minWidth="0.0" prefWidth="118.33331298828125" text="Type" />
+                                                <TableColumn fx:id="orderColRentQty" minWidth="3.499969482421875" prefWidth="73.0" text="Quantity" />
+                                                <TableColumn fx:id="orderColRentFee" prefWidth="100.0" text="Item Fee ($)" />
+                                                <TableColumn fx:id="orderColRentDueDate" prefWidth="136.49993896484375" text="Due Date" />
+                                                <TableColumn fx:id="orderColRentStatus" minWidth="0.0" prefWidth="118.83319091796875" text="Status" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                    <Text fill="#495bc1" layoutX="39.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of Rentals" wrappingWidth="157.48828125" AnchorPane.leftAnchor="39.0">
+                                       <font>
+                                          <Font name="Leelawadee UI Bold" size="22.0" />
+                                       </font>
+                                    </Text>
+                                    <Label alignment="CENTER_RIGHT" layoutX="644.0" layoutY="65.0" prefHeight="16.0" prefWidth="45.0" text="Order:" AnchorPane.rightAnchor="183.0" AnchorPane.topAnchor="65.0">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="orderOrderTextField" layoutX="697.0" layoutY="62.0" prefHeight="23.0" prefWidth="77.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" AnchorPane.topAnchor="62.0" />
+                                    <TextField fx:id="orderItemIDTextField" layoutX="697.0" layoutY="94.0" prefHeight="23.0" prefWidth="77.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="644.0" layoutY="97.0" prefHeight="16.0" prefWidth="59.0" text="Item ID:" AnchorPane.rightAnchor="183.0">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="630.0" layoutY="128.0" prefHeight="16.0" prefWidth="59.0" text="Title:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="orderTitleTextField" layoutX="696.0" layoutY="125.0" prefHeight="23.0" prefWidth="158.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" AnchorPane.rightAnchor="18.0" />
+                                    <Button fx:id="returnBtn" layoutX="644.0" layoutY="161.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="212.0" stylesheets="@style/admindetailpage.css" text="Return Item">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="add-btn" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children></AnchorPane>
+                        <AnchorPane fx:id="addCustomerForm" prefHeight="705.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="677.0" prefWidth="773.0" stylesheets="@style/admindetailpage.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                 <styleClass>
+                                    <String fx:value="white-background" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="8.0" prefHeight="338.0" prefWidth="772.0" stylesheets="@style/admindetailpage.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="white-background" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <TableView fx:id="addAccountTableView" layoutX="10.0" layoutY="47.0" onMouseClicked="#addAccountSelect" prefHeight="282.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                             <columns>
+                                                <TableColumn fx:id="addAccountColId" prefWidth="73.83335876464844" text="ID" />
+                                                <TableColumn fx:id="addAccountColName" prefWidth="149.33334350585938" text="Name" />
+                                                <TableColumn fx:id="addAccountColAddress" minWidth="6.0" prefWidth="150.6666259765625" text="Address" />
+                                                <TableColumn fx:id="addAccountColPhone" minWidth="3.499969482421875" prefWidth="102.0" text="Phone" />
+                                                <TableColumn fx:id="addAccountColUsername" prefWidth="104.83331298828125" text="Username" />
+                                                <TableColumn fx:id="addAccountColLevel" prefWidth="81.16668701171875" text="Level" />
+                                                <TableColumn fx:id="addAccountColReturnedItems" minWidth="0.0" prefWidth="105.83331298828125" text="Returned Items" />
+                                                <TableColumn fx:id="addAccountColPoints" minWidth="9.5" prefWidth="86.66656494140625" text="Points" />
+                                             </columns>
+                                          </TableView>
+                                          <TextField fx:id="addItemSearch2" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="312.0" promptText="Search..." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <TextField fx:id="addAccountID" layoutX="95.0" layoutY="370.0" prefHeight="33.0" prefWidth="111.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="380.0" prefWidth="68.0" text="ID:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="428.0" prefWidth="68.0" text="Name:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="479.0" prefWidth="68.0" text="Address:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="528.0" prefWidth="68.0" text="Phone:">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="492.0" layoutY="380.0" prefWidth="68.0" text="Level:" AnchorPane.rightAnchor="312.0">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="492.0" layoutY="430.0" prefWidth="68.0" text="Username:" AnchorPane.rightAnchor="312.0">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="455.0" layoutY="480.0" prefHeight="16.0" prefWidth="110.0" text="Returned Items:" AnchorPane.rightAnchor="312.0">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="492.0" layoutY="528.0" prefHeight="16.0" prefWidth="126.0" text="Reward Points:" AnchorPane.rightAnchor="312.0">
+                                       <font>
+                                          <Font name="Arial" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="692.0" layoutY="620.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Add" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="90.0">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="add-btn" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button layoutX="592.0" layoutY="620.0" mnemonicParsing="false" onAction="#updateItem" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Update" AnchorPane.bottomAnchor="17.0">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="update-btn" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button layoutX="465.0" layoutY="617.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Delete" AnchorPane.bottomAnchor="17.0">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="delete-btn" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button layoutX="365.0" layoutY="617.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Clear" AnchorPane.bottomAnchor="17.0">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="clear-btn" />
+                                       </styleClass>
+                                    </Button>
+                                    <TextField fx:id="addAccountName" layoutX="95.0" layoutY="420.0" prefHeight="33.0" prefWidth="258.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <TextField fx:id="addAccountAddress" layoutX="95.0" layoutY="470.0" prefHeight="33.0" prefWidth="258.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <TextField fx:id="addAccountPhone" layoutX="95.0" layoutY="519.0" prefHeight="33.0" prefWidth="258.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <ComboBox fx:id="addAccountLevelComboBox" layoutX="576.0" layoutY="372.0" prefHeight="33.0" prefWidth="111.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <TextField fx:id="addAccountUsername" layoutX="576.0" layoutY="421.0" prefHeight="33.0" prefWidth="258.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <TextField fx:id="addAccountReturnedItems" layoutX="576.0" layoutY="471.0" prefHeight="33.0" prefWidth="111.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <TextField fx:id="addAccountPoints" layoutX="576.0" layoutY="519.0" prefHeight="33.0" prefWidth="111.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                 </children>
+                              </AnchorPane>
+                           </children></AnchorPane>
                      </children>
                   </AnchorPane>
                </center>

@@ -49,12 +49,12 @@ public class ManagementSystem {
             System.out.println(order);
         }
 
-//        ItemListParser.saveItemFile();
+//          ItemListParser.saveItemFile();
 
 //        OrderListParser.saveOrderFile();
     }
 
-//    ITEM METHODS
+    //    ITEM METHODS
     public void addItem(Item item, Integer stock) { // Add Item to the stock
         if (itemList.get(item) != null) { // if already have that item in itemList
             // add to total
@@ -71,17 +71,20 @@ public class ManagementSystem {
             stockList.put(item, stock); // add stock to current stock
         }
     }
+
     public void stockArrive(Item item, int amount) {
         itemList.put(item, itemList.get(item) + amount);
     }
+
     public void removeItem(Item item) {
         itemList.remove(item);
     }//Remove item including its stock
 
-//    ACCOUNTS METHODS
+    //    ACCOUNTS METHODS
     public void addAccount(Account account) {
         accountList.add(account);
     }//Add accounts to the list
+
     public void removeAccount(String accountID) { // Remove account using ID
         accountList.removeIf(i -> i.getId().equals(accountID)); // remove from account list
     }
@@ -111,22 +114,22 @@ public class ManagementSystem {
     }
 
 
-
     public String login(String username, String password) {
-        if(username.equals("admin") && password.equals("Admin123") ) {
+        if (username.equals("admin") && password.equals("Admin123")) {
             return "adminLogin";
         }
         for (int i = 0; i <= accountList.size(); i++) {
-            if(accountList.get(i).getUsername().equals(username)) {
+            if (accountList.get(i).getUsername().equals(username)) {
                 if (accountList.get(i).getPassword().equals(password)) {
                     currentUser = accountList.get(i);
                     return "loginSuccess";
                 } else
                     return "wrongPassword";
-                }
+            }
         }
         return "notExist";
     }
+
     //    DISPLAY USERS
     public void displayUsers() {
         StringBuilder str;
@@ -147,21 +150,22 @@ public class ManagementSystem {
             }
         }
     }
+
     public void makeOrder(Account account) {
         Order order = new Order(account);
     }//make a list contain orderDetails
 
-//    DISPLAY ALL ITEMS IN THE STORE HAS
+    //    DISPLAY ALL ITEMS IN THE STORE HAS
     public void displayAllItems() {
         StringBuilder str;
         str = new StringBuilder();
-        for (Item item : itemStock){
+        for (Item item : itemStock) {
             str.append(item.toString());
             str.append(" ");
         }
     }
 
-//    DISPLAY OUT OF STOCK ITEMS
+    //    DISPLAY OUT OF STOCK ITEMS
     public void displayOutOfStock() {
         StringBuilder str;
         str = new StringBuilder();
@@ -174,8 +178,8 @@ public class ManagementSystem {
     }
 
     public static void updateItem(Item item, String title, LoanType loanType, double rentalFee, Genre genre, int totalCopies, int remainingCopies) {
-        for (Item i: itemStock) {
-            if(item.equals(i)) {
+        for (Item i : itemStock) {
+            if (item.equals(i)) {
                 i.setTitle(title);
                 i.setLoanType(loanType);
                 i.setRentalFee(rentalFee);
@@ -183,8 +187,8 @@ public class ManagementSystem {
                 itemList.put(i, totalCopies);
                 stockList.put(i, remainingCopies);
             }
+
+
         }
     }
-
-
 }
