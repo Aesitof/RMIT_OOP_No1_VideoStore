@@ -20,7 +20,7 @@ public class GenieStoreApplication extends Application {
     double y;
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("homepage-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("admindetailpage-view.fxml"));
 
         Scene scene = new Scene(root);
 
