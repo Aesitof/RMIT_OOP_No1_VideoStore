@@ -173,11 +173,17 @@ public class ManagementSystem {
         }
     }
 
-    public static void updateItem(Item item, String title, LoanType loanType, double rentalFee, Genre genre) {
-        item.setTitle(title);
-        item.setLoanType(loanType);
-        item.setRentalFee(rentalFee);
-        item.setGenre(genre);
+    public static void updateItem(Item item, String title, LoanType loanType, double rentalFee, Genre genre, int totalCopies, int remainingCopies) {
+        for (Item i: itemStock) {
+            if(item.equals(i)) {
+                i.setTitle(title);
+                i.setLoanType(loanType);
+                i.setRentalFee(rentalFee);
+                i.setGenre(genre);
+                itemList.put(i, totalCopies);
+                stockList.put(i, remainingCopies);
+            }
+        }
     }
 
 
