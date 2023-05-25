@@ -29,7 +29,9 @@ import javafx.stage.StageStyle;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -289,22 +291,29 @@ public class AdminDetailPageController implements Initializable {
                 item.setGenre(genreComboBox.getValue());
                 item.setLoanType(loanTypeComboBox.getValue());
                 item.setRentalFee(Double.parseDouble(rentalFee.getText()));
+                item.setRemainingCopies((copies.getValue() - item.getTotalCopies()) + item.getRemainingCopies());
                 item.setTotalCopies((int) copies.getValue());
-                item.setRemainingCopies((int) remaining.getValue());
                 item.setImage(imagePath.getText());
-
-                Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
-                updateAlert.setContentText("Update item successfully");
-                updateAlert.show();
 
                 addItemTableView.refresh();
 
-//                updateItem(item.getId(), itemTitle.getText(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue());
+                // Update API
+                updateItem(item.getId(), itemTitle.getText(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue());
 
                 // Alert update successfully
+                Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
+                updateAlert.setHeaderText(null);
+                updateAlert.setContentText("Update item successfully");
+                updateAlert.showAndWait();
+
+
+                return;
             }
-            return;
         }
+    }
+
+    public void addItemClear() {
+
     }
 
     public void addItemInsertImage() {
@@ -329,7 +338,11 @@ public class AdminDetailPageController implements Initializable {
 
     public ArrayList<Integer> yearComboList = yearList();
 
-    public void close() {
+    public void close() throws ParserConfigurationException, FileNotFoundException, TransformerException {
+        // Save items info to file before closing the application
+        new ItemListParser().saveItemFile();
+
+        // close the app
         System.exit(0);
     }
 
@@ -609,6 +622,9 @@ public class AdminDetailPageController implements Initializable {
                 }
             }
         });
+
+        // set remaining spinner disable
+        remaining.setDisable(true);
 
         rentalFeeError.setVisible(false);
         yearComboBoxError.setVisible(false);
