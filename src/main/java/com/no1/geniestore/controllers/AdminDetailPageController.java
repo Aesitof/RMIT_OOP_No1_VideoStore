@@ -1,10 +1,15 @@
 package com.no1.geniestore.controllers;
 
+import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
+import com.no1.geniestore.products.Item;
+import com.no1.geniestore.products.Order;
+import com.no1.geniestore.products.OrderDetails;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,12 +29,18 @@ import javafx.stage.StageStyle;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static com.no1.geniestore.products.ManagementSystem.*;
 
 
 public class AdminDetailPageController implements Initializable {
@@ -139,6 +150,91 @@ public class AdminDetailPageController implements Initializable {
 
     private ObservableList<ItemData> addItemList;
 
+    /* Add Account Form */
+    @FXML
+    private TextField addAccountID;
+    @FXML
+    private TextField addAccountName;
+    @FXML
+    private TextField addAccountAddress;
+    @FXML
+    private TextField addAccountPhone;
+    @FXML
+    private ComboBox<String> addAccountLevelComboBox;
+    @FXML
+    private TextField addAccountUsername;
+    @FXML
+    private TextField addAccountReturnedItems;
+    @FXML
+    private TextField addAccountPoints;
+
+    private ObservableList<Account> addAccountList;
+    @FXML
+    private TableView<Account> addAccountTableView;
+    @FXML
+    private TableColumn<Account, String> addAccountColId;
+    @FXML
+    private TableColumn<Account, String> addAccountColName;
+    @FXML
+    private TableColumn<Account, String> addAccountColAddress;
+    @FXML
+    private TableColumn<Account, String> addAccountColPhone;
+    @FXML
+    private TableColumn<Account, String> addAccountColUsername;
+    @FXML
+    private TableColumn<Account, String> addAccountColLevel;
+    @FXML
+    private TableColumn<Account, String> addAccountColReturnedItems;
+    @FXML
+    private TableColumn<Account, String> addAccountColPoints;
+
+
+    /* Order Form */
+    @FXML
+    private TextField orderOrderTextField;
+    @FXML
+    private TextField orderItemIDTextField;
+    @FXML
+    private TextField orderTitleTextField;
+
+    private ObservableList<OrderData> adminOrderList;
+    @FXML
+    private TableView<OrderData> orderTableView;
+    @FXML
+    private TableColumn<?,?> orderColOrderId;
+    @FXML
+    private TableColumn<?,?> orderColCustomerId;
+    @FXML
+    private TableColumn<?,?> orderColCustomerName;
+    @FXML
+    private TableColumn<?,?> orderColDate;
+    @FXML
+    private TableColumn<?,?> orderColDiscount;
+    @FXML
+    private TableColumn<?,?> orderColTotal;
+
+    private ObservableList<RentalData> adminRentList;
+    @FXML
+    private TableView<RentalData> orderRentTableView;
+    @FXML
+    private TableColumn<RentalData, String> orderColRentId;
+    @FXML
+    private TableColumn<RentalData, String> orderColRentTitle;
+    @FXML
+    private TableColumn<RentalData, ItemType> orderColRentItemType;
+    @FXML
+    private TableColumn<RentalData, String> orderColRentQty;
+    @FXML
+    private TableColumn<RentalData, String> orderColRentFee;
+    @FXML
+    private TableColumn<RentalData, String> orderColRentDueDate;
+    @FXML
+    private TableColumn<RentalData, String> orderColRentStatus;
+    @FXML
+    private Button returnBtn;
+
+
+    /* Add Item Form methods */
     public void addItemShowListData() {
         addItemColId.setCellValueFactory(new PropertyValueFactory<>("id"));
         addItemColTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -184,7 +280,9 @@ public class AdminDetailPageController implements Initializable {
 //        }
     }
 
-    public void updateItem() {
+    public void updateItemView() {
+        System.out.println("update called");
+
         for (ItemData item : addItemList) {
             if (item.getId().equals(itemId.getText())) {
                 item.setTitle(itemTitle.getText());
@@ -193,17 +291,29 @@ public class AdminDetailPageController implements Initializable {
                 item.setGenre(genreComboBox.getValue());
                 item.setLoanType(loanTypeComboBox.getValue());
                 item.setRentalFee(Double.parseDouble(rentalFee.getText()));
+                item.setRemainingCopies((copies.getValue() - item.getTotalCopies()) + item.getRemainingCopies());
                 item.setTotalCopies((int) copies.getValue());
-                item.setRemainingCopies((int) remaining.getValue());
                 item.setImage(imagePath.getText());
 
                 addItemTableView.refresh();
 
+                // Update API
+                updateItem(item.getId(), itemTitle.getText(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue());
+
+                // Alert update successfully
                 Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
+                updateAlert.setHeaderText(null);
                 updateAlert.setContentText("Update item successfully");
-                updateAlert.show();
+                updateAlert.showAndWait();
+
+
+                return;
             }
         }
+    }
+
+    public void addItemClear() {
+
     }
 
     public void addItemInsertImage() {
@@ -228,7 +338,11 @@ public class AdminDetailPageController implements Initializable {
 
     public ArrayList<Integer> yearComboList = yearList();
 
-    public void close() {
+    public void close() throws ParserConfigurationException, FileNotFoundException, TransformerException {
+        // Save items info to file before closing the application
+        new ItemListParser().saveItemFile();
+
+        // close the app
         System.exit(0);
     }
 
@@ -237,6 +351,171 @@ public class AdminDetailPageController implements Initializable {
         stage.setIconified(true);
     }
 
+    /* Add Account Form methods */
+    public void addAccountShowListData() {
+        addAccountList = FXCollections.observableArrayList(accountList);
+
+        addAccountColId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        addAccountColName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        addAccountColAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        addAccountColPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        addAccountColUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        addAccountColLevel.setCellValueFactory(new PropertyValueFactory<>("accountType"));
+        addAccountColReturnedItems.setCellValueFactory(new PropertyValueFactory<>("totalReturnedItems"));
+        addAccountColPoints.setCellValueFactory(new PropertyValueFactory<>("rewardPoints"));
+
+//        addAccountTableView.setItems((ObservableList<Account>) accountList);
+        addAccountTableView.setItems(addAccountList);
+    }
+
+    public void addAccountSelect() {
+        Account account = addAccountTableView.getSelectionModel().getSelectedItem();
+        int num = addAccountTableView.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+
+        addAccountID.setText(account.getId());
+        addAccountName.setText(account.getName());
+        addAccountAddress.setText(account.getAddress());
+        addAccountPhone.setText(account.getPhone());
+        addAccountLevelComboBox.setValue(account.getAccountType());
+        addAccountUsername.setText(account.getUsername());
+        addAccountReturnedItems.setText(String.valueOf(account.getTotalReturnedItems()));
+        addAccountPoints.setText(String.valueOf(account.getRewardPoints()));
+
+    }
+
+    /* Order View methods */
+    public void orderShowListData() {
+        adminOrderList = createOrderShowListData();
+
+        orderColOrderId.setCellValueFactory(new PropertyValueFactory<>("orderID"));
+        orderColCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        orderColCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        orderColDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        orderColDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
+        orderColTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+        orderTableView.setItems(adminOrderList);
+    }
+
+    public static ObservableList<OrderData> createOrderShowListData() {
+        ObservableList<OrderData> orderDataList = FXCollections.observableArrayList();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        for (Order order : orderList) {
+            String orderID = order.getOrderID();
+            String customerID = order.getOwner().getId();
+            String customerName = order.getOwner().getName();
+            String date = "";
+            for (Item item : order.getOrder().keySet()) {
+                date = dateFormat.format(order.getOrder().get(item).getLoanDate());
+                break;
+            }
+
+            double discount = order.getTotalDiscount();
+            double total = order.getTotal();
+
+            orderDataList.add(new OrderData(orderID, customerID, customerName, date, discount, total));
+        }
+
+        return orderDataList;
+    }
+
+    public void orderListSelect() {
+        OrderData order = orderTableView.getSelectionModel().getSelectedItem();
+        int num = orderTableView.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+
+        adminRentList = FXCollections.observableArrayList();
+        adminRentList.removeAll();
+        adminRentList = createRentalShowListData(order);
+
+
+        orderColRentId.setCellValueFactory(new PropertyValueFactory<>("rentId"));
+        orderColRentTitle.setCellValueFactory(new PropertyValueFactory<>("rentTitle"));
+        orderColRentItemType.setCellValueFactory(new PropertyValueFactory<>("rentItemType"));
+        orderColRentQty.setCellValueFactory(new PropertyValueFactory<>("rentQty"));
+        orderColRentFee.setCellValueFactory(new PropertyValueFactory<>("rentFee"));
+        orderColRentDueDate.setCellValueFactory(new PropertyValueFactory<>("rentDueDate"));
+        orderColRentStatus.setCellValueFactory(new PropertyValueFactory<>("rentStatus"));
+
+
+        orderRentTableView.setItems(adminRentList);
+        orderRentTableView.refresh();
+
+    }
+
+    public static ObservableList<RentalData> createRentalShowListData(OrderData orderData) {
+        ObservableList<RentalData> rentalDataList = FXCollections.observableArrayList();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        for (Order order : orderList) {
+            if (order.getOrderID().equals(orderData.getOrderID())) {
+                for (Item item : order.getOrder().keySet()) {
+                    OrderDetails orderDetails = order.getOrder().get(item);
+
+                    String orderId = orderData.getOrderID();
+                    String rentId = item.getId();
+                    String rentTitle = item.getTitle();
+                    ItemType rentItemType = item.getItemType();
+                    int rentQty = orderDetails.getAmount();
+                    double rentFee = item.getRentalFee() * rentQty - orderDetails.getDiscount();
+                    String rentDueDate = dateFormat.format(orderDetails.getReturnDate());
+
+                    String rentStatus = null;
+                    Date today = new Date();
+                    if (orderDetails.isReturned() == true) {
+                        rentStatus = "Returned";
+                    } else {
+                        if (today.after(orderDetails.getReturnDate())) {
+                            rentStatus = "Late";
+                        } else {
+                            rentStatus = "Not yet returned";
+                        }
+                    }
+
+                    rentalDataList.add(new RentalData(orderId, rentId, rentTitle, rentItemType, rentQty, rentFee, rentDueDate, rentStatus));
+                }
+
+                break;
+            }
+        }
+
+        return rentalDataList;
+    }
+
+    public void rentalListSelect() {
+        RentalData rentalData = orderRentTableView.getSelectionModel().getSelectedItem();
+        int num = orderRentTableView.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+
+        orderOrderTextField.setText(rentalData.getOrderId());
+        orderItemIDTextField.setText(rentalData.getRentId());
+        orderTitleTextField.setText(rentalData.getRentTitle());
+
+        if (rentalData.getRentStatus().equals("Returned")) {
+            returnBtn.setDisable(true);
+            returnBtn.setText("Returned Successfully");
+        } else {
+            returnBtn.setDisable(false);
+            returnBtn.setText("Return Item");
+        }
+
+    }
+
+
+    /* View Settings */
     private double x;
     private double y;
 
@@ -312,6 +591,9 @@ public class AdminDetailPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    /* Add Item Form */
+
         // Parse from XML to ObservableList of ItemData, can use thread to be faster
         try {
             addItemList = new ItemListParser().parse("xml/items.xml");
@@ -324,8 +606,6 @@ public class AdminDetailPageController implements Initializable {
         }
 
         addItemShowListData();
-
-//        addItemImage.setImage(new Image(getClass().getResource("/assets/lastchristmas.jpg").toString(), 200.0, 200.0, false, true));
 
         // Item ID
         itemId.setDisable(true);
@@ -342,6 +622,9 @@ public class AdminDetailPageController implements Initializable {
                 }
             }
         });
+
+        // set remaining spinner disable
+        remaining.setDisable(true);
 
         rentalFeeError.setVisible(false);
         yearComboBoxError.setVisible(false);
@@ -419,6 +702,45 @@ public class AdminDetailPageController implements Initializable {
 
         // Loan type content
         loanTypeComboBox.getItems().addAll(LoanType.ONE_WEEK_LOAN, LoanType.TWO_DAY_LOAN);
+
+    /* Add Account Form */
+        addAccountShowListData();
+        //    Conditions for addAccountReturnedItems TextField (only Integer)
+        addAccountReturnedItems.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*")) {
+                    addAccountReturnedItems.setText(newValue.replaceAll("[\\D]", ""));
+                }
+            }
+        });
+
+        //    Conditions for addAccountPoints TextField (only Integer)
+        addAccountPoints.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*")) {
+                    addAccountPoints.setText(newValue.replaceAll("[\\D]", ""));
+                }
+            }
+        });
+
+        // Account Level (Account Type) content
+        addAccountLevelComboBox.getItems().addAll("Guest", "Regular", "VIP");
+
+        // Disable ID and username field
+        addAccountID.setDisable(true);
+        addAccountUsername.setDisable(true);
+
+    /* Order Form */
+        // show list of orders
+        orderShowListData();
+
+        orderOrderTextField.setEditable(false);
+        orderItemIDTextField.setEditable(false);
+        orderTitleTextField.setEditable(false);
+        returnBtn.setDisable(true);
+        returnBtn.setText("Return Item");
 
     }
 }

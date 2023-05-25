@@ -8,4 +8,5 @@ module com.example.latdoi {
     exports com.no1.geniestore;
     exports com.no1.geniestore.controllers;
     opens com.no1.geniestore.controllers to javafx.fxml;
+    opens com.no1.geniestore.accounts to javafx.base;
 }
