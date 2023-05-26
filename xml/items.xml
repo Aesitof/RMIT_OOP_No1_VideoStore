@@ -22,16 +22,28 @@
         <remaining>2</remaining>
     </item>
     <item>
-        <id>I004-2019</id>
-        <title>Parasite</title>
+        <id>I001-2019</id>
+        <title>Our Beloved Summer</title>
+        <year>2019</year>
+        <itemType>DVD</itemType>
+        <genre>Drama</genre>
+        <loanType>7 days</loanType>
+        <rentalFee>15.99</rentalFee>
+        <image>ourbelovedsummer.jpg</image>
+        <copies>5</copies>
+        <remaining>5</remaining>
+    </item>
+    <item>
+        <id>I009-2019</id>
+        <title>Boys over Flowers</title>
         <year>2019</year>
         <itemType>Video Record</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
-        <rentalFee>12.99</rentalFee>
-        <image>parasite.jpg</image>
-        <copies>5</copies>
-        <remaining>5</remaining>
+        <rentalFee>11.59</rentalFee>
+        <image>boysoverflowers.jpg</image>
+        <copies>2</copies>
+        <remaining>2</remaining>
     </item>
     <item>
         <id>I005-2010</id>
@@ -58,27 +70,16 @@
         <remaining>1</remaining>
     </item>
     <item>
-        <id>I001-2019</id>
-        <title>Our Beloved Summer</title>
-        <year>2019</year>
-        <itemType>DVD</itemType>
+        <id>I003-1997</id>
+        <title>Titanic</title>
+        <year>1997</year>
+        <itemType>Video Record</itemType>
         <genre>Drama</genre>
-        <loanType>7 days</loanType>
-        <rentalFee>15.99</rentalFee>
-        <image>ourbelovedsummer.jpg</image>
-        <copies>5</copies>
-        <remaining>5</remaining>
-    </item>
-    <item>
-        <id>I008-2019</id>
-        <title>hoho</title>
-        <year>2019</year>
-        <itemType>Game</itemType>
         <loanType>2 days</loanType>
-        <rentalFee>11.99</rentalFee>
-        <image>minecraft.png</image>
-        <copies>1</copies>
-        <remaining>1</remaining>
+        <rentalFee>23.99</rentalFee>
+        <image>lastchristmas.jpg</image>
+        <copies>4</copies>
+        <remaining>4</remaining>
     </item>
     <item>
         <id>I010-1952</id>
@@ -93,27 +94,26 @@
         <remaining>1</remaining>
     </item>
     <item>
-        <id>I003-1997</id>
-        <title>Titanic</title>
-        <year>1997</year>
-        <itemType>Video Record</itemType>
-        <genre>Drama</genre>
+        <id>I008-2019</id>
+        <title>hoho</title>
+        <year>2019</year>
+        <itemType>Game</itemType>
         <loanType>2 days</loanType>
-        <rentalFee>23.99</rentalFee>
-        <image>lastchristmas.jpg</image>
-        <copies>4</copies>
-        <remaining>4</remaining>
+        <rentalFee>11.99</rentalFee>
+        <image>minecraft.png</image>
+        <copies>1</copies>
+        <remaining>1</remaining>
     </item>
     <item>
-        <id>I009-2019</id>
-        <title>Boys over Flowers</title>
+        <id>I004-2019</id>
+        <title>Parasite</title>
         <year>2019</year>
         <itemType>Video Record</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
-        <rentalFee>11.59</rentalFee>
-        <image>boysoverflowers.jpg</image>
-        <copies>2</copies>
-        <remaining>2</remaining>
+        <rentalFee>12.99</rentalFee>
+        <image>parasite.jpg</image>
+        <copies>5</copies>
+        <remaining>5</remaining>
     </item>
 </items>

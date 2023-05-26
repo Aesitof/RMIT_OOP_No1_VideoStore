@@ -122,13 +122,10 @@ public class Item extends Stock {
 
 //    Auto Generator for itemID
     public String generateItemID() {
-        String latestIDCode = getTheLatestID();
-        int code = Integer.parseInt(latestIDCode);
-        code = code + 1;
-
+        int code = Integer.parseInt(getTotalNumItem()) + 1;
         String itemID = "I";
 
-//        itemID format: IXXX-YYYY
+        // itemID format: IXXX-YYYY
         if (code >= 1 && code <= 9) {
             itemID = String.format("%s%s%s%s%s", itemID, "00", code, "-", getYear());
         } else if (code >= 10 && code <= 99) {
@@ -136,7 +133,6 @@ public class Item extends Stock {
         } else if (code >= 100 && code <= 999) {
             itemID = String.format("%s%s%s%s%s", itemID, "", code, "-", getYear());
         }
-
         return itemID;
     }
 

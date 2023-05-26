@@ -3,9 +3,7 @@ package com.no1.geniestore.products;
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.constants.LoanType;
 import static com.no1.geniestore.products.Stock.stockList;
-import com.no1.geniestore.products.ManagementSystem;
 
-import java.lang.reflect.Constructor;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -14,8 +12,8 @@ public class Order {
     private final static long dayLoan = 86400000 * 2;
     private String orderID;
     private Account owner;
-    HashMap<Item, OrderDetails> order = new HashMap<>();//One order has multiple orderDetails
-    private static int idCounter = 0;
+    HashMap<Item, OrderDetails> order = new HashMap<>(); // an order has multiple orderDetails
+    public static int orderIdCounter; // total number of orderId created
     private double total = 0;
     private double totalDiscount = 0;
 
@@ -70,8 +68,13 @@ public class Order {
     }
 
     public void addItemForRent(Item item, Date loanDate, int amount, boolean isDiscountApplied, int discountApplied) {
-        if (amount <= stockList.get(item)) {
-            OrderDetails orderDetail = new OrderDetails();
+        if (owner.getAccountType().equals("Guest") && amount > 2) {
+
+        }
+        else if (amount <= stockList.get(item)) { // current stock in store must have enough amount
+            stockList.put(item, stockList.get(item) - amount); // change the remaining stock
+
+            OrderDetails orderDetail = new OrderDetails(); // create new item and its amount in order
             orderDetail.setLoanDate(loanDate);
             orderDetail.setAmount(amount);
             long returnDate;
@@ -84,19 +87,16 @@ public class Order {
 
             orderDetail.setReturnDate(new Date(returnDate)); // set return date to order details
 
-            if (isDiscountApplied) {
-                for (int i = 0; i < discountApplied; i++) {
+            if (isDiscountApplied) { // only if customer use reward points
+                for (int i = 0; i < discountApplied; i++) { // loop for number of discount of that item
                     useRewardPoints(owner);
                 }
                 order.get(item).setDiscount(item.getRentalFee() * discountApplied); // discount for each item in order
                 setTotalDiscount(getTotalDiscount() + item.getRentalFee() * discountApplied); // total discount for that order
             }
-            order.put(item, orderDetail);
-            setTotal(getTotal() + item.getRentalFee() * amount - order.get(item).getDiscount()); // add fee to total
 
-//             change the remaining stock
-            int stockRemaining = stockList.get(item) - amount;
-            stockList.put(item,stockRemaining);
+            order.put(item, orderDetail); // add order details to order
+            setTotal(getTotal() + item.getRentalFee() * amount - order.get(item).getDiscount()); // add fee to order's total
         }
     }
 
@@ -105,27 +105,26 @@ public class Order {
     }
 
     public void returnItemInOrder(Item item, int amount) {
+        // update amount of item in order has been returned
         order.get(item).setAmount(order.get(item).getAmount() - amount);
-
-//        add returned item back to stock
+        // add returned item back to current stock available in store
         stockList.put(item, stockList.get(item) + amount);
-//        add amount to total returned items
+        // add amount to total returned items of that customer
         getOwner().setTotalReturnedItems(getOwner().getTotalReturnedItems() + amount);
 
-//        if all items have been returned
-        if (order.get(item).getAmount() == 0) {
+        if (order.get(item).getAmount() == 0) { // if all items have been returned
             order.get(item).setReturned(true); // status: pending -> finished
         }
     }
 
     public void useRewardPoints(Account account) {
-        if (account.getRewardPoints() >= 100) {
+        if (account.getRewardPoints() >= 100) { // if only have enough points
             account.setRewardPoints(account.getRewardPoints() - 100);
         }
     }
     public String generateOrderID() {
-        idCounter++;
-        orderID = "" + idCounter;
+        orderIdCounter++; // raise value of number of orderId by 1
+        orderID = String.valueOf(orderIdCounter);
         return orderID;
     }
 

@@ -624,7 +624,7 @@ public class AdminDetailPageController implements Initializable {
         // Save items info to file before closing the application
         new ItemListParser().saveItemFile();
         writeTextFile();
-        // close the app
+//         close the app
         System.exit(0);
     }
 

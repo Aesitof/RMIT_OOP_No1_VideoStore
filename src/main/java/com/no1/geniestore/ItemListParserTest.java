@@ -38,7 +38,8 @@ public class ItemListParserTest {
 //        for (Account account : accounts) {
 //            System.out.println(account);
 //        }
-//        accounts.add(new Account());
+//        Account account = new Account();
+//        accounts.add(account);
 //        AccountListParser.accountsToXML(accounts);
 
         List<Order> orders = new OrderListParser().parse("xml/orders.xml");

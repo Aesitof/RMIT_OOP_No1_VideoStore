@@ -10,7 +10,7 @@ public class Account {
     private String password;
     private int totalReturnedItems;
     private int rewardPoints;
-    private static int idCounter = 0;
+    public static int accountIdCounter;
 
 //    Constructor method
     public Account(String name, String address, String phone, String username, String password, String accountType) {
@@ -124,9 +124,8 @@ public class Account {
     }
 
     public String generateAccountID(){
-        idCounter++;
-        int code = idCounter;
-        code = code + 1;
+        int code = accountIdCounter + 1;
+        accountIdCounter++;
         String accountID = "C";
 
         if (code >= 1 && code <= 9) {
@@ -136,7 +135,6 @@ public class Account {
         } else if (code >= 100 && code <= 999){
             accountID = String.format("%s%s%s", accountID, "", code);
         }
-
         return accountID;
     }
 

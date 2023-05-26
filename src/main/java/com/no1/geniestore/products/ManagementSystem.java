@@ -19,11 +19,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import static com.no1.geniestore.accounts.Account.*;
 import static com.no1.geniestore.products.Stock.*;
-
+import static com.no1.geniestore.products.Order.*;
 public class ManagementSystem {
     public static ArrayList<Account> accountList;
-    public static ArrayList<Order> orderList;//TAO CLASS ORDER BO SUNG
+    public static ArrayList<Order> orderList;
     public static HashMap<Item, Integer> itemList; // Total item copies
     private static Account currentUser;
 
@@ -35,11 +36,12 @@ public class ManagementSystem {
     }
 
     public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException, TransformerException {
+
+        readTextFile();
         ItemListParser itemListParser = new ItemListParser();
         itemList = itemListParser.parseItemTotal("xml/items.xml");
         stockList = itemListParser.parseStockList("xml/items.xml");
 
-        readTextFile();
 //        System.out.println("Hello");
 //        for (Item item : stockList.keySet()) {
 //            System.out.println(item + "remaining: " + stockList.get(item));
@@ -58,22 +60,23 @@ public class ManagementSystem {
 
     public static void readTextFile() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("txt/amount.txt"));
-        String Int_line;
 
-        while ((Int_line = reader.readLine()) != null) {
-            itemIdCounter = Integer.parseInt(Int_line);
-            // Print the Integer
-            System.out.println(Int_line);
-        }
+        itemIdCounter = Integer.parseInt(reader.readLine());
+        accountIdCounter = Integer.parseInt(reader.readLine());
+        orderIdCounter = Integer.parseInt(reader.readLine());
+
+        // Print the Integer
+//        System.out.println(accountIdCounter);
+
     }
 
     public static void writeTextFile() throws IOException {
-        PrintWriter pw = new PrintWriter(new FileWriter("txt/amount.txt"));
-        pw.printf("%d", itemIdCounter );
-        pw.close();
+        PrintWriter writer = new PrintWriter(new FileWriter("txt/amount.txt"));
+        writer.printf("%d\n%d\n%d", itemIdCounter, accountIdCounter, orderIdCounter );
+        writer.close();
     }
 
-    //    ITEM METHODS
+//        ITEM METHODS
     public static void addItem(Item item, Integer stock) { // Add Item to the stock
         if (itemList.get(item) != null) { // if already have that item in itemList
             // add to total
@@ -85,9 +88,9 @@ public class ManagementSystem {
             int countStock = stockList.get(item) + stock;
             stockList.put(item, countStock);
         } else { // if the item is completely brand new
-            itemStock.add(item); // add new item in itemStock using for generate itemID
-            itemList.put(item, stock); // add new item and its stock to total item
-            stockList.put(item, stock); // add stock to current stock
+            itemStock.add(item); // add new item in itemStock
+            itemList.put(item, stock); // add new item and its stock to total item copies
+            stockList.put(item, stock); // add stock to current stock available in store
         }
     }
 
@@ -104,110 +107,11 @@ public class ManagementSystem {
 //                itemList.remove(key);
 //            }
 //        }
-
-        itemList.remove(item);
-    }//Remove item including its stock
+        itemList.remove(item); // Remove item including its stock
+    }
 
     public static void removeItemInStockList(Item item) {
-
-        stockList.remove(item);
-    }//Remove item including its stock
-
-    //    ACCOUNTS METHODS
-    public void addAccount(Account account) {
-        accountList.add(account);
-    }//Add accounts to the list
-
-    public void removeAccount(String accountID) { // Remove account using ID
-        accountList.removeIf(i -> i.getId().equals(accountID)); // remove from account list
-    }
-
-    public boolean createUsername(Account account, String username, String password) {
-        for (Account acc : accountList) {
-            if (acc.getUsername().equals(username)) {
-                return false; // stop if that username is already exist
-            }
-
-//            set username and password then add it to the account list
-            account.setUsername(username);
-            account.setPassword(password);
-            addAccount(account);
-        }
-        return true;
-    }
-
-    public void promote(Account account, int amount) { // Auto promote whenever return item
-        if (account.getTotalReturnedItems() > 9) {
-            account.setRewardPoints(account.getRewardPoints() + 10 * amount);
-        } else if (account.getTotalReturnedItems() == 9) {
-            account.setAccountType("Vip");
-        } else if (account.getTotalReturnedItems() == 4) {
-            account.setAccountType("Regular");
-        }
-    }
-
-
-    public String login(String username, String password) {
-        if (username.equals("admin") && password.equals("Admin123")) {
-            return "adminLogin";
-        }
-        for (int i = 0; i <= accountList.size(); i++) {
-            if (accountList.get(i).getUsername().equals(username)) {
-                if (accountList.get(i).getPassword().equals(password)) {
-                    currentUser = accountList.get(i);
-                    return "loginSuccess";
-                } else
-                    return "wrongPassword";
-            }
-        }
-        return "notExist";
-    }
-
-    //    DISPLAY USERS
-    public void displayUsers() {
-        StringBuilder str;
-        str = new StringBuilder();
-        for (Account user : accountList) {
-            str.append(user.toString());
-            str.append(" ");
-        }
-    }
-
-    //ORDER METHODS
-    public void returnItem(String orderID, Item item, int amount) {//Return SINGLE item with SPECIFIED amount
-        for (Order order : orderList) {
-            if (order.getOrderID().equals(orderID)) {
-                order.returnItemInOrder(item, amount);
-                itemList.put(item, itemList.get(item) + amount);// return back to the stock
-                promote(order.getOwner(), amount);
-            }
-        }
-    }
-
-    public void makeOrder(Account account) {
-        Order order = new Order(account);
-    }//make a list contain orderDetails
-
-    //    DISPLAY ALL ITEMS IN THE STORE HAS
-    public void displayAllItems() {
-        StringBuilder str;
-        str = new StringBuilder();
-        for (Item item : itemStock) {
-            str.append(item.toString());
-            str.append(" ");
-        }
-    }
-
-    //    DISPLAY OUT OF STOCK ITEMS
-    public void displayOutOfStock() {
-        StringBuilder str;
-        str = new StringBuilder();
-        for (Item item : itemStock) {
-            if (stockList.get(item) == 0) {
-                str.append(item.toString());
-                str.append(" ");
-            }
-        }
+        stockList.remove(item); // Remove item including its stock
     }
 
     public static void updateItem(String itemId, String title, LoanType loanType, double rentalFee, Genre genre, int totalCopies, int remainingCopies) {
@@ -234,12 +138,110 @@ public class ManagementSystem {
 
         for (Item item : stockList.keySet()) {
             if (item.getId().equals(itemId)) {
-                item.setTitle(title);
-                item.setLoanType(loanType);
-                item.setRentalFee(rentalFee);
-                item.setGenre(genre);
+//                item.setTitle(title);
+//                item.setLoanType(loanType);
+//                item.setRentalFee(rentalFee);
+//                item.setGenre(genre);
                 stockList.put(item, remainingCopies);
             }
         }
     }
+
+//        ACCOUNTS METHODS
+    public void addAccount(Account account) {
+        accountList.add(account); // Add accounts to the list
+    }
+
+    public void removeAccount(String accountID) { // Remove account using ID
+        accountList.removeIf(i -> i.getId().equals(accountID)); // remove from account list
+    }
+
+    public boolean createUsername(Account account, String username, String password) {
+        for (Account acc : accountList) {
+            if (acc.getUsername().equals(username)) {
+                return false; // stop if that username is already exist
+            }
+
+            // set username and password then add it to the account list
+            account.setUsername(username);
+            account.setPassword(password);
+            addAccount(account);
+        }
+        return true;
+    }
+
+    public void promote(Account account, int amount) { // Auto promote whenever return item
+        if (account.getTotalReturnedItems() > 9) {
+            account.setRewardPoints(account.getRewardPoints() + 10 * amount);
+        } else if (account.getTotalReturnedItems() == 9) {
+            account.setAccountType("Vip");
+        } else if (account.getTotalReturnedItems() == 4) {
+            account.setAccountType("Regular");
+        }
+    }
+
+    public String login(String username, String password) {
+        if (username.equals("admin") && password.equals("Admin123")) {
+            return "adminLogin";
+        }
+        for (int i = 0; i <= accountList.size(); i++) {
+            if (accountList.get(i).getUsername().equals(username)) {
+                if (accountList.get(i).getPassword().equals(password)) {
+                    currentUser = accountList.get(i);
+                    return "loginSuccess";
+                } else
+                    return "wrongPassword";
+            }
+        }
+        return "notExist";
+    }
+
+//        DISPLAY USERS
+    public void displayUsers() {
+        StringBuilder str;
+        str = new StringBuilder();
+        for (Account user : accountList) {
+            str.append(user.toString());
+            str.append(" ");
+        }
+    }
+
+//    ORDER METHODS
+    public void returnItem(String orderID, Item item, int amount) { // Return SINGLE item with SPECIFIED amount
+        for (Order order : orderList) {
+            if (order.getOrderID().equals(orderID)) {
+                order.returnItemInOrder(item, amount);
+                itemList.put(item, itemList.get(item) + amount); // return back to the stock
+                promote(order.getOwner(), amount);
+            }
+        }
+    }
+
+    public void makeOrder(Account account) {
+        Order order = new Order(account); // make a list contain orderDetails
+    }
+
+    // DISPLAY ALL ITEMS IN THE STORE HAS
+    public void displayAllItems() {
+        StringBuilder str;
+        str = new StringBuilder();
+        for (Item item : itemStock) {
+            str.append(item.toString());
+            str.append(" ");
+        }
+    }
+
+    // DISPLAY OUT OF STOCK ITEMS
+    public void displayOutOfStock() {
+        StringBuilder str;
+        str = new StringBuilder();
+        for (Item item : itemStock) {
+            if (stockList.get(item) == 0) {
+                str.append(item.toString());
+                str.append(" ");
+            }
+        }
+    }
+
+
 }

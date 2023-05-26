@@ -65,15 +65,4 @@
         <totalReturnedItems>0</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>
-    <account>
-        <id>C002</id>
-        <username>default</username>
-        <name>default</name>
-        <accountType>Guest</accountType>
-        <address>default</address>
-        <phone>default</phone>
-        <password>default</password>
-        <totalReturnedItems>0</totalReturnedItems>
-        <rewardPoints>0</rewardPoints>
-    </account>
 </accounts>
