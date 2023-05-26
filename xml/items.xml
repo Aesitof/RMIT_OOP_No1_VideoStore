@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><items>
     <item>
-        <id>I002-2013</id>
-        <title>PUBG</title>
-        <year>2013</year>
-        <itemType>Game</itemType>
-        <loanType>7 days</loanType>
-        <rentalFee>50.99</rentalFee>
-        <image>pubg.jpg</image>
-        <copies>3</copies>
-        <remaining>2</remaining>
-    </item>
-    <item>
         <id>I007-2011</id>
         <title>Minecraft</title>
         <year>2011</year>
@@ -22,16 +11,16 @@
         <remaining>6</remaining>
     </item>
     <item>
-        <id>I004-2019</id>
-        <title>Parasite</title>
-        <year>2019</year>
-        <itemType>Video Record</itemType>
+        <id>I001-2001</id>
+        <title>Last Christmas</title>
+        <year>2001</year>
+        <itemType>DVD</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
-        <rentalFee>12.99</rentalFee>
-        <image>parasite.jpg</image>
-        <copies>5</copies>
-        <remaining>5</remaining>
+        <rentalFee>23.99</rentalFee>
+        <image>lastchristmas.jpg</image>
+        <copies>4</copies>
+        <remaining>4</remaining>
     </item>
     <item>
         <id>I006-2022</id>
@@ -58,6 +47,29 @@
         <remaining>3</remaining>
     </item>
     <item>
+        <id>I002-2013</id>
+        <title>PUBG</title>
+        <year>2013</year>
+        <itemType>Game</itemType>
+        <loanType>7 days</loanType>
+        <rentalFee>50.99</rentalFee>
+        <image>pubg.jpg</image>
+        <copies>3</copies>
+        <remaining>2</remaining>
+    </item>
+    <item>
+        <id>I004-2019</id>
+        <title>Parasite</title>
+        <year>2019</year>
+        <itemType>Video Record</itemType>
+        <genre>Drama</genre>
+        <loanType>2 days</loanType>
+        <rentalFee>12.99</rentalFee>
+        <image>parasite.jpg</image>
+        <copies>5</copies>
+        <remaining>5</remaining>
+    </item>
+    <item>
         <id>I003-1997</id>
         <title>Titanic</title>
         <year>1997</year>
@@ -68,17 +80,5 @@
         <image>titanic.jpg</image>
         <copies>3</copies>
         <remaining>3</remaining>
-    </item>
-    <item>
-        <id>I001-2001</id>
-        <title>Last Christmas</title>
-        <year>2001</year>
-        <itemType>DVD</itemType>
-        <genre>Drama</genre>
-        <loanType>2 days</loanType>
-        <rentalFee>23.99</rentalFee>
-        <image>lastchristmas.jpg</image>
-        <copies>4</copies>
-        <remaining>4</remaining>
     </item>
 </items>

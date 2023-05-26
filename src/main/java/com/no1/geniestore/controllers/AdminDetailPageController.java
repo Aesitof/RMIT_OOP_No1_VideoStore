@@ -41,6 +41,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.no1.geniestore.products.ManagementSystem.*;
+import static com.no1.geniestore.products.Stock.stockList;
 
 
 public class AdminDetailPageController implements Initializable {
@@ -53,6 +54,9 @@ public class AdminDetailPageController implements Initializable {
     private AnchorPane addOrderForm;
     @FXML
     private AnchorPane addCustomerForm;
+
+    /* Add Item Form */
+    private Alert alert;
     @FXML
     private TableColumn<ItemData, String> addItemColCopies;
 
@@ -283,6 +287,70 @@ public class AdminDetailPageController implements Initializable {
     public void updateItemView() {
         System.out.println("update called");
 
+        if (itemTitle.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the item's title");
+            alert.showAndWait();
+            return;
+        }
+
+        if (yearComboBox.getSelectionModel().isEmpty() && String.valueOf(yearComboBox.getValue()).equals(null)) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the item's published year");
+            alert.showAndWait();
+            return;
+        }
+
+        if (typeComboBox.getSelectionModel().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please choose the type of the item");
+            alert.showAndWait();
+            return;
+        }
+
+        if ((!typeComboBox.getValue().equals(ItemType.GAME)) && genreComboBox.getSelectionModel().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please choose the genre of the item");
+            alert.showAndWait();
+            return;
+        }
+
+        if (loanTypeComboBox.getSelectionModel().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please choose the loan type of the item");
+            alert.showAndWait();
+            return;
+        }
+
+        if (rentalFee.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the rental price of the item");
+            alert.showAndWait();
+            return;
+        }
+
+        if (imagePath.getText().equals("")) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please upload the image of the item");
+            alert.showAndWait();
+            return;
+        }
+
+
         for (ItemData item : addItemList) {
             if (item.getId().equals(itemId.getText())) {
                 item.setTitle(itemTitle.getText());
@@ -308,11 +376,6 @@ public class AdminDetailPageController implements Initializable {
                 updateAlert.setContentText("Update item successfully");
                 updateAlert.showAndWait();
 
-                for (Item itemData : itemList.keySet()) {
-                    System.out.println(itemData);
-                    System.out.println(itemList.get(itemData));
-                }
-
 
                 return;
             }
@@ -320,19 +383,124 @@ public class AdminDetailPageController implements Initializable {
     }
 
     public void addItemClear() {
-        itemId.setText("");
-        itemTitle.setText("");
+        itemId.clear();
+        itemTitle.clear();
+//        yearComboBox.setValue(null);
+        yearComboBox.getSelectionModel().clearSelection();
         yearComboBox.setValue(null);
-        typeComboBox.setValue(null);
-        genreComboBox.setValue(null);
-        loanTypeComboBox.setValue(null);
-        rentalFee.setText("");
+//        typeComboBox.setValue(null);
+        typeComboBox.getSelectionModel().clearSelection();
+//        genreComboBox.setValue(null);
+        genreComboBox.getSelectionModel().clearSelection();
+//        loanTypeComboBox.setValue(null);
+        loanTypeComboBox.getSelectionModel().clearSelection();
+        rentalFee.clear();
         copies.getValueFactory().setValue(0);
         remaining.getValueFactory().setValue(0);
         addItemImage.setImage(null);
         imagePath.setText("");
 
     }
+
+    public void addItemAdd() {
+        if (itemId.getText().isEmpty()) {
+
+            if (itemTitle.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the item's title");
+                alert.showAndWait();
+                return;
+            }
+
+            if (yearComboBox.getSelectionModel().isEmpty() && String.valueOf(yearComboBox.getValue()).equals(null)) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the item's published year");
+                alert.showAndWait();
+                return;
+            }
+
+            if (typeComboBox.getSelectionModel().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please choose the type of the item");
+                alert.showAndWait();
+                return;
+            }
+
+            if ((!typeComboBox.getValue().equals(ItemType.GAME)) && genreComboBox.getSelectionModel().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please choose the genre of the item");
+                alert.showAndWait();
+                return;
+            }
+
+            if (loanTypeComboBox.getSelectionModel().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please choose the loan type of the item");
+                alert.showAndWait();
+                return;
+            }
+
+            if (rentalFee.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the rental price of the item");
+                alert.showAndWait();
+                return;
+            }
+
+            if (imagePath.getText().equals("")) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please upload the image of the item");
+                alert.showAndWait();
+                return;
+            }
+
+            // Add to front-end view
+            addItemList.add(new ItemData("", itemTitle.getText(), Integer.parseInt(String.valueOf(yearComboBox.getValue())), typeComboBox.getValue(), genreComboBox.getValue(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), imagePath.getText(), copies.getValue(), copies.getValue()));
+            addItemShowListData();
+
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Item successfully added");
+            alert.showAndWait();
+
+            // Add to back-end list
+            addItem(new Item(itemTitle.getText(), Integer.parseInt(String.valueOf(yearComboBox.getValue())), typeComboBox.getValue(), genreComboBox.getValue(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), imagePath.getText()), copies.getValue());
+            for (Item itemData : itemList.keySet()) {
+                System.out.println(itemData);
+                System.out.println(itemList.get(itemData));
+            }
+            for (Item itemData : stockList.keySet()) {
+                System.out.println(stockList.get(itemData));
+            }
+
+            addItemClear();
+        } else {
+            // Alert item is already added
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("The item " + itemId.getText() + " is already added. Please click the \"Clear\" button to continue.");
+            alert.showAndWait();
+            return;
+        }
+    }
+
+
 
     public void addItemInsertImage() {
         FileChooser open = new FileChooser();

@@ -187,7 +187,7 @@
                                           <Button mnemonicParsing="false" onAction="#addItemInsertImage" prefHeight="35.0" prefWidth="200.0" styleClass="import-btn" stylesheets="@style/admindetailpage.css" text="Import" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
-                                    <Button layoutX="692.0" layoutY="620.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Add" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="90.0">
+                                    <Button layoutX="692.0" layoutY="620.0" mnemonicParsing="false" onAction="#addItemAdd" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Add" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="90.0">
                                        <styleClass>
                                           <String fx:value="btn" />
                                           <String fx:value="add-btn" />
@@ -205,7 +205,7 @@
                                           <String fx:value="delete-btn" />
                                        </styleClass>
                                     </Button>
-                                    <Button layoutX="365.0" layoutY="617.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Clear" AnchorPane.bottomAnchor="17.0">
+                                    <Button layoutX="365.0" layoutY="617.0" mnemonicParsing="false" onAction="#addItemClear" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Clear" AnchorPane.bottomAnchor="17.0">
                                        <styleClass>
                                           <String fx:value="btn" />
                                           <String fx:value="clear-btn" />
@@ -226,7 +226,7 @@
                                           <Font name="Arial" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="imagePath" layoutX="650.0" layoutY="570.0" prefHeight="17.0" prefWidth="201.0" text="Label" />
+                                    <Label fx:id="imagePath" layoutX="650.0" layoutY="570.0" prefHeight="17.0" prefWidth="201.0" />
                                  </children>
                               </AnchorPane>
                            </children>

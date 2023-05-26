@@ -55,7 +55,7 @@ public class ManagementSystem {
     }
 
     //    ITEM METHODS
-    public void addItem(Item item, Integer stock) { // Add Item to the stock
+    public static void addItem(Item item, Integer stock) { // Add Item to the stock
         if (itemList.get(item) != null) { // if already have that item in itemList
             // add to total
             int countItem = itemList.get(item);
