@@ -286,6 +286,14 @@ public class AdminDetailPageController implements Initializable {
 
     public void updateItemView() {
         System.out.println("update called");
+        if (itemId.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please add new item before updating");
+            alert.showAndWait();
+            return;
+        }
 
         if (itemTitle.getText().isEmpty()) {
             alert = new Alert(Alert.AlertType.ERROR);
@@ -490,18 +498,9 @@ public class AdminDetailPageController implements Initializable {
                 return;
             }
 
-            // Add to front-end view
-            addItemList.add(new ItemData("", itemTitle.getText(), Integer.parseInt(String.valueOf(yearComboBox.getValue())), typeComboBox.getValue(), genreComboBox.getValue(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), imagePath.getText(), copies.getValue(), copies.getValue()));
-            addItemShowListData();
-
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Item successfully added");
-            alert.showAndWait();
-
             // Add to back-end list
-            addItem(new Item(itemTitle.getText(), Integer.parseInt(String.valueOf(yearComboBox.getValue())), typeComboBox.getValue(), genreComboBox.getValue(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), imagePath.getText()), copies.getValue());
+            Item newItem = new Item(itemTitle.getText(), Integer.parseInt(String.valueOf(yearComboBox.getValue())), typeComboBox.getValue(), genreComboBox.getValue(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), imagePath.getText());
+            addItem(newItem, copies.getValue());
             for (Item itemData : itemList.keySet()) {
                 System.out.println(itemData);
                 System.out.println(itemList.get(itemData));
@@ -511,6 +510,17 @@ public class AdminDetailPageController implements Initializable {
                     }
                 }
             }
+
+            // Add to front-end view
+            addItemList.add(new ItemData(newItem.getId(), itemTitle.getText(), Integer.parseInt(String.valueOf(yearComboBox.getValue())), typeComboBox.getValue(), genreComboBox.getValue(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), imagePath.getText(), copies.getValue(), copies.getValue()));
+            addItemShowListData();
+
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Item successfully added");
+            alert.showAndWait();
+
 
             addItemClear();
         } else {
