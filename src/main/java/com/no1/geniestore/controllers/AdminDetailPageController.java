@@ -376,6 +376,14 @@ public class AdminDetailPageController implements Initializable {
                 updateAlert.setContentText("Update item successfully");
                 updateAlert.showAndWait();
 
+                for (Item itemData : itemList.keySet()) {
+                    System.out.println(itemData);
+                    System.out.println(itemList.get(itemData));
+                }
+                for (Item itemData : stockList.keySet()) {
+                    System.out.println(stockList.get(itemData));
+                }
+
 
                 return;
             }
@@ -483,9 +491,11 @@ public class AdminDetailPageController implements Initializable {
             for (Item itemData : itemList.keySet()) {
                 System.out.println(itemData);
                 System.out.println(itemList.get(itemData));
-            }
-            for (Item itemData : stockList.keySet()) {
-                System.out.println(stockList.get(itemData));
+                for (Item item : stockList.keySet()) {
+                    if (item.getId().equals(itemData.getId())) {
+                        System.out.println(stockList.get(item));
+                    }
+                }
             }
 
             addItemClear();
