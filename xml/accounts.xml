@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<accounts>
+<?xml version="1.0" encoding="UTF-8"?><accounts>
     <account>
         <id>C001</id>
         <username>Hings1949</username>
@@ -52,6 +51,28 @@
         <address>23A Beidei Road TX</address>
         <phone>09232322783</phone>
         <password>thisismypw</password>
+        <totalReturnedItems>0</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
+    </account>
+    <account>
+        <id>C006</id>
+        <username>hello123</username>
+        <name>Henry Parker</name>
+        <accountType>Guest</accountType>
+        <address>23A Beidei Road TX</address>
+        <phone>09232322783</phone>
+        <password>thisismypw</password>
+        <totalReturnedItems>0</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
+    </account>
+    <account>
+        <id>C002</id>
+        <username>default</username>
+        <name>default</name>
+        <accountType>Guest</accountType>
+        <address>default</address>
+        <phone>default</phone>
+        <password>default</password>
         <totalReturnedItems>0</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>
