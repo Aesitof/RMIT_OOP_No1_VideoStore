@@ -24,16 +24,21 @@ public class ItemListParserTest {
 //            System.out.println(item);
 //        }
 
-//        ObservableList<ItemData> itemData = new ItemListParser().parse("xml/items.xml");
-//        for (ItemData item : itemData) {
-//            System.out.println(item);
-//        }
+        ObservableList<ItemData> itemData = new ItemListParser().parse("xml/items.xml");
+        for (ItemData item : itemData) {
+            System.out.println(item);
+        }
+
+        ObservableList<ItemData> allItem = new ItemListParser().parse("xml/items.xml");
+        for (ItemData item : itemData) {
+            System.out.println(item);
+        }
 
 //        List<Account> accounts = new AccountListParser().parse("xml/accounts.xml");
 //        for (Account account : accounts) {
 //            System.out.println(account);
 //        }
-//        accounts.add(new Account("C005", "traveloka", "Henry Parker", "Guest", "23A Beidei Road TX", "09232322783", "thisismypw", 0, 0));
+//        accounts.add(new Account());
 //        AccountListParser.accountsToXML(accounts);
 
         List<Order> orders = new OrderListParser().parse("xml/orders.xml");

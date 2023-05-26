@@ -38,6 +38,10 @@ public class ManagementSystem {
         itemList = itemListParser.parseItemTotal("xml/items.xml");
         stockList = itemListParser.parseStockList("xml/items.xml");
 
+        for (Item item : itemList.keySet()) {
+            itemStock.add(item);
+        }
+
 //        System.out.println("Hello");
 //        for (Item item : stockList.keySet()) {
 //            System.out.println(item + "remaining: " + stockList.get(item));
@@ -66,8 +70,8 @@ public class ManagementSystem {
             int countStock = stockList.get(item) + stock;
             stockList.put(item, countStock);
         } else { // if the item is completely brand new
-            itemList.put(item, stock); // add new item and its stock to total item
             itemStock.add(item); // add new item in itemStock using for generate itemID
+            itemList.put(item, stock); // add new item and its stock to total item
             stockList.put(item, stock); // add stock to current stock
         }
     }
@@ -78,6 +82,7 @@ public class ManagementSystem {
 
     public void removeItem(Item item) {
         itemList.remove(item);
+        removeItem++;
     }//Remove item including its stock
 
     //    ACCOUNTS METHODS
