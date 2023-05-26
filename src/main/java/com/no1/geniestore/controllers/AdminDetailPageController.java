@@ -296,7 +296,7 @@ public class AdminDetailPageController implements Initializable {
             return;
         }
 
-        if (yearComboBox.getSelectionModel().isEmpty() && String.valueOf(yearComboBox.getValue()).equals(null)) {
+        if (yearComboBox.getValue() == null) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
@@ -422,7 +422,20 @@ public class AdminDetailPageController implements Initializable {
                 return;
             }
 
-            if (yearComboBox.getSelectionModel().isEmpty() && String.valueOf(yearComboBox.getValue()).equals(null)) {
+//            try {
+////                yearComboBox.getValue();
+//                if (yearComboBox.getValue().equals(null)) {
+//                    alert = new Alert(Alert.AlertType.ERROR);
+//                    alert.setTitle("Error Message");
+//                    alert.setHeaderText(null);
+//                    alert.setContentText("Please enter the item's published year");
+//                    alert.showAndWait();
+//                    return;
+//                }
+//            } catch (NullPointerException exception) {
+//            }
+
+            if (yearComboBox.getValue() == null) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
@@ -430,6 +443,7 @@ public class AdminDetailPageController implements Initializable {
                 alert.showAndWait();
                 return;
             }
+
 
             if (typeComboBox.getSelectionModel().isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
@@ -510,7 +524,69 @@ public class AdminDetailPageController implements Initializable {
         }
     }
 
+    public void addItemDelete() {
+        if (itemId.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("No item selected");
+            alert.showAndWait();
+            return;
+        } else {
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Delete the item " + itemId.getText() + "?");
+            Optional<ButtonType> option = alert.showAndWait();
 
+            if (option.get().equals(ButtonType.OK)) {
+                for (ItemData itemData : addItemList) {
+                    if (itemId.getText().equals(itemData.getId())) {
+                        addItemList.remove(itemData);
+
+                        // delete in back-end list
+                        for (Item item : itemList.keySet()) {
+                            if (item.getId().equals(itemId.getText())) {
+                                removeItemInItemList(item);
+                                break;
+                            }
+                        }
+
+                        for (Item item : stockList.keySet()) {
+                            if (item.getId().equals(itemId)) {
+                                removeItemInStockList(item);
+                                break;
+                            }
+                        }
+
+                        // refresh view
+                        addItemClear();
+                        addItemTableView.refresh();
+
+                        // Successful alert
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Message");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Item successfully deleted");
+                        alert.showAndWait();
+
+                        // Testing: print to console
+                        for (Item i : itemList.keySet()) {
+                            System.out.println(i);
+                            System.out.println(itemList.get(i));
+                        }
+                        for (Item i : stockList.keySet()) {
+                            System.out.println(i);
+                            System.out.println(stockList.get(i));
+                        }
+
+
+                        return;
+                    }
+                }
+            }
+        }
+    }
 
     public void addItemInsertImage() {
         FileChooser open = new FileChooser();

@@ -11,16 +11,16 @@
         <remaining>6</remaining>
     </item>
     <item>
-        <id>I001-2001</id>
-        <title>Last Christmas</title>
-        <year>2001</year>
-        <itemType>DVD</itemType>
+        <id>I003-1997</id>
+        <title>Titanic</title>
+        <year>1997</year>
+        <itemType>Video Record</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
-        <rentalFee>23.99</rentalFee>
-        <image>lastchristmas.jpg</image>
-        <copies>4</copies>
-        <remaining>4</remaining>
+        <rentalFee>12.59</rentalFee>
+        <image>titanic.jpg</image>
+        <copies>3</copies>
+        <remaining>3</remaining>
     </item>
     <item>
         <id>I006-2022</id>
@@ -70,15 +70,15 @@
         <remaining>5</remaining>
     </item>
     <item>
-        <id>I003-1997</id>
-        <title>Titanic</title>
-        <year>1997</year>
-        <itemType>Video Record</itemType>
+        <id>I001-2001</id>
+        <title>Last Christmas</title>
+        <year>2001</year>
+        <itemType>DVD</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
-        <rentalFee>12.59</rentalFee>
-        <image>titanic.jpg</image>
-        <copies>3</copies>
-        <remaining>3</remaining>
+        <rentalFee>23.99</rentalFee>
+        <image>lastchristmas.jpg</image>
+        <copies>4</copies>
+        <remaining>4</remaining>
     </item>
 </items>

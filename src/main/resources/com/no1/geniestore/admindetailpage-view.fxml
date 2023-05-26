@@ -199,7 +199,7 @@
                                           <String fx:value="update-btn" />
                                        </styleClass>
                                     </Button>
-                                    <Button layoutX="465.0" layoutY="617.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Delete" AnchorPane.bottomAnchor="17.0">
+                                    <Button layoutX="465.0" layoutY="617.0" mnemonicParsing="false" onAction="#addItemDelete" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Delete" AnchorPane.bottomAnchor="17.0">
                                        <styleClass>
                                           <String fx:value="btn" />
                                           <String fx:value="delete-btn" />
@@ -383,12 +383,6 @@
                                        <styleClass>
                                           <String fx:value="btn" />
                                           <String fx:value="add-btn" />
-                                       </styleClass>
-                                    </Button>
-                                    <Button layoutX="592.0" layoutY="620.0" mnemonicParsing="false" onAction="#updateItem" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Update" AnchorPane.bottomAnchor="17.0">
-                                       <styleClass>
-                                          <String fx:value="btn" />
-                                          <String fx:value="update-btn" />
                                        </styleClass>
                                     </Button>
                                     <Button layoutX="465.0" layoutY="617.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Delete" AnchorPane.bottomAnchor="17.0">

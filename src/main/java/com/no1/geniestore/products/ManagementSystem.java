@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import static com.no1.geniestore.products.Stock.*;
 
@@ -76,8 +77,22 @@ public class ManagementSystem {
         itemList.put(item, itemList.get(item) + amount);
     }
 
-    public void removeItem(Item item) {
+    public static void removeItemInItemList(Item item) {
+//        Iterator<Item> itemIterator = itemList.keySet().iterator();
+//        while (itemIterator.hasNext()) {
+//            Item key = itemIterator.next();
+//            System.out.println("Map Value:" + itemList.get(key));
+//            if (key.getId().equals(itemId)) {
+//                itemList.remove(key);
+//            }
+//        }
+
         itemList.remove(item);
+    }//Remove item including its stock
+
+    public static void removeItemInStockList(Item item) {
+
+        stockList.remove(item);
     }//Remove item including its stock
 
     //    ACCOUNTS METHODS
