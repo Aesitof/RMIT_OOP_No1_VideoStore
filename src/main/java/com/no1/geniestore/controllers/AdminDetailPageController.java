@@ -620,10 +620,10 @@ public class AdminDetailPageController implements Initializable {
 
     public ArrayList<Integer> yearComboList = yearList();
 
-    public void close() throws ParserConfigurationException, FileNotFoundException, TransformerException {
+    public void close() throws ParserConfigurationException, IOException, TransformerException {
         // Save items info to file before closing the application
         new ItemListParser().saveItemFile();
-
+        writeTextFile();
         // close the app
         System.exit(0);
     }

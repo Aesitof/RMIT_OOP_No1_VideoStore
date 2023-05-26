@@ -13,7 +13,7 @@ import com.no1.geniestore.products.Order;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,10 +39,7 @@ public class ManagementSystem {
         itemList = itemListParser.parseItemTotal("xml/items.xml");
         stockList = itemListParser.parseStockList("xml/items.xml");
 
-        for (Item item : itemList.keySet()) {
-            itemStock.add(item);
-        }
-
+        readTextFile();
 //        System.out.println("Hello");
 //        for (Item item : stockList.keySet()) {
 //            System.out.println(item + "remaining: " + stockList.get(item));
@@ -57,6 +54,23 @@ public class ManagementSystem {
 //          ItemListParser.saveItemFile();
 
 //        OrderListParser.saveOrderFile();
+    }
+
+    public static void readTextFile() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("txt/amount.txt"));
+        String Int_line;
+
+        while ((Int_line = reader.readLine()) != null) {
+            itemIdCounter = Integer.parseInt(Int_line);
+            // Print the Integer
+            System.out.println(Int_line);
+        }
+    }
+
+    public static void writeTextFile() throws IOException {
+        PrintWriter pw = new PrintWriter(new FileWriter("txt/amount.txt"));
+        pw.printf("%d", itemIdCounter );
+        pw.close();
     }
 
     //    ITEM METHODS
@@ -92,7 +106,6 @@ public class ManagementSystem {
 //        }
 
         itemList.remove(item);
-        removeItem++;
     }//Remove item including its stock
 
     public static void removeItemInStockList(Item item) {
