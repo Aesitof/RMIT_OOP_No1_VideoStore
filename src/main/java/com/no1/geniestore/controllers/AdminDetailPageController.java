@@ -298,7 +298,7 @@ public class AdminDetailPageController implements Initializable {
                 addItemTableView.refresh();
 
                 // Update API
-                updateItem(item.getId(), itemTitle.getText(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue());
+                updateItem(item.getId(), itemTitle.getText(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue(), copies.getValue(), remaining.getValue());
 
                 // Alert update successfully
                 Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);

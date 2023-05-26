@@ -21,7 +21,7 @@ import java.util.HashMap;
 import static com.no1.geniestore.products.Stock.*;
 
 public class ManagementSystem {
-    private static ArrayList<Account> accountList;
+    public static ArrayList<Account> accountList;
     public static ArrayList<Order> orderList;//TAO CLASS ORDER BO SUNG
     public static HashMap<Item, Integer> itemList; // Total item copies
     private static Account currentUser;
@@ -177,9 +177,9 @@ public class ManagementSystem {
         }
     }
 
-    public static void updateItem(Item item, String title, LoanType loanType, double rentalFee, Genre genre, int totalCopies, int remainingCopies) {
+    public static void updateItem(String itemId, String title, LoanType loanType, double rentalFee, Genre genre, int totalCopies, int remainingCopies) {
         for (Item i : itemStock) {
-            if (item.equals(i)) {
+            if (i.getId().equals(itemId)) {
                 i.setTitle(title);
                 i.setLoanType(loanType);
                 i.setRentalFee(rentalFee);
@@ -187,8 +187,6 @@ public class ManagementSystem {
                 itemList.put(i, totalCopies);
                 stockList.put(i, remainingCopies);
             }
-
-
         }
     }
 }

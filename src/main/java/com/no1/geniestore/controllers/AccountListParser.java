@@ -83,32 +83,41 @@ public class AccountListParser {
             {
                 Element childElement = (Element) childNode;
                 String tagName = childElement.getTagName();
-                String data = ((Text) childElement.getFirstChild()).getData();
-                if (tagName.equals("id"))
+                if (tagName.equals("id")) {
+                    String data = ((Text) childElement.getFirstChild()).getData();
                     id = data;
+                }
                 else if (tagName.equals("username"))
                 {
+                    String data = ((Text) childElement.getFirstChild()).getData();
                     username = data;
                 }
                 else if (tagName.equals("name")) {
+                    String data = ((Text) childElement.getFirstChild()).getData();
                     name = data;
                 }
                 else if (tagName.equals("accountType")) {
+                    String data = ((Text) childElement.getFirstChild()).getData();
                     accountType = data;
                 }
                 else if (tagName.equals("address")) {
+                    String data = ((Text) childElement.getFirstChild()).getData();
                     address = data;
                 }
                 else if (tagName.equals("phone")) {
+                    String data = ((Text) childElement.getFirstChild()).getData();
                     phone = data;
                 }
                 else if (tagName.equals("password")) {
+                    String data = ((Text) childElement.getFirstChild()).getData();
                     password = data;
                 }
                 else if (tagName.equals("totalReturnedItems")) {
+                    String data = ((Text) childElement.getFirstChild()).getData();
                     totalReturnedItems = Integer.parseInt(data);
                 }
                 else if (tagName.equals("rewardPoints")) {
+                    String data = ((Text) childElement.getFirstChild()).getData();
                     rewardPoints = Integer.parseInt(data);
                 }
             }
