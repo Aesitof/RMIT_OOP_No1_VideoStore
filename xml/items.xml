@@ -75,10 +75,10 @@
         <itemType>Video Record</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
-        <rentalFee>12.59</rentalFee>
-        <image>titanic.jpg</image>
-        <copies>3</copies>
-        <remaining>3</remaining>
+        <rentalFee>23.99</rentalFee>
+        <image>lastchristmas.jpg</image>
+        <copies>4</copies>
+        <remaining>4</remaining>
     </item>
     <item>
         <id>I005-2010</id>
