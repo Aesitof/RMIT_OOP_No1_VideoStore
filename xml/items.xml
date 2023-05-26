@@ -18,8 +18,8 @@
         <loanType>7 days</loanType>
         <rentalFee>19.59</rentalFee>
         <image>minecraft.png</image>
-        <copies>5</copies>
-        <remaining>5</remaining>
+        <copies>6</copies>
+        <remaining>6</remaining>
     </item>
     <item>
         <id>I004-2019</id>
@@ -42,8 +42,8 @@
         <loanType>7 days</loanType>
         <rentalFee>25.99</rentalFee>
         <image>strangerthings4.jpg</image>
-        <copies>2</copies>
-        <remaining>0</remaining>
+        <copies>4</copies>
+        <remaining>1</remaining>
     </item>
     <item>
         <id>I005-2010</id>
@@ -78,7 +78,7 @@
         <loanType>2 days</loanType>
         <rentalFee>23.99</rentalFee>
         <image>lastchristmas.jpg</image>
-        <copies>5</copies>
-        <remaining>5</remaining>
+        <copies>4</copies>
+        <remaining>4</remaining>
     </item>
 </items>

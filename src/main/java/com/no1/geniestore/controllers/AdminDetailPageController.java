@@ -298,13 +298,20 @@ public class AdminDetailPageController implements Initializable {
                 addItemTableView.refresh();
 
                 // Update API
-                updateItem(item.getId(), itemTitle.getText(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue(), copies.getValue(), remaining.getValue());
+                updateItem(item.getId(), itemTitle.getText(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue(), copies.getValue(), item.getRemainingCopies());
+
+                addItemClear();
 
                 // Alert update successfully
                 Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
                 updateAlert.setHeaderText(null);
                 updateAlert.setContentText("Update item successfully");
                 updateAlert.showAndWait();
+
+                for (Item itemData : itemList.keySet()) {
+                    System.out.println(itemData);
+                    System.out.println(itemList.get(itemData));
+                }
 
 
                 return;
@@ -313,6 +320,17 @@ public class AdminDetailPageController implements Initializable {
     }
 
     public void addItemClear() {
+        itemId.setText("");
+        itemTitle.setText("");
+        yearComboBox.setValue(null);
+        typeComboBox.setValue(null);
+        genreComboBox.setValue(null);
+        loanTypeComboBox.setValue(null);
+        rentalFee.setText("");
+        copies.getValueFactory().setValue(0);
+        remaining.getValueFactory().setValue(0);
+        addItemImage.setImage(null);
+        imagePath.setText("");
 
     }
 
@@ -634,13 +652,13 @@ public class AdminDetailPageController implements Initializable {
         }
         yearComboBox.setEditable(true);
 
-        SpinnerValueFactory<Integer> copiesValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100);
+        SpinnerValueFactory<Integer> copiesValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100);
 
-        copiesValueFactory.setValue(1);
+//        copiesValueFactory.setValue(0);
 
-        SpinnerValueFactory<Integer> remainingValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100);
+        SpinnerValueFactory<Integer> remainingValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100);
 
-        remainingValueFactory.setValue(1);
+//        remainingValueFactory.setValue(0);
 
         copies.setValueFactory(copiesValueFactory);
         remaining.setValueFactory(remainingValueFactory);

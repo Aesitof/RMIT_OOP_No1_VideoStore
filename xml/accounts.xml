@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <accounts>
     <account>
-        <id>C000</id>
-        <username>admin</username>
-        <name></name>
-        <accountType>Admin</accountType>
-        <address></address>
-        <phone></phone>
-        <password>Admin123</password>
-        <totalReturnedItems></totalReturnedItems>
-        <rewardPoints></rewardPoints>
-    </account>
-    <account>
         <id>C001</id>
         <username>Hings1949</username>
         <name>Tyler T. Appell</name>
