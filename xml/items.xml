@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><items>
     <item>
-        <id>I002-2013</id>
-        <title>PUBG</title>
-        <year>2013</year>
-        <itemType>Game</itemType>
-        <loanType>7 days</loanType>
-        <rentalFee>50.99</rentalFee>
-        <image>pubg.jpg</image>
-        <copies>3</copies>
-        <remaining>2</remaining>
+        <id>I004-2019</id>
+        <title>Parasite</title>
+        <year>2019</year>
+        <itemType>Video Record</itemType>
+        <genre>Drama</genre>
+        <loanType>2 days</loanType>
+        <rentalFee>12.99</rentalFee>
+        <image>parasite.jpg</image>
+        <copies>5</copies>
+        <remaining>5</remaining>
     </item>
     <item>
         <id>I007-2011</id>
@@ -22,28 +23,16 @@
         <remaining>5</remaining>
     </item>
     <item>
-        <id>I004-2019</id>
-        <title>Parasite</title>
-        <year>2019</year>
+        <id>I003-1997</id>
+        <title>Titanic</title>
+        <year>1997</year>
         <itemType>Video Record</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
-        <rentalFee>12.99</rentalFee>
-        <image>parasite.jpg</image>
-        <copies>5</copies>
-        <remaining>5</remaining>
-    </item>
-    <item>
-        <id>I006-2022</id>
-        <title>Stranger Things 4</title>
-        <year>2022</year>
-        <itemType>Video Record</itemType>
-        <genre>Horror</genre>
-        <loanType>7 days</loanType>
-        <rentalFee>25.99</rentalFee>
-        <image>strangerthings4.jpg</image>
-        <copies>2</copies>
-        <remaining>0</remaining>
+        <rentalFee>12.59</rentalFee>
+        <image>titanic.jpg</image>
+        <copies>3</copies>
+        <remaining>3</remaining>
     </item>
     <item>
         <id>I005-2010</id>
@@ -58,16 +47,27 @@
         <remaining>3</remaining>
     </item>
     <item>
-        <id>I003-1997</id>
-        <title>Titanic</title>
-        <year>1997</year>
-        <itemType>Video Record</itemType>
-        <genre>Drama</genre>
-        <loanType>2 days</loanType>
-        <rentalFee>12.59</rentalFee>
-        <image>titanic.jpg</image>
+        <id>I002-2013</id>
+        <title>PUBG</title>
+        <year>2013</year>
+        <itemType>Game</itemType>
+        <loanType>7 days</loanType>
+        <rentalFee>50.99</rentalFee>
+        <image>pubg.jpg</image>
         <copies>3</copies>
-        <remaining>3</remaining>
+        <remaining>2</remaining>
+    </item>
+    <item>
+        <id>I006-2022</id>
+        <title>Stranger Things 4</title>
+        <year>2022</year>
+        <itemType>Video Record</itemType>
+        <genre>Horror</genre>
+        <loanType>7 days</loanType>
+        <rentalFee>25.99</rentalFee>
+        <image>strangerthings4.jpg</image>
+        <copies>2</copies>
+        <remaining>0</remaining>
     </item>
     <item>
         <id>I001-2001</id>
