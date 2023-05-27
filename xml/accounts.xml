@@ -63,7 +63,7 @@
         <phone>09232322783</phone>
         <password>thisismypw</password>
         <totalReturnedItems>9</totalReturnedItems>
-        <rewardPoints>0</rewardPoints>
+        <rewardPoints>10</rewardPoints>
     </account>
     <account>
         <id>C007</id>
@@ -73,17 +73,6 @@
         <address>23 Fl Rd</address>
         <phone>0932444666</phone>
         <password>guest123</password>
-        <totalReturnedItems>0</totalReturnedItems>
-        <rewardPoints>0</rewardPoints>
-    </account>
-    <account>
-        <id>C008</id>
-        <username>default</username>
-        <name>Johnathan Fleepy</name>
-        <accountType>Regular</accountType>
-        <address>default</address>
-        <phone>091234344</phone>
-        <password>default</password>
         <totalReturnedItems>0</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>

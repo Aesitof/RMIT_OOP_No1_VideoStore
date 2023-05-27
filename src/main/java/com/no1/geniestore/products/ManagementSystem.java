@@ -53,22 +53,22 @@ public class ManagementSystem {
 //        Item item = new Item("I004-2019", "Parasite", 2019, ItemType.VIDEO_RECORD, Genre.DRAMA, LoanType.TWO_DAY_LOAN, 12.99, "parasite.jpg");
 //        returnItem("1", "I004-2019");
 //
-        Account account = new Account();
-        addAccount(account);
+//        Account account = new Account();
+//        account.setRewardPoints(200);
+//        addAccount(account);
 //
 //        for (Account e : accountList) {
 //            System.out.println(e);
 //        }
 
-        Item item = new Item("I004-2019", "Parasite", 2019, ItemType.VIDEO_RECORD, Genre.DRAMA, LoanType.TWO_DAY_LOAN, 12.99, "parasite.jpg");
-        Order order = new Order(account);
-        orderList.add(order);
-        order.addItemForRent("9","I004-2019", new Date(2023, 1, 1), 2, false, 0);
-
-
-        for (Order e : orderList) {
-            System.out.println(e);
-        }
+//        Item item = new Item("I004-2019", "Parasite", 2019, ItemType.VIDEO_RECORD, Genre.DRAMA, LoanType.TWO_DAY_LOAN, 12.99, "parasite.jpg");
+//        Order order = new Order(account);
+//        orderList.add(order);
+//        order.addItemForRent("I004-2019", new Date(2023, 1, 1), 2, true, 2);
+//
+//        for (Order e : orderList) {
+//            System.out.println(e);
+//        }
 //          ItemListParser.saveItemFile();
 //        for (Order order : orderList) {
 //            System.out.println(order);

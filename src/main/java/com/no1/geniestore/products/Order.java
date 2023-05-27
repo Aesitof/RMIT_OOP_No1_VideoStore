@@ -72,77 +72,48 @@ public class Order {
         return order;
     }
 
-//    public void addItemForRent(Item item, Date loanDate, int amount, boolean isDiscountApplied, int discountApplied) {
-//        if (amount <= stockList.get(item)) { // current stock in store must have enough amount
-//            stockList.put(item, stockList.get(item) - amount); // change the remaining stock
-//
-//            OrderDetails orderDetail = new OrderDetails(); // create new item and its amount in order
-//            orderDetail.setLoanDate(loanDate);
-//            orderDetail.setAmount(amount);
-//            long returnDate;
-//
-//            if (item.getLoanType().equals(LoanType.TWO_DAY_LOAN)) { // set return date based on loan type
-//                returnDate = orderDetail.getLoanDate().getTime() + dayLoan;
-//            } else {
-//                returnDate = orderDetail.getLoanDate().getTime() + weekLoan;
-//            }
-//
-//            orderDetail.setReturnDate(new Date(returnDate)); // set return date to order details
-//
-//            if (isDiscountApplied) { // only if customer use reward points
-//                for (int i = 0; i < discountApplied; i++) { // loop for number of discount of that item
-//                    useRewardPoints(owner);
-//                }
-//                order.get(item).setDiscount(item.getRentalFee() * discountApplied); // discount for each item in order
-//                setTotalDiscount(getTotalDiscount() + item.getRentalFee() * discountApplied); // total discount for that order
-//            }
-//
-//            order.put(item, orderDetail); // add order details to order
-//            setTotal(getTotal() + item.getRentalFee() * amount - order.get(item).getDiscount()); // add fee to order's total
-//        }
-//    }
-
-
-    public void addItemForRent(String orderID, String itemID, Date loanDate, int amount, boolean isDiscountApplied, int discountApplied) {
+    public void addItemForRent(String itemID, Date loanDate, int amount, boolean isDiscountApplied, int discountApplied) {
         for (Order order : orderList) {
             if (order.getOrderID().equals(orderID)) {
                 for (Item item : stockList.keySet()) {
                     if (item.getId().equals(itemID)) {
-                        System.out.println("1");
+                        if (amount <= stockList.get(item)) {
+                            stockList.put(item, stockList.get(item) - amount); // change the remaining stock
+
+                            OrderDetails orderDetail = new OrderDetails(); // create new item and its amount in order
+                            orderDetail.setLoanDate(loanDate);
+                            orderDetail.setAmount(amount);
+                            long returnDate;
+
+                            if (item.getLoanType().equals(LoanType.TWO_DAY_LOAN)) { // set return date based on loan type
+                                returnDate = orderDetail.getLoanDate().getTime() + dayLoan;
+                            } else {
+                                returnDate = orderDetail.getLoanDate().getTime() + weekLoan;
+                            }
+
+                            orderDetail.setReturnDate(new Date(returnDate)); // set return date to order details
+
+                            order.getOrder().put(item, orderDetail); // add order details to order
+
+                            if (isDiscountApplied) { // only if customer use reward points
+                                for (int i = 0; i < discountApplied; i++) { // loop for number of discount of that item
+                                    useRewardPoints(order.getOwner());
+                                }
+
+                                order.getOrder().get(item).setDiscount(item.getRentalFee() * discountApplied); // discount for each item in order
+                                order.setTotalDiscount(getTotalDiscount() + item.getRentalFee() * discountApplied); // total discount for that order
+                            }
+
+                            order.getOrder().put(item, orderDetail); // add order details to order
+                            setTotal(getTotal() + item.getRentalFee() * amount - order.getOrder().get(item).getDiscount()); // add fee to order's total
+                        }
+                        break;
                     }
                 }
-
-//                if (amount <= stockList.get(item)) {
-//                    stockList.put(item, stockList.get(item) - amount); // change the remaining stock
-//
-//                    OrderDetails orderDetail = new OrderDetails(); // create new item and its amount in order
-//                    orderDetail.setLoanDate(loanDate);
-//                    orderDetail.setAmount(amount);
-//                    long returnDate;
-//
-//                    if (item.getLoanType().equals(LoanType.TWO_DAY_LOAN)) { // set return date based on loan type
-//                        returnDate = orderDetail.getLoanDate().getTime() + dayLoan;
-//                    } else {
-//                        returnDate = orderDetail.getLoanDate().getTime() + weekLoan;
-//                    }
-//
-//                    orderDetail.setReturnDate(new Date(returnDate)); // set return date to order details
-//
-//                    if (isDiscountApplied) { // only if customer use reward points
-//                        for (int i = 0; i < discountApplied; i++) { // loop for number of discount of that item
-//                            useRewardPoints(owner);
-//                        }
-//                        order.get(item).setDiscount(item.getRentalFee() * discountApplied); // discount for each item in order
-//                        setTotalDiscount(getTotalDiscount() + item.getRentalFee() * discountApplied); // total discount for that order
-//                    }
-//
-//                    order.put(item, orderDetail); // add order details to order
-//                    setTotal(getTotal() + item.getRentalFee() * amount - order.get(item).getDiscount()); // add fee to order's total
-//                }
+                break;
             }
         }
     }
-
     public void removeItem(Item item) {
         order.remove(item);
     }
@@ -155,7 +126,7 @@ public class Order {
                         for (Item singleItem : stockList.keySet()) {
                             if (singleItem.getId().equals(itemID)) {
                                 // return all amount of that item at the same time
-                                stockList.put(singleItem, stockList.get(singleItem) + order.getOrder().get(singleItem).getAmount());
+                                stockList.put(singleItem, stockList.get(singleItem) + order.getOrder().get(item).getAmount());
                                 break;
                             }
                         }
@@ -168,7 +139,7 @@ public class Order {
         }
     }
 
-    public void useRewardPoints(Account account) {
+    public static void useRewardPoints(Account account) {
         if (account.getRewardPoints() >= 100) { // if only have enough points
             account.setRewardPoints(account.getRewardPoints() - 100);
         }
