@@ -344,7 +344,7 @@
                                     <Font name="Leelawadee" size="45.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="payNowBtn" layoutX="22.0" layoutY="271.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="259.0" styleClass="pay-now-btn" stylesheets="@style/homepage.css" text="Pay Now" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                              <Button fx:id="payNowBtn" layoutX="22.0" layoutY="271.0" mnemonicParsing="false" onAction="#onPayNowBtnAction" prefHeight="55.0" prefWidth="259.0" styleClass="pay-now-btn" stylesheets="@style/homepage.css" text="Pay Now" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                                  <font>
                                     <Font name="Candara" size="28.0" />
                                  </font>

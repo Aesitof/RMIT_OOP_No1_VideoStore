@@ -113,23 +113,27 @@ public class ProductCardController implements Initializable {
 
         for (CartData c : productCartDataList) {
             if (c.getItem().equals(cartData.getItem())) {
-                c.setQty(c.getQty() + 1);
-                c.resetItemFee();
-                for (Node anchorPane : productCartListVBox.getChildren()) {
-                    FXMLLoader childLoader = new FXMLLoader();
-                    try {
-                        childLoader = (FXMLLoader) ( ((AnchorPane) anchorPane) ) .getUserData();
-                    } catch (NullPointerException exception) {
+                // If the item is already in the cart, increase qty by 1 (removed this method)
 
-                    }
+//                c.setQty(c.getQty() + 1);
+//                c.resetItemFee();
+//                for (Node anchorPane : productCartListVBox.getChildren()) {
+//                    FXMLLoader childLoader = new FXMLLoader();
+//                    try {
+//                        childLoader = (FXMLLoader) ( ((AnchorPane) anchorPane) ) .getUserData();
+//                    } catch (NullPointerException exception) {
+//
+//                    }
+//
+//                    CartCardController cController = childLoader.getController();
+//                    if (cController.getCartData().getItem().equals(cartData.getItem())) {
+//                        cController.getCartCardQty().getValueFactory().increment(1);
+//                        cController.getCartCardItemFee().setText("$" + c.getItemFee());
+//                        break;
+//                    }
+//                }
 
-                    CartCardController cController = childLoader.getController();
-                    if (cController.getCartData().getItem().equals(cartData.getItem())) {
-                        cController.getCartCardQty().getValueFactory().increment(1);
-                        cController.getCartCardItemFee().setText("$" + c.getItemFee());
-                        break;
-                    }
-                }
+                // If the item is already in the cart, direct to cart view
                 toCartView();
                 return;
             }
