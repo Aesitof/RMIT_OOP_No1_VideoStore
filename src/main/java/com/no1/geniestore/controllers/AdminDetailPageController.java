@@ -57,7 +57,7 @@ public class AdminDetailPageController implements Initializable {
     @FXML
     private AnchorPane addCustomerForm;
 
-    /* Add Item Form */
+    /* Add Item Form attributes */
     private Alert alert;
     @FXML
     private TableColumn<ItemData, String> addItemColCopies;
@@ -156,7 +156,7 @@ public class AdminDetailPageController implements Initializable {
 
     private ObservableList<ItemData> addItemList;
 
-    /* Add Account Form */
+    /* Add Account Form attributes */
     @FXML
     private TextField addAccountID;
     @FXML
@@ -193,9 +193,11 @@ public class AdminDetailPageController implements Initializable {
     private TableColumn<Account, String> addAccountColReturnedItems;
     @FXML
     private TableColumn<Account, String> addAccountColPoints;
+    @FXML
+    private TextField addAccountSearch;
 
 
-    /* Order Form */
+    /* Order Form attributes */
     @FXML
     private TextField orderOrderTextField;
     @FXML
@@ -613,48 +615,9 @@ public class AdminDetailPageController implements Initializable {
     }
 
     public void addItemSearch() {
-//        for (ItemData itemData : addItemList) {
-//            System.out.println(itemData);
-//        }
-//        System.out.println("-------");
         FilteredList<ItemData> filter = new FilteredList<>(addItemList, i -> true);
 
-//        addItemSearch.textProperty().addListener(new ChangeListener<String>() {
-//            @Override
-//            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
-//                System.out.println("Search changed");
-//                filter.setPredicate(predicateItemData -> {
-//                    if (newValue == null || newValue.isEmpty()) {
-////                        itemSortedList(filter);
-//                        return true;
-//                    }
-//
-//                    String searchKey = newValue.toLowerCase();
-//
-//                    if (predicateItemData.getId().toLowerCase().contains(searchKey)) {
-//                        System.out.println("found same id");
-//                        for (ItemData itemData : filter) {
-//                            System.out.println(itemData);
-//                        }
-//                        System.out.println("--------");
-////                        itemSortedList(filter);
-//                        return true;
-//                    } else if (predicateItemData.getTitle().toLowerCase().contains(searchKey)) {
-//                        System.out.println("found same title");
-//                        for (ItemData itemData : filter) {
-//                            System.out.println(itemData);
-//                        }
-//                        System.out.println("--------");
-////                        itemSortedList(filter);
-//                        return true;
-//                    }
-//                    return false;
-//                });
-//            }
-//        });
-
         addItemSearch.textProperty().addListener((Observable, oldValue, newValue) -> {
-            System.out.println("Search changed");
             filter.setPredicate(predicateItemData -> {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
@@ -663,33 +626,15 @@ public class AdminDetailPageController implements Initializable {
                 String searchKey = newValue.toLowerCase();
 
                 if (predicateItemData.getId().toLowerCase().contains(searchKey)) {
-                    System.out.println("found same id");
-                    for (ItemData itemData : filter) {
-                        System.out.println(itemData);
-                    }
-                    System.out.println("--------");
                     return true;
                 } else if (predicateItemData.getTitle().toLowerCase().contains(searchKey)) {
-                    System.out.println("found same title");
-                    for (ItemData itemData : filter) {
-                        System.out.println(itemData);
-                    }
-                    System.out.println("--------");
                     return true;
                 }
                 return false;
             });
-            System.out.println("Filter list 2nd time");
-            for (ItemData itemData : filter) {
-                System.out.println(itemData);
-            }
-            System.out.println("--------");
+
             SortedList<ItemData> sortList = new SortedList<>(filter);
             sortList.comparatorProperty().bind(addItemTableView.comparatorProperty());
-            System.out.println("Sort list");
-            for (ItemData itemData : sortList) {
-                System.out.println(itemData);
-            }
             addItemTableView.setItems(sortList);
         });
     }
@@ -751,6 +696,50 @@ public class AdminDetailPageController implements Initializable {
         addAccountReturnedItems.setText(String.valueOf(account.getTotalReturnedItems()));
         addAccountPoints.setText(String.valueOf(account.getRewardPoints()));
 
+    }
+
+    public void addAccountSearch() {
+        FilteredList<Account> filter = new FilteredList<>(addAccountList, a -> true);
+
+        addAccountSearch.textProperty().addListener((Observable, oldValue, newValue) -> {
+            System.out.println("Search changed");
+            filter.setPredicate(predicateAccountData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (predicateAccountData.getId().toLowerCase().contains(searchKey)) {
+                    System.out.println("found same id");
+                    for (Account account : filter) {
+                        System.out.println(account);
+                    }
+                    System.out.println("--------");
+                    return true;
+                } else if (predicateAccountData.getName().toLowerCase().contains(searchKey)) {
+                    System.out.println("found same name");
+                    for (Account account : filter) {
+                        System.out.println(account);
+                    }
+                    System.out.println("--------");
+                    return true;
+                }
+                return false;
+            });
+            System.out.println("Filter list 2nd time");
+            for (Account account : filter) {
+                System.out.println(account);
+            }
+            System.out.println("--------");
+            SortedList<Account> sortList = new SortedList<>(filter);
+            sortList.comparatorProperty().bind(addAccountTableView.comparatorProperty());
+            System.out.println("Sort list");
+            for (Account account : sortList) {
+                System.out.println(account);
+            }
+            addAccountTableView.setItems(sortList);
+        });
     }
 
     /* Order View methods */
@@ -951,6 +940,9 @@ public class AdminDetailPageController implements Initializable {
             customersBtn.setStyle("-fx-background-color:#1e4622;-fx-text-fill:#fff");
             itemsBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
             ordersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+
+            // Call searching function
+            addAccountSearch();
         }
     }
 
