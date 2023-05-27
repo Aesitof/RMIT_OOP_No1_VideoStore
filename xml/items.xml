@@ -11,6 +11,18 @@
         <remaining>2</remaining>
     </item>
     <item>
+        <id>I004-2019</id>
+        <title>Parasite</title>
+        <year>2019</year>
+        <itemType>Video Record</itemType>
+        <genre>Drama</genre>
+        <loanType>2 days</loanType>
+        <rentalFee>12.99</rentalFee>
+        <image>parasite.jpg</image>
+        <copies>5</copies>
+        <remaining>1</remaining>
+    </item>
+    <item>
         <id>I006-2022</id>
         <title>Stranger Things 4</title>
         <year>2022</year>

@@ -231,7 +231,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="addOrderForm" prefHeight="705.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="addOrderForm" prefHeight="705.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="677.0" prefWidth="773.0" stylesheets="@style/admindetailpage.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -300,7 +300,7 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="orderTitleTextField" layoutX="696.0" layoutY="125.0" prefHeight="23.0" prefWidth="158.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" AnchorPane.rightAnchor="18.0" />
-                                    <Button fx:id="returnBtn" layoutX="644.0" layoutY="161.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="212.0" stylesheets="@style/admindetailpage.css" text="Return Item">
+                                    <Button fx:id="returnBtn" layoutX="644.0" layoutY="161.0" mnemonicParsing="false" onAction="#adminReturnItem" prefHeight="39.0" prefWidth="212.0" stylesheets="@style/admindetailpage.css" text="Return Item">
                                        <styleClass>
                                           <String fx:value="btn" />
                                           <String fx:value="add-btn" />
@@ -309,7 +309,7 @@
                                  </children>
                               </AnchorPane>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="addCustomerForm" prefHeight="705.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="addCustomerForm" prefHeight="705.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="677.0" prefWidth="773.0" stylesheets="@style/admindetailpage.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
