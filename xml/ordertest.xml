@@ -9,7 +9,7 @@
             <address>67 Asfordby Rd</address>
             <phone>079 4498 4190</phone>
             <password>aFoto</password>
-            <totalReturnedItems>0</totalReturnedItems>
+            <totalReturnedItems>2</totalReturnedItems>
             <rewardPoints>0</rewardPoints>
         </owner>
         <itemList>
@@ -27,7 +27,7 @@
                 <orderDetail>
                     <returnDate>13-01-2023</returnDate>
                     <loanDate>06-01-2023</loanDate>
-                    <amount>3</amount>
+                    <amount>2</amount>
                     <isReturned>true</isReturned>
                     <discount>0.0</discount>
                 </orderDetail>

@@ -10,7 +10,6 @@ import com.no1.geniestore.controllers.OrderListParser;
 import org.xml.sax.SAXException;
 import com.no1.geniestore.products.Order;
 
-
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.*;
@@ -49,13 +48,19 @@ public class ManagementSystem {
         accountList = (ArrayList<Account>) new AccountListParser().parse("xml/accounts.xml"); // get successfully
         orderList = (ArrayList<Order>) new OrderListParser().parse("xml/orders.xml"); // get successfully
 
+//        for (Order order : orderList) {
+//            System.out.println(order.getOrderID());
+//        }
+
+        Item item = new Item("I004-2019", "Parasite", 2019, ItemType.VIDEO_RECORD, Genre.DRAMA, LoanType.TWO_DAY_LOAN, 12.99, "parasite.jpg");
+        returnItem("1", "I004-2019");
+
+//          ItemListParser.saveItemFile();
         for (Order order : orderList) {
             System.out.println(order);
         }
 
-//          ItemListParser.saveItemFile();
-
-//        OrderListParser.saveOrderFile();
+        OrderListParser.saveOrderFile();
     }
 
     public static void readTextFile() throws IOException {
@@ -170,7 +175,7 @@ public class ManagementSystem {
         return true;
     }
 
-    public void promote(Account account, int amount) { // Auto promote whenever return item
+    public static void promote(Account account, int amount) { // Auto promote whenever return item
         if (account.getTotalReturnedItems() > 9) {
             account.setRewardPoints(account.getRewardPoints() + 10 * amount);
         } else if (account.getTotalReturnedItems() == 9) {
@@ -207,14 +212,28 @@ public class ManagementSystem {
     }
 
 //    ORDER METHODS
-    public void returnItem(String orderID, Item item, int amount) { // Return SINGLE item with SPECIFIED amount
+    public static void returnItem(String orderID, String itemID) {
+//        for (Order order : orderList) {
+//            System.out.println(order);
+//        }
         for (Order order : orderList) {
             if (order.getOrderID().equals(orderID)) {
-                order.returnItemInOrder(item, amount);
-                itemList.put(item, itemList.get(item) + amount); // return back to the stock
-                promote(order.getOwner(), amount);
+                order.returnItemInOrder(orderID, itemID);
+//                for (Item item : stockList.keySet()) {
+//                    if (item.getId().equals(itemID)) {
+//                        stockList.put(item, itemList.get(item) + order.getOrder().get(item).getAmount());
+//                        break;
+//                    }
+//                }
+//                itemList.put(item, itemList.get(item) + order.getOrder().get(item).getAmount()); // return back to the stock
+//                promote(order.getOwner(), order.getOrder().get(item).getAmount());
+                break;
             }
         }
+//        returnItem(order, item);
+//        itemList.put(item, itemList.get(item) + order.get(item).getAmount());
+//        promote(order.g);
+
     }
 
     public void makeOrder(Account account) {

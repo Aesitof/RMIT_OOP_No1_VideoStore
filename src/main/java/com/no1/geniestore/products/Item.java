@@ -39,9 +39,9 @@ public class Item extends Stock {
 
     public Item(String id, String title, int year, ItemType itemType, Genre genre, LoanType loanType, double rentalFee, String image){
         this.id = id;
-        this.itemType = itemType;
-        this.year = year;
         this.title = title;
+        this.year = year;
+        this.itemType = itemType;
         this.loanType = loanType;
         this.rentalFee = rentalFee;
         this.genre = genre;

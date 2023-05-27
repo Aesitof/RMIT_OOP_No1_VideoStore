@@ -2,6 +2,9 @@ package com.no1.geniestore.products;
 
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.constants.LoanType;
+
+import static com.no1.geniestore.products.ManagementSystem.orderList;
+import static com.no1.geniestore.products.Stock.itemStock;
 import static com.no1.geniestore.products.Stock.stockList;
 
 import java.util.Date;
@@ -68,10 +71,7 @@ public class Order {
     }
 
     public void addItemForRent(Item item, Date loanDate, int amount, boolean isDiscountApplied, int discountApplied) {
-        if (owner.getAccountType().equals("Guest") && amount > 2) {
-
-        }
-        else if (amount <= stockList.get(item)) { // current stock in store must have enough amount
+        if (amount <= stockList.get(item)) { // current stock in store must have enough amount
             stockList.put(item, stockList.get(item) - amount); // change the remaining stock
 
             OrderDetails orderDetail = new OrderDetails(); // create new item and its amount in order
@@ -104,16 +104,44 @@ public class Order {
         order.remove(item);
     }
 
-    public void returnItemInOrder(Item item, int amount) {
+    public void returnItemInOrder(String orderID, String itemID) {
         // update amount of item in order has been returned
-        order.get(item).setAmount(order.get(item).getAmount() - amount);
+//        order.get(item).setAmount(order.get(item).getAmount() - amount);
         // add returned item back to current stock available in store
-        stockList.put(item, stockList.get(item) + amount);
+//        stockList.put(item, stockList.get(item) + order.get(item).getAmount()); // return all the same time
         // add amount to total returned items of that customer
-        getOwner().setTotalReturnedItems(getOwner().getTotalReturnedItems() + amount);
+//        getOwner().setTotalReturnedItems(getOwner().getTotalReturnedItems() + order.get(item).getAmount());
 
-        if (order.get(item).getAmount() == 0) { // if all items have been returned
-            order.get(item).setReturned(true); // status: pending -> finished
+
+//        if (order.get(item).getAmount() == 0) { // if all items have been returned
+//            order.get(item).setReturned(true); // status: pending -> finished
+//        }
+        for (Order order : orderList) {
+            if (order.getOrderID().equals(orderID)) {
+                for (Item item : order.getOrder().keySet()) {
+                    if (item.getId().equals(itemID)) {
+                        for (Item singleItem : stockList.keySet()) {
+                            if (singleItem.getId().equals(itemID)) {
+                                stockList.put(singleItem, stockList.get(singleItem) + order.getOrder().get(singleItem).getAmount());
+                                break;
+                            }
+                        }
+                    }
+                    order.getOwner().setTotalReturnedItems(order.getOwner().getTotalReturnedItems() + order.getOrder().get(item).getAmount());
+                    order.getOrder().get(item).setReturned(true);
+                }
+
+//                for (Item i : stockList.keySet()){
+//                    if (i.getId().equals(item.getId())) {
+//                        stockList.put(i, stockList.get(i) + order.getOrder().get(i).getAmount()); // return all at the same time
+//                        getOwner().setTotalReturnedItems(getOwner().getTotalReturnedItems() + order.getOrder().get(item).getAmount());
+//                        order.getOrder().get(item).setReturned(true);
+//                    }
+//                }
+//                stockList.put(item, stockList.get(item) + order.getOrder().get(item).getAmount()); // return all at the same time
+//                getOwner().setTotalReturnedItems(getOwner().getTotalReturnedItems() + order.getOrder().get(item).getAmount());
+//                order.getOrder().get(item).setReturned(true);
+            }
         }
     }
 
