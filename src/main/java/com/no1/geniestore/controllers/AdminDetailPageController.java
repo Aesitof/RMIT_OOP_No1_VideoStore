@@ -281,6 +281,8 @@ public class AdminDetailPageController implements Initializable {
         addItemImage.setImage(image);
         imagePath.setText(itemData.getImage());
 
+        yearComboBox.setDisable(true); // not allowed to change published year
+
 //        for (Integer year : yearComboList) {
 //            if (year == itemData.getYear()) {
 //                yearComboBox.setValue(year);
@@ -408,6 +410,7 @@ public class AdminDetailPageController implements Initializable {
 //        yearComboBox.setValue(null);
         yearComboBox.getSelectionModel().clearSelection();
         yearComboBox.setValue(null);
+        yearComboBox.setDisable(false);
 //        typeComboBox.setValue(null);
         typeComboBox.getSelectionModel().clearSelection();
 //        genreComboBox.setValue(null);
@@ -930,8 +933,23 @@ public class AdminDetailPageController implements Initializable {
             ordersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
             customersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
 
+            // Initializations
             // Call searching function
             addItemSearch();
+            // Game doesn't have genre
+            typeComboBox.valueProperty().addListener(new ChangeListener<ItemType>() {
+                @Override
+                public void changed(ObservableValue<? extends ItemType> observableValue, ItemType oldType, ItemType newType) {
+                    if (newType != null) {
+                        if (newType.equals(ItemType.GAME)) {
+                            genreComboBox.setDisable(true);
+                        } else {
+                            genreComboBox.setDisable(false);
+                        }
+                    }
+
+                }
+            });
         } else if (event.getSource() == customersBtn) {
             addOrderForm.setVisible(false);
             addItemForm.setVisible(false);
@@ -952,8 +970,32 @@ public class AdminDetailPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    /* Set default form: Add Item Form */
+        addOrderForm.setVisible(false);
+        addItemForm.setVisible(true);
+        addCustomerForm.setVisible(false);
 
-    /* Add Item Form */
+        itemsBtn.setStyle("-fx-background-color:#1e4622;-fx-text-fill:#fff");
+        ordersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+        customersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+
+        // Initializations
+        // Game doesn't have genre
+        typeComboBox.valueProperty().addListener(new ChangeListener<ItemType>() {
+            @Override
+            public void changed(ObservableValue<? extends ItemType> observableValue, ItemType oldType, ItemType newType) {
+                if (newType != null) {
+                    if (newType.equals(ItemType.GAME)) {
+                        genreComboBox.setDisable(true);
+                    } else {
+                        genreComboBox.setDisable(false);
+                    }
+                }
+
+            }
+        });
+
+    /* Add Item Form initialize */
 
         // Parse from XML to ObservableList of ItemData, can use thread to be faster
         try {
@@ -994,6 +1036,7 @@ public class AdminDetailPageController implements Initializable {
             yearComboBox.getItems().add(i);
         }
         yearComboBox.setEditable(true);
+        yearComboBox.setDisable(true);
 
         SpinnerValueFactory<Integer> copiesValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100);
 

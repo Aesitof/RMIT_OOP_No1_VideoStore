@@ -138,10 +138,10 @@ public class ManagementSystem {
 
         for (Item item : stockList.keySet()) {
             if (item.getId().equals(itemId)) {
-//                item.setTitle(title);
-//                item.setLoanType(loanType);
-//                item.setRentalFee(rentalFee);
-//                item.setGenre(genre);
+                item.setTitle(title);
+                item.setLoanType(loanType);
+                item.setRentalFee(rentalFee);
+                item.setGenre(genre);
                 stockList.put(item, remainingCopies);
             }
         }
