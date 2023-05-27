@@ -651,19 +651,6 @@ public class AdminDetailPageController implements Initializable {
 
     public ArrayList<Integer> yearComboList = yearList();
 
-    public void close() throws ParserConfigurationException, IOException, TransformerException {
-        // Save items info to file before closing the application
-        new ItemListParser().saveItemFile();
-        new AccountListParser().accountsToXML();
-        writeTextFile();
-//         close the app
-        System.exit(0);
-    }
-
-    public void minimize() {
-        Stage stage = (Stage)main_form.getScene().getWindow();
-        stage.setIconified(true);
-    }
 
     /* Add Account Form methods */
     public void addAccountShowListData() {
@@ -846,7 +833,7 @@ public class AdminDetailPageController implements Initializable {
             // Add to front-end view
             addAccountShowListData();
             addAccountTableView.refresh();
-            addAccountClear();;
+            addAccountClear();
 
         } else {
             // Alert item is already added
@@ -855,6 +842,41 @@ public class AdminDetailPageController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("The account \"" + addAccountID.getText() + "\" is already added. Please click the \"Clear\" button to continue.");
             alert.showAndWait();
+        }
+    }
+
+    public void addAccountDelete() {
+        if (addAccountID.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("No account selected");
+            alert.showAndWait();
+            return;
+        } else {
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Delete the customer \"" + addAccountID.getText() + "\" ?");
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if (option.get().equals(ButtonType.OK)) {
+
+                // delete account in back-end list
+                removeAccount(addAccountID.getText());
+
+                // Add to front-end view
+                addAccountShowListData();
+                addAccountTableView.refresh();
+                addAccountClear();
+
+                // Successful alert
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Item successfully deleted");
+                alert.showAndWait();
+            }
         }
     }
 
@@ -1183,6 +1205,20 @@ public class AdminDetailPageController implements Initializable {
 
             addAccountClear();
         }
+    }
+
+    public void close() throws ParserConfigurationException, IOException, TransformerException {
+        // Save items info to file before closing the application
+        new ItemListParser().saveItemFile();
+        new AccountListParser().accountsToXML();
+        writeTextFile();
+//         close the app
+        System.exit(0);
+    }
+
+    public void minimize() {
+        Stage stage = (Stage)main_form.getScene().getWindow();
+        stage.setIconified(true);
     }
 
 

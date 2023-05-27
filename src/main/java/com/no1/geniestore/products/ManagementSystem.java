@@ -154,7 +154,7 @@ public class ManagementSystem {
         accountList.add(account); // Add accounts to the list
     }
 
-    public void removeAccount(String accountID) { // Remove account using ID
+    public static void removeAccount(String accountID) { // Remove account using ID
         accountList.removeIf(i -> i.getId().equals(accountID)); // remove from account list
     }
 
