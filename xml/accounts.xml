@@ -65,4 +65,15 @@
         <totalReturnedItems>9</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>
+    <account>
+        <id>C007</id>
+        <username>michaelne</username>
+        <name>Michael</name>
+        <accountType>Guest</accountType>
+        <address>23 Fl Rd</address>
+        <phone>0932444666</phone>
+        <password>guest123</password>
+        <totalReturnedItems>0</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
+    </account>
 </accounts>

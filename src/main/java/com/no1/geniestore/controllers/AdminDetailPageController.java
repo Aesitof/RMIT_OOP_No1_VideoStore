@@ -537,7 +537,6 @@ public class AdminDetailPageController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("The item " + itemId.getText() + " is already added. Please click the \"Clear\" button to continue.");
             alert.showAndWait();
-            return;
         }
     }
 
@@ -709,6 +708,8 @@ public class AdminDetailPageController implements Initializable {
 
     public void addAccountClear() {
         addAccountID.clear();
+        addAccountID.setDisable(true);
+
         addAccountName.clear();
         addAccountAddress.clear();
         addAccountPhone.clear();
@@ -784,44 +785,77 @@ public class AdminDetailPageController implements Initializable {
         updateAlert.setContentText("Update item successfully");
         updateAlert.showAndWait();
 
+    }
 
-//        for (ItemData item : addItemList) {
-//            if (item.getId().equals(itemId.getText())) {
-//                item.setTitle(itemTitle.getText());
-//                item.setYear(Integer.parseInt(String.valueOf(yearComboBox.getValue())));
-//                item.setItemType(typeComboBox.getValue());
-//                item.setGenre(genreComboBox.getValue());
-//                item.setLoanType(loanTypeComboBox.getValue());
-//                item.setRentalFee(Double.parseDouble(rentalFee.getText()));
-//                item.setRemainingCopies((copies.getValue() - item.getTotalCopies()) + item.getRemainingCopies());
-//                item.setTotalCopies((int) copies.getValue());
-//                item.setImage(imagePath.getText());
-//
-//                addItemTableView.refresh();
-//
-//                // Update API
-//                updateItem(item.getId(), itemTitle.getText(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue(), copies.getValue(), item.getRemainingCopies());
-//
-//                addItemClear();
-//
-//                // Alert update successfully
-//                Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
-//                updateAlert.setHeaderText(null);
-//                updateAlert.setContentText("Update item successfully");
-//                updateAlert.showAndWait();
-//
-//                for (Item itemData : itemList.keySet()) {
-//                    System.out.println(itemData);
-//                    System.out.println(itemList.get(itemData));
-//                }
-//                for (Item itemData : stockList.keySet()) {
-//                    System.out.println(stockList.get(itemData));
-//                }
-//
-//
-//                return;
-//            }
-//        }
+    public void addAccountAdd() {
+        if (addAccountID.getText().isEmpty()) {
+
+            if (addAccountName.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the customer's name");
+                alert.showAndWait();
+                return;
+            }
+
+            if (addAccountAddress.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the customer's address");
+                alert.showAndWait();
+                return;
+            }
+
+            if (addAccountPhone.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the customer's phone");
+                alert.showAndWait();
+                return;
+            }
+
+            if (addAccountUsername.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the customer's username");
+                alert.showAndWait();
+                return;
+            }
+
+
+            // Add to back-end list
+            Account newAccount = new Account(addAccountName.getText(), addAccountAddress.getText(), addAccountPhone.getText(), addAccountUsername.getText(), "guest123", addAccountLevelComboBox.getValue());
+            if (createUsername(newAccount) == true) {
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success Message");
+                alert.setHeaderText(null);
+                alert.setContentText("New account created successfully");
+                alert.showAndWait();
+            } else {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("The username \"" + newAccount.getUsername() + "\" has been used. Please choose a different username");
+                alert.showAndWait();
+            }
+
+            // Add to front-end view
+            addAccountShowListData();
+            addAccountTableView.refresh();
+            addAccountClear();;
+
+        } else {
+            // Alert item is already added
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("The account \"" + addAccountID.getText() + "\" is already added. Please click the \"Clear\" button to continue.");
+            alert.showAndWait();
+        }
     }
 
     public void addAccountSearch() {

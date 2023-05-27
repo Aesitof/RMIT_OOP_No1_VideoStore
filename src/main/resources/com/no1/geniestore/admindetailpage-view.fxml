@@ -379,7 +379,7 @@
                                           <Font name="Arial" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Button layoutX="692.0" layoutY="620.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Add" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="90.0">
+                                    <Button layoutX="692.0" layoutY="620.0" mnemonicParsing="false" onAction="#addAccountAdd" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Add" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="90.0">
                                        <styleClass>
                                           <String fx:value="btn" />
                                           <String fx:value="add-btn" />

@@ -150,7 +150,7 @@ public class ManagementSystem {
     }
 
 //        ACCOUNTS METHODS
-    public void addAccount(Account account) {
+    public static void addAccount(Account account) {
         accountList.add(account); // Add accounts to the list
     }
 
@@ -158,17 +158,18 @@ public class ManagementSystem {
         accountList.removeIf(i -> i.getId().equals(accountID)); // remove from account list
     }
 
-    public boolean createUsername(Account account, String username, String password) {
+    public static boolean createUsername(Account account) {
         for (Account acc : accountList) {
-            if (acc.getUsername().equals(username)) {
+            if (acc.getUsername().equals(account.getUsername())) {
                 return false; // stop if that username is already exist
             }
 
-            // set username and password then add it to the account list
-            account.setUsername(username);
-            account.setPassword(password);
-            addAccount(account);
         }
+
+        // set username and password then add it to the account list
+//            account.setUsername(account.getUsername());
+//            account.setPassword(account.getPassword());
+        addAccount(account);
         return true;
     }
 
