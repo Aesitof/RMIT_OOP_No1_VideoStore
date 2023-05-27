@@ -23,7 +23,7 @@ public class ManagementSystem {
     public static ArrayList<Account> accountList;
     public static ArrayList<Order> orderList;
     public static HashMap<Item, Integer> itemList; // Total item copies
-    private static Account currentUser;
+    public static Account currentUser;
 
     public ManagementSystem() {
         accountList = new ArrayList<>();
@@ -75,6 +75,14 @@ public class ManagementSystem {
 //        }
 
 //        OrderListParser.saveOrderFile();
+    }
+
+    public static void saveData() throws ParserConfigurationException, IOException, TransformerException {
+        // Save items info to file before closing the application
+        ItemListParser.saveItemFile();
+        AccountListParser.accountsToXML();
+        OrderListParser.saveOrderFile();
+        writeTextFile();
     }
 
     public static void readTextFile() throws IOException {
@@ -177,7 +185,7 @@ public class ManagementSystem {
 
     public static boolean createUsername(Account account) {
         for (Account acc : accountList) {
-            if (acc.getUsername().equals(account.getUsername())) {
+            if (acc.getUsername().equals(account.getUsername()) || account.getUsername().equals("admin")) {
                 return false; // stop if that username is already exist
             }
 
@@ -217,11 +225,11 @@ public class ManagementSystem {
         }
     }
 
-    public String login(String username, String password) {
+    public static String login(String username, String password) {
         if (username.equals("admin") && password.equals("Admin123")) {
             return "adminLogin";
         }
-        for (int i = 0; i <= accountList.size(); i++) {
+        for (int i = 0; i < accountList.size(); i++) {
             if (accountList.get(i).getUsername().equals(username)) {
                 if (accountList.get(i).getPassword().equals(password)) {
                     currentUser = accountList.get(i);

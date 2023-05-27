@@ -28,7 +28,7 @@
                                 <Font name="Eras Bold ITC" size="24.0" />
                             </font>
                         </Label>
-                        <TextField layoutX="48.0" layoutY="168.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your name" styleClass="textfield" stylesheets="@style/loginpage.css">
+                        <TextField fx:id="registerName" layoutX="48.0" layoutY="168.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your name" styleClass="textfield" stylesheets="@style/loginpage.css">
                             <font>
                                 <Font name="Candara Light" size="17.0" />
                             </font>
@@ -72,7 +72,7 @@
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="48.0" layoutY="243.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your phone number" styleClass="textfield" stylesheets="@style/loginpage.css">
+                  <TextField fx:id="registerPhone" layoutX="48.0" layoutY="243.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your phone number" styleClass="textfield" stylesheets="@style/loginpage.css">
                      <font>
                         <Font name="Candara Light" size="17.0" />
                      </font>
@@ -82,7 +82,7 @@
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="48.0" layoutY="318.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your address" styleClass="textfield" stylesheets="@style/loginpage.css">
+                  <TextField fx:id="registerAddress" layoutX="48.0" layoutY="318.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your address" styleClass="textfield" stylesheets="@style/loginpage.css">
                      <font>
                         <Font name="Candara Light" size="17.0" />
                      </font>
@@ -92,18 +92,18 @@
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="48.0" layoutY="395.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your username" styleClass="textfield" stylesheets="@style/loginpage.css">
+                  <TextField fx:id="registerUsername" layoutX="48.0" layoutY="395.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your username" styleClass="textfield" stylesheets="@style/loginpage.css">
                      <font>
                         <Font name="Candara Light" size="17.0" />
                      </font>
                   </TextField>
-                  <PasswordField layoutX="48.0" layoutY="476.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your password" styleClass="textfield" stylesheets="@style/loginpage.css" />
+                  <PasswordField fx:id="registerPassword" layoutX="48.0" layoutY="476.0" prefHeight="40.0" prefWidth="294.0" promptText="Enter your password" styleClass="textfield" stylesheets="@style/loginpage.css" />
                   <Label layoutX="48.0" layoutY="525.0" prefHeight="22.0" prefWidth="222.0" text="Repeat password">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
                   </Label>
-                  <PasswordField layoutX="48.0" layoutY="551.0" prefHeight="40.0" prefWidth="294.0" promptText="Repeat your password" styleClass="textfield" stylesheets="@style/loginpage.css" />
+                  <PasswordField fx:id="registerRepeatPassword" layoutX="48.0" layoutY="551.0" prefHeight="40.0" prefWidth="294.0" promptText="Repeat your password" styleClass="textfield" stylesheets="@style/loginpage.css" />
                   <Label layoutX="132.0" layoutY="123.0" onMouseClicked="#toHomeView" text="Genie's Store" textFill="#1e4622">
                      <font>
                         <Font name="Franklin Gothic Heavy" size="20.0" />

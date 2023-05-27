@@ -793,11 +793,11 @@ public class AdminDetailPageController implements Initializable {
                 return;
             }
 
-            if (addAccountPhone.getText().isEmpty()) {
+            if (addAccountPhone.getText().isEmpty() || !addAccountPhone.getText().matches("\\d{10}")) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Please enter the customer's phone");
+                alert.setContentText("Valid phone number contains 10 digits");
                 alert.showAndWait();
                 return;
             }
@@ -1113,9 +1113,11 @@ public class AdminDetailPageController implements Initializable {
         Optional<ButtonType> option = alert.showAndWait();
         try {
             if (option.get().equals(ButtonType.OK)) {
+                currentUser = null;
+
                 logout.getScene().getWindow().hide();
 
-                Parent root = FXMLLoader.load(getClass().getResource("/com/no1/geniestore/homepage-view.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/com/no1/geniestore/loginpage-view.fxml"));
 
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -1250,10 +1252,8 @@ public class AdminDetailPageController implements Initializable {
 
     public void close() throws ParserConfigurationException, IOException, TransformerException {
         // Save items info to file before closing the application
-        new ItemListParser().saveItemFile();
-        new AccountListParser().accountsToXML();
-        writeTextFile();
-//         close the app
+        saveData();
+        // close the app
         System.exit(0);
     }
 

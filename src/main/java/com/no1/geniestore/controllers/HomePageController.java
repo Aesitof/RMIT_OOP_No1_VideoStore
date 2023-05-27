@@ -23,8 +23,11 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static com.no1.geniestore.products.ManagementSystem.currentUser;
+import static com.no1.geniestore.products.ManagementSystem.removeAccount;
 import static com.no1.geniestore.products.Stock.stockList;
 
 public class HomePageController implements Initializable {
@@ -91,6 +94,8 @@ public class HomePageController implements Initializable {
     @FXML
     private Button payNowBtn;
 
+    private Alert alert;
+
     private double x;
     private double y;
 
@@ -121,9 +126,24 @@ public class HomePageController implements Initializable {
     }
 
     public void logout() throws IOException {
-        onSignInBtnClick();
+
         // add alert for Confirmation
+        alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to logout? ");
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.get().equals(ButtonType.OK)) {
+            // set currentUser to null
+            currentUser = null;
+            System.out.println("currentUser " + currentUser);
+        }
+
         // write all list to file
+
+        // redirect to Login page
+        onSignInBtnClick();
     }
 
     MenuItem dvd = new MenuItem(ItemType.DVD.toString());
