@@ -120,7 +120,7 @@
                                                 <TableColumn fx:id="addItemColRemaining" prefWidth="74.0" text="Remaining" />
                                             </columns>
                                           </TableView>
-                                          <TextField fx:id="addItemSearch" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="312.0" promptText="Search..." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                          <TextField fx:id="addItemSearch" layoutX="10.0" layoutY="10.0" onKeyTyped="#addItemSearch" prefHeight="30.0" prefWidth="312.0" promptText="Search..." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
                                        </children>
                                     </AnchorPane>
                                     <TextField fx:id="itemId" layoutX="95.0" layoutY="370.0" prefWidth="250.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />

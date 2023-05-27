@@ -11,6 +11,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -610,6 +612,88 @@ public class AdminDetailPageController implements Initializable {
         }
     }
 
+    public void addItemSearch() {
+//        for (ItemData itemData : addItemList) {
+//            System.out.println(itemData);
+//        }
+//        System.out.println("-------");
+        FilteredList<ItemData> filter = new FilteredList<>(addItemList, i -> true);
+
+//        addItemSearch.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+//                System.out.println("Search changed");
+//                filter.setPredicate(predicateItemData -> {
+//                    if (newValue == null || newValue.isEmpty()) {
+////                        itemSortedList(filter);
+//                        return true;
+//                    }
+//
+//                    String searchKey = newValue.toLowerCase();
+//
+//                    if (predicateItemData.getId().toLowerCase().contains(searchKey)) {
+//                        System.out.println("found same id");
+//                        for (ItemData itemData : filter) {
+//                            System.out.println(itemData);
+//                        }
+//                        System.out.println("--------");
+////                        itemSortedList(filter);
+//                        return true;
+//                    } else if (predicateItemData.getTitle().toLowerCase().contains(searchKey)) {
+//                        System.out.println("found same title");
+//                        for (ItemData itemData : filter) {
+//                            System.out.println(itemData);
+//                        }
+//                        System.out.println("--------");
+////                        itemSortedList(filter);
+//                        return true;
+//                    }
+//                    return false;
+//                });
+//            }
+//        });
+
+        addItemSearch.textProperty().addListener((Observable, oldValue, newValue) -> {
+            System.out.println("Search changed");
+            filter.setPredicate(predicateItemData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (predicateItemData.getId().toLowerCase().contains(searchKey)) {
+                    System.out.println("found same id");
+                    for (ItemData itemData : filter) {
+                        System.out.println(itemData);
+                    }
+                    System.out.println("--------");
+                    return true;
+                } else if (predicateItemData.getTitle().toLowerCase().contains(searchKey)) {
+                    System.out.println("found same title");
+                    for (ItemData itemData : filter) {
+                        System.out.println(itemData);
+                    }
+                    System.out.println("--------");
+                    return true;
+                }
+                return false;
+            });
+            System.out.println("Filter list 2nd time");
+            for (ItemData itemData : filter) {
+                System.out.println(itemData);
+            }
+            System.out.println("--------");
+            SortedList<ItemData> sortList = new SortedList<>(filter);
+            sortList.comparatorProperty().bind(addItemTableView.comparatorProperty());
+            System.out.println("Sort list");
+            for (ItemData itemData : sortList) {
+                System.out.println(itemData);
+            }
+            addItemTableView.setItems(sortList);
+        });
+    }
+
     public ArrayList<Integer> yearList() {
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 1900; i <= 2023; i++) {
@@ -856,6 +940,9 @@ public class AdminDetailPageController implements Initializable {
             itemsBtn.setStyle("-fx-background-color:#1e4622;-fx-text-fill:#fff");
             ordersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
             customersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+
+            // Call searching function
+            addItemSearch();
         } else if (event.getSource() == customersBtn) {
             addOrderForm.setVisible(false);
             addItemForm.setVisible(false);
