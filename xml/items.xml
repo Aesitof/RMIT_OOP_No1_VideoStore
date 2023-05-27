@@ -19,7 +19,7 @@
         <rentalFee>50.99</rentalFee>
         <image>pubg.jpg</image>
         <copies>3</copies>
-        <remaining>2</remaining>
+        <remaining>1</remaining>
     </item>
     <item>
         <id>I001-2019</id>
@@ -114,6 +114,6 @@
         <rentalFee>12.99</rentalFee>
         <image>parasite.jpg</image>
         <copies>5</copies>
-        <remaining>5</remaining>
+        <remaining>2</remaining>
     </item>
 </items>

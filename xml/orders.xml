@@ -32,7 +32,7 @@
                     <returnDate>13-01-2023</returnDate>
                     <loanDate>06-01-2023</loanDate>
                     <amount>3</amount>
-                    <isReturned>true</isReturned>
+                    <isReturned>false</isReturned>
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
@@ -70,7 +70,7 @@
                     <returnDate>30-12-2022</returnDate>
                     <loanDate>23-12-2022</loanDate>
                     <amount>2</amount>
-                    <isReturned>true</isReturned>
+                    <isReturned>false</isReturned>
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>

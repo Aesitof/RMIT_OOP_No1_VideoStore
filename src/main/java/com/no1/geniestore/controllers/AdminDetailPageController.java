@@ -727,6 +727,13 @@ public class AdminDetailPageController implements Initializable {
                     }
                     System.out.println("--------");
                     return true;
+                } else if (predicateAccountData.getAccountType().toString().toLowerCase().contains(searchKey)) {
+                    System.out.println("found same level");
+                    for (Account account : filter) {
+                        System.out.println(account);
+                    }
+                    System.out.println("--------");
+                    return true;
                 }
                 return false;
             });
@@ -924,6 +931,18 @@ public class AdminDetailPageController implements Initializable {
             ordersBtn.setStyle("-fx-background-color:#1e4622;-fx-text-fill:#fff");
             itemsBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
             customersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+
+            // Initialization
+            // refresh table
+            orderShowListData();
+            orderTableView.refresh();
+
+            // Text Field settings
+            orderOrderTextField.setEditable(false);
+            orderItemIDTextField.setEditable(false);
+            orderTitleTextField.setEditable(false);
+            returnBtn.setDisable(true);
+            returnBtn.setText("Return Item");
         } else if (event.getSource() == itemsBtn) {
             addOrderForm.setVisible(false);
             addItemForm.setVisible(true);
@@ -950,6 +969,9 @@ public class AdminDetailPageController implements Initializable {
 
                 }
             });
+            // refresh table
+            addItemShowListData();
+            addItemTableView.refresh();
         } else if (event.getSource() == customersBtn) {
             addOrderForm.setVisible(false);
             addItemForm.setVisible(false);
@@ -959,8 +981,40 @@ public class AdminDetailPageController implements Initializable {
             itemsBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
             ordersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
 
+            // Initialization
+            // refresh table
+            addAccountShowListData();
+            addAccountTableView.refresh();
             // Call searching function
             addAccountSearch();
+
+
+            //    Conditions for addAccountReturnedItems TextField (only Integer)
+            addAccountReturnedItems.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                    if(!newValue.matches("\\d*")) {
+                        addAccountReturnedItems.setText(newValue.replaceAll("[\\D]", ""));
+                    }
+                }
+            });
+
+            //    Conditions for addAccountPoints TextField (only Integer)
+            addAccountPoints.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                    if(!newValue.matches("\\d*")) {
+                        addAccountPoints.setText(newValue.replaceAll("[\\D]", ""));
+                    }
+                }
+            });
+
+            // Account Level (Account Type) content
+            addAccountLevelComboBox.getItems().addAll("Guest", "Regular", "VIP");
+
+            // Disable ID and username field
+            addAccountID.setDisable(true);
+            addAccountUsername.setDisable(true);
         }
     }
 
@@ -1108,43 +1162,33 @@ public class AdminDetailPageController implements Initializable {
         loanTypeComboBox.getItems().addAll(LoanType.ONE_WEEK_LOAN, LoanType.TWO_DAY_LOAN);
 
     /* Add Account Form */
-        addAccountShowListData();
-        //    Conditions for addAccountReturnedItems TextField (only Integer)
-        addAccountReturnedItems.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")) {
-                    addAccountReturnedItems.setText(newValue.replaceAll("[\\D]", ""));
-                }
-            }
-        });
-
-        //    Conditions for addAccountPoints TextField (only Integer)
-        addAccountPoints.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")) {
-                    addAccountPoints.setText(newValue.replaceAll("[\\D]", ""));
-                }
-            }
-        });
-
-        // Account Level (Account Type) content
-        addAccountLevelComboBox.getItems().addAll("Guest", "Regular", "VIP");
-
-        // Disable ID and username field
-        addAccountID.setDisable(true);
-        addAccountUsername.setDisable(true);
-
-    /* Order Form */
-        // show list of orders
-        orderShowListData();
-
-        orderOrderTextField.setEditable(false);
-        orderItemIDTextField.setEditable(false);
-        orderTitleTextField.setEditable(false);
-        returnBtn.setDisable(true);
-        returnBtn.setText("Return Item");
+//        addAccountShowListData();
+//        //    Conditions for addAccountReturnedItems TextField (only Integer)
+//        addAccountReturnedItems.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+//                if(!newValue.matches("\\d*")) {
+//                    addAccountReturnedItems.setText(newValue.replaceAll("[\\D]", ""));
+//                }
+//            }
+//        });
+//
+//        //    Conditions for addAccountPoints TextField (only Integer)
+//        addAccountPoints.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+//                if(!newValue.matches("\\d*")) {
+//                    addAccountPoints.setText(newValue.replaceAll("[\\D]", ""));
+//                }
+//            }
+//        });
+//
+//        // Account Level (Account Type) content
+//        addAccountLevelComboBox.getItems().addAll("Guest", "Regular", "VIP");
+//
+//        // Disable ID and username field
+//        addAccountID.setDisable(true);
+//        addAccountUsername.setDisable(true);
 
     }
 }
