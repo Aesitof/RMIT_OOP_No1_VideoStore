@@ -14,9 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.*;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 import static com.no1.geniestore.accounts.Account.*;
 import static com.no1.geniestore.products.Stock.*;
@@ -52,15 +50,31 @@ public class ManagementSystem {
 //            System.out.println(order.getOrderID());
 //        }
 
+//        Item item = new Item("I004-2019", "Parasite", 2019, ItemType.VIDEO_RECORD, Genre.DRAMA, LoanType.TWO_DAY_LOAN, 12.99, "parasite.jpg");
+//        returnItem("1", "I004-2019");
+//
+        Account account = new Account();
+        addAccount(account);
+//
+//        for (Account e : accountList) {
+//            System.out.println(e);
+//        }
+
         Item item = new Item("I004-2019", "Parasite", 2019, ItemType.VIDEO_RECORD, Genre.DRAMA, LoanType.TWO_DAY_LOAN, 12.99, "parasite.jpg");
-        returnItem("1", "I004-2019");
+        Order order = new Order(account);
+        orderList.add(order);
+        order.addItemForRent("9","I004-2019", new Date(2023, 1, 1), 2, false, 0);
 
-//          ItemListParser.saveItemFile();
-        for (Order order : orderList) {
-            System.out.println(order);
+
+        for (Order e : orderList) {
+            System.out.println(e);
         }
+//          ItemListParser.saveItemFile();
+//        for (Order order : orderList) {
+//            System.out.println(order);
+//        }
 
-        OrderListParser.saveOrderFile();
+//        OrderListParser.saveOrderFile();
     }
 
     public static void readTextFile() throws IOException {
@@ -153,7 +167,7 @@ public class ManagementSystem {
     }
 
 //        ACCOUNTS METHODS
-    public void addAccount(Account account) {
+    public static void addAccount(Account account) {
         accountList.add(account); // Add accounts to the list
     }
 
