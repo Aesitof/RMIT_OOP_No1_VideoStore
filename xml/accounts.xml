@@ -76,4 +76,15 @@
         <totalReturnedItems>0</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>
+    <account>
+        <id>C008</id>
+        <username>default</username>
+        <name>Johnathan Fleepy</name>
+        <accountType>Regular</accountType>
+        <address>default</address>
+        <phone>091234344</phone>
+        <password>default</password>
+        <totalReturnedItems>0</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
+    </account>
 </accounts>

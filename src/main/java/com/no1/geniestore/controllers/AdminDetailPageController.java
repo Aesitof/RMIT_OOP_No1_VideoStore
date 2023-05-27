@@ -291,7 +291,6 @@ public class AdminDetailPageController implements Initializable {
     }
 
     public void updateItemView() {
-        System.out.println("update called");
         if (itemId.getText().isEmpty()) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
@@ -720,7 +719,6 @@ public class AdminDetailPageController implements Initializable {
     }
 
     public void addAccountUpdate() {
-        System.out.println("update called");
         if (addAccountID.getText().isEmpty()) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
