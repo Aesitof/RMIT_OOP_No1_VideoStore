@@ -155,7 +155,7 @@ public class Order {
                         for (Item singleItem : stockList.keySet()) {
                             if (singleItem.getId().equals(itemID)) {
                                 // return all amount of that item at the same time
-                                stockList.put(singleItem, stockList.get(singleItem) + order.getOrder().get(singleItem).getAmount());
+                                stockList.put(singleItem, stockList.get(singleItem) + order.getOrder().get(item).getAmount());
                                 break;
                             }
                         }
