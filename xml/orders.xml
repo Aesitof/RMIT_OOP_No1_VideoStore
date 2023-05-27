@@ -31,7 +31,7 @@
                     <!--C004-->
                     <returnDate>13-01-2023</returnDate>
                     <loanDate>06-01-2023</loanDate>
-                    <amount>3</amount>
+                    <amount>2</amount>
                     <isReturned>false</isReturned>
                     <discount>0</discount>
                 </orderDetail>
