@@ -1056,6 +1056,49 @@ public class AdminDetailPageController implements Initializable {
 
     }
 
+    public void orderClear() {
+        orderOrderTextField.clear();
+        orderItemIDTextField.clear();
+        orderTitleTextField.clear();
+        returnBtn.setDisable(true);
+        returnBtn.setText("Returned Successfully");
+    }
+
+    public void adminReturnItem() {
+
+        // Confirmation alert
+        alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Return the item \"" + orderItemIDTextField.getText() + "\" of the orderID \"" + orderOrderTextField.getText() + "\" ?");
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.get().equals(ButtonType.OK)) {
+            // return item in back-end
+            returnItem(orderOrderTextField.getText(), orderItemIDTextField.getText());
+
+            for (Item item : stockList.keySet()) {
+                System.out.println(item + "remaining: " + stockList.get(item));
+            }
+
+            // refresh front-end view
+            orderShowListData();
+            orderTableView.refresh();
+
+            adminRentList = FXCollections.observableArrayList();
+            adminRentList.removeAll();
+
+            for (RentalData rentalData : adminRentList) {
+                System.out.println(rentalData);
+            }
+
+            orderRentTableView.setItems(adminRentList);
+            orderClear();
+        }
+
+//        }
+    }
+
 
     /* View Settings */
     private double x;
