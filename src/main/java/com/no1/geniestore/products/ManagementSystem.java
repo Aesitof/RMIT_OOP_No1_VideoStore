@@ -172,11 +172,28 @@ public class ManagementSystem {
         return true;
     }
 
-    public void promote(Account account, int amount) { // Auto promote whenever return item
+    public static void updateAccountAdmin(String accountId, String newName, String newAddress, String newPhone, String newAccountType, int newTotalReturnedItems) {
+        for (Account account : accountList) {
+            if (account.getId().equals(accountId)) {
+                account.setName(newName);
+                account.setAddress(newAddress);
+                account.setPhone(newPhone);
+                account.setAccountType(newAccountType);
+                account.setTotalReturnedItems(newTotalReturnedItems);
+
+//                promote account if applicable
+                promote(account);
+
+                break;
+            }
+        }
+    }
+
+    public static void promote(Account account) { // Auto promote whenever return item
         if (account.getTotalReturnedItems() > 9) {
-            account.setRewardPoints(account.getRewardPoints() + 10 * amount);
+            account.setRewardPoints(account.getRewardPoints() + 10 * (account.getRewardPoints() - 9));
         } else if (account.getTotalReturnedItems() == 9) {
-            account.setAccountType("Vip");
+            account.setAccountType("VIP");
         } else if (account.getTotalReturnedItems() == 4) {
             account.setAccountType("Regular");
         }
@@ -214,7 +231,8 @@ public class ManagementSystem {
             if (order.getOrderID().equals(orderID)) {
                 order.returnItemInOrder(item, amount);
                 itemList.put(item, itemList.get(item) + amount); // return back to the stock
-                promote(order.getOwner(), amount);
+
+                promote(order.getOwner());
             }
         }
     }

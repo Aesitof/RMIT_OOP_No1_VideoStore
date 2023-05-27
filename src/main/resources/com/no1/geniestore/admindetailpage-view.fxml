@@ -93,7 +93,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="addItemForm" layoutX="14.0" layoutY="14.0" prefHeight="705.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="addItemForm" layoutX="14.0" layoutY="14.0" prefHeight="705.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="677.0" prefWidth="773.0" stylesheets="@style/admindetailpage.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -309,7 +309,7 @@
                                  </children>
                               </AnchorPane>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="addCustomerForm" prefHeight="705.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="addCustomerForm" prefHeight="705.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="677.0" prefWidth="773.0" stylesheets="@style/admindetailpage.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -391,7 +391,7 @@
                                           <String fx:value="delete-btn" />
                                        </styleClass>
                                     </Button>
-                                    <Button layoutX="365.0" layoutY="617.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Clear" AnchorPane.bottomAnchor="17.0">
+                                    <Button layoutX="365.0" layoutY="617.0" mnemonicParsing="false" onAction="#addAccountClear" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Clear" AnchorPane.bottomAnchor="17.0">
                                        <styleClass>
                                           <String fx:value="btn" />
                                           <String fx:value="clear-btn" />
@@ -403,6 +403,12 @@
                                     <ComboBox fx:id="addAccountLevelComboBox" layoutX="576.0" layoutY="372.0" prefHeight="33.0" prefWidth="111.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
                                     <TextField fx:id="addAccountUsername" layoutX="576.0" layoutY="421.0" prefHeight="33.0" prefWidth="258.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
                                     <TextField fx:id="addAccountReturnedItems" layoutX="576.0" layoutY="471.0" prefHeight="33.0" prefWidth="111.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
+                                    <Button layoutX="591.0" layoutY="620.0" mnemonicParsing="false" onAction="#addAccountUpdate" prefHeight="40.0" prefWidth="90.0" stylesheets="@style/admindetailpage.css" text="Update" AnchorPane.bottomAnchor="17.0">
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="update-btn" />
+                                       </styleClass>
+                                    </Button>
                                     <TextField fx:id="addAccountPoints" layoutX="576.0" layoutY="519.0" prefHeight="33.0" prefWidth="111.0" styleClass="textfield" stylesheets="@style/admindetailpage.css" />
                                  </children>
                               </AnchorPane>

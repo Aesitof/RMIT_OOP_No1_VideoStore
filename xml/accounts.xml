@@ -14,7 +14,7 @@
         <id>C002</id>
         <username>earlyPainting</username>
         <name>Earl M. Painter</name>
-        <accountType>Vip</accountType>
+        <accountType>VIP</accountType>
         <address>6 Ton-bridge Rd</address>
         <phone>079 6159 9152</phone>
         <password>di0nly</password>
@@ -36,7 +36,7 @@
         <id>C004</id>
         <username>Thicautmout38</username>
         <name>Patrick J. Harlow</name>
-        <accountType>Vip</accountType>
+        <accountType>VIP</accountType>
         <address>67 Asfordby Rd</address>
         <phone>079 4498 4190</phone>
         <password>aFoto</password>
@@ -57,12 +57,12 @@
     <account>
         <id>C006</id>
         <username>hello123</username>
-        <name>Henry Parker</name>
-        <accountType>Guest</accountType>
+        <name>Tom Parker</name>
+        <accountType>VIP</accountType>
         <address>23A Beidei Road TX</address>
         <phone>09232322783</phone>
         <password>thisismypw</password>
-        <totalReturnedItems>0</totalReturnedItems>
+        <totalReturnedItems>9</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>
 </accounts>

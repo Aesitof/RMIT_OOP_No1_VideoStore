@@ -296,7 +296,7 @@ public class AdminDetailPageController implements Initializable {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Please add new item before updating");
+            alert.setContentText("Please add a new item before updating, or select an item in the table");
             alert.showAndWait();
             return;
         }
@@ -655,6 +655,7 @@ public class AdminDetailPageController implements Initializable {
     public void close() throws ParserConfigurationException, IOException, TransformerException {
         // Save items info to file before closing the application
         new ItemListParser().saveItemFile();
+        new AccountListParser().accountsToXML();
         writeTextFile();
 //         close the app
         System.exit(0);
@@ -699,6 +700,128 @@ public class AdminDetailPageController implements Initializable {
         addAccountReturnedItems.setText(String.valueOf(account.getTotalReturnedItems()));
         addAccountPoints.setText(String.valueOf(account.getRewardPoints()));
 
+        addAccountID.setDisable(true);
+        addAccountUsername.setDisable(true);
+        addAccountReturnedItems.setDisable(false);
+        addAccountPoints.setDisable(true);
+
+    }
+
+    public void addAccountClear() {
+        addAccountID.clear();
+        addAccountName.clear();
+        addAccountAddress.clear();
+        addAccountPhone.clear();
+
+        addAccountLevelComboBox.getSelectionModel().clearSelection();
+        addAccountLevelComboBox.setValue(null);
+        addAccountLevelComboBox.setDisable(true);
+        addAccountLevelComboBox.getSelectionModel().select(0);
+
+        addAccountUsername.clear();
+        addAccountUsername.setDisable(false);
+
+        addAccountReturnedItems.clear();
+        addAccountReturnedItems.setDisable(true);
+        addAccountReturnedItems.setText("0");
+
+        addAccountPoints.clear();
+        addAccountPoints.setDisable(true);
+        addAccountPoints.setText("0");
+
+    }
+
+    public void addAccountUpdate() {
+        System.out.println("update called");
+        if (addAccountID.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please add a new account before updating, or select an account in the table");
+            alert.showAndWait();
+            return;
+        }
+
+        if (addAccountName.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the customer's name");
+            alert.showAndWait();
+            return;
+        }
+
+        if (addAccountAddress.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the customer's address");
+            alert.showAndWait();
+            return;
+        }
+
+        if (addAccountPhone.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the customer's phone");
+            alert.showAndWait();
+            return;
+        }
+
+        // Update account in back-end list
+        updateAccountAdmin(addAccountID.getText(), addAccountName.getText(), addAccountAddress.getText(), addAccountPhone.getText(), addAccountLevelComboBox.getValue(), Integer.parseInt(addAccountReturnedItems.getText()));
+
+
+        // Refresh front-end view
+        addAccountShowListData();
+        addAccountTableView.refresh();
+        addAccountClear();
+
+        // Alert update successfully
+        Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
+        updateAlert.setHeaderText(null);
+        updateAlert.setContentText("Update item successfully");
+        updateAlert.showAndWait();
+
+
+//        for (ItemData item : addItemList) {
+//            if (item.getId().equals(itemId.getText())) {
+//                item.setTitle(itemTitle.getText());
+//                item.setYear(Integer.parseInt(String.valueOf(yearComboBox.getValue())));
+//                item.setItemType(typeComboBox.getValue());
+//                item.setGenre(genreComboBox.getValue());
+//                item.setLoanType(loanTypeComboBox.getValue());
+//                item.setRentalFee(Double.parseDouble(rentalFee.getText()));
+//                item.setRemainingCopies((copies.getValue() - item.getTotalCopies()) + item.getRemainingCopies());
+//                item.setTotalCopies((int) copies.getValue());
+//                item.setImage(imagePath.getText());
+//
+//                addItemTableView.refresh();
+//
+//                // Update API
+//                updateItem(item.getId(), itemTitle.getText(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue(), copies.getValue(), item.getRemainingCopies());
+//
+//                addItemClear();
+//
+//                // Alert update successfully
+//                Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
+//                updateAlert.setHeaderText(null);
+//                updateAlert.setContentText("Update item successfully");
+//                updateAlert.showAndWait();
+//
+//                for (Item itemData : itemList.keySet()) {
+//                    System.out.println(itemData);
+//                    System.out.println(itemList.get(itemData));
+//                }
+//                for (Item itemData : stockList.keySet()) {
+//                    System.out.println(stockList.get(itemData));
+//                }
+//
+//
+//                return;
+//            }
+//        }
     }
 
     public void addAccountSearch() {
@@ -1012,9 +1135,7 @@ public class AdminDetailPageController implements Initializable {
             // Account Level (Account Type) content
             addAccountLevelComboBox.getItems().addAll("Guest", "Regular", "VIP");
 
-            // Disable ID and username field
-            addAccountID.setDisable(true);
-            addAccountUsername.setDisable(true);
+            addAccountClear();
         }
     }
 
@@ -1090,7 +1211,7 @@ public class AdminDetailPageController implements Initializable {
             yearComboBox.getItems().add(i);
         }
         yearComboBox.setEditable(true);
-        yearComboBox.setDisable(true);
+        yearComboBox.setDisable(false);
 
         SpinnerValueFactory<Integer> copiesValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100);
 

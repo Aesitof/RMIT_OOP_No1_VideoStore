@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?><items>
     <item>
+        <id>I010-1952</id>
+        <title>Marsupilami</title>
+        <year>1952</year>
+        <itemType>DVD</itemType>
+        <genre>Comedy</genre>
+        <loanType>7 days</loanType>
+        <rentalFee>3.99</rentalFee>
+        <image>marsupilami.jpg</image>
+        <copies>1</copies>
+        <remaining>1</remaining>
+    </item>
+    <item>
         <id>I007-2011</id>
         <title>Minecraft</title>
         <year>2011</year>
@@ -11,15 +23,16 @@
         <remaining>6</remaining>
     </item>
     <item>
-        <id>I002-2013</id>
-        <title>PUBG</title>
-        <year>2013</year>
-        <itemType>Game</itemType>
-        <loanType>7 days</loanType>
-        <rentalFee>50.99</rentalFee>
-        <image>pubg.jpg</image>
-        <copies>3</copies>
-        <remaining>1</remaining>
+        <id>I004-2019</id>
+        <title>Parasite</title>
+        <year>2019</year>
+        <itemType>Video Record</itemType>
+        <genre>Drama</genre>
+        <loanType>2 days</loanType>
+        <rentalFee>12.99</rentalFee>
+        <image>parasite.jpg</image>
+        <copies>5</copies>
+        <remaining>2</remaining>
     </item>
     <item>
         <id>I001-2019</id>
@@ -32,6 +45,18 @@
         <image>ourbelovedsummer.jpg</image>
         <copies>5</copies>
         <remaining>5</remaining>
+    </item>
+    <item>
+        <id>I003-1997</id>
+        <title>Titanic</title>
+        <year>1997</year>
+        <itemType>Video Record</itemType>
+        <genre>Drama</genre>
+        <loanType>2 days</loanType>
+        <rentalFee>23.99</rentalFee>
+        <image>lastchristmas.jpg</image>
+        <copies>4</copies>
+        <remaining>4</remaining>
     </item>
     <item>
         <id>I009-2019</id>
@@ -70,30 +95,6 @@
         <remaining>1</remaining>
     </item>
     <item>
-        <id>I003-1997</id>
-        <title>Titanic</title>
-        <year>1997</year>
-        <itemType>Video Record</itemType>
-        <genre>Drama</genre>
-        <loanType>2 days</loanType>
-        <rentalFee>23.99</rentalFee>
-        <image>lastchristmas.jpg</image>
-        <copies>4</copies>
-        <remaining>4</remaining>
-    </item>
-    <item>
-        <id>I010-1952</id>
-        <title>Marsupilami</title>
-        <year>1952</year>
-        <itemType>DVD</itemType>
-        <genre>Comedy</genre>
-        <loanType>7 days</loanType>
-        <rentalFee>3.99</rentalFee>
-        <image>marsupilami.jpg</image>
-        <copies>1</copies>
-        <remaining>1</remaining>
-    </item>
-    <item>
         <id>I008-2019</id>
         <title>hoho</title>
         <year>2019</year>
@@ -105,15 +106,14 @@
         <remaining>1</remaining>
     </item>
     <item>
-        <id>I004-2019</id>
-        <title>Parasite</title>
-        <year>2019</year>
-        <itemType>Video Record</itemType>
-        <genre>Drama</genre>
-        <loanType>2 days</loanType>
-        <rentalFee>12.99</rentalFee>
-        <image>parasite.jpg</image>
-        <copies>5</copies>
-        <remaining>2</remaining>
+        <id>I002-2013</id>
+        <title>PUBG</title>
+        <year>2013</year>
+        <itemType>Game</itemType>
+        <loanType>7 days</loanType>
+        <rentalFee>50.99</rentalFee>
+        <image>pubg.jpg</image>
+        <copies>3</copies>
+        <remaining>1</remaining>
     </item>
 </items>

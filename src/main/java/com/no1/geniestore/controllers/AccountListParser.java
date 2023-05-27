@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.no1.geniestore.products.ManagementSystem.accountList;
+
 public class AccountListParser {
     private DocumentBuilder builder;
 
@@ -127,10 +129,9 @@ public class AccountListParser {
 
     /**
      * Save the in-use list of Account to the XML file when needed
-     * @param accounts
      * @throws ParserConfigurationException
      */
-    public static void accountsToXML(List<Account> accounts) throws ParserConfigurationException, FileNotFoundException, TransformerException {
+    public static void accountsToXML() throws ParserConfigurationException, FileNotFoundException, TransformerException {
         // new DOM
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -140,7 +141,7 @@ public class AccountListParser {
         document.appendChild(root);
 
         // Create child nodes
-        for (Account account : accounts) {
+        for (Account account : accountList) {
             root.appendChild(accountToXML(account, document, "account"));
         }
 
