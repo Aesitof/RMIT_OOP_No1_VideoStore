@@ -171,29 +171,47 @@ public class ManagementSystem {
         accountList.add(account); // Add accounts to the list
     }
 
-    public void removeAccount(String accountID) { // Remove account using ID
+    public static void removeAccount(String accountID) { // Remove account using ID
         accountList.removeIf(i -> i.getId().equals(accountID)); // remove from account list
     }
 
-    public boolean createUsername(Account account, String username, String password) {
+    public static boolean createUsername(Account account) {
         for (Account acc : accountList) {
-            if (acc.getUsername().equals(username)) {
+            if (acc.getUsername().equals(account.getUsername())) {
                 return false; // stop if that username is already exist
             }
 
-            // set username and password then add it to the account list
-            account.setUsername(username);
-            account.setPassword(password);
-            addAccount(account);
         }
+
+        // set username and password then add it to the account list
+//            account.setUsername(account.getUsername());
+//            account.setPassword(account.getPassword());
+        addAccount(account);
         return true;
     }
 
-    public static void promote(Account account, int amount) { // Auto promote whenever return item
+    public static void updateAccountAdmin(String accountId, String newName, String newAddress, String newPhone, String newAccountType, int newTotalReturnedItems) {
+        for (Account account : accountList) {
+            if (account.getId().equals(accountId)) {
+                account.setName(newName);
+                account.setAddress(newAddress);
+                account.setPhone(newPhone);
+                account.setAccountType(newAccountType);
+                account.setTotalReturnedItems(newTotalReturnedItems);
+
+//                promote account if applicable
+                promote(account);
+
+                break;
+            }
+        }
+    }
+
+    public static void promote(Account account) { // Auto promote whenever return item
         if (account.getTotalReturnedItems() > 9) {
-            account.setRewardPoints(account.getRewardPoints() + 10 * amount);
+            account.setRewardPoints(account.getRewardPoints() + 10 * (account.getRewardPoints() - 9));
         } else if (account.getTotalReturnedItems() == 9) {
-            account.setAccountType("Vip");
+            account.setAccountType("VIP");
         } else if (account.getTotalReturnedItems() == 4) {
             account.setAccountType("Regular");
         }

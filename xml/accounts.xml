@@ -5,7 +5,7 @@
         <name>Tyler T. Appell</name>
         <accountType>Guest</accountType>
         <address>2885 White Oak Drive</address>
-        <phone>816-623-5844</phone>
+        <phone>8166235844</phone>
         <password>Deipei</password>
         <totalReturnedItems>0</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
@@ -16,7 +16,7 @@
         <name>Earl M. Painter</name>
         <accountType>VIP</accountType>
         <address>6 Ton-bridge Rd</address>
-        <phone>079 6159 9152</phone>
+        <phone>07961599152</phone>
         <password>di0nly</password>
         <totalReturnedItems>15</totalReturnedItems>
         <rewardPoints>70</rewardPoints>
@@ -27,7 +27,7 @@
         <name>Charles K. Leonard</name>
         <accountType>Regular</accountType>
         <address>Charles K. Leonard</address>
-        <phone>077 6868 7535</phone>
+        <phone>07768687535</phone>
         <password>chienooGh0</password>
         <totalReturnedItems>5</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
@@ -38,7 +38,7 @@
         <name>Patrick J. Harlow</name>
         <accountType>VIP</accountType>
         <address>67 Asfordby Rd</address>
-        <phone>079 4498 4190</phone>
+        <phone>07944984190</phone>
         <password>aFoto</password>
         <totalReturnedItems>8</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
@@ -57,11 +57,22 @@
     <account>
         <id>C006</id>
         <username>hello123</username>
-        <name>Henry Parker</name>
-        <accountType>Guest</accountType>
+        <name>Tom Parker</name>
+        <accountType>VIP</accountType>
         <address>23A Beidei Road TX</address>
         <phone>09232322783</phone>
         <password>thisismypw</password>
+        <totalReturnedItems>9</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
+    </account>
+    <account>
+        <id>C007</id>
+        <username>michaelne</username>
+        <name>Michael</name>
+        <accountType>Guest</accountType>
+        <address>23 Fl Rd</address>
+        <phone>0932444666</phone>
+        <password>guest123</password>
         <totalReturnedItems>0</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>

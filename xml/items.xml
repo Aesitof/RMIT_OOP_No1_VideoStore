@@ -29,9 +29,9 @@
         <itemType>Video Record</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
-        <rentalFee>11.59</rentalFee>
-        <image>boysoverflowers.jpg</image>
-        <copies>2</copies>
+        <rentalFee>12.99</rentalFee>
+        <image>parasite.jpg</image>
+        <copies>5</copies>
         <remaining>2</remaining>
     </item>
     <item>

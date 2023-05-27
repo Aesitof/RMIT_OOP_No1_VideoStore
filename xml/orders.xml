@@ -48,7 +48,7 @@
             <id>C002</id>
             <username>earlyPainting</username>
             <name>Earl M. Painter</name>
-            <accountType>Vip</accountType>
+            <accountType>VIP</accountType>
             <address>6 Ton-bridge Rd</address>
             <phone>079 6159 9152</phone>
             <password>di0nly</password>
@@ -70,7 +70,7 @@
                     <returnDate>30-12-2022</returnDate>
                     <loanDate>23-12-2022</loanDate>
                     <amount>2</amount>
-                    <isReturned>true</isReturned>
+                    <isReturned>false</isReturned>
                     <discount>0</discount>
                 </orderDetail>
             </singleItem>
@@ -166,7 +166,7 @@
             <id>C004</id>
             <username>Thicautmout38</username>
             <name>Patrick J. Harlow</name>
-            <accountType>Vip</accountType>
+            <accountType>VIP</accountType>
             <address>67 Asfordby Rd</address>
             <phone>079 4498 4190</phone>
             <password>aFoto</password>
@@ -325,7 +325,7 @@
             <id>C002</id>
             <username>earlyPainting</username>
             <name>Earl M. Painter</name>
-            <accountType>Vip</accountType>
+            <accountType>VIP</accountType>
             <address>6 Ton-bridge Rd</address>
             <phone>079 6159 9152</phone>
             <password>di0nly</password>
@@ -365,7 +365,7 @@
             <id>C002</id>
             <username>earlyPainting</username>
             <name>Earl M. Painter</name>
-            <accountType>Vip</accountType>
+            <accountType>VIP</accountType>
             <address>6 Ton-bridge Rd</address>
             <phone>079 6159 9152</phone>
             <password>di0nly</password>

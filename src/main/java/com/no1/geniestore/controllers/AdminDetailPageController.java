@@ -11,6 +11,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,7 +57,7 @@ public class AdminDetailPageController implements Initializable {
     @FXML
     private AnchorPane addCustomerForm;
 
-    /* Add Item Form */
+    /* Add Item Form attributes */
     private Alert alert;
     @FXML
     private TableColumn<ItemData, String> addItemColCopies;
@@ -154,7 +156,7 @@ public class AdminDetailPageController implements Initializable {
 
     private ObservableList<ItemData> addItemList;
 
-    /* Add Account Form */
+    /* Add Account Form attributes */
     @FXML
     private TextField addAccountID;
     @FXML
@@ -191,9 +193,11 @@ public class AdminDetailPageController implements Initializable {
     private TableColumn<Account, String> addAccountColReturnedItems;
     @FXML
     private TableColumn<Account, String> addAccountColPoints;
+    @FXML
+    private TextField addAccountSearch;
 
 
-    /* Order Form */
+    /* Order Form attributes */
     @FXML
     private TextField orderOrderTextField;
     @FXML
@@ -277,6 +281,8 @@ public class AdminDetailPageController implements Initializable {
         addItemImage.setImage(image);
         imagePath.setText(itemData.getImage());
 
+        yearComboBox.setDisable(true); // not allowed to change published year
+
 //        for (Integer year : yearComboList) {
 //            if (year == itemData.getYear()) {
 //                yearComboBox.setValue(year);
@@ -290,7 +296,7 @@ public class AdminDetailPageController implements Initializable {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Please add new item before updating");
+            alert.setContentText("Please add a new item before updating, or select an item in the table");
             alert.showAndWait();
             return;
         }
@@ -404,6 +410,7 @@ public class AdminDetailPageController implements Initializable {
 //        yearComboBox.setValue(null);
         yearComboBox.getSelectionModel().clearSelection();
         yearComboBox.setValue(null);
+        yearComboBox.setDisable(false);
 //        typeComboBox.setValue(null);
         typeComboBox.getSelectionModel().clearSelection();
 //        genreComboBox.setValue(null);
@@ -530,7 +537,6 @@ public class AdminDetailPageController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("The item " + itemId.getText() + " is already added. Please click the \"Clear\" button to continue.");
             alert.showAndWait();
-            return;
         }
     }
 
@@ -610,6 +616,31 @@ public class AdminDetailPageController implements Initializable {
         }
     }
 
+    public void addItemSearch() {
+        FilteredList<ItemData> filter = new FilteredList<>(addItemList, i -> true);
+
+        addItemSearch.textProperty().addListener((Observable, oldValue, newValue) -> {
+            filter.setPredicate(predicateItemData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (predicateItemData.getId().toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (predicateItemData.getTitle().toLowerCase().contains(searchKey)) {
+                    return true;
+                }
+                return false;
+            });
+
+            SortedList<ItemData> sortList = new SortedList<>(filter);
+            sortList.comparatorProperty().bind(addItemTableView.comparatorProperty());
+            addItemTableView.setItems(sortList);
+        });
+    }
+
     public ArrayList<Integer> yearList() {
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 1900; i <= 2023; i++) {
@@ -620,18 +651,6 @@ public class AdminDetailPageController implements Initializable {
 
     public ArrayList<Integer> yearComboList = yearList();
 
-    public void close() throws ParserConfigurationException, IOException, TransformerException {
-        // Save items info to file before closing the application
-        new ItemListParser().saveItemFile();
-        writeTextFile();
-//         close the app
-        System.exit(0);
-    }
-
-    public void minimize() {
-        Stage stage = (Stage)main_form.getScene().getWindow();
-        stage.setIconified(true);
-    }
 
     /* Add Account Form methods */
     public void addAccountShowListData() {
@@ -667,6 +686,249 @@ public class AdminDetailPageController implements Initializable {
         addAccountReturnedItems.setText(String.valueOf(account.getTotalReturnedItems()));
         addAccountPoints.setText(String.valueOf(account.getRewardPoints()));
 
+        addAccountID.setDisable(true);
+        addAccountUsername.setDisable(true);
+        addAccountReturnedItems.setDisable(false);
+        addAccountPoints.setDisable(true);
+
+    }
+
+    public void addAccountClear() {
+        addAccountID.clear();
+        addAccountID.setDisable(true);
+
+        addAccountName.clear();
+        addAccountAddress.clear();
+        addAccountPhone.clear();
+
+        addAccountLevelComboBox.getSelectionModel().clearSelection();
+        addAccountLevelComboBox.setValue(null);
+        addAccountLevelComboBox.setDisable(true);
+        addAccountLevelComboBox.getSelectionModel().select(0);
+
+        addAccountUsername.clear();
+        addAccountUsername.setDisable(false);
+
+        addAccountReturnedItems.clear();
+        addAccountReturnedItems.setDisable(true);
+        addAccountReturnedItems.setText("0");
+
+        addAccountPoints.clear();
+        addAccountPoints.setDisable(true);
+        addAccountPoints.setText("0");
+
+    }
+
+    public void addAccountUpdate() {
+        System.out.println("update called");
+        if (addAccountID.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please add a new account before updating, or select an account in the table");
+            alert.showAndWait();
+            return;
+        }
+
+        if (addAccountName.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the customer's name");
+            alert.showAndWait();
+            return;
+        }
+
+        if (addAccountAddress.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the customer's address");
+            alert.showAndWait();
+            return;
+        }
+
+        if (addAccountPhone.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the customer's phone");
+            alert.showAndWait();
+            return;
+        }
+
+        // Update account in back-end list
+        updateAccountAdmin(addAccountID.getText(), addAccountName.getText(), addAccountAddress.getText(), addAccountPhone.getText(), addAccountLevelComboBox.getValue(), Integer.parseInt(addAccountReturnedItems.getText()));
+
+
+        // Refresh front-end view
+        addAccountShowListData();
+        addAccountTableView.refresh();
+        addAccountClear();
+
+        // Alert update successfully
+        Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
+        updateAlert.setHeaderText(null);
+        updateAlert.setContentText("Update item successfully");
+        updateAlert.showAndWait();
+
+    }
+
+    public void addAccountAdd() {
+        if (addAccountID.getText().isEmpty()) {
+
+            if (addAccountName.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the customer's name");
+                alert.showAndWait();
+                return;
+            }
+
+            if (addAccountAddress.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the customer's address");
+                alert.showAndWait();
+                return;
+            }
+
+            if (addAccountPhone.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the customer's phone");
+                alert.showAndWait();
+                return;
+            }
+
+            if (addAccountUsername.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter the customer's username");
+                alert.showAndWait();
+                return;
+            }
+
+
+            // Add to back-end list
+            Account newAccount = new Account(addAccountName.getText(), addAccountAddress.getText(), addAccountPhone.getText(), addAccountUsername.getText(), "guest123", addAccountLevelComboBox.getValue());
+            if (createUsername(newAccount) == true) {
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success Message");
+                alert.setHeaderText(null);
+                alert.setContentText("New account created successfully");
+                alert.showAndWait();
+            } else {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("The username \"" + newAccount.getUsername() + "\" has been used. Please choose a different username");
+                alert.showAndWait();
+            }
+
+            // Add to front-end view
+            addAccountShowListData();
+            addAccountTableView.refresh();
+            addAccountClear();
+
+        } else {
+            // Alert item is already added
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("The account \"" + addAccountID.getText() + "\" is already added. Please click the \"Clear\" button to continue.");
+            alert.showAndWait();
+        }
+    }
+
+    public void addAccountDelete() {
+        if (addAccountID.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("No account selected");
+            alert.showAndWait();
+            return;
+        } else {
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Delete the customer \"" + addAccountID.getText() + "\" ?");
+            Optional<ButtonType> option = alert.showAndWait();
+
+            if (option.get().equals(ButtonType.OK)) {
+
+                // delete account in back-end list
+                removeAccount(addAccountID.getText());
+
+                // Add to front-end view
+                addAccountShowListData();
+                addAccountTableView.refresh();
+                addAccountClear();
+
+                // Successful alert
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Item successfully deleted");
+                alert.showAndWait();
+            }
+        }
+    }
+
+    public void addAccountSearch() {
+        FilteredList<Account> filter = new FilteredList<>(addAccountList, a -> true);
+
+        addAccountSearch.textProperty().addListener((Observable, oldValue, newValue) -> {
+            System.out.println("Search changed");
+            filter.setPredicate(predicateAccountData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (predicateAccountData.getId().toLowerCase().contains(searchKey)) {
+                    System.out.println("found same id");
+                    for (Account account : filter) {
+                        System.out.println(account);
+                    }
+                    System.out.println("--------");
+                    return true;
+                } else if (predicateAccountData.getName().toLowerCase().contains(searchKey)) {
+                    System.out.println("found same name");
+                    for (Account account : filter) {
+                        System.out.println(account);
+                    }
+                    System.out.println("--------");
+                    return true;
+                } else if (predicateAccountData.getAccountType().toString().toLowerCase().contains(searchKey)) {
+                    System.out.println("found same level");
+                    for (Account account : filter) {
+                        System.out.println(account);
+                    }
+                    System.out.println("--------");
+                    return true;
+                }
+                return false;
+            });
+            System.out.println("Filter list 2nd time");
+            for (Account account : filter) {
+                System.out.println(account);
+            }
+            System.out.println("--------");
+            SortedList<Account> sortList = new SortedList<>(filter);
+            sortList.comparatorProperty().bind(addAccountTableView.comparatorProperty());
+            System.out.println("Sort list");
+            for (Account account : sortList) {
+                System.out.println(account);
+            }
+            addAccountTableView.setItems(sortList);
+        });
     }
 
     /* Order View methods */
@@ -848,6 +1110,18 @@ public class AdminDetailPageController implements Initializable {
             ordersBtn.setStyle("-fx-background-color:#1e4622;-fx-text-fill:#fff");
             itemsBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
             customersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+
+            // Initialization
+            // refresh table
+            orderShowListData();
+            orderTableView.refresh();
+
+            // Text Field settings
+            orderOrderTextField.setEditable(false);
+            orderItemIDTextField.setEditable(false);
+            orderTitleTextField.setEditable(false);
+            returnBtn.setDisable(true);
+            returnBtn.setText("Return Item");
         } else if (event.getSource() == itemsBtn) {
             addOrderForm.setVisible(false);
             addItemForm.setVisible(true);
@@ -856,6 +1130,27 @@ public class AdminDetailPageController implements Initializable {
             itemsBtn.setStyle("-fx-background-color:#1e4622;-fx-text-fill:#fff");
             ordersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
             customersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+
+            // Initializations
+            // Call searching function
+            addItemSearch();
+            // Game doesn't have genre
+            typeComboBox.valueProperty().addListener(new ChangeListener<ItemType>() {
+                @Override
+                public void changed(ObservableValue<? extends ItemType> observableValue, ItemType oldType, ItemType newType) {
+                    if (newType != null) {
+                        if (newType.equals(ItemType.GAME)) {
+                            genreComboBox.setDisable(true);
+                        } else {
+                            genreComboBox.setDisable(false);
+                        }
+                    }
+
+                }
+            });
+            // refresh table
+            addItemShowListData();
+            addItemTableView.refresh();
         } else if (event.getSource() == customersBtn) {
             addOrderForm.setVisible(false);
             addItemForm.setVisible(false);
@@ -864,7 +1159,66 @@ public class AdminDetailPageController implements Initializable {
             customersBtn.setStyle("-fx-background-color:#1e4622;-fx-text-fill:#fff");
             itemsBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
             ordersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+
+            // Initialization
+            // refresh table
+            addAccountShowListData();
+            addAccountTableView.refresh();
+            // Call searching function
+            addAccountSearch();
+
+
+            //    Conditions for addAccountReturnedItems TextField (only Integer)
+            addAccountReturnedItems.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                    if(!newValue.matches("\\d*")) {
+                        addAccountReturnedItems.setText(newValue.replaceAll("[\\D]", ""));
+                    }
+                }
+            });
+
+            //    Conditions for addAccountPoints TextField (only Integer)
+            addAccountPoints.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                    if(!newValue.matches("\\d*")) {
+                        addAccountPoints.setText(newValue.replaceAll("[\\D]", ""));
+                    }
+                }
+            });
+
+            //    Conditions for addAccountPhone TextField (only digits (10 digits))
+            addAccountPhone.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                    if(!newValue.matches("\\d*")) {
+                        addAccountPhone.setText(newValue.replaceAll("[\\D]", ""));
+                    } else if (newValue.length() > 10) {
+                        addAccountPhone.setText(oldValue);
+                    }
+                }
+            });
+
+            // Account Level (Account Type) content
+            addAccountLevelComboBox.getItems().addAll("Guest", "Regular", "VIP");
+
+            addAccountClear();
         }
+    }
+
+    public void close() throws ParserConfigurationException, IOException, TransformerException {
+        // Save items info to file before closing the application
+        new ItemListParser().saveItemFile();
+        new AccountListParser().accountsToXML();
+        writeTextFile();
+//         close the app
+        System.exit(0);
+    }
+
+    public void minimize() {
+        Stage stage = (Stage)main_form.getScene().getWindow();
+        stage.setIconified(true);
     }
 
 
@@ -873,8 +1227,32 @@ public class AdminDetailPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    /* Set default form: Add Item Form */
+        addOrderForm.setVisible(false);
+        addItemForm.setVisible(true);
+        addCustomerForm.setVisible(false);
 
-    /* Add Item Form */
+        itemsBtn.setStyle("-fx-background-color:#1e4622;-fx-text-fill:#fff");
+        ordersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+        customersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+
+        // Initializations
+        // Game doesn't have genre
+        typeComboBox.valueProperty().addListener(new ChangeListener<ItemType>() {
+            @Override
+            public void changed(ObservableValue<? extends ItemType> observableValue, ItemType oldType, ItemType newType) {
+                if (newType != null) {
+                    if (newType.equals(ItemType.GAME)) {
+                        genreComboBox.setDisable(true);
+                    } else {
+                        genreComboBox.setDisable(false);
+                    }
+                }
+
+            }
+        });
+
+    /* Add Item Form initialize */
 
         // Parse from XML to ObservableList of ItemData, can use thread to be faster
         try {
@@ -915,6 +1293,7 @@ public class AdminDetailPageController implements Initializable {
             yearComboBox.getItems().add(i);
         }
         yearComboBox.setEditable(true);
+        yearComboBox.setDisable(false);
 
         SpinnerValueFactory<Integer> copiesValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100);
 
@@ -986,43 +1365,33 @@ public class AdminDetailPageController implements Initializable {
         loanTypeComboBox.getItems().addAll(LoanType.ONE_WEEK_LOAN, LoanType.TWO_DAY_LOAN);
 
     /* Add Account Form */
-        addAccountShowListData();
-        //    Conditions for addAccountReturnedItems TextField (only Integer)
-        addAccountReturnedItems.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")) {
-                    addAccountReturnedItems.setText(newValue.replaceAll("[\\D]", ""));
-                }
-            }
-        });
-
-        //    Conditions for addAccountPoints TextField (only Integer)
-        addAccountPoints.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
-                if(!newValue.matches("\\d*")) {
-                    addAccountPoints.setText(newValue.replaceAll("[\\D]", ""));
-                }
-            }
-        });
-
-        // Account Level (Account Type) content
-        addAccountLevelComboBox.getItems().addAll("Guest", "Regular", "VIP");
-
-        // Disable ID and username field
-        addAccountID.setDisable(true);
-        addAccountUsername.setDisable(true);
-
-    /* Order Form */
-        // show list of orders
-        orderShowListData();
-
-        orderOrderTextField.setEditable(false);
-        orderItemIDTextField.setEditable(false);
-        orderTitleTextField.setEditable(false);
-        returnBtn.setDisable(true);
-        returnBtn.setText("Return Item");
+//        addAccountShowListData();
+//        //    Conditions for addAccountReturnedItems TextField (only Integer)
+//        addAccountReturnedItems.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+//                if(!newValue.matches("\\d*")) {
+//                    addAccountReturnedItems.setText(newValue.replaceAll("[\\D]", ""));
+//                }
+//            }
+//        });
+//
+//        //    Conditions for addAccountPoints TextField (only Integer)
+//        addAccountPoints.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+//                if(!newValue.matches("\\d*")) {
+//                    addAccountPoints.setText(newValue.replaceAll("[\\D]", ""));
+//                }
+//            }
+//        });
+//
+//        // Account Level (Account Type) content
+//        addAccountLevelComboBox.getItems().addAll("Guest", "Regular", "VIP");
+//
+//        // Disable ID and username field
+//        addAccountID.setDisable(true);
+//        addAccountUsername.setDisable(true);
 
     }
 }
