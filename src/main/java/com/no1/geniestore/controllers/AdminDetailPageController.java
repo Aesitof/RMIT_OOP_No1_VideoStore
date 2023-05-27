@@ -1166,6 +1166,18 @@ public class AdminDetailPageController implements Initializable {
                 }
             });
 
+            //    Conditions for addAccountPhone TextField (only digits (10 digits))
+            addAccountPhone.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                    if(!newValue.matches("\\d*")) {
+                        addAccountPhone.setText(newValue.replaceAll("[\\D]", ""));
+                    } else if (newValue.length() > 10) {
+                        addAccountPhone.setText(oldValue);
+                    }
+                }
+            });
+
             // Account Level (Account Type) content
             addAccountLevelComboBox.getItems().addAll("Guest", "Regular", "VIP");
 
