@@ -16,19 +16,45 @@
 
 ## `GitHub Repository`
 - _Project: [link](https://github.com/AnhNhat03/RMIT_OOP_No1_VideoStore)_
-- _UML diagram(s): N/A_
+- _Documents related: [link](https://github.com/AnhNhat03/RMIT_OOP_No1_VideoStore/tree/main/doc)_
 
 ## `Application Features`
 1. Rental System
 2. Login and Registration System
-3. User-friendly Interface using Scene Builder 
+3. User-friendly Interface using Scene Builder
 4. CRUD operations (for items, personal information, orders, etc.)
 5. Point Reward System
 6. Search Tools
 7. Store and Retrieve data from file XML
 
-## `List of Account`
-- [Customers](https://github.com/AnhNhat03/RMIT_OOP_No1_VideoStore/tree/main/xml/accounts.xml)
-- **Admin**: 
-username: admin | password: Admin123 
+## `Notation while using system`
+1. Guest customers can rent only **2 different** items at once, and they cannot make any order until
+   they return their rent item(s) of the previous order.
+2. The system records the loan date of an order as the day that order is committed by a customer's account.
+   Yet, the loan duration will be given one extra day.
 
+## `List of Account`
+- **Customer**
+1. Guest:
+```
+        Username: Hings1949
+        Password: Deipei
+```
+
+2. Regular:
+```
+        Username: Dingethey
+        Password: chienooGh0
+```
+3. VIP:
+```
+        Username: earlyPainting
+        Password: di0nly
+```
+
+For customer accounts: Find [here](https://github.com/AnhNhat03/RMIT_OOP_No1_VideoStore/tree/main/xml/accounts.xml)
+- **Admin**:
+```
+        username: admin
+        password: Admin123 
+```

@@ -106,11 +106,11 @@ public class Order {
 
                             order.getOrder().put(item, orderDetail); // add order details to order
                             setTotal(getTotal() + item.getRentalFee() * amount - order.getOrder().get(item).getDiscount()); // add fee to order's total
+                            break; // stop the loop when order details are all written
                         }
-                        break;
                     }
                 }
-                break;
+                break; // stop the loop
             }
         }
     }
@@ -135,6 +135,7 @@ public class Order {
                     order.getOrder().get(item).setReturned(true); // status: pending -> finished
                     break;
                 }
+                break;
             }
         }
     }
