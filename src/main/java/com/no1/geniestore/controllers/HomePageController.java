@@ -87,9 +87,6 @@ public class HomePageController implements Initializable {
     private VBox productListVBox;
 
     @FXML
-    private TextField topSearchTextField;
-
-    @FXML
     private VBox cartListVBox;
 
     @FXML
@@ -218,11 +215,9 @@ public class HomePageController implements Initializable {
         accountDetailView.setVisible(false);
     }
     public void loadProductList() throws IOException {
-        topSearchTextField.setText("starting...");
 
 
         for (Item item : stockList.keySet()) {
-            topSearchTextField.setText("loading...");
             FXMLLoader loader = new FXMLLoader();
 //                loader.getClass().getResource("/com/no1/geniestore/productcard-view.fxml");
             loader.setLocation(getClass().getResource("/com/no1/geniestore/productcard-view.fxml"));
@@ -413,7 +408,6 @@ public class HomePageController implements Initializable {
     }
 
     public void loadMyOrderList() throws IOException {
-        topSearchTextField.setText("starting...");
 
         for (Order order : orderList) {
             if (order.getOwner().getId().equals(currentUser.getId())) {

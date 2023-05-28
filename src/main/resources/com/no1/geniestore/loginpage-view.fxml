@@ -68,7 +68,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label layoutX="132.0" layoutY="160.0" text="Genie's Store" textFill="#1e4622">
+                  <Label layoutX="103.0" layoutY="160.0" text="No.1 - Genie's Store" textFill="#1e4622">
                      <font>
                         <Font name="Franklin Gothic Heavy" size="20.0" />
                      </font>

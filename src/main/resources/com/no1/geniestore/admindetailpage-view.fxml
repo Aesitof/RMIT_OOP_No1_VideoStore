@@ -33,7 +33,7 @@
                                     <Image url="@assets/logo1.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="71.0" layoutY="8.0" text="Genie's Store" textFill="#1e4622">
+                              <Label layoutX="71.0" layoutY="8.0" prefHeight="24.0" prefWidth="283.0" text="No.1 - Genie's Store" textFill="#1e4622">
                                  <font>
                                     <Font name="Franklin Gothic Heavy" size="20.0" />
                                  </font>
