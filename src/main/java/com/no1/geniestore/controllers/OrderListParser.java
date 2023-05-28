@@ -227,7 +227,7 @@ public class OrderListParser {
             root.appendChild(orderToXML(order, document));
         }
 
-        Parser.writeXml(document, new FileOutputStream("xml/ordertest.xml"));
+        Parser.writeXml(document, new FileOutputStream("xml/orders.xml"));
     }
 
     public static Element orderToXML(Order newOrder, Document document) {

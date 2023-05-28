@@ -39,7 +39,11 @@ public class CartData {
         calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
-        calendar.add(Calendar.DATE, 2);
+        if (item.getLoanType().equals(LoanType.TWO_DAY_LOAN)) {
+            calendar.add(Calendar.DATE, 2);
+        } else {
+            calendar.add(Calendar.DATE, 7);
+        }
         this.returnDate = calendar.getTime();
         this.itemFee = getItem().getRentalFee();
         this.freeItem = false;

@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import static com.no1.geniestore.controllers.HomePageController.*;
+import static com.no1.geniestore.products.ManagementSystem.currentUser;
 
 public class CartCardController implements Initializable {
     @FXML
@@ -94,7 +95,13 @@ public class CartCardController implements Initializable {
             cartCardGenre.setVisible(false);
         }
 
-        qtyValueFactory.setMax(cartData.getRemaining());
+        // Set max value for qty spinner
+        if (currentUser.getAccountType().equals("Guest")) {
+            qtyValueFactory.setMax(1);
+        } else {
+            qtyValueFactory.setMax(cartData.getRemaining());
+        }
+
 
         cartCardLoanType.setText(cartData.getItem().getLoanType().toString());
         cartCardQty.getValueFactory().setValue(cartData.getQty());
@@ -131,6 +138,8 @@ public class CartCardController implements Initializable {
                 break;
             }
         }
+
+        updateOrderSubtotal();
 
         for (CartData c : cartCartDataList) {
             System.out.println(c);

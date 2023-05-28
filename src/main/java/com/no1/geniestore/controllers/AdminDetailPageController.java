@@ -37,10 +37,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static com.no1.geniestore.products.ManagementSystem.*;
 import static com.no1.geniestore.products.Stock.stockList;
@@ -546,8 +543,16 @@ public class AdminDetailPageController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("No item selected");
             alert.showAndWait();
-            return;
         } else {
+            if (remaining.getValue() < copies.getValue()) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Not enough copies of this item returned yet, so it can't be removed from stock");
+                alert.showAndWait();
+                return;
+            }
+
             alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Message");
             alert.setHeaderText(null);
@@ -793,11 +798,11 @@ public class AdminDetailPageController implements Initializable {
                 return;
             }
 
-            if (addAccountPhone.getText().isEmpty()) {
+            if (addAccountPhone.getText().isEmpty() || !addAccountPhone.getText().matches("\\d{10}")) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Please enter the customer's phone");
+                alert.setContentText("Valid phone number contains 10 digits");
                 alert.showAndWait();
                 return;
             }
@@ -852,6 +857,44 @@ public class AdminDetailPageController implements Initializable {
             alert.showAndWait();
             return;
         } else {
+            // Check if the customer has returned all items
+            for (Order order : orderList) {
+                if (order.getOwner().getId().equals(addAccountID.getText())) {
+                    HashMap<Item, OrderDetails> orderDetails = order.getOrder();
+                    for (Item item : orderDetails.keySet()) {
+                        if (orderDetails.get(item).isReturned() == false) {
+                            alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("Warning Message");
+                            alert.setHeaderText(null);
+                            alert.setContentText("This customer hasn't returned enough rentals. Do you still want to delete?");
+                            alert.showAndWait();
+                            Optional<ButtonType> option = alert.showAndWait();
+
+                            if (option.get() == ButtonType.OK) {
+                                System.out.println("choose OK");
+                                removeAccount(addAccountID.getText());
+
+                                // Add to front-end view
+                                addAccountShowListData();
+                                addAccountTableView.refresh();
+                                addAccountClear();
+
+                                // Successful alert
+                                alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Information Message");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Item successfully deleted");
+                                alert.showAndWait();
+                                return;
+                            } else {
+                                System.out.println("choose CANCEL");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+
             alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Message");
             alert.setHeaderText(null);
@@ -1113,9 +1156,11 @@ public class AdminDetailPageController implements Initializable {
         Optional<ButtonType> option = alert.showAndWait();
         try {
             if (option.get().equals(ButtonType.OK)) {
+                currentUser = null;
+
                 logout.getScene().getWindow().hide();
 
-                Parent root = FXMLLoader.load(getClass().getResource("/com/no1/geniestore/homepage-view.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/com/no1/geniestore/loginpage-view.fxml"));
 
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -1250,10 +1295,8 @@ public class AdminDetailPageController implements Initializable {
 
     public void close() throws ParserConfigurationException, IOException, TransformerException {
         // Save items info to file before closing the application
-        new ItemListParser().saveItemFile();
-        new AccountListParser().accountsToXML();
-        writeTextFile();
-//         close the app
+        saveData();
+        // close the app
         System.exit(0);
     }
 
