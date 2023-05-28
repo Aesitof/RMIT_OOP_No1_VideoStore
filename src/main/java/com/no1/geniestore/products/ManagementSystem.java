@@ -222,6 +222,25 @@ public class ManagementSystem {
         }
     }
 
+    public static String customerChangePassword(String oldPassword, String newPassword, String repeatPassword) {
+        if (oldPassword.equals(currentUser.getPassword())) {
+            if (newPassword.equals(repeatPassword)) {
+                for (Account account : accountList) {
+                    if (account.getId().equals(currentUser.getId())) {
+                        account.setPassword(newPassword);
+                        currentUser.setPassword(newPassword);
+                        return "success";
+                    }
+                }
+                return "fail";
+            } else {
+                return "not match";
+            }
+        } else {
+            return "incorrect";
+        }
+    }
+
     public static void promote(Account account) { // Auto promote whenever return item
         if (account.getTotalReturnedItems() > 9) {
 //            account.setRewardPoints(account.getRewardPoints() + 10 * (account.getRewardPoints() - 9));

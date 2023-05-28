@@ -6,7 +6,7 @@
         <accountType>Guest</accountType>
         <address>2885 White Oak Drive</address>
         <phone>8166235844</phone>
-        <password>Deipei</password>
+        <password>Deipei2</password>
         <totalReturnedItems>0</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>
@@ -39,7 +39,7 @@
         <accountType>VIP</accountType>
         <address>67 Asfordby Rd</address>
         <phone>0794498419</phone>
-        <password>aFoto</password>
+        <password>bFoto</password>
         <totalReturnedItems>8</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>

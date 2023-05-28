@@ -131,7 +131,7 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="homeView" prefHeight="612.0" prefWidth="1101.0" stylesheets="@style/homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="homeView" prefHeight="612.0" prefWidth="1101.0" stylesheets="@style/homepage.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="612.0" prefWidth="1100.0" vbarPolicy="ALWAYS">
                            <content>
@@ -357,7 +357,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="accountDetailView" prefHeight="612.0" prefWidth="1102.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="accountDetailView" prefHeight="612.0" prefWidth="1102.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="24.0" layoutY="60.0" prefHeight="102.0" prefWidth="207.0" styleClass="switch-account-view-pane" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="60.0">
                            <children>
@@ -373,7 +373,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="accountSettingsView" layoutX="246.0" layoutY="60.0" prefHeight="551.0" prefWidth="855.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" visible="false" AnchorPane.topAnchor="60.0">
+                        <AnchorPane fx:id="accountSettingsView" layoutX="246.0" layoutY="60.0" prefHeight="551.0" prefWidth="855.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" AnchorPane.topAnchor="60.0">
                            <children>
                               <Label layoutX="11.0" layoutY="-1.0" text="Account details" AnchorPane.leftAnchor="15.0">
                                  <font>
@@ -523,7 +523,7 @@
                               </Text>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="myOrdersView" layoutX="214.0" layoutY="18.0" prefHeight="551.0" prefWidth="855.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <AnchorPane fx:id="myOrdersView" layoutX="214.0" layoutY="18.0" prefHeight="551.0" prefWidth="855.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
                               <Label layoutX="11.0" layoutY="-1.0" text="My rental orders" AnchorPane.leftAnchor="15.0">
                                  <font>
