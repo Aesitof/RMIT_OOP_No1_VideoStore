@@ -48,8 +48,8 @@
 ```
 3. VIP:
 ```
-        Username: earlyPainting
-        Password: di0nly
+        Username: hello123
+        Password: thisismypw
 ```
 
 For customer accounts: Find [here](https://github.com/AnhNhat03/RMIT_OOP_No1_VideoStore/tree/main/xml/accounts.xml)
