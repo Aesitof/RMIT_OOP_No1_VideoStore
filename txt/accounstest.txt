@@ -1,0 +1,37 @@
+The following accounts can be used to test the Add functions of the admin-view, or Register function
+Use the "Password" for register new account. The default password is "guest123" if it is added by the Admin account
+
+Account 1:
+- Name: Cameron Annfish
+- Address: 43 High Street, TX
+- Phone: 0923111787
+- Username: mscam43
+- Password: cameronaccount
+
+Account 2:
+- Name: Tony Hoang
+- Address: 190B Federal, Florida
+- Phone: 898999437
+- Username: hoangtouliver
+- Password: hoangaccount
+
+Account 3:
+- Name: Slerin John
+- Address: 8790 Prohaska Canyon
+- Phone: 8945888343
+- Username: john879
+- Password: higuys
+
+Account 4:
+- Name: Nevada Nader
+- Address: 1690 Crooks Mews Apt. 519, West Virginia
+- Phone: 7874324556
+- Username: nevalove
+- Password: bookworms
+
+Account 5:
+- Name: Myles Lesch
+- Address: 5727 Cassandra Isle, Louisiana
+- Phone: 7866768951
+- Username: beachlover
+- Password: gamer

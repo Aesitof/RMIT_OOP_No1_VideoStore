@@ -1,0 +1,50 @@
+The following items can be used to test the Add functions of the admin-view
+Our application can only import images from "/images" directory of the project
+
+Item 1:
+- Title: Tom and Jerry
+- Published year: 1940
+- Type: DVD
+- Genre: Comedy
+- Loan Type: 7 days
+- Rental Fee: $5.99
+- Copies: 4
+- Image: tomandjerry.jpg
+
+Item 2:
+- Title: Shanghai Bund
+- Published year: 2007
+- Type: DVD
+- Genre: Action
+- Loan Type: 2 days
+- Rental Fee: $7.99
+- Copies: 2
+- Image: shanghaibund.jpg
+
+Item 3:
+- Title: Super Mario Odyssey
+- Published year: 2017
+- Type: Game
+- Loan Type: 7 days
+- Rental Fee: $3.99
+- Copies: 4
+- Image: supermario.jpg
+
+Item 4:
+- Title: Ms. Pac-Man Maze Madness
+- Published year: 2000
+- Type: Game
+- Loan Type: 7 days
+- Rental Fee: $7.99
+- Copies: 8
+- Image: pacman.jpg
+
+Item 5:
+- Title: Home Alone
+- Published year: 1990
+- Type: Video Record
+- Genre: Comedy
+- Loan Type: 7 days
+- Rental Fee: $3.59
+- Copies: 6
+- Image: homealone.jpg
