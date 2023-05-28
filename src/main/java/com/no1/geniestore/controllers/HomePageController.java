@@ -100,6 +100,20 @@ public class HomePageController implements Initializable {
 
     private Alert alert;
 
+    /* My Account View attributes */
+    @FXML
+    private AnchorPane vipBox;
+    @FXML
+    private Label vipRewardPoints;
+    @FXML
+    private AnchorPane regularBox;
+    @FXML
+    private Label regularReturnedItems;
+    @FXML
+    private AnchorPane guestBox;
+    @FXML
+    private Label guestReturnedItems;
+
     private double x;
     private double y;
 
@@ -301,6 +315,27 @@ public class HomePageController implements Initializable {
 
         accountSettingsBtn.setStyle("-fx-background-color:#a8ed8a;-fx-text-fill:#1e4622");
         myOrdersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+
+        // Initialization
+        if (currentUser.getAccountType().equals("Guest")) {
+            guestBox.setVisible(true);
+            guestReturnedItems.setText(String.valueOf(currentUser.getTotalReturnedItems()));
+
+            regularBox.setVisible(false);
+            vipBox.setVisible(false);
+        } else if (currentUser.getAccountType().equals("Regular")) {
+            regularBox.setVisible(true);
+            regularReturnedItems.setText(String.valueOf(currentUser.getTotalReturnedItems()));
+
+            guestBox.setVisible(false);
+            vipBox.setVisible(false);
+        } else if (currentUser.getAccountType().equals("VIP")) {
+            vipBox.setVisible(true);
+            vipRewardPoints.setText(String.valueOf(currentUser.getRewardPoints()));
+
+            guestBox.setVisible(false);
+            regularBox.setVisible(false);
+        }
     }
 
     public void toMyOrdersView() {

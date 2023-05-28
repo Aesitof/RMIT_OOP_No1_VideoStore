@@ -301,7 +301,7 @@
                         </ScrollPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="cartView" prefHeight="612.0" prefWidth="1102.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="cartView" prefHeight="612.0" prefWidth="1102.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="844.0" layoutY="49.0" prefHeight="351.0" prefWidth="299.0" stylesheets="@style/homepage.css" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <children>
@@ -368,7 +368,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="accountDetailView" prefHeight="612.0" prefWidth="1102.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="accountDetailView" prefHeight="612.0" prefWidth="1102.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="24.0" layoutY="60.0" prefHeight="102.0" prefWidth="207.0" styleClass="switch-account-view-pane" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="60.0">
                            <children>
@@ -384,7 +384,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="accountSettingsView" layoutX="246.0" layoutY="60.0" prefHeight="551.0" prefWidth="855.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" visible="false" AnchorPane.topAnchor="60.0">
+                        <AnchorPane fx:id="accountSettingsView" layoutX="246.0" layoutY="60.0" prefHeight="551.0" prefWidth="855.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" AnchorPane.topAnchor="60.0">
                            <children>
                               <Label layoutX="11.0" layoutY="-1.0" text="Account details" AnchorPane.leftAnchor="15.0">
                                  <font>
@@ -459,7 +459,7 @@
                                           <Font name="Candara" size="17.0" />
                                        </font>
                                     </Text>
-                                    <Label layoutX="137.0" layoutY="77.0" text="80" textFill="#b51010" AnchorPane.bottomAnchor="38.3">
+                                    <Label fx:id="vipRewardPoints" layoutX="137.0" layoutY="77.0" text="80" textFill="#b51010" AnchorPane.bottomAnchor="38.3">
                                        <font>
                                           <Font name="Candara Bold" size="18.0" />
                                        </font>
@@ -487,14 +487,14 @@
                                           <Font name="Candara" size="17.0" />
                                        </font>
                                     </Text>
-                                    <Label layoutX="226.0" layoutY="74.7" text="4" textFill="#b51010" AnchorPane.bottomAnchor="38.3">
+                                    <Label fx:id="regularReturnedItems" layoutX="226.0" layoutY="74.7" text="4" textFill="#b51010" AnchorPane.bottomAnchor="38.3">
                                        <font>
                                           <Font name="Candara Bold" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="regularBox1" layoutX="408.0" layoutY="-43.0" prefHeight="135.0" prefWidth="296.0" stylesheets="@style/homepage.css" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="guestBox" layoutX="408.0" layoutY="-43.0" prefHeight="135.0" prefWidth="296.0" stylesheets="@style/homepage.css" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="0.0">
                                  <styleClass>
                                     <String fx:value="order-summary-pane" />
                                     <String fx:value="home-shadow" />
@@ -515,7 +515,7 @@
                                           <Font name="Candara" size="17.0" />
                                        </font>
                                     </Text>
-                                    <Label layoutX="226.0" layoutY="74.7" text="3" textFill="#b51010" AnchorPane.bottomAnchor="38.3">
+                                    <Label fx:id="guestReturnedItems" layoutX="226.0" layoutY="74.7" text="3" textFill="#b51010" AnchorPane.bottomAnchor="38.3">
                                        <font>
                                           <Font name="Candara Bold" size="18.0" />
                                        </font>
@@ -524,7 +524,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="myOrdersView" layoutX="214.0" layoutY="18.0" prefHeight="551.0" prefWidth="855.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <AnchorPane fx:id="myOrdersView" layoutX="214.0" layoutY="18.0" prefHeight="551.0" prefWidth="855.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
                               <Label layoutX="11.0" layoutY="-1.0" text="My rental orders" AnchorPane.leftAnchor="15.0">
                                  <font>
