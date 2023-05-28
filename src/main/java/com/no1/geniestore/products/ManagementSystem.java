@@ -261,13 +261,14 @@ public class ManagementSystem {
     }
 
 //    ORDER METHODS
-    public static void returnItem(String orderID, String itemID) {
+    public static double returnItem(String orderID, String itemID) {
+        double latePenaltyFee = 0;
 //        for (Order order : orderList) {
 //            System.out.println(order);
 //        }
         for (Order order : orderList) {
             if (order.getOrderID().equals(orderID)) {
-                order.returnItemInOrder(orderID, itemID);
+                latePenaltyFee = order.returnItemInOrder(orderID, itemID);
 //                for (Item item : stockList.keySet()) {
 //                    if (item.getId().equals(itemID)) {
 //                        stockList.put(item, itemList.get(item) + order.getOrder().get(item).getAmount());
@@ -281,6 +282,8 @@ public class ManagementSystem {
                 break;
             }
         }
+
+        return latePenaltyFee;
 //        returnItem(order, item);
 //        itemList.put(item, itemList.get(item) + order.get(item).getAmount());
 //        promote(order.g);

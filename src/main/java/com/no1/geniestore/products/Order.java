@@ -130,7 +130,8 @@ public class Order {
         order.remove(item);
     }
 
-    public void returnItemInOrder(String orderID, String itemID) {
+    public double returnItemInOrder(String orderID, String itemID) {
+        double lateReturnFee = 0;
         for (Order order : orderList) {
             if (order.getOrderID().equals(orderID)) {
                 for (Item item : order.getOrder().keySet()) {
@@ -142,7 +143,7 @@ public class Order {
 
                                 // calculate penalty fee
                                 Calendar calendar = Calendar.getInstance();
-                                double lateReturnFee = order.getTotal() * 3.0 / 10 * (calendar.getTime().compareTo(order.getOrder().get(item).getReturnDate()));
+                                lateReturnFee = order.getTotal() * 3.0 / 10 * (calendar.getTime().compareTo(order.getOrder().get(item).getReturnDate()));
                                 order.setTotal(order.getTotal() + lateReturnFee);
                                 break;
                             }
@@ -155,6 +156,7 @@ public class Order {
                 break;
             }
         }
+        return lateReturnFee;
     }
 
     public static void useRewardPoints(Account account) {
