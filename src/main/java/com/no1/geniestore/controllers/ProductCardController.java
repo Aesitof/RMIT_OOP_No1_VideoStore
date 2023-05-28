@@ -1,5 +1,6 @@
 package com.no1.geniestore.controllers;
 
+import com.no1.geniestore.constants.LoanType;
 import com.no1.geniestore.products.Item;
 import com.no1.geniestore.products.ManagementSystem;
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -24,6 +26,7 @@ import java.util.ResourceBundle;
 
 import com.no1.geniestore.controllers.HomePageController;
 
+import static com.no1.geniestore.products.ManagementSystem.currentUser;
 import static com.no1.geniestore.products.Stock.stockList;
 
 public class ProductCardController implements Initializable {
@@ -74,6 +77,8 @@ public class ProductCardController implements Initializable {
 
     private Image image;
 
+    private Alert alert;
+
     private Item item;
     private int remainingCopies;
 
@@ -109,6 +114,17 @@ public class ProductCardController implements Initializable {
     }
 
     public void addToCart() throws IOException, NullPointerException {
+        // Guest cannot by 2 day items
+        if (item.getLoanType().equals(LoanType.TWO_DAY_LOAN) && currentUser.getAccountType().equals("Guest")) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Your account level is not eligible to borrow 2-day items");
+            alert.showAndWait();
+            return;
+        }
+
+
         CartData cartData = new CartData(item, remainingCopies);
 
         for (CartData c : productCartDataList) {
