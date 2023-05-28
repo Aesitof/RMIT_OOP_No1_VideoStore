@@ -6,7 +6,7 @@
         <accountType>Guest</accountType>
         <address>2885 White Oak Drive</address>
         <phone>8166235844</phone>
-        <password>Deipei2</password>
+        <password>Deipei</password>
         <totalReturnedItems>0</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>
@@ -36,10 +36,10 @@
         <id>C004</id>
         <username>Thicautmout38</username>
         <name>Patrick J. Harlow</name>
-        <accountType>VIP</accountType>
+        <accountType>Regular</accountType>
         <address>67 Asfordby Rd</address>
         <phone>0794498419</phone>
-        <password>bFoto</password>
+        <password>aFoto</password>
         <totalReturnedItems>8</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>
@@ -63,7 +63,7 @@
         <phone>0923232278</phone>
         <password>thisismypw</password>
         <totalReturnedItems>9</totalReturnedItems>
-        <rewardPoints>10</rewardPoints>
+        <rewardPoints>210</rewardPoints>
     </account>
     <account>
         <id>C007</id>

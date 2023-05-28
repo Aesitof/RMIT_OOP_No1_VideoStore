@@ -4,8 +4,9 @@ package com.no1.geniestore.products;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
+import static com.no1.geniestore.products.Stock.itemIdCounter;
 
-public class Item extends Stock {
+public class Item {
     private String id;
     private String title;
     private int year;
@@ -122,7 +123,7 @@ public class Item extends Stock {
 
 //    Auto Generator for itemID
     public String generateItemID() {
-        int code = Integer.parseInt(getTotalNumItem()) + 1;
+        int code = itemIdCounter++;
         String itemID = "I";
 
         // itemID format: IXXX-YYYY

@@ -1,26 +1,23 @@
 package com.no1.geniestore.products;
 
 import com.no1.geniestore.constants.Genre;
-import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
 import com.no1.geniestore.controllers.AccountListParser;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.controllers.OrderListParser;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import org.xml.sax.SAXException;
-import com.no1.geniestore.products.Order;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.*;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import static com.no1.geniestore.accounts.Account.*;
+import static com.no1.geniestore.accounts.Account.accountIdCounter;
 import static com.no1.geniestore.products.Stock.*;
-import static com.no1.geniestore.products.Order.*;
+import static com.no1.geniestore.products.Order.orderIdCounter;
 public class ManagementSystem {
     public static ArrayList<Account> accountList;
     public static ArrayList<Order> orderList;
@@ -36,26 +33,18 @@ public class ManagementSystem {
     }
 
     public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException, TransformerException {
-
         readTextFile();
         ItemListParser itemListParser = new ItemListParser();
         itemList = itemListParser.parseItemTotal("xml/items.xml");
         stockList = itemListParser.parseStockList("xml/items.xml");
+        accountList = (ArrayList<Account>) new AccountListParser().parse("xml/accounts.xml");
+        orderList = (ArrayList<Order>) new OrderListParser().parse("xml/orders.xml");
 
-//        System.out.println("Hello");
-//        for (Item item : stockList.keySet()) {
-//            System.out.println(item + "remaining: " + stockList.get(item));
-//        }
-        accountList = (ArrayList<Account>) new AccountListParser().parse("xml/accounts.xml"); // get successfully
-        orderList = (ArrayList<Order>) new OrderListParser().parse("xml/orders.xml"); // get successfully
-
+//        TEXT-BASED TESTING
 //        for (Order order : orderList) {
 //            System.out.println(order);
 //        }
 
-//        Item item = new Item("I004-2019", "Parasite", 2019, ItemType.VIDEO_RECORD, Genre.DRAMA, LoanType.TWO_DAY_LOAN, 12.99, "parasite.jpg");
-//        returnItem("1", "I004-2019");
-//
 //        Account account = new Account();
 //        account.setRewardPoints(200);
 //        addAccount(account);
@@ -70,7 +59,7 @@ public class ManagementSystem {
 //        order.addItemForRent("I004-2019", new Date(2023, 1, 1), 2, true, 2);
 //
 //        for (Order e : orderList) {
-//            System.out.println(e);
+//            System.out.println(e.returnItemInOrder("I004-2019"));
 //        }
 //          ItemListParser.saveItemFile();
 //        for (Order order : orderList) {
@@ -98,10 +87,6 @@ public class ManagementSystem {
         itemIdCounter = Integer.parseInt(reader.readLine());
         accountIdCounter = Integer.parseInt(reader.readLine());
         orderIdCounter = Integer.parseInt(reader.readLine());
-
-        // Print the Integer
-//        System.out.println(accountIdCounter);
-
     }
 
     public static void writeTextFile() throws IOException {
@@ -122,7 +107,6 @@ public class ManagementSystem {
             int countStock = stockList.get(item) + stock;
             stockList.put(item, countStock);
         } else { // if the item is completely brand new
-            itemStock.add(item); // add new item in itemStock
             itemList.put(item, stock); // add new item and its stock to total item copies
             stockList.put(item, stock); // add stock to current stock available in store
         }
@@ -133,14 +117,6 @@ public class ManagementSystem {
     }
 
     public static void removeItemInItemList(Item item) {
-//        Iterator<Item> itemIterator = itemList.keySet().iterator();
-//        while (itemIterator.hasNext()) {
-//            Item key = itemIterator.next();
-//            System.out.println("Map Value:" + itemList.get(key));
-//            if (key.getId().equals(itemId)) {
-//                itemList.remove(key);
-//            }
-//        }
         itemList.remove(item); // Remove item including its stock
     }
 
@@ -149,17 +125,6 @@ public class ManagementSystem {
     }
 
     public static void updateItem(String itemId, String title, LoanType loanType, double rentalFee, Genre genre, int totalCopies, int remainingCopies) {
-//        for (Item i : itemStock) {
-//            if (i.getId().equals(itemId)) {
-//                i.setTitle(title);
-//                i.setLoanType(loanType);
-//                i.setRentalFee(rentalFee);
-//                i.setGenre(genre);
-//                itemList.put(i, totalCopies);
-//                stockList.put(i, remainingCopies);
-//            }
-//        }
-
         for (Item item : itemList.keySet()) {
             if (item.getId().equals(itemId)) {
                 item.setTitle(title);
@@ -197,10 +162,6 @@ public class ManagementSystem {
             }
 
         }
-
-        // set username and password then add it to the account list
-//            account.setUsername(account.getUsername());
-//            account.setPassword(account.getPassword());
         addAccount(account);
         return true;
     }
@@ -243,11 +204,11 @@ public class ManagementSystem {
 
     public static void promote(Account account) { // Auto promote whenever return item
         if (account.getTotalReturnedItems() > 9) {
-//            account.setRewardPoints(account.getRewardPoints() + 10 * (account.getRewardPoints() - 9));
             account.setRewardPoints((account.getTotalReturnedItems() - 9) * 10);
-        } else if (account.getTotalReturnedItems() == 9) {
+        }
+        if (account.getTotalReturnedItems() >= 9) {
             account.setAccountType("VIP");
-        } else if (account.getTotalReturnedItems() == 4) {
+        } else if (account.getTotalReturnedItems() >= 4) {
             account.setAccountType("Regular");
         }
     }
@@ -269,71 +230,20 @@ public class ManagementSystem {
         return "notExist";
     }
 
-//        DISPLAY USERS
-    public void displayUsers() {
-        StringBuilder str;
-        str = new StringBuilder();
-        for (Account user : accountList) {
-            str.append(user.toString());
-            str.append(" ");
-        }
-    }
-
 //    ORDER METHODS
-    public static double returnItem(String orderID, String itemID) {
+    public static double returnItem(String orderID, String itemID) { // return the penalty fee
         double latePenaltyFee = 0;
-//        for (Order order : orderList) {
-//            System.out.println(order);
-//        }
         for (Order order : orderList) {
             if (order.getOrderID().equals(orderID)) {
                 latePenaltyFee = order.returnItemInOrder(orderID, itemID);
-//                for (Item item : stockList.keySet()) {
-//                    if (item.getId().equals(itemID)) {
-//                        stockList.put(item, itemList.get(item) + order.getOrder().get(item).getAmount());
-//                        break;
-//                    }
-//                }
-//                itemList.put(item, itemList.get(item) + order.getOrder().get(item).getAmount()); // return back to the stock
-//                promote(order.getOwner(), order.getOrder().get(item).getAmount());
-//                double lateReturnFee = order.getTotal() * 3.0 / 10 * (LocalDate.now() - order.getOrder().get(item).getReturnDate());
-//                order.setTotal(order.getTotal() + lateReturnFee);
-                break;
+                break; // break the loop after successfully return
             }
         }
 
         return latePenaltyFee;
-//        returnItem(order, item);
-//        itemList.put(item, itemList.get(item) + order.get(item).getAmount());
-//        promote(order.g);
-
     }
 
     public void makeOrder(Account account) {
         Order order = new Order(account); // make a list contain orderDetails
     }
-
-    // DISPLAY ALL ITEMS IN THE STORE HAS
-    public void displayAllItems() {
-        StringBuilder str;
-        str = new StringBuilder();
-        for (Item item : itemStock) {
-            str.append(item.toString());
-            str.append(" ");
-        }
-    }
-
-    // DISPLAY OUT OF STOCK ITEMS
-    public void displayOutOfStock() {
-        StringBuilder str;
-        str = new StringBuilder();
-        for (Item item : itemStock) {
-            if (stockList.get(item) == 0) {
-                str.append(item.toString());
-                str.append(" ");
-            }
-        }
-    }
-
-
 }

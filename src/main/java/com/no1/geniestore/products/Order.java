@@ -3,16 +3,9 @@ package com.no1.geniestore.products;
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.constants.LoanType;
 
-import static com.no1.geniestore.products.ManagementSystem.itemList;
-import static com.no1.geniestore.products.ManagementSystem.orderList;
-import static com.no1.geniestore.products.Stock.itemStock;
+import static com.no1.geniestore.products.ManagementSystem.*;
 import static com.no1.geniestore.products.Stock.stockList;
 
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -143,20 +136,30 @@ public class Order {
 
                                 // calculate penalty fee
                                 Calendar calendar = Calendar.getInstance();
-                                lateReturnFee = order.getTotal() * 3.0 / 10 * (calendar.getTime().compareTo(order.getOrder().get(item).getReturnDate()));
+                                int dayLate = (int) ((calendar.getTimeInMillis() - order.getOrder().get(item).getReturnDate().getTime()) / 1000 / 60 / 60 / 24);
+                                lateReturnFee = order.getOrder().get(item).getAmount() * item.getRentalFee() * 3.0 / 10 * dayLate;
                                 order.setTotal(order.getTotal() + lateReturnFee);
                                 break;
                             }
                         }
                     }
-                    order.getOwner().setTotalReturnedItems(order.getOwner().getTotalReturnedItems() + order.getOrder().get(item).getAmount());
+                    // update owner's total returned items
+                    for (Account account : accountList) {
+                        if (order.getOwner().getId().equals(account.getId())) {
+                            account.setTotalReturnedItems(account.getTotalReturnedItems() + order.getOrder().get(item).getAmount());
+                            promote(account);
+                        }
+                    }
+                    for (Account account : accountList) {
+                        System.out.println(account);
+                    }
                     order.getOrder().get(item).setReturned(true); // status: pending -> finished
                     break;
                 }
                 break;
             }
         }
-        return lateReturnFee;
+        return lateReturnFee; // use for show penalty fee dialog
     }
 
     public static void useRewardPoints(Account account) {
