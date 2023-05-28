@@ -1,5 +1,6 @@
 /* Acknowledgement
 - Name regex: https://stackoverflow.com/questions/15805555/java-regex-to-validate-full-name-allow-only-spaces-and-letters;
+- Communication between controllers: https://www.youtube.com/watch?v=wxhGKR3PQpo
 * */
 
 package com.no1.geniestore.controllers;

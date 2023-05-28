@@ -1,3 +1,8 @@
+/* Acknowledgment:
+- OOP - INTE2512 - week 10 Files and Streams
+- write to XML: https://mkyong.com/java/how-to-create-xml-file-in-java-dom/
+* */
+
 package com.no1.geniestore.controllers;
 
 import com.no1.geniestore.Parser;

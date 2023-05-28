@@ -1,3 +1,7 @@
+/* Acknowledgement
+- Communication between controllers: https://www.youtube.com/watch?v=wxhGKR3PQpo
+* */
+
 package com.no1.geniestore.controllers;
 
 import javafx.beans.value.ChangeListener;
