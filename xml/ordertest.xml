@@ -9,7 +9,7 @@
             <address>67 Asfordby Rd</address>
             <phone>079 4498 4190</phone>
             <password>aFoto</password>
-            <totalReturnedItems>2</totalReturnedItems>
+            <totalReturnedItems>0</totalReturnedItems>
             <rewardPoints>0</rewardPoints>
         </owner>
         <itemList>
@@ -28,7 +28,7 @@
                     <returnDate>13-01-2023</returnDate>
                     <loanDate>06-01-2023</loanDate>
                     <amount>2</amount>
-                    <isReturned>true</isReturned>
+                    <isReturned>false</isReturned>
                     <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
@@ -42,7 +42,7 @@
             <id>C002</id>
             <username>earlyPainting</username>
             <name>Earl M. Painter</name>
-            <accountType>Vip</accountType>
+            <accountType>VIP</accountType>
             <address>6 Ton-bridge Rd</address>
             <phone>079 6159 9152</phone>
             <password>di0nly</password>
@@ -50,24 +50,6 @@
             <rewardPoints>70</rewardPoints>
         </owner>
         <itemList>
-            <singleItem>
-                <item>
-                    <id>I002-2013</id>
-                    <title>PUBG</title>
-                    <year>2013</year>
-                    <itemType>Game</itemType>
-                    <loanType>7 days</loanType>
-                    <rentalFee>50.99</rentalFee>
-                    <image>pubg.jpg</image>
-                </item>
-                <orderDetail>
-                    <returnDate>30-12-2022</returnDate>
-                    <loanDate>23-12-2022</loanDate>
-                    <amount>2</amount>
-                    <isReturned>true</isReturned>
-                    <discount>0.0</discount>
-                </orderDetail>
-            </singleItem>
             <singleItem>
                 <item>
                     <id>I001-2001</id>
@@ -84,6 +66,24 @@
                     <loanDate>01-04-2023</loanDate>
                     <amount>4</amount>
                     <isReturned>true</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+            <singleItem>
+                <item>
+                    <id>I002-2013</id>
+                    <title>PUBG</title>
+                    <year>2013</year>
+                    <itemType>Game</itemType>
+                    <loanType>7 days</loanType>
+                    <rentalFee>50.99</rentalFee>
+                    <image>pubg.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>30-12-2022</returnDate>
+                    <loanDate>23-12-2022</loanDate>
+                    <amount>2</amount>
+                    <isReturned>false</isReturned>
                     <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
@@ -153,7 +153,7 @@
             <id>C004</id>
             <username>Thicautmout38</username>
             <name>Patrick J. Harlow</name>
-            <accountType>Vip</accountType>
+            <accountType>VIP</accountType>
             <address>67 Asfordby Rd</address>
             <phone>079 4498 4190</phone>
             <password>aFoto</password>
@@ -301,7 +301,7 @@
             <id>C002</id>
             <username>earlyPainting</username>
             <name>Earl M. Painter</name>
-            <accountType>Vip</accountType>
+            <accountType>VIP</accountType>
             <address>6 Ton-bridge Rd</address>
             <phone>079 6159 9152</phone>
             <password>di0nly</password>
@@ -338,7 +338,7 @@
             <id>C002</id>
             <username>earlyPainting</username>
             <name>Earl M. Painter</name>
-            <accountType>Vip</accountType>
+            <accountType>VIP</accountType>
             <address>6 Ton-bridge Rd</address>
             <phone>079 6159 9152</phone>
             <password>di0nly</password>
@@ -367,6 +367,42 @@
             </singleItem>
         </itemList>
         <total>0.0</total>
+        <totalDiscount>0.0</totalDiscount>
+    </order>
+    <order>
+        <orderID>10</orderID>
+        <owner>
+            <id>C001</id>
+            <username>Hings1949</username>
+            <name>Tyler T. Appell</name>
+            <accountType>Guest</accountType>
+            <address>2885 White Oak Drive</address>
+            <phone>8166235844</phone>
+            <password>Deipei</password>
+            <totalReturnedItems>0</totalReturnedItems>
+            <rewardPoints>0</rewardPoints>
+        </owner>
+        <itemList>
+            <singleItem>
+                <item>
+                    <id>I002-2013</id>
+                    <title>PUBG</title>
+                    <year>2013</year>
+                    <itemType>Game</itemType>
+                    <loanType>7 days</loanType>
+                    <rentalFee>50.99</rentalFee>
+                    <image>pubg.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>04-06-2023</returnDate>
+                    <loanDate>28-05-2023</loanDate>
+                    <amount>1</amount>
+                    <isReturned>false</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+        </itemList>
+        <total>50.99</total>
         <totalDiscount>0.0</totalDiscount>
     </order>
 </orders>

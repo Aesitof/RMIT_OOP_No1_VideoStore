@@ -102,6 +102,8 @@ public class CartData {
                 ", qty=" + qty +
                 ", returnDate=" + returnDate +
                 ", itemFee=" + itemFee +
+                ", freeItem=" + freeItem +
+                ", freeItemQty=" + freeItemQty +
                 '}';
     }
 }

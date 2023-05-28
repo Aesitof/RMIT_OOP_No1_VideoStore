@@ -22,6 +22,10 @@ public class Order {
     private double totalDiscount = 0;
 
 //    Constructor
+    public Order() {
+        this.orderID = generateOrderID();
+        this.owner = null;
+    }
     public Order(Account owner) {
         this.orderID = generateOrderID();
         this.owner = owner;
@@ -34,6 +38,7 @@ public class Order {
         this.total = total;
         this.totalDiscount = totalDiscount;
     }
+
 
 
     public String getOrderID() {
@@ -71,6 +76,7 @@ public class Order {
     public HashMap<Item, OrderDetails> getOrder() {
         return order;
     }
+
 
     public void addItemForRent(String itemID, Date loanDate, int amount, boolean isDiscountApplied, int discountApplied) {
         for (Order order : orderList) {

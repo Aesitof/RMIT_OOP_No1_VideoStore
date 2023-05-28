@@ -26,6 +26,7 @@ public class ManagementSystem {
     public static ArrayList<Order> orderList;
     public static HashMap<Item, Integer> itemList; // Total item copies
     public static Account currentUser;
+    public static int currentUserRewardPoints;
 
     public ManagementSystem() {
         accountList = new ArrayList<>();
@@ -64,7 +65,7 @@ public class ManagementSystem {
 //        }
 
 //        Item item = new Item("I004-2019", "Parasite", 2019, ItemType.VIDEO_RECORD, Genre.DRAMA, LoanType.TWO_DAY_LOAN, 12.99, "parasite.jpg");
-//        Order order = new Order(account);
+//        Order order = new Order(new Account());
 //        orderList.add(order);
 //        order.addItemForRent("I004-2019", new Date(2023, 1, 1), 2, true, 2);
 //
@@ -83,6 +84,10 @@ public class ManagementSystem {
         // Save items info to file before closing the application
         ItemListParser.saveItemFile();
         AccountListParser.accountsToXML();
+
+        for (Order order : orderList) {
+            System.out.println(order);
+        }
         OrderListParser.saveOrderFile();
         writeTextFile();
     }
@@ -235,6 +240,7 @@ public class ManagementSystem {
             if (accountList.get(i).getUsername().equals(username)) {
                 if (accountList.get(i).getPassword().equals(password)) {
                     currentUser = accountList.get(i);
+                    currentUserRewardPoints = currentUser.getRewardPoints();
                     return "loginSuccess";
                 } else
                     return "wrongPassword";

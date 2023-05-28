@@ -10,9 +10,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -364,21 +361,6 @@
                               </AnchorPane>
                           </content>
                         </ScrollPane>
-                        <Button layoutX="220.0" layoutY="24.0" mnemonicParsing="false" onAction="#onUsePointBtnAction" prefHeight="40.0" prefWidth="274.0" styleClass="use-point-btn" stylesheets="@style/homepage.css" text="Use 100 points for 1 free item">
-                           <effect>
-                              <Lighting diffuseConstant="1.45" specularConstant="0.83" specularExponent="26.17" surfaceScale="2.13">
-                                 <bumpInput>
-                                    <Shadow />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant />
-                                 </light>
-                              </Lighting>
-                           </effect>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
                         <Label layoutX="41.0" layoutY="26.0" text="Rent cart">
                            <font>
                               <Font name="Candara Bold" size="30.0" />

@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<orders>
-    <!--ID-Owner-Amount-->
-    <!--1-4-3-->
+<?xml version="1.0" encoding="UTF-8"?><orders>
     <order>
         <orderID>1</orderID>
         <owner>
@@ -28,20 +25,17 @@
                     <image>parasite.jpg</image>
                 </item>
                 <orderDetail>
-                    <!--C004-->
                     <returnDate>13-01-2023</returnDate>
                     <loanDate>06-01-2023</loanDate>
                     <amount>2</amount>
                     <isReturned>false</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
         </itemList>
         <total>38.97</total>
-        <totalDiscount>0</totalDiscount>
+        <totalDiscount>0.0</totalDiscount>
     </order>
-
-    <!--2-2-2+4-->
     <order>
         <orderID>2</orderID>
         <owner>
@@ -71,7 +65,7 @@
                     <loanDate>23-12-2022</loanDate>
                     <amount>2</amount>
                     <isReturned>false</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
             <singleItem>
@@ -86,20 +80,17 @@
                     <image>lastchristmas.jpg</image>
                 </item>
                 <orderDetail>
-                    <!--C002-->
                     <returnDate>08-04-2023</returnDate>
                     <loanDate>01-04-2023</loanDate>
                     <amount>4</amount>
                     <isReturned>true</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
         </itemList>
         <total>197.94</total>
-        <totalDiscount>0</totalDiscount>
+        <totalDiscount>0.0</totalDiscount>
     </order>
-
-    <!--3-4-4-->
     <order>
         <orderID>3</orderID>
         <owner>
@@ -126,12 +117,11 @@
                     <image>lastchristmas.jpg</image>
                 </item>
                 <orderDetail>
-                    <!--C004-->
                     <returnDate>19-04-2023</returnDate>
                     <loanDate>12-04-2023</loanDate>
                     <amount>2</amount>
                     <isReturned>true</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
             <singleItem>
@@ -146,20 +136,17 @@
                     <image>speaknow.jpg</image>
                 </item>
                 <orderDetail>
-                    <!--C004-->
                     <returnDate>27-09-2022</returnDate>
                     <loanDate>20-09-2022</loanDate>
                     <amount>2</amount>
                     <isReturned>true</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
         </itemList>
         <total>73.96</total>
-        <totalDiscount>0</totalDiscount>
+        <totalDiscount>0.0</totalDiscount>
     </order>
-
-    <!--4-4-1-->
     <order>
         <orderID>4</orderID>
         <owner>
@@ -190,15 +177,13 @@
                     <loanDate>01-07-2023</loanDate>
                     <amount>1</amount>
                     <isReturned>true</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
         </itemList>
         <total>12.59</total>
-        <totalDiscount>0</totalDiscount>
+        <totalDiscount>0.0</totalDiscount>
     </order>
-
-    <!--5-2-5-->
     <order>
         <orderID>5</orderID>
         <owner>
@@ -225,20 +210,17 @@
                     <image>parasite.jpg</image>
                 </item>
                 <orderDetail>
-                    <!--C002R-->
                     <returnDate>12-05-2023</returnDate>
                     <loanDate>05-05-2023</loanDate>
                     <amount>5</amount>
                     <isReturned>true</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
         </itemList>
         <total>64.95</total>
-        <totalDiscount>0</totalDiscount>
+        <totalDiscount>0.0</totalDiscount>
     </order>
-
-    <!--6-3-3-->
     <order>
         <orderID>6</orderID>
         <owner>
@@ -265,20 +247,17 @@
                     <image>titanic.jpg</image>
                 </item>
                 <orderDetail>
-                    <!--C003-->
                     <returnDate>14-03-2023</returnDate>
                     <loanDate>07-03-2023</loanDate>
                     <amount>3</amount>
                     <isReturned>true</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
         </itemList>
         <total>37.77</total>
-        <totalDiscount>0</totalDiscount>
+        <totalDiscount>0.0</totalDiscount>
     </order>
-
-    <!--7-3-2-->
     <order>
         <orderID>7</orderID>
         <owner>
@@ -305,20 +284,17 @@
                     <image>lastchristmas.jpg</image>
                 </item>
                 <orderDetail>
-                    <!--C003-->
                     <returnDate>20-04-2023</returnDate>
                     <loanDate>13-04-2023</loanDate>
                     <amount>2</amount>
                     <isReturned>true</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
         </itemList>
         <total>47.98</total>
-        <totalDiscount>0</totalDiscount>
+        <totalDiscount>0.0</totalDiscount>
     </order>
-
-    <!--8-2-1-->
     <order>
         <orderID>8</orderID>
         <owner>
@@ -345,20 +321,17 @@
                     <image>titanic.jpg</image>
                 </item>
                 <orderDetail>
-                    <!--C002-->
                     <returnDate>08-07-2023</returnDate>
                     <loanDate>01-07-2023</loanDate>
                     <amount>1</amount>
                     <isReturned>true</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
         </itemList>
         <total>12.59</total>
-        <totalDiscount>0</totalDiscount>
+        <totalDiscount>0.0</totalDiscount>
     </order>
-
-    <!--9-2-3-->
     <order>
         <orderID>9</orderID>
         <owner>
@@ -385,15 +358,51 @@
                     <image>titanic.jpg</image>
                 </item>
                 <orderDetail>
-                    <!--C002-->
                     <returnDate>29-11-2022</returnDate>
                     <loanDate>27-11-2022</loanDate>
                     <amount>3</amount>
                     <isReturned>true</isReturned>
-                    <discount>0</discount>
+                    <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
         </itemList>
-        <totalDiscount>0</totalDiscount>
+        <total>0.0</total>
+        <totalDiscount>0.0</totalDiscount>
+    </order>
+    <order>
+        <orderID>11</orderID>
+        <owner>
+            <id>C002</id>
+            <username>earlyPainting</username>
+            <name>Earl M. Painter</name>
+            <accountType>VIP</accountType>
+            <address>6 Ton-bridge Rd</address>
+            <phone>0796159915</phone>
+            <password>di0nly</password>
+            <totalReturnedItems>15</totalReturnedItems>
+            <rewardPoints>50</rewardPoints>
+        </owner>
+        <itemList>
+            <singleItem>
+                <item>
+                    <id>I007-2011</id>
+                    <title>Minecraft</title>
+                    <year>2011</year>
+                    <itemType>Game</itemType>
+                    <loanType>7 days</loanType>
+                    <rentalFee>19.59</rentalFee>
+                    <image>minecraft.png</image>
+                </item>
+                <orderDetail>
+                    <returnDate>04-06-2023</returnDate>
+                    <loanDate>28-05-2023</loanDate>
+                    <amount>3</amount>
+                    <isReturned>false</isReturned>
+                    <discount>19.59</discount>
+                </orderDetail>
+            </singleItem>
+        </itemList>
+        <total>39.17999999999999</total>
+        <totalDiscount>19.59</totalDiscount>
     </order>
 </orders>

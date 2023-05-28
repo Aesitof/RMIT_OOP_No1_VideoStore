@@ -1,7 +1,9 @@
 package com.no1.geniestore.controllers;
 
+import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.products.Item;
+import com.no1.geniestore.products.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,14 +22,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static com.no1.geniestore.products.ManagementSystem.currentUser;
-import static com.no1.geniestore.products.ManagementSystem.removeAccount;
+import static com.no1.geniestore.products.ManagementSystem.*;
 import static com.no1.geniestore.products.Stock.stockList;
 
 public class HomePageController implements Initializable {
@@ -102,7 +106,10 @@ public class HomePageController implements Initializable {
     private static ObservableList<CartData> cartDataList = FXCollections.observableArrayList();
 
 
-    public void close() {
+    public void close() throws ParserConfigurationException, IOException, TransformerException {
+        // Save items info to file before closing the application
+        saveData();
+
         System.exit(0);
     }
 
@@ -137,6 +144,7 @@ public class HomePageController implements Initializable {
         if (option.get().equals(ButtonType.OK)) {
             // set currentUser to null
             currentUser = null;
+            currentUserRewardPoints = 0;
             System.out.println("currentUser " + currentUser);
         }
 
@@ -148,7 +156,7 @@ public class HomePageController implements Initializable {
     }
 
     public void deleteCartDataList() {
-        cartDataList.removeAll();
+        cartDataList.clear();
         orderDiscount.setText("$0.00");
         orderSubtotal.setText("$0.00");
         orderTotal.setText("$0.00");
@@ -181,30 +189,26 @@ public class HomePageController implements Initializable {
 
         for (Item item : stockList.keySet()) {
             topSearchTextField.setText("loading...");
-//            try {
-                FXMLLoader loader = new FXMLLoader();
+            FXMLLoader loader = new FXMLLoader();
 //                loader.getClass().getResource("/com/no1/geniestore/productcard-view.fxml");
-                loader.setLocation(getClass().getResource("/com/no1/geniestore/productcard-view.fxml"));
+            loader.setLocation(getClass().getResource("/com/no1/geniestore/productcard-view.fxml"));
 //                AnchorPane pane = loader.load(getClass().getResource("/com/no1/geniestore/productcard-view.fxml"));
-                AnchorPane pane = loader.load();
+            AnchorPane pane = loader.load();
 
-                ProductCardController productCardController = loader.getController();
-                productCardController.productHomeView = homeView;
-                productCardController.productProductView = productView;
-                productCardController.productCartView = cartView;
-                productCardController.productAccountDetailView = accountDetailView;
-                productCardController.productCartDataList = cartDataList;
-                productCardController.productCartListVBox = cartListVBox;
-                productCardController.productOrderTotal = orderTotal;
-                productCardController.productOrderSubtotal = orderSubtotal;
-                productCardController.productOrderDiscount = orderDiscount;
+            ProductCardController productCardController = loader.getController();
+            productCardController.productHomeView = homeView;
+            productCardController.productProductView = productView;
+            productCardController.productCartView = cartView;
+            productCardController.productAccountDetailView = accountDetailView;
+            productCardController.productCartDataList = cartDataList;
+            productCardController.productCartListVBox = cartListVBox;
+            productCardController.productOrderTotal = orderTotal;
+            productCardController.productOrderSubtotal = orderSubtotal;
+            productCardController.productOrderDiscount = orderDiscount;
 
-                productCardController.setData(item, stockList.get(item));
+            productCardController.setData(item, stockList.get(item));
 
-                productListVBox.getChildren().add(pane);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+            productListVBox.getChildren().add(pane);
         }
     }
 
@@ -247,7 +251,39 @@ public class HomePageController implements Initializable {
     }
 
     public void onPayNowBtnAction() {
+        Order newOrder = new Order();
+        for (Account account : accountList) {
+            if (account.getId().equals(currentUser.getId())) {
+                newOrder.setOwner(account);
+                orderList.add(newOrder);
+                break;
+            }
+        }
+
+
+        for (CartData cartData : cartDataList) {
+            newOrder.addItemForRent(cartData.getItem().getId(), new Date(), cartData.getQty(), cartData.isFreeItem(), cartData.getFreeItemQty());
+        }
+
+        for (Order order : orderList) {
+            System.out.println(order);
+        }
+
+        // Successful alert
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Pay successfully. Your order is being processed");
+        alert.showAndWait();
+
+        // to Order view
+        toMyOrdersView();
+
+
         deleteCartDataList();
+        for (CartData cartData : cartDataList) {
+            System.out.println(cartData);
+        }
     }
 
     /* My Account View */

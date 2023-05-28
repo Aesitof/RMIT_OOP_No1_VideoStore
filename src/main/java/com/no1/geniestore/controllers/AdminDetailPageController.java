@@ -1157,6 +1157,7 @@ public class AdminDetailPageController implements Initializable {
         try {
             if (option.get().equals(ButtonType.OK)) {
                 currentUser = null;
+                currentUserRewardPoints = 0;
 
                 logout.getScene().getWindow().hide();
 
