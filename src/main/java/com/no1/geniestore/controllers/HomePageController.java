@@ -1,9 +1,15 @@
+/* Acknowledgement
+- Name regex: https://stackoverflow.com/questions/15805555/java-regex-to-validate-full-name-allow-only-spaces-and-letters
+* */
+
 package com.no1.geniestore.controllers;
 
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.products.Item;
 import com.no1.geniestore.products.Order;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -113,6 +119,19 @@ public class HomePageController implements Initializable {
     private AnchorPane guestBox;
     @FXML
     private Label guestReturnedItems;
+    @FXML
+    private TextField myAccountUsername;
+    @FXML
+    private TextField myAccountName;
+    @FXML
+    private TextField myAccountAddress;
+    @FXML
+    private TextField myAccountPhone;
+    @FXML
+    private Text myAccountNameError;
+    @FXML
+    private Text myAccountPhoneError;
+
 
     private double x;
     private double y;
@@ -316,7 +335,15 @@ public class HomePageController implements Initializable {
         accountSettingsBtn.setStyle("-fx-background-color:#a8ed8a;-fx-text-fill:#1e4622");
         myOrdersBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
 
+        myAccountUsername.setText(currentUser.getUsername());
+        myAccountUsername.setDisable(true);
+        myAccountName.setText(currentUser.getName());
+        myAccountAddress.setText(currentUser.getAddress());
+        myAccountPhone.setText(currentUser.getPhone());
+
         // Initialization
+        myAccountNameError.setVisible(false);
+        myAccountPhoneError.setVisible(false);
         if (currentUser.getAccountType().equals("Guest")) {
             guestBox.setVisible(true);
             guestReturnedItems.setText(String.valueOf(currentUser.getTotalReturnedItems()));
@@ -336,6 +363,35 @@ public class HomePageController implements Initializable {
             guestBox.setVisible(false);
             regularBox.setVisible(false);
         }
+
+        // Name validation
+        myAccountName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                if (!newValue.matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")) {
+                    myAccountName.setText(oldValue);
+                    myAccountNameError.setVisible(true);
+                } else {
+                    myAccountNameError.setVisible(false);
+                }
+            }
+        });
+
+        //    Conditions for myAccountPhone TextField (only digits (10 digits))
+        myAccountPhone.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                if(!newValue.matches("\\d*")) {
+                    myAccountPhone.setText(newValue.replaceAll("[\\D]", ""));
+                    myAccountPhoneError.setVisible(true);
+                } else if (newValue.length() > 10) {
+                    myAccountPhone.setText(oldValue);
+                    myAccountPhoneError.setVisible(true);
+                } else {
+                    myAccountPhoneError.setVisible(false);
+                }
+            }
+        });
     }
 
     public void toMyOrdersView() {
@@ -345,6 +401,58 @@ public class HomePageController implements Initializable {
 
         myOrdersBtn.setStyle("-fx-background-color:#a8ed8a;-fx-text-fill:#1e4622");
         accountSettingsBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+    }
+
+    public void myAccountUpdateSave() {
+
+        if (myAccountName.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the your name");
+            alert.showAndWait();
+
+            myAccountName.requestFocus();
+            return;
+        }
+
+        if (myAccountAddress.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter the your address");
+            alert.showAndWait();
+
+            myAccountAddress.requestFocus();
+            return;
+        }
+
+        if (myAccountPhone.getText().isEmpty() || !myAccountPhone.getText().matches("\\d{10}")) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Valid phone number contains 10 digits");
+            alert.showAndWait();
+
+            myAccountPhone.requestFocus();
+            return;
+        }
+
+        // Update account in back-end list
+        updateAccountAdmin(currentUser.getId(), myAccountName.getText(), myAccountAddress.getText(), myAccountPhone.getText(), currentUser.getAccountType(), currentUser.getTotalReturnedItems());
+
+
+        // Refresh front-end view
+        currentUser.setName(myAccountName.getText());
+        currentUser.setAddress(myAccountAddress.getText());
+        currentUser.setPhone(myAccountPhone.getText());
+
+        // Alert update successfully
+        Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
+        updateAlert.setHeaderText(null);
+        updateAlert.setContentText("Your changes saved");
+        updateAlert.showAndWait();
+
     }
 
 

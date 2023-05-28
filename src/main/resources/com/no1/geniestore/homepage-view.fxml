@@ -391,7 +391,7 @@
                                     <Font name="Candara Bold" size="30.0" />
                                  </font>
                               </Label>
-                              <TextField editable="false" layoutX="3.0" layoutY="70.0" prefHeight="40.0" prefWidth="400.0" styleClass="textfield" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="15.0">
+                              <TextField fx:id="myAccountUsername" editable="false" layoutX="3.0" layoutY="70.0" prefHeight="40.0" prefWidth="400.0" styleClass="textfield" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="15.0">
                                  <font>
                                     <Font name="Candara Light" size="17.0" />
                                  </font>
@@ -401,7 +401,7 @@
                                     <Font name="Candara" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="22.0" layoutY="155.0" prefHeight="40.0" prefWidth="400.0" promptText="e.g. Dan Dinh" styleClass="textfield" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="15.0">
+                              <TextField fx:id="myAccountName" layoutX="22.0" layoutY="155.0" prefHeight="40.0" prefWidth="400.0" promptText="e.g. Dan Dinh" styleClass="textfield" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="15.0">
                                  <font>
                                     <Font name="Candara Light" size="17.0" />
                                  </font>
@@ -411,7 +411,7 @@
                                     <Font name="Candara" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="12.0" layoutY="245.0" prefHeight="40.0" prefWidth="400.0" promptText="Street number, Ward, District, City" styleClass="textfield" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="15.0">
+                              <TextField fx:id="myAccountAddress" layoutX="12.0" layoutY="245.0" prefHeight="40.0" prefWidth="400.0" promptText="Street number, Ward, District, City" styleClass="textfield" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="15.0">
                                  <font>
                                     <Font name="Candara Light" size="17.0" />
                                  </font>
@@ -421,7 +421,7 @@
                                     <Font name="Candara" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="3.0" layoutY="336.0" prefHeight="40.0" prefWidth="400.0" promptText="10-digit phone number" styleClass="textfield" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="15.0">
+                              <TextField fx:id="myAccountPhone" layoutX="3.0" layoutY="336.0" prefHeight="40.0" prefWidth="400.0" promptText="10-digit phone number" styleClass="textfield" stylesheets="@style/homepage.css" AnchorPane.leftAnchor="15.0">
                                  <font>
                                     <Font name="Candara Light" size="17.0" />
                                  </font>
@@ -431,7 +431,7 @@
                                     <Font name="Candara" size="18.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="736.0" layoutY="473.0" mnemonicParsing="false" styleClass="pay-now-btn" stylesheets="@style/homepage.css" text="Save" AnchorPane.rightAnchor="26.0" />
+                              <Button layoutX="736.0" layoutY="473.0" mnemonicParsing="false" onAction="#myAccountUpdateSave" styleClass="pay-now-btn" stylesheets="@style/homepage.css" text="Save" AnchorPane.rightAnchor="26.0" />
                               <Button layoutX="16.0" layoutY="430.0" mnemonicParsing="false" onAction="#onChangePasswordBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="use-point-btn" stylesheets="@style/homepage.css" text="Change my password" AnchorPane.leftAnchor="15.0" />
                               <Label layoutX="26.0" layoutY="404.0" prefHeight="22.0" prefWidth="222.0" text="Password" AnchorPane.leftAnchor="15.0">
                                  <font>
@@ -522,6 +522,16 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
+                              <Text fx:id="myAccountNameError" fill="#e40d0d" layoutX="15.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your name input can only contain letters, spaces and &quot;.&quot;" wrappingWidth="412.67236328125" AnchorPane.leftAnchor="15.0">
+                                 <font>
+                                    <Font name="Arial" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="myAccountPhoneError" fill="#e40d0d" layoutX="15.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number can contain 10 digits only" wrappingWidth="412.67236328125" AnchorPane.leftAnchor="15.0">
+                                 <font>
+                                    <Font name="Arial" size="15.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="myOrdersView" layoutX="214.0" layoutY="18.0" prefHeight="551.0" prefWidth="855.0" styleClass="white-bg-product" stylesheets="@style/homepage.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
