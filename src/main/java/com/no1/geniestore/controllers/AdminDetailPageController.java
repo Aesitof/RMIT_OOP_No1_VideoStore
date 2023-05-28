@@ -1061,7 +1061,7 @@ public class AdminDetailPageController implements Initializable {
 
                     String rentStatus = null;
                     Date today = new Date();
-                    if (orderDetails.isReturned() == true) {
+                    if (orderDetails.isReturned()) {
                         rentStatus = "Returned";
                     } else {
                         if (today.after(orderDetails.getReturnDate())) {
@@ -1122,7 +1122,7 @@ public class AdminDetailPageController implements Initializable {
 
         if (option.get().equals(ButtonType.OK)) {
             // return item in back-end
-            returnItem(orderOrderTextField.getText(), orderItemIDTextField.getText());
+            double latePenaltyFee = returnItem(orderOrderTextField.getText(), orderItemIDTextField.getText());
 
             for (Item item : stockList.keySet()) {
                 System.out.println(item + "remaining: " + stockList.get(item));
@@ -1141,9 +1141,15 @@ public class AdminDetailPageController implements Initializable {
 
             orderRentTableView.setItems(adminRentList);
             orderClear();
-        }
 
-//        }
+            if (latePenaltyFee > 0) {
+                Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
+                updateAlert.setTitle("Late Returned Item");
+                updateAlert.setHeaderText(null);
+                updateAlert.setContentText("The customer have to pay $" + String.format("%.2f", latePenaltyFee) + " for returning late");
+                updateAlert.showAndWait();
+            }
+        }
     }
 
 

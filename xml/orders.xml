@@ -46,10 +46,28 @@
             <address>6 Ton-bridge Rd</address>
             <phone>079 6159 9152</phone>
             <password>di0nly</password>
-            <totalReturnedItems>0</totalReturnedItems>
+            <totalReturnedItems>2</totalReturnedItems>
             <rewardPoints>70</rewardPoints>
         </owner>
         <itemList>
+            <singleItem>
+                <item>
+                    <id>I002-2013</id>
+                    <title>PUBG</title>
+                    <year>2013</year>
+                    <itemType>Game</itemType>
+                    <loanType>7 days</loanType>
+                    <rentalFee>50.99</rentalFee>
+                    <image>pubg.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>30-12-2022</returnDate>
+                    <loanDate>23-12-2022</loanDate>
+                    <amount>2</amount>
+                    <isReturned>false</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
             <singleItem>
                 <item>
                     <id>I001-2001</id>
@@ -66,24 +84,6 @@
                     <loanDate>01-04-2023</loanDate>
                     <amount>4</amount>
                     <isReturned>true</isReturned>
-                    <discount>0.0</discount>
-                </orderDetail>
-            </singleItem>
-            <singleItem>
-                <item>
-                    <id>I002-2013</id>
-                    <title>PUBG</title>
-                    <year>2013</year>
-                    <itemType>Game</itemType>
-                    <loanType>7 days</loanType>
-                    <rentalFee>50.99</rentalFee>
-                    <image>pubg.jpg</image>
-                </item>
-                <orderDetail>
-                    <returnDate>30-12-2022</returnDate>
-                    <loanDate>23-12-2022</loanDate>
-                    <amount>2</amount>
-                    <isReturned>false</isReturned>
                     <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
