@@ -6,6 +6,12 @@
     -fx-background-color:#fff
 }
 
+.white-bg-dialog {
+    -fx-background-color:#fff;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: #000;
+}
+
 .upper-choice {
     -fx-background-color:transparent;
 }

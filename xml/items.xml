@@ -12,15 +12,15 @@
         <remaining>3</remaining>
     </item>
     <item>
-        <id>I002-2013</id>
-        <title>PUBG</title>
-        <year>2013</year>
+        <id>I008-2019</id>
+        <title>hoho</title>
+        <year>2019</year>
         <itemType>Game</itemType>
-        <loanType>7 days</loanType>
-        <rentalFee>50.99</rentalFee>
-        <image>pubg.jpg</image>
-        <copies>3</copies>
-        <remaining>2</remaining>
+        <loanType>2 days</loanType>
+        <rentalFee>11.99</rentalFee>
+        <image>minecraft.png</image>
+        <copies>1</copies>
+        <remaining>1</remaining>
     </item>
     <item>
         <id>I010-1952</id>
@@ -58,15 +58,14 @@
         <remaining>1</remaining>
     </item>
     <item>
-        <id>I005-2010</id>
-        <title>Speak Now</title>
-        <year>2010</year>
-        <itemType>DVD</itemType>
-        <genre>Drama</genre>
-        <loanType>2 days</loanType>
-        <rentalFee>12.99</rentalFee>
-        <image>speaknow.jpg</image>
-        <copies>4</copies>
+        <id>I007-2011</id>
+        <title>Minecraft</title>
+        <year>2011</year>
+        <itemType>Game</itemType>
+        <loanType>7 days</loanType>
+        <rentalFee>19.59</rentalFee>
+        <image>minecraft.png</image>
+        <copies>6</copies>
         <remaining>3</remaining>
     </item>
     <item>
@@ -94,8 +93,8 @@
         <remaining>1</remaining>
     </item>
     <item>
-        <id>I009-2019</id>
-        <title>Boys over Flowers</title>
+        <id>I004-2019</id>
+        <title>Parasite</title>
         <year>2019</year>
         <itemType>Video Record</itemType>
         <genre>Drama</genre>
@@ -103,7 +102,7 @@
         <rentalFee>12.99</rentalFee>
         <image>parasite.jpg</image>
         <copies>5</copies>
-        <remaining>2</remaining>
+        <remaining>1</remaining>
     </item>
     <item>
         <id>I007-2011</id>
