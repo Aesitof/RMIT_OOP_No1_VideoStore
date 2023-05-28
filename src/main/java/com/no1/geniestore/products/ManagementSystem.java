@@ -49,7 +49,7 @@ public class ManagementSystem {
         orderList = (ArrayList<Order>) new OrderListParser().parse("xml/orders.xml"); // get successfully
 
 //        for (Order order : orderList) {
-//            System.out.println(order.getOrderID());
+//            System.out.println(order);
 //        }
 
 //        Item item = new Item("I004-2019", "Parasite", 2019, ItemType.VIDEO_RECORD, Genre.DRAMA, LoanType.TWO_DAY_LOAN, 12.99, "parasite.jpg");
@@ -219,7 +219,8 @@ public class ManagementSystem {
 
     public static void promote(Account account) { // Auto promote whenever return item
         if (account.getTotalReturnedItems() > 9) {
-            account.setRewardPoints(account.getRewardPoints() + 10 * (account.getRewardPoints() - 9));
+//            account.setRewardPoints(account.getRewardPoints() + 10 * (account.getRewardPoints() - 9));
+            account.setRewardPoints((account.getTotalReturnedItems() - 9) * 10);
         } else if (account.getTotalReturnedItems() == 9) {
             account.setAccountType("VIP");
         } else if (account.getTotalReturnedItems() == 4) {
@@ -269,6 +270,8 @@ public class ManagementSystem {
 //                }
 //                itemList.put(item, itemList.get(item) + order.getOrder().get(item).getAmount()); // return back to the stock
 //                promote(order.getOwner(), order.getOrder().get(item).getAmount());
+//                double lateReturnFee = order.getTotal() * 3.0 / 10 * (LocalDate.now() - order.getOrder().get(item).getReturnDate());
+//                order.setTotal(order.getTotal() + lateReturnFee);
                 break;
             }
         }

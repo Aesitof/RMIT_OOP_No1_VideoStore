@@ -8,6 +8,12 @@ import static com.no1.geniestore.products.ManagementSystem.orderList;
 import static com.no1.geniestore.products.Stock.itemStock;
 import static com.no1.geniestore.products.Stock.stockList;
 
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -127,6 +133,11 @@ public class Order {
                             if (singleItem.getId().equals(itemID)) {
                                 // return all amount of that item at the same time
                                 stockList.put(singleItem, stockList.get(singleItem) + order.getOrder().get(item).getAmount());
+
+                                // calculate penalty fee
+                                Calendar calendar = Calendar.getInstance();
+                                double lateReturnFee = order.getTotal() * 3.0 / 10 * (calendar.getTime().compareTo(order.getOrder().get(item).getReturnDate()));
+                                order.setTotal(order.getTotal() + lateReturnFee);
                                 break;
                             }
                         }
