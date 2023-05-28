@@ -9,7 +9,7 @@
             <address>67 Asfordby Rd</address>
             <phone>079 4498 4190</phone>
             <password>aFoto</password>
-            <totalReturnedItems>0</totalReturnedItems>
+            <totalReturnedItems>2</totalReturnedItems>
             <rewardPoints>0</rewardPoints>
         </owner>
         <itemList>
@@ -28,12 +28,12 @@
                     <returnDate>13-01-2023</returnDate>
                     <loanDate>06-01-2023</loanDate>
                     <amount>2</amount>
-                    <isReturned>false</isReturned>
+                    <isReturned>true</isReturned>
                     <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
         </itemList>
-        <total>38.97</total>
+        <total>50.661</total>
         <totalDiscount>0.0</totalDiscount>
     </order>
     <order>
@@ -52,24 +52,6 @@
         <itemList>
             <singleItem>
                 <item>
-                    <id>I002-2013</id>
-                    <title>PUBG</title>
-                    <year>2013</year>
-                    <itemType>Game</itemType>
-                    <loanType>7 days</loanType>
-                    <rentalFee>50.99</rentalFee>
-                    <image>pubg.jpg</image>
-                </item>
-                <orderDetail>
-                    <returnDate>30-12-2022</returnDate>
-                    <loanDate>23-12-2022</loanDate>
-                    <amount>2</amount>
-                    <isReturned>false</isReturned>
-                    <discount>0.0</discount>
-                </orderDetail>
-            </singleItem>
-            <singleItem>
-                <item>
                     <id>I001-2001</id>
                     <title>Last Christmas</title>
                     <year>2001</year>
@@ -84,6 +66,24 @@
                     <loanDate>01-04-2023</loanDate>
                     <amount>4</amount>
                     <isReturned>true</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+            <singleItem>
+                <item>
+                    <id>I002-2013</id>
+                    <title>PUBG</title>
+                    <year>2013</year>
+                    <itemType>Game</itemType>
+                    <loanType>7 days</loanType>
+                    <rentalFee>50.99</rentalFee>
+                    <image>pubg.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>30-12-2022</returnDate>
+                    <loanDate>23-12-2022</loanDate>
+                    <amount>2</amount>
+                    <isReturned>false</isReturned>
                     <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
@@ -368,41 +368,5 @@
         </itemList>
         <total>0.0</total>
         <totalDiscount>0.0</totalDiscount>
-    </order>
-    <order>
-        <orderID>11</orderID>
-        <owner>
-            <id>C002</id>
-            <username>earlyPainting</username>
-            <name>Earl M. Painter</name>
-            <accountType>VIP</accountType>
-            <address>6 Ton-bridge Rd</address>
-            <phone>0796159915</phone>
-            <password>di0nly</password>
-            <totalReturnedItems>15</totalReturnedItems>
-            <rewardPoints>50</rewardPoints>
-        </owner>
-        <itemList>
-            <singleItem>
-                <item>
-                    <id>I007-2011</id>
-                    <title>Minecraft</title>
-                    <year>2011</year>
-                    <itemType>Game</itemType>
-                    <loanType>7 days</loanType>
-                    <rentalFee>19.59</rentalFee>
-                    <image>minecraft.png</image>
-                </item>
-                <orderDetail>
-                    <returnDate>04-06-2023</returnDate>
-                    <loanDate>28-05-2023</loanDate>
-                    <amount>3</amount>
-                    <isReturned>false</isReturned>
-                    <discount>19.59</discount>
-                </orderDetail>
-            </singleItem>
-        </itemList>
-        <total>39.17999999999999</total>
-        <totalDiscount>19.59</totalDiscount>
     </order>
 </orders>
