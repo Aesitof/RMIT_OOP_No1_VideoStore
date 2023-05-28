@@ -1,5 +1,5 @@
 /* Acknowledgement
-- Name regex: https://stackoverflow.com/questions/15805555/java-regex-to-validate-full-name-allow-only-spaces-and-letters
+- Name regex: https://stackoverflow.com/questions/15805555/java-regex-to-validate-full-name-allow-only-spaces-and-letters;
 * */
 
 package com.no1.geniestore.controllers;
@@ -131,6 +131,8 @@ public class HomePageController implements Initializable {
     private Text myAccountNameError;
     @FXML
     private Text myAccountPhoneError;
+    @FXML
+    private VBox myOrderListVBox;
 
 
     private double x;
@@ -215,7 +217,6 @@ public class HomePageController implements Initializable {
         cartView.setVisible(false);
         accountDetailView.setVisible(false);
     }
-
     public void loadProductList() throws IOException {
         topSearchTextField.setText("starting...");
 
@@ -244,6 +245,7 @@ public class HomePageController implements Initializable {
             productListVBox.getChildren().add(pane);
         }
     }
+
 
 
     /* Cart View */
@@ -395,12 +397,62 @@ public class HomePageController implements Initializable {
     }
 
     public void toMyOrdersView() {
+        // load MyOrdersList
+        try {
+            loadMyOrderList();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         toAccountDetailView();
         accountSettingsView.setVisible(false);
         myOrdersView.setVisible(true);
 
         myOrdersBtn.setStyle("-fx-background-color:#a8ed8a;-fx-text-fill:#1e4622");
         accountSettingsBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
+    }
+
+    public void loadMyOrderList() throws IOException {
+        topSearchTextField.setText("starting...");
+
+        for (Order order : orderList) {
+            if (order.getOwner().getId().equals(currentUser.getId())) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/com/no1/geniestore/ordercard-view.fxml"));
+
+                AnchorPane pane = loader.load();
+
+                OrderCardController orderCardController = loader.getController();
+
+                orderCardController.setOrderCardData(order);
+
+                myOrderListVBox.getChildren().add(pane);
+            }
+        }
+
+//        for (Item item : stockList.keySet()) {
+//            topSearchTextField.setText("loading...");
+//            FXMLLoader loader = new FXMLLoader();
+////                loader.getClass().getResource("/com/no1/geniestore/productcard-view.fxml");
+//            loader.setLocation(getClass().getResource("/com/no1/geniestore/productcard-view.fxml"));
+////                AnchorPane pane = loader.load(getClass().getResource("/com/no1/geniestore/productcard-view.fxml"));
+//            AnchorPane pane = loader.load();
+//
+//            ProductCardController productCardController = loader.getController();
+//            productCardController.productHomeView = homeView;
+//            productCardController.productProductView = productView;
+//            productCardController.productCartView = cartView;
+//            productCardController.productAccountDetailView = accountDetailView;
+//            productCardController.productCartDataList = cartDataList;
+//            productCardController.productCartListVBox = cartListVBox;
+//            productCardController.productOrderTotal = orderTotal;
+//            productCardController.productOrderSubtotal = orderSubtotal;
+//            productCardController.productOrderDiscount = orderDiscount;
+//
+//            productCardController.setData(item, stockList.get(item));
+//
+//            productListVBox.getChildren().add(pane);
+//        }
     }
 
     public void myAccountUpdateSave() {
@@ -483,12 +535,17 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /* Home View initialize */
         try {
             loadProductList();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         toHomeView();
+
+        /* My Order View initialize */
+
+        /* Cart View initialize */
         orderTotal.setText("$0.00");
         orderSubtotal.setText("$0.00");
         orderDiscount.setText("$0.00");
