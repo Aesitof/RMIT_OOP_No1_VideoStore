@@ -101,9 +101,14 @@ public class Order {
                             order.getOrder().put(item, orderDetail); // add order details to order
 
                             if (isDiscountApplied) { // only if customer use reward points
-                                for (int i = 0; i < discountApplied; i++) { // loop for number of discount of that item
-                                    useRewardPoints(order.getOwner());
+                                for (Account account : accountList) {
+                                    if (order.getOwner().getId().equals(account.getId())) {
+                                        useRewardPoints(account);;
+                                    }
                                 }
+//                                for (int i = 0; i < discountApplied; i++) { // loop for number of discount of that item
+//                                    useRewardPoints(order.getOwner());
+//                                }
 
                                 order.getOrder().get(item).setDiscount(item.getRentalFee() * discountApplied); // discount for each item in order
                                 order.setTotalDiscount(getTotalDiscount() + item.getRentalFee() * discountApplied); // total discount for that order
@@ -125,23 +130,30 @@ public class Order {
 
     public double returnItemInOrder(String orderID, String itemID) {
         double lateReturnFee = 0;
+//        System.out.printf("%s, %s", orderID, itemID);;
         for (Order order : orderList) {
             if (order.getOrderID().equals(orderID)) {
                 for (Item item : order.getOrder().keySet()) {
                     if (item.getId().equals(itemID)) {
                         for (Item singleItem : stockList.keySet()) {
+
                             if (singleItem.getId().equals(itemID)) {
                                 // return all amount of that item at the same time
                                 stockList.put(singleItem, stockList.get(singleItem) + order.getOrder().get(item).getAmount());
-
-                                // calculate penalty fee
-                                Calendar calendar = Calendar.getInstance();
-                                int dayLate = (int) ((calendar.getTimeInMillis() - order.getOrder().get(item).getReturnDate().getTime()) / 1000 / 60 / 60 / 24);
-                                lateReturnFee = order.getOrder().get(item).getAmount() * item.getRentalFee() * 3.0 / 10 * dayLate;
-                                order.setTotal(order.getTotal() + lateReturnFee);
+//                                System.out.println(lateReturnFee);
+                                order.getOrder().get(item).setReturned(true);
                                 break;
                             }
                         }
+                        // calculate penalty fee
+                        Calendar calendar = Calendar.getInstance();
+                        if (calendar.getTimeInMillis() > order.getOrder().get(item).getReturnDate().getTime())  {
+                            int dayLate = (int) ((calendar.getTimeInMillis() - order.getOrder().get(item).getReturnDate().getTime()) / 1000 / 60 / 60 / 24);
+                            lateReturnFee = order.getOrder().get(item).getAmount() * item.getRentalFee() * 3.0 / 10 * dayLate;
+                        }
+//                        System.out.println(order.getOrder().get(item));
+
+                        order.setTotal(order.getTotal() + lateReturnFee);
                     }
                     // update owner's total returned items
                     for (Account account : accountList) {
@@ -150,11 +162,6 @@ public class Order {
                             promote(account);
                         }
                     }
-                    for (Account account : accountList) {
-                        System.out.println(account);
-                    }
-                    order.getOrder().get(item).setReturned(true); // status: pending -> finished
-                    break;
                 }
                 break;
             }
@@ -163,8 +170,13 @@ public class Order {
     }
 
     public static void useRewardPoints(Account account) {
-        if (account.getRewardPoints() >= 100) { // if only have enough points
-            account.setRewardPoints(account.getRewardPoints() - 100);
+        for (Account e : accountList) {
+            if (account.getId().equals(e.getId())) {
+                if (account.getRewardPoints() >= 100) { // if only have enough points
+                    account.setRewardPoints(account.getRewardPoints() - 100);
+                    break;
+                }
+            }
         }
     }
     public String generateOrderID() {

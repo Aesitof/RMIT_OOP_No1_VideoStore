@@ -204,7 +204,7 @@ public class ManagementSystem {
 
     public static void promote(Account account) { // Auto promote whenever return item
         if (account.getTotalReturnedItems() > 9) {
-            account.setRewardPoints((account.getTotalReturnedItems() - 9) * 10);
+            account.setRewardPoints(account.getRewardPoints() + (account.getTotalReturnedItems() - 9) * 10);
         }
         if (account.getTotalReturnedItems() >= 9) {
             account.setAccountType("VIP");

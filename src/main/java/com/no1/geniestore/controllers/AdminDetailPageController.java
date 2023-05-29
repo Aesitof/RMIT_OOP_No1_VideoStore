@@ -1124,6 +1124,9 @@ public class AdminDetailPageController implements Initializable {
             // return item in back-end
             double latePenaltyFee = returnItem(orderOrderTextField.getText(), orderItemIDTextField.getText());
 
+            for (Order order : orderList) {
+                System.out.println(order);
+            }
             for (Item item : stockList.keySet()) {
                 System.out.println(item + "remaining: " + stockList.get(item));
             }
