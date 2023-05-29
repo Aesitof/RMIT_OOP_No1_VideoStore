@@ -132,15 +132,21 @@ public class Order {
         double lateReturnFee = 0;
 //        System.out.printf("%s, %s", orderID, itemID);;
         for (Order order : orderList) {
+            // find the order want to return
             if (order.getOrderID().equals(orderID)) {
                 for (Item item : order.getOrder().keySet()) {
+                    // find the singleItem in the order (to setReturned true) + get the Amount to add back to remaining in stockList
                     if (item.getId().equals(itemID)) {
+                        // set isReturned = true
+                        order.getOrder().get(item).setReturned(true);
+
+                        // add item back to remaining
                         for (Item singleItem : stockList.keySet()) {
 
                             if (singleItem.getId().equals(itemID)) {
                                 // return all amount of that item at the same time
                                 stockList.put(singleItem, stockList.get(singleItem) + order.getOrder().get(item).getAmount());
-//                                System.out.println(lateReturnFee);
+
                                 order.getOrder().get(item).setReturned(true);
                                 break;
                             }
@@ -152,7 +158,6 @@ public class Order {
                             lateReturnFee = order.getOrder().get(item).getAmount() * item.getRentalFee() * 3.0 / 10 * dayLate;
                         }
 //                        System.out.println(order.getOrder().get(item));
-
                         order.setTotal(order.getTotal() + lateReturnFee);
                     }
                     // update owner's total returned items

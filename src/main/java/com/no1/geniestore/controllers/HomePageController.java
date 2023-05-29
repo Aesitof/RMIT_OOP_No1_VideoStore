@@ -165,7 +165,7 @@ public class HomePageController implements Initializable {
         stage.show();
     }
 
-    public void logout() throws IOException {
+    public void logout() throws IOException, ParserConfigurationException, TransformerException {
 
         // add alert for Confirmation
         alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -183,6 +183,9 @@ public class HomePageController implements Initializable {
 
         // Delete cart data
         deleteCartDataList();
+
+        // write to file
+        saveData();
 
         // redirect to Login page
         onSignInBtnClick();
@@ -281,7 +284,7 @@ public class HomePageController implements Initializable {
         stage.close();
     }
 
-    public void onPayNowBtnAction() {
+    public void onPayNowBtnAction() throws IOException {
         Order newOrder = new Order();
         for (Account account : accountList) {
             if (account.getId().equals(currentUser.getId())) {
@@ -296,8 +299,12 @@ public class HomePageController implements Initializable {
             newOrder.addItemForRent(cartData.getItem().getId(), new Date(), cartData.getQty(), cartData.isFreeItem(), cartData.getFreeItemQty());
         }
 
-        for (Order order : orderList) {
-            System.out.println(order);
+        // reset point for current user
+        for (Account account : accountList) {
+            if (account.getId().equals(currentUser.getId())) {
+                currentUser.setRewardPoints(account.getRewardPoints());
+                break;
+            }
         }
 
         // Successful alert
@@ -307,6 +314,8 @@ public class HomePageController implements Initializable {
         alert.setContentText("Pay successfully. Your order is being processed");
         alert.showAndWait();
 
+        // add new order to order VBox List (the LAST order the orderList)
+        loadMyOrderToList(orderList.get(orderList.size() - 1));
         // to Order view
         toMyOrdersView();
 
@@ -394,11 +403,11 @@ public class HomePageController implements Initializable {
 
     public void toMyOrdersView() {
         // load MyOrdersList
-        try {
-            loadMyOrderList();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            loadMyOrderList();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         toAccountDetailView();
         accountSettingsView.setVisible(false);
@@ -408,46 +417,32 @@ public class HomePageController implements Initializable {
         accountSettingsBtn.setStyle("-fx-background-color:transparent;-fx-text-fill:#000");
     }
 
+    // Add the whole order list of the customer to VBox list
     public void loadMyOrderList() throws IOException {
 
         for (Order order : orderList) {
+            // if the order already in the VBox List
+
+
+            // if the order not in the list VBox List yet
             if (order.getOwner().getId().equals(currentUser.getId())) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/com/no1/geniestore/ordercard-view.fxml"));
-
-                AnchorPane pane = loader.load();
-
-                OrderCardController orderCardController = loader.getController();
-
-                orderCardController.setOrderCardData(order);
-
-                myOrderListVBox.getChildren().add(pane);
+                loadMyOrderToList(order);
             }
         }
+    }
 
-//        for (Item item : stockList.keySet()) {
-//            topSearchTextField.setText("loading...");
-//            FXMLLoader loader = new FXMLLoader();
-////                loader.getClass().getResource("/com/no1/geniestore/productcard-view.fxml");
-//            loader.setLocation(getClass().getResource("/com/no1/geniestore/productcard-view.fxml"));
-////                AnchorPane pane = loader.load(getClass().getResource("/com/no1/geniestore/productcard-view.fxml"));
-//            AnchorPane pane = loader.load();
-//
-//            ProductCardController productCardController = loader.getController();
-//            productCardController.productHomeView = homeView;
-//            productCardController.productProductView = productView;
-//            productCardController.productCartView = cartView;
-//            productCardController.productAccountDetailView = accountDetailView;
-//            productCardController.productCartDataList = cartDataList;
-//            productCardController.productCartListVBox = cartListVBox;
-//            productCardController.productOrderTotal = orderTotal;
-//            productCardController.productOrderSubtotal = orderSubtotal;
-//            productCardController.productOrderDiscount = orderDiscount;
-//
-//            productCardController.setData(item, stockList.get(item));
-//
-//            productListVBox.getChildren().add(pane);
-//        }
+    // Add each order to VBox List
+    public void loadMyOrderToList(Order order) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/no1/geniestore/ordercard-view.fxml"));
+
+        AnchorPane pane = loader.load();
+
+        OrderCardController orderCardController = loader.getController();
+
+        orderCardController.setOrderCardData(order);
+
+        myOrderListVBox.getChildren().add(pane);
     }
 
     public void myAccountUpdateSave() {
@@ -539,6 +534,11 @@ public class HomePageController implements Initializable {
         toHomeView();
 
         /* My Order View initialize */
+        try {
+            loadMyOrderList();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         /* Cart View initialize */
         orderTotal.setText("$0.00");
