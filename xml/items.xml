@@ -1,50 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?><items>
     <item>
-        <id>I004-2019</id>
-        <title>Parasite</title>
-        <year>2019</year>
-        <itemType>Video Record</itemType>
+        <id>I005-2010</id>
+        <title>Speak Now</title>
+        <year>2010</year>
+        <itemType>DVD</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
         <rentalFee>12.99</rentalFee>
-        <image>parasite.jpg</image>
-        <copies>5</copies>
-        <remaining>2</remaining>
+        <image>speaknow.jpg</image>
+        <copies>10</copies>
+        <remaining>10</remaining>
     </item>
     <item>
-        <id>I007-2011</id>
-        <title>Minecraft</title>
-        <year>2011</year>
-        <itemType>Game</itemType>
-        <loanType>7 days</loanType>
-        <rentalFee>19.59</rentalFee>
-        <image>minecraft.png</image>
-        <copies>6</copies>
-        <remaining>3</remaining>
-    </item>
-    <item>
-        <id>I009-2019</id>
-        <title>Boys over Flowers</title>
-        <year>2019</year>
+        <id>I003-1997</id>
+        <title>Titanic</title>
+        <year>1997</year>
         <itemType>Video Record</itemType>
         <genre>Drama</genre>
         <loanType>2 days</loanType>
-        <rentalFee>11.59</rentalFee>
-        <image>boysoverflowers.jpg</image>
-        <copies>2</copies>
-        <remaining>1</remaining>
-    </item>
-    <item>
-        <id>I010-1952</id>
-        <title>Marsupilami</title>
-        <year>1952</year>
-        <itemType>DVD</itemType>
-        <genre>Comedy</genre>
-        <loanType>7 days</loanType>
-        <rentalFee>3.99</rentalFee>
-        <image>marsupilami.jpg</image>
-        <copies>25</copies>
-        <remaining>24</remaining>
+        <rentalFee>23.99</rentalFee>
+        <image>lastchristmas.jpg</image>
+        <copies>30</copies>
+        <remaining>30</remaining>
     </item>
     <item>
         <id>I002-2013</id>
@@ -58,41 +35,6 @@
         <remaining>3</remaining>
     </item>
     <item>
-        <id>I003-1997</id>
-        <title>Titanic</title>
-        <year>1997</year>
-        <itemType>Video Record</itemType>
-        <genre>Drama</genre>
-        <loanType>2 days</loanType>
-        <rentalFee>23.99</rentalFee>
-        <image>lastchristmas.jpg</image>
-        <copies>4</copies>
-        <remaining>3</remaining>
-    </item>
-    <item>
-        <id>I008-2019</id>
-        <title>hoho</title>
-        <year>2019</year>
-        <itemType>Game</itemType>
-        <loanType>2 days</loanType>
-        <rentalFee>11.99</rentalFee>
-        <image>minecraft.png</image>
-        <copies>1</copies>
-        <remaining>1</remaining>
-    </item>
-    <item>
-        <id>I005-2010</id>
-        <title>Speak Now</title>
-        <year>2010</year>
-        <itemType>DVD</itemType>
-        <genre>Drama</genre>
-        <loanType>2 days</loanType>
-        <rentalFee>12.99</rentalFee>
-        <image>speaknow.jpg</image>
-        <copies>4</copies>
-        <remaining>3</remaining>
-    </item>
-    <item>
         <id>I006-2022</id>
         <title>Stranger Things 4</title>
         <year>2022</year>
@@ -101,8 +43,32 @@
         <loanType>7 days</loanType>
         <rentalFee>25.99</rentalFee>
         <image>strangerthings4.jpg</image>
-        <copies>4</copies>
-        <remaining>2</remaining>
+        <copies>5</copies>
+        <remaining>5</remaining>
+    </item>
+    <item>
+        <id>I010-1952</id>
+        <title>Marsupilami</title>
+        <year>1952</year>
+        <itemType>DVD</itemType>
+        <genre>Comedy</genre>
+        <loanType>7 days</loanType>
+        <rentalFee>3.99</rentalFee>
+        <image>marsupilami.jpg</image>
+        <copies>25</copies>
+        <remaining>25</remaining>
+    </item>
+    <item>
+        <id>I009-2019</id>
+        <title>Boys over Flowers</title>
+        <year>2019</year>
+        <itemType>Video Record</itemType>
+        <genre>Drama</genre>
+        <loanType>2 days</loanType>
+        <rentalFee>11.59</rentalFee>
+        <image>boysoverflowers.jpg</image>
+        <copies>15</copies>
+        <remaining>15</remaining>
     </item>
     <item>
         <id>I001-2019</id>
@@ -113,7 +79,41 @@
         <loanType>7 days</loanType>
         <rentalFee>15.99</rentalFee>
         <image>ourbelovedsummer.jpg</image>
-        <copies>5</copies>
-        <remaining>1</remaining>
+        <copies>20</copies>
+        <remaining>19</remaining>
+    </item>
+    <item>
+        <id>I007-2011</id>
+        <title>Minecraft</title>
+        <year>2011</year>
+        <itemType>Game</itemType>
+        <loanType>7 days</loanType>
+        <rentalFee>19.59</rentalFee>
+        <image>minecraft.png</image>
+        <copies>20</copies>
+        <remaining>19</remaining>
+    </item>
+    <item>
+        <id>I004-2019</id>
+        <title>Parasite</title>
+        <year>2019</year>
+        <itemType>Video Record</itemType>
+        <genre>Drama</genre>
+        <loanType>2 days</loanType>
+        <rentalFee>12.99</rentalFee>
+        <image>parasite.jpg</image>
+        <copies>15</copies>
+        <remaining>13</remaining>
+    </item>
+    <item>
+        <id>I008-2019</id>
+        <title>hohoe</title>
+        <year>2019</year>
+        <itemType>Game</itemType>
+        <loanType>2 days</loanType>
+        <rentalFee>13.99</rentalFee>
+        <image>minecraft.png</image>
+        <copies>6</copies>
+        <remaining>6</remaining>
     </item>
 </items>

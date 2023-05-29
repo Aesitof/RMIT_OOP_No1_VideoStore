@@ -158,10 +158,11 @@ public class Order {
                         // update owner's total returned items
                         for (Account account : accountList) {
                             if (order.getOwner().getId().equals(account.getId())) {
-                                account.setTotalReturnedItems(account.getTotalReturnedItems() + order.getOrder().get(item).getAmount());
-                                System.out.println("hello");
-                                System.out.println(order.getOrder().get(item).getAmount());
-                                promote(account);
+                                int returnedItem = order.getOrder().get(item).getAmount();
+                                int totalReturnedItemsBefore = account.getTotalReturnedItems();
+                               account.setTotalReturnedItems(account.getTotalReturnedItems() + order.getOrder().get(item).getAmount());
+//                                System.out.println(returnedItem);
+                                promoteReturn(account, returnedItem, totalReturnedItemsBefore);
                             }
                         }
                     }

@@ -380,7 +380,7 @@ public class AdminDetailPageController implements Initializable {
                 addItemTableView.refresh();
 
                 // Update API
-                updateItem(item.getId(), itemTitle.getText(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue(), copies.getValue(), item.getRemainingCopies());
+                updateItem(item.getId(), itemTitle.getText(), typeComboBox.getValue(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), genreComboBox.getValue(), copies.getValue(), item.getRemainingCopies());
 
                 addItemClear();
 
@@ -1373,6 +1373,7 @@ public class AdminDetailPageController implements Initializable {
                 if (newType != null) {
                     if (newType.equals(ItemType.GAME)) {
                         genreComboBox.setDisable(true);
+                        genreComboBox.setValue(null);
                     } else {
                         genreComboBox.setDisable(false);
                     }

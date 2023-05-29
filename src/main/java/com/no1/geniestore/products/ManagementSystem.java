@@ -1,6 +1,7 @@
 package com.no1.geniestore.products;
 
 import com.no1.geniestore.constants.Genre;
+import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
 import com.no1.geniestore.controllers.AccountListParser;
 import com.no1.geniestore.controllers.ItemListParser;
@@ -124,10 +125,11 @@ public class ManagementSystem {
         stockList.remove(item); // Remove item including its stock
     }
 
-    public static void updateItem(String itemId, String title, LoanType loanType, double rentalFee, Genre genre, int totalCopies, int remainingCopies) {
+    public static void updateItem(String itemId, String title, ItemType itemType, LoanType loanType, double rentalFee, Genre genre, int totalCopies, int remainingCopies) {
         for (Item item : itemList.keySet()) {
             if (item.getId().equals(itemId)) {
                 item.setTitle(title);
+                item.setItemType(itemType);
                 item.setLoanType(loanType);
                 item.setRentalFee(rentalFee);
                 item.setGenre(genre);
@@ -203,9 +205,6 @@ public class ManagementSystem {
     }
 
     public static void promote(Account account) { // Auto promote whenever return item
-        if (account.getTotalReturnedItems() > 10) {
-            account.setRewardPoints(account.getRewardPoints() + (account.getTotalReturnedItems() - 10) * 10);
-        }
         if (account.getTotalReturnedItems() >= 10) {
             account.setAccountType("VIP");
         } else if (account.getTotalReturnedItems() >= 4) {
@@ -213,16 +212,18 @@ public class ManagementSystem {
         }
     }
 
-//    public static void promoteReturn(Account account, int amount) { // Auto promote whenever return item
-//        if (account.getTotalReturnedItems() > 10) {
-//            account.setRewardPoints(account.getRewardPoints() + (amount - 10) * 10);
-//        }
-//        if (account.getTotalReturnedItems() >= 10) {
-//            account.setAccountType("VIP");
-//        } else if (account.getTotalReturnedItems() >= 4) {
-//            account.setAccountType("Regular");
-//        }
-//    }
+    public static void promoteReturn(Account account, int amount, int totalReturnedItemsBefore) { // Auto promote whenever return item
+        if (!account.getAccountType().equals("VIP")) {
+            if (account.getTotalReturnedItems() >= 10) {
+                account.setRewardPoints(account.getRewardPoints() + (amount + totalReturnedItemsBefore - 10) * 10);
+                account.setAccountType("VIP");
+            } else if (account.getTotalReturnedItems() >= 4) {
+                account.setAccountType("Regular");
+            }
+        } else {
+            account.setRewardPoints(account.getRewardPoints() + (amount * 10));
+        }
+    }
 
     public static String login(String username, String password) {
         if (username.equals("admin") && password.equals("Admin123")) {
