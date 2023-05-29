@@ -94,6 +94,10 @@ public class CartData {
         this.freeItemQty = freeItemQty;
     }
 
+    public double itemDiscount() {
+        return getItem().getRentalFee() * this.freeItemQty;
+    }
+
     @Override
     public String toString() {
         return "CartData{" +

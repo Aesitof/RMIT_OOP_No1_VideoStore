@@ -369,4 +369,207 @@
         <total>0.0</total>
         <totalDiscount>0.0</totalDiscount>
     </order>
+    <order>
+        <orderID>10</orderID>
+        <owner>
+            <id>C002</id>
+            <username>earlyPainting</username>
+            <name>Earl M. Painter</name>
+            <accountType>VIP</accountType>
+            <address>6 Ton-bridge Rd</address>
+            <phone>0796159915</phone>
+            <password>di0nly</password>
+            <totalReturnedItems>15</totalReturnedItems>
+            <rewardPoints>250</rewardPoints>
+        </owner>
+        <itemList>
+            <singleItem>
+                <item>
+                    <id>I004-2019</id>
+                    <title>Parasite</title>
+                    <year>2019</year>
+                    <itemType>Video Record</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>12.99</rentalFee>
+                    <image>parasite.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>31-05-2023</returnDate>
+                    <loanDate>29-05-2023</loanDate>
+                    <amount>2</amount>
+                    <isReturned>false</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+        </itemList>
+        <total>25.98</total>
+        <totalDiscount>0.0</totalDiscount>
+    </order>
+    <order>
+        <orderID>11</orderID>
+        <owner>
+            <id>C002</id>
+            <username>earlyPainting</username>
+            <name>Earl M. Painter</name>
+            <accountType>VIP</accountType>
+            <address>6 Ton-bridge Rd</address>
+            <phone>0796159915</phone>
+            <password>di0nly</password>
+            <totalReturnedItems>15</totalReturnedItems>
+            <rewardPoints>250</rewardPoints>
+        </owner>
+        <itemList>
+            <singleItem>
+                <item>
+                    <id>I001-2019</id>
+                    <title>Our Beloved Summer</title>
+                    <year>2019</year>
+                    <itemType>DVD</itemType>
+                    <genre>Drama</genre>
+                    <loanType>7 days</loanType>
+                    <rentalFee>15.99</rentalFee>
+                    <image>ourbelovedsummer.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>05-06-2023</returnDate>
+                    <loanDate>29-05-2023</loanDate>
+                    <amount>1</amount>
+                    <isReturned>false</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+            <singleItem>
+                <item>
+                    <id>I003-1997</id>
+                    <title>Titanic</title>
+                    <year>1997</year>
+                    <itemType>Video Record</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>23.99</rentalFee>
+                    <image>lastchristmas.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>31-05-2023</returnDate>
+                    <loanDate>29-05-2023</loanDate>
+                    <amount>1</amount>
+                    <isReturned>false</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+        </itemList>
+        <total>39.98</total>
+        <totalDiscount>0.0</totalDiscount>
+    </order>
+    <order>
+        <orderID>12</orderID>
+        <owner>
+            <id>C006</id>
+            <username>hello123</username>
+            <name>Tom Parker</name>
+            <accountType>VIP</accountType>
+            <address>23A Beidei Road TX</address>
+            <phone>0923232278</phone>
+            <password>thisismypw</password>
+            <totalReturnedItems>9</totalReturnedItems>
+            <rewardPoints>210</rewardPoints>
+        </owner>
+        <itemList>
+            <singleItem>
+                <item>
+                    <id>I006-2022</id>
+                    <title>Stranger Things 4</title>
+                    <year>2022</year>
+                    <itemType>Video Record</itemType>
+                    <genre>Horror</genre>
+                    <loanType>7 days</loanType>
+                    <rentalFee>25.99</rentalFee>
+                    <image>strangerthings4.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>05-06-2023</returnDate>
+                    <loanDate>29-05-2023</loanDate>
+                    <amount>1</amount>
+                    <isReturned>false</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+            <singleItem>
+                <item>
+                    <id>I002-2013</id>
+                    <title>PUBG</title>
+                    <year>2013</year>
+                    <itemType>Game</itemType>
+                    <loanType>7 days</loanType>
+                    <rentalFee>50.99</rentalFee>
+                    <image>pubg.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>05-06-2023</returnDate>
+                    <loanDate>29-05-2023</loanDate>
+                    <amount>1</amount>
+                    <isReturned>false</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+        </itemList>
+        <total>76.98</total>
+        <totalDiscount>0.0</totalDiscount>
+    </order>
+    <order>
+        <orderID>13</orderID>
+        <owner>
+            <id>C006</id>
+            <username>hello123</username>
+            <name>Tom Parker</name>
+            <accountType>VIP</accountType>
+            <address>23A Beidei Road TX</address>
+            <phone>0923232278</phone>
+            <password>thisismypw</password>
+            <totalReturnedItems>9</totalReturnedItems>
+            <rewardPoints>210</rewardPoints>
+        </owner>
+        <itemList>
+            <singleItem>
+                <item>
+                    <id>I007-2011</id>
+                    <title>Minecraft</title>
+                    <year>2011</year>
+                    <itemType>Game</itemType>
+                    <loanType>7 days</loanType>
+                    <rentalFee>19.59</rentalFee>
+                    <image>minecraft.png</image>
+                </item>
+                <orderDetail>
+                    <returnDate>05-06-2023</returnDate>
+                    <loanDate>29-05-2023</loanDate>
+                    <amount>1</amount>
+                    <isReturned>false</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+            <singleItem>
+                <item>
+                    <id>I005-2010</id>
+                    <title>Speak Now</title>
+                    <year>2010</year>
+                    <itemType>DVD</itemType>
+                    <genre>Drama</genre>
+                    <loanType>2 days</loanType>
+                    <rentalFee>12.99</rentalFee>
+                    <image>speaknow.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>31-05-2023</returnDate>
+                    <loanDate>29-05-2023</loanDate>
+                    <amount>1</amount>
+                    <isReturned>false</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+        </itemList>
+        <total>32.58</total>
+        <totalDiscount>0.0</totalDiscount>
+    </order>
 </orders>

@@ -1124,8 +1124,44 @@ public class AdminDetailPageController implements Initializable {
             // return item in back-end
             double latePenaltyFee = returnItem(orderOrderTextField.getText(), orderItemIDTextField.getText());
 
+            // test: print order after return (check status)
+            for (Order order : orderList) {
+                System.out.println(order);
+            }
+
             for (Item item : stockList.keySet()) {
                 System.out.println(item + "remaining: " + stockList.get(item));
+            }
+
+
+            // Item view
+            for (ItemData itemData : addItemList) {
+                // Find the item (which has been returned) in addItemList
+                if (itemData.getId().equals(orderItemIDTextField.getText())) {
+                    for (Order order : orderList) {
+                        // Find the order (which has been returned) int orderList (to get the amount of the item)
+                        if (order.getOrderID().equals(orderOrderTextField.getText())) {
+                            for (Item singleItem : order.getOrder().keySet()) {
+                                // Find the corresponding singleItem in order details
+                                if (singleItem.getId().equals(orderItemIDTextField.getText())) {
+                                    itemData.setRemainingCopies(itemData.getRemainingCopies() + order.getOrder().get(singleItem).getAmount());
+                                    System.out.println("Update item view: amount cua item vua tra: " + order.getOrder().get(singleItem).getAmount());
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            if (latePenaltyFee > 0) {
+                Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
+                updateAlert.setTitle("Late Returned Item");
+                updateAlert.setHeaderText(null);
+                updateAlert.setContentText("The customer have to pay $" + String.format("%.2f", latePenaltyFee) + " for returning late");
+                updateAlert.showAndWait();
             }
 
             // refresh front-end view
@@ -1135,20 +1171,12 @@ public class AdminDetailPageController implements Initializable {
             adminRentList = FXCollections.observableArrayList();
             adminRentList.removeAll();
 
-            for (RentalData rentalData : adminRentList) {
-                System.out.println(rentalData);
-            }
+//            for (RentalData rentalData : adminRentList) {
+//                System.out.println(rentalData);
+//            }
 
             orderRentTableView.setItems(adminRentList);
             orderClear();
-
-            if (latePenaltyFee > 0) {
-                Alert updateAlert = new Alert(Alert.AlertType.INFORMATION);
-                updateAlert.setTitle("Late Returned Item");
-                updateAlert.setHeaderText(null);
-                updateAlert.setContentText("The customer have to pay $" + String.format("%.2f", latePenaltyFee) + " for returning late");
-                updateAlert.showAndWait();
-            }
         }
     }
 
@@ -1166,6 +1194,8 @@ public class AdminDetailPageController implements Initializable {
         Optional<ButtonType> option = alert.showAndWait();
         try {
             if (option.get().equals(ButtonType.OK)) {
+                // write to datafile
+                saveData();
                 currentUser = null;
                 currentUserRewardPoints = 0;
 
@@ -1194,6 +1224,10 @@ public class AdminDetailPageController implements Initializable {
                 // write from Observable List to XML
             }
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParserConfigurationException e) {
+            throw new RuntimeException(e);
+        } catch (TransformerException e) {
             throw new RuntimeException(e);
         }
     }

@@ -123,7 +123,7 @@ public class CartCardController implements Initializable {
         cartCardTitle.setText(cartData.getItem().getTitle());
         cartCardType.setText(cartData.getItem().getItemType().toString());
         cartCardYear.setText(String.valueOf(cartData.getItem().getYear()));
-        cartCardItemFee.setText("$" + String.format("%.2f", cartData.getItemFee()));
+        cartCardItemFee.setText("$" + String.format("%.2f", cartData.getItem().getRentalFee()));
 
         String uri = "file:images/" + cartData.getItem().getImage();
         image = new Image(uri, 188, 198, false, true);
@@ -144,6 +144,7 @@ public class CartCardController implements Initializable {
         double discount = 0.0;
         for (CartData c : cartCartDataList) {
             subTotal += c.getItemFee();
+            discount += c.itemDiscount();
         }
 
         total = subTotal - discount;
@@ -181,13 +182,16 @@ public class CartCardController implements Initializable {
         freeItemDialogController.setFreeItemData(cartData);
         freeItemDialogController.freeItemCartDataList = cartCartDataList;
         freeItemDialogController.freeItemCartData = cartData;
+        freeItemDialogController.freeItemOrderDiscount = cartOrderDiscount;
+        freeItemDialogController.freeItemOrderTotal = cartOrderTotal;
+        freeItemDialogController.freeItemOrderSubtotal = cartOrderSubtotal;
 
         // test cart use point
-        for (CartData cartData1 : cartCartDataList) {
-            System.out.println(cartData1);
-        }
-
-        System.out.println("cartCartData: " + cartData);
+//        for (CartData cartData1 : cartCartDataList) {
+//            System.out.println(cartData1);
+//        }
+//
+//        System.out.println("cartCartData: " + cartData);
 
 
         Stage dialogStage = new Stage();
@@ -208,12 +212,13 @@ public class CartCardController implements Initializable {
         cartCardQty.valueProperty().addListener(new ChangeListener<Integer>() {
             @Override
             public void changed(ObservableValue<? extends Integer> observableValue, Integer oldValue, Integer newValue) {
-                cartCardItemFee.setText("$" + String.format("%.2f", cartData.getItem().getRentalFee() * newValue));
+//                cartCardItemFee.setText("$" + String.format("%.2f", cartData.getItem().getRentalFee() * newValue));
                 for (CartData c : cartCartDataList) {
                     if (c.getItem().equals(cartData.getItem())) {
                         c.setQty(newValue);
                         c.resetItemFee();
                         updateOrderSubtotal();
+                        break;
                     }
                 }
             }

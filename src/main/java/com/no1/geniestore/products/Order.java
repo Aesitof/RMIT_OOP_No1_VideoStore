@@ -126,22 +126,28 @@ public class Order {
     public double returnItemInOrder(String orderID, String itemID) {
         double lateReturnFee = 0;
         for (Order order : orderList) {
+            // find the order want to return
             if (order.getOrderID().equals(orderID)) {
                 for (Item item : order.getOrder().keySet()) {
+                    // find the singleItem in the order (to setReturned true) + get the Amount to add back to remaining in stockList
                     if (item.getId().equals(itemID)) {
+                        // set isReturned = true
+                        order.getOrder().get(item).setReturned(true);
+
+                        // add item back to remaining
                         for (Item singleItem : stockList.keySet()) {
                             if (singleItem.getId().equals(itemID)) {
                                 // return all amount of that item at the same time
                                 stockList.put(singleItem, stockList.get(singleItem) + order.getOrder().get(item).getAmount());
-
-                                // calculate penalty fee
-                                Calendar calendar = Calendar.getInstance();
-                                int dayLate = (int) ((calendar.getTimeInMillis() - order.getOrder().get(item).getReturnDate().getTime()) / 1000 / 60 / 60 / 24);
-                                lateReturnFee = order.getOrder().get(item).getAmount() * item.getRentalFee() * 3.0 / 10 * dayLate;
-                                order.setTotal(order.getTotal() + lateReturnFee);
                                 break;
                             }
                         }
+
+                        // calculate penalty fee
+                        Calendar calendar = Calendar.getInstance();
+                        int dayLate = (int) ((calendar.getTimeInMillis() - order.getOrder().get(item).getReturnDate().getTime()) / 1000 / 60 / 60 / 24);
+                        lateReturnFee = order.getOrder().get(item).getAmount() * item.getRentalFee() * 3.0 / 10 * dayLate;
+                        order.setTotal(order.getTotal() + lateReturnFee);
                     }
                     // update owner's total returned items
                     for (Account account : accountList) {
