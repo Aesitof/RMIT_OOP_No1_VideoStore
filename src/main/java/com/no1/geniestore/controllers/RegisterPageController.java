@@ -70,7 +70,7 @@ public class RegisterPageController implements Initializable {
 
 
     @FXML
-    public void toLoginPage() throws IOException {
+    public void register() throws IOException {
         if (registerName.getText().isEmpty() || (!registerName.getText().matches("^[A-Za-z\\s]{1,}[\\s.]{0,1}[A-Za-z\\s]{0,}$"))) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
@@ -184,6 +184,26 @@ public class RegisterPageController implements Initializable {
         }
 
 
+    }
+
+    public void toLoginPage() throws IOException {
+        root = FXMLLoader.load(getClass().getResource(("/com/no1/geniestore/loginpage-view.fxml")));
+
+        root.setOnMousePressed((MouseEvent event) ->  {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+
+        root.setOnMouseDragged((MouseEvent event) -> {
+            stage.setX(event.getScreenX() - x);
+            stage.setY(event.getScreenY() - y);
+        });
+
+        stage = (Stage)(signUpBtn).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setTitle("About Us Description");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override

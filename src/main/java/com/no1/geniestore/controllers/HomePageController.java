@@ -179,16 +179,16 @@ public class HomePageController implements Initializable {
             currentUser = null;
             currentUserRewardPoints = 0;
             System.out.println("currentUser " + currentUser);
+
+            // Delete cart data
+            deleteCartDataList();
+
+            // write to file
+            saveData();
+
+            // redirect to Login page
+            onSignInBtnClick();
         }
-
-        // Delete cart data
-        deleteCartDataList();
-
-        // write to file
-        saveData();
-
-        // redirect to Login page
-        onSignInBtnClick();
     }
 
     public void deleteCartDataList() {
@@ -375,7 +375,7 @@ public class HomePageController implements Initializable {
         myAccountName.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
-                if (!newValue.matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")) {
+                if (!newValue.matches("^[A-Za-z\\s]{0,}[\\.]{0,1}[A-Za-z\\s]{0,}$")) {
                     myAccountName.setText(oldValue);
                     myAccountNameError.setVisible(true);
                 } else {

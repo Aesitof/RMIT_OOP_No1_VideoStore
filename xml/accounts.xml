@@ -18,8 +18,8 @@
         <address>6 Ton-bridge Rd</address>
         <phone>0796159915</phone>
         <password>di0nly</password>
-        <totalReturnedItems>15</totalReturnedItems>
-        <rewardPoints>50</rewardPoints>
+        <totalReturnedItems>32</totalReturnedItems>
+        <rewardPoints>220</rewardPoints>
     </account>
     <account>
         <id>C003</id>
@@ -62,8 +62,8 @@
         <address>23A Beidei Road TX</address>
         <phone>0923232278</phone>
         <password>thisismypw</password>
-        <totalReturnedItems>14</totalReturnedItems>
-        <rewardPoints>80</rewardPoints>
+        <totalReturnedItems>20</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
     </account>
     <account>
         <id>C007</id>
