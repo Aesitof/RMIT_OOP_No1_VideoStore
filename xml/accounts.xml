@@ -19,7 +19,7 @@
         <phone>0796159915</phone>
         <password>di0nly</password>
         <totalReturnedItems>15</totalReturnedItems>
-        <rewardPoints>250</rewardPoints>
+        <rewardPoints>50</rewardPoints>
     </account>
     <account>
         <id>C003</id>
@@ -62,8 +62,8 @@
         <address>23A Beidei Road TX</address>
         <phone>0923232278</phone>
         <password>thisismypw</password>
-        <totalReturnedItems>9</totalReturnedItems>
-        <rewardPoints>110</rewardPoints>
+        <totalReturnedItems>14</totalReturnedItems>
+        <rewardPoints>80</rewardPoints>
     </account>
     <account>
         <id>C007</id>
@@ -74,6 +74,17 @@
         <phone>0932444666</phone>
         <password>guest123</password>
         <totalReturnedItems>0</totalReturnedItems>
+        <rewardPoints>0</rewardPoints>
+    </account>
+    <account>
+        <id>C008</id>
+        <username>ngaodg4f</username>
+        <name>Jason</name>
+        <accountType>Guest</accountType>
+        <address>kakakaka</address>
+        <phone>0123456789</phone>
+        <password>hehehehe</password>
+        <totalReturnedItems>2</totalReturnedItems>
         <rewardPoints>0</rewardPoints>
     </account>
 </accounts>

@@ -71,11 +71,11 @@ public class RegisterPageController implements Initializable {
 
     @FXML
     public void toLoginPage() throws IOException {
-        if (registerName.getText().isEmpty()) {
+        if (registerName.getText().isEmpty() || (!registerName.getText().matches("^[A-Za-z\\s]{1,}[\\s.]{0,1}[A-Za-z\\s]{0,}$"))) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Please enter your name");
+            alert.setContentText("Please enter your valid name (only contains letters, spaces, dot)");
             alert.showAndWait();
             registerName.requestFocus();
             return;

@@ -53,7 +53,7 @@ public class LoginPageController implements Initializable {
 
         root = FXMLLoader.load(getClass().getResource(("/com/no1/geniestore/registerpage-view.fxml")));
 
-        root.setOnMousePressed((MouseEvent event) ->  {
+        root.setOnMousePressed((MouseEvent event) -> {
             x = event.getSceneX();
             y = event.getSceneY();
         });
@@ -63,7 +63,7 @@ public class LoginPageController implements Initializable {
             stage.setY(event.getScreenY() - y);
         });
 
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 //        stage = new Stage();
         scene = new Scene(root);
         stage.setTitle("About Us Description");

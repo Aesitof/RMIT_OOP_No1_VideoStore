@@ -123,7 +123,7 @@ public class ProductCardController implements Initializable {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Your account level is not eligible to borrow 2-day items");
+            alert.setContentText("Your account level is not eligible to borrow 2-day items. Return 4 items in total to borrow this.");
             alert.showAndWait();
             return;
         }

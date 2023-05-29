@@ -203,15 +203,26 @@ public class ManagementSystem {
     }
 
     public static void promote(Account account) { // Auto promote whenever return item
-        if (account.getTotalReturnedItems() > 9) {
-            account.setRewardPoints(account.getRewardPoints() + (account.getTotalReturnedItems() - 9) * 10);
+        if (account.getTotalReturnedItems() > 10) {
+            account.setRewardPoints(account.getRewardPoints() + (account.getTotalReturnedItems() - 10) * 10);
         }
-        if (account.getTotalReturnedItems() >= 9) {
+        if (account.getTotalReturnedItems() >= 10) {
             account.setAccountType("VIP");
         } else if (account.getTotalReturnedItems() >= 4) {
             account.setAccountType("Regular");
         }
     }
+
+//    public static void promoteReturn(Account account, int amount) { // Auto promote whenever return item
+//        if (account.getTotalReturnedItems() > 10) {
+//            account.setRewardPoints(account.getRewardPoints() + (amount - 10) * 10);
+//        }
+//        if (account.getTotalReturnedItems() >= 10) {
+//            account.setAccountType("VIP");
+//        } else if (account.getTotalReturnedItems() >= 4) {
+//            account.setAccountType("Regular");
+//        }
+//    }
 
     public static String login(String username, String password) {
         if (username.equals("admin") && password.equals("Admin123")) {

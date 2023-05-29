@@ -104,7 +104,7 @@
                      </font>
                   </Label>
                   <PasswordField fx:id="registerRepeatPassword" layoutX="48.0" layoutY="551.0" prefHeight="40.0" prefWidth="294.0" promptText="Repeat your password" styleClass="textfield" stylesheets="@style/loginpage.css" />
-                  <Label layoutX="103.0" layoutY="123.0" onMouseClicked="#toHomeView" text="No.1 - Genie's Store" textFill="#1e4622">
+                  <Label layoutX="103.0" layoutY="123.0" text="No.1 - Genie's Store" textFill="#1e4622">
                      <font>
                         <Font name="Franklin Gothic Heavy" size="20.0" />
                      </font>

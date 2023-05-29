@@ -130,7 +130,6 @@ public class Order {
 
     public double returnItemInOrder(String orderID, String itemID) {
         double lateReturnFee = 0;
-//        System.out.printf("%s, %s", orderID, itemID);;
         for (Order order : orderList) {
             // find the order want to return
             if (order.getOrderID().equals(orderID)) {
@@ -139,15 +138,13 @@ public class Order {
                     if (item.getId().equals(itemID)) {
                         // set isReturned = true
                         order.getOrder().get(item).setReturned(true);
-
                         // add item back to remaining
                         for (Item singleItem : stockList.keySet()) {
-
+                            // find item in stock list to remaining
                             if (singleItem.getId().equals(itemID)) {
                                 // return all amount of that item at the same time
                                 stockList.put(singleItem, stockList.get(singleItem) + order.getOrder().get(item).getAmount());
-
-                                order.getOrder().get(item).setReturned(true);
+//                                order.getOrder().get(item).setReturned(true);
                                 break;
                             }
                         }
@@ -157,16 +154,18 @@ public class Order {
                             int dayLate = (int) ((calendar.getTimeInMillis() - order.getOrder().get(item).getReturnDate().getTime()) / 1000 / 60 / 60 / 24);
                             lateReturnFee = order.getOrder().get(item).getAmount() * item.getRentalFee() * 3.0 / 10 * dayLate;
                         }
-//                        System.out.println(order.getOrder().get(item));
                         order.setTotal(order.getTotal() + lateReturnFee);
-                    }
-                    // update owner's total returned items
-                    for (Account account : accountList) {
-                        if (order.getOwner().getId().equals(account.getId())) {
-                            account.setTotalReturnedItems(account.getTotalReturnedItems() + order.getOrder().get(item).getAmount());
-                            promote(account);
+                        // update owner's total returned items
+                        for (Account account : accountList) {
+                            if (order.getOwner().getId().equals(account.getId())) {
+                                account.setTotalReturnedItems(account.getTotalReturnedItems() + order.getOrder().get(item).getAmount());
+                                System.out.println("hello");
+                                System.out.println(order.getOrder().get(item).getAmount());
+                                promote(account);
+                            }
                         }
                     }
+
                 }
                 break;
             }
