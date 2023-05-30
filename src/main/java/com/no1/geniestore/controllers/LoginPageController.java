@@ -124,7 +124,7 @@ public class LoginPageController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
 
-                System.out.println("currentUser: " + currentUser);
+                System.out.println("currentUser: admin");
             } else if (loginResult.equals("loginSuccess")) {
                 root = FXMLLoader.load(getClass().getResource(("/com/no1/geniestore/homepage-view.fxml")));
 

@@ -164,9 +164,9 @@ public class CartCardController implements Initializable {
 
         updateOrderSubtotal();
 
-        for (CartData c : cartCartDataList) {
-            System.out.println(c);
-        }
+//        for (CartData c : cartCartDataList) {
+//            System.out.println(c);
+//        }
     }
 
     public void onUsePointBtnAction(ActionEvent event) throws IOException {

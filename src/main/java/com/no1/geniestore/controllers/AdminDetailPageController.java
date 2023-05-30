@@ -390,15 +390,13 @@ public class AdminDetailPageController implements Initializable {
                 updateAlert.setContentText("Update item successfully");
                 updateAlert.showAndWait();
 
-                for (Item itemData : itemList.keySet()) {
-                    System.out.println(itemData);
-                    System.out.println(itemList.get(itemData));
-                }
-                for (Item itemData : stockList.keySet()) {
-                    System.out.println(stockList.get(itemData));
-                }
-
-
+//                for (Item itemData : itemList.keySet()) {
+//                    System.out.println(itemData);
+//                    System.out.println(itemList.get(itemData));
+//                }
+//                for (Item itemData : stockList.keySet()) {
+//                    System.out.println(stockList.get(itemData));
+//                }
                 return;
             }
         }
@@ -508,15 +506,15 @@ public class AdminDetailPageController implements Initializable {
             // Add to back-end list
             Item newItem = new Item(itemTitle.getText(), Integer.parseInt(String.valueOf(yearComboBox.getValue())), typeComboBox.getValue(), genreComboBox.getValue(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), imagePath.getText());
             addItem(newItem, copies.getValue());
-            for (Item itemData : itemList.keySet()) {
-                System.out.println(itemData);
-                System.out.println(itemList.get(itemData));
-                for (Item item : stockList.keySet()) {
-                    if (item.getId().equals(itemData.getId())) {
-                        System.out.println(stockList.get(item));
-                    }
-                }
-            }
+//            for (Item itemData : itemList.keySet()) {
+//                System.out.println(itemData);
+//                System.out.println(itemList.get(itemData));
+//                for (Item item : stockList.keySet()) {
+//                    if (item.getId().equals(itemData.getId())) {
+//                        System.out.println(stockList.get(item));
+//                    }
+//                }
+//            }
 
             // Add to front-end view
             addItemList.add(new ItemData(newItem.getId(), itemTitle.getText(), Integer.parseInt(String.valueOf(yearComboBox.getValue())), typeComboBox.getValue(), genreComboBox.getValue(), loanTypeComboBox.getValue(), Double.parseDouble(rentalFee.getText()), imagePath.getText(), copies.getValue(), copies.getValue()));
@@ -527,7 +525,6 @@ public class AdminDetailPageController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Item successfully added");
             alert.showAndWait();
-
 
             addItemClear();
         } else {
@@ -595,14 +592,14 @@ public class AdminDetailPageController implements Initializable {
                         alert.showAndWait();
 
                         // Testing: print to console
-                        for (Item i : itemList.keySet()) {
-                            System.out.println(i);
-                            System.out.println(itemList.get(i));
-                        }
-                        for (Item i : stockList.keySet()) {
-                            System.out.println(i);
-                            System.out.println(stockList.get(i));
-                        }
+//                        for (Item i : itemList.keySet()) {
+//                            System.out.println(i);
+//                            System.out.println(itemList.get(i));
+//                        }
+//                        for (Item i : stockList.keySet()) {
+//                            System.out.println(i);
+//                            System.out.println(stockList.get(i));
+//                        }
 
 
                         return;
@@ -875,7 +872,7 @@ public class AdminDetailPageController implements Initializable {
                             Optional<ButtonType> option = alert.showAndWait();
 
                             if (option.get() == ButtonType.OK) {
-                                System.out.println("choose OK");
+//                                System.out.println("choose OK");
                                 removeAccount(addAccountID.getText());
 
                                 // Add to front-end view
@@ -887,7 +884,7 @@ public class AdminDetailPageController implements Initializable {
                                 alert = new Alert(Alert.AlertType.INFORMATION);
                                 alert.setTitle("Information Message");
                                 alert.setHeaderText(null);
-                                alert.setContentText("Item successfully deleted");
+                                alert.setContentText("Account successfully deleted");
                                 alert.showAndWait();
                                 return;
                             } else {
@@ -906,6 +903,7 @@ public class AdminDetailPageController implements Initializable {
             Optional<ButtonType> option = alert.showAndWait();
 
             if (option.get().equals(ButtonType.OK)) {
+                System.out.println("choose OK");
 
                 // delete account in back-end list
                 removeAccount(addAccountID.getText());
@@ -919,7 +917,7 @@ public class AdminDetailPageController implements Initializable {
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Item successfully deleted");
+                alert.setContentText("Account successfully deleted");
                 alert.showAndWait();
             }
         }
@@ -961,11 +959,11 @@ public class AdminDetailPageController implements Initializable {
                 }
                 return false;
             });
-            System.out.println("Filter list 2nd time");
-            for (Account account : filter) {
-                System.out.println(account);
-            }
-            System.out.println("--------");
+//            System.out.println("Filter list 2nd time");
+//            for (Account account : filter) {
+//                System.out.println(account);
+//            }
+//            System.out.println("--------");
             SortedList<Account> sortList = new SortedList<>(filter);
             sortList.comparatorProperty().bind(addAccountTableView.comparatorProperty());
             System.out.println("Sort list");
@@ -1123,16 +1121,15 @@ public class AdminDetailPageController implements Initializable {
         if (option.get().equals(ButtonType.OK)) {
             // return item in back-end
             double latePenaltyFee = returnItem(orderOrderTextField.getText(), orderItemIDTextField.getText());
-
+            System.out.printf("Penalty fee: $%.2f\n", latePenaltyFee);
             // test: print order after return (check status)
-            for (Order order : orderList) {
-                System.out.println(order);
-            }
+//            for (Order order : orderList) {
+//                System.out.println(order);
+//            }
 
-            for (Item item : stockList.keySet()) {
-                System.out.println(item + "remaining: " + stockList.get(item));
-            }
-
+//            for (Item item : stockList.keySet()) {
+//                System.out.println(item + "remaining: " + stockList.get(item));
+//            }
 
             // Item view
             for (ItemData itemData : addItemList) {
@@ -1144,8 +1141,10 @@ public class AdminDetailPageController implements Initializable {
                             for (Item singleItem : order.getOrder().keySet()) {
                                 // Find the corresponding singleItem in order details
                                 if (singleItem.getId().equals(orderItemIDTextField.getText())) {
+                                    System.out.println("Total items in store before: " + itemData.getRemainingCopies());
+                                    System.out.println("Returned amount : " + order.getOrder().get(singleItem).getAmount());
                                     itemData.setRemainingCopies(itemData.getRemainingCopies() + order.getOrder().get(singleItem).getAmount());
-                                    System.out.println("Update item view: amount cua item vua tra: " + order.getOrder().get(singleItem).getAmount());
+                                    System.out.println("Update item view: item remaining in store: " + itemData.getRemainingCopies());
                                     break;
                                 }
                             }

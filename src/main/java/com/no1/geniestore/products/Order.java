@@ -160,8 +160,7 @@ public class Order {
                             if (order.getOwner().getId().equals(account.getId())) {
                                 int returnedItem = order.getOrder().get(item).getAmount();
                                 int totalReturnedItemsBefore = account.getTotalReturnedItems();
-                               account.setTotalReturnedItems(account.getTotalReturnedItems() + order.getOrder().get(item).getAmount());
-//                                System.out.println(returnedItem);
+                                account.setTotalReturnedItems(account.getTotalReturnedItems() + order.getOrder().get(item).getAmount());
                                 promoteReturn(account, returnedItem, totalReturnedItemsBefore);
                             }
                         }

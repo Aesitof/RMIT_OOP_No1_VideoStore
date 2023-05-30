@@ -123,7 +123,8 @@ public class Item {
 
 //    Auto Generator for itemID
     public String generateItemID() {
-        int code = itemIdCounter++;
+        itemIdCounter++;
+        int code = itemIdCounter;
         String itemID = "I";
 
         // itemID format: IXXX-YYYY

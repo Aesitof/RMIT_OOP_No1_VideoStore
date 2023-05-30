@@ -212,7 +212,9 @@ public class HomePageController implements Initializable {
     }
 
     /* Product View */
-    public void toProductView() {
+    public void toProductView() throws IOException {
+        productListVBox.getChildren().clear();
+        loadProductList();
         homeView.setVisible(false);
         productView.setVisible(true);
         cartView.setVisible(false);
@@ -321,9 +323,9 @@ public class HomePageController implements Initializable {
 
 
         deleteCartDataList();
-        for (CartData cartData : cartDataList) {
-            System.out.println(cartData);
-        }
+//        for (CartData cartData : cartDataList) {
+//            System.out.println(cartData);
+//        }
     }
 
     /* My Account View */
