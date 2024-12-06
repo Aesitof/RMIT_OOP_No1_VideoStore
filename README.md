@@ -27,13 +27,13 @@
 6. Search Tools
 7. Store and Retrieve data from file XML
 
-## `Notation while using system`
+## `Notes while using system`
 1. Guest customers can rent only **2 different** items at once, and they cannot make any order until
    they return their rent item(s) of the previous order.
 2. The system records the loan date of an order as the day that order is committed by a customer's account.
-   Yet, the loan duration will be given one extra day.
+   Yet, the loan duration will be one extra day.
 
-## `List of Account`
+## `List of Accounts`
 - **Customer**
 1. Guest:
 ```
