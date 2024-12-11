@@ -7,6 +7,8 @@ import com.no1.geniestore.controllers.AccountListParser;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.controllers.OrderListParser;
+import com.no1.geniestore.storage.Storage;
+
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -25,6 +27,7 @@ public class ManagementSystem {
     public static HashMap<Item, Integer> itemList; // Total item copies
     public static Account currentUser;
     public static int currentUserRewardPoints;
+    public static final Storage storage = new Storage();
 
     public ManagementSystem() {
         accountList = new ArrayList<>();
@@ -72,14 +75,15 @@ public class ManagementSystem {
 
     public static void saveData() throws ParserConfigurationException, IOException, TransformerException {
         // Save items info to file before closing the application
-        ItemListParser.saveItemFile();
-        AccountListParser.accountsToXML();
+        // ItemListParser.saveItemFile();
+        // AccountListParser.accountsToXML();
 
-        for (Order order : orderList) {
-            System.out.println(order);
-        }
-        OrderListParser.saveOrderFile();
-        writeTextFile();
+        // for (Order order : orderList) {
+        //     System.out.println(order);
+        // }
+        // OrderListParser.saveOrderFile();
+        // writeTextFile();
+        storage.save();
     }
 
     public static void readTextFile() throws IOException {
