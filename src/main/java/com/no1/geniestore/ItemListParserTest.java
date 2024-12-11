@@ -34,7 +34,7 @@ public class ItemListParserTest {
             System.out.println(item);
         }
 
-//        List<Account> accounts = new AccountListParser().parse("xml/accounts.xml");
+//        List<Account> accounts = new AccountListParser().parse("xml/accounts1.xml");
 //        for (Account account : accounts) {
 //            System.out.println(account);
 //        }

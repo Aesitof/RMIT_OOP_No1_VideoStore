@@ -330,6 +330,24 @@
         <itemList>
             <singleItem>
                 <item>
+                    <id>I002-2013</id>
+                    <title>PUBG</title>
+                    <year>2013</year>
+                    <itemType>Game</itemType>
+                    <loanType>7 days</loanType>
+                    <rentalFee>50.99</rentalFee>
+                    <image>pubg.jpg</image>
+                </item>
+                <orderDetail>
+                    <returnDate>28-05-2023</returnDate>
+                    <loanDate>22-05-2023</loanDate>
+                    <amount>2</amount>
+                    <isReturned>false</isReturned>
+                    <discount>0.0</discount>
+                </orderDetail>
+            </singleItem>
+            <singleItem>
+                <item>
                     <id>I001-2001</id>
                     <title>Last Christmas</title>
                     <year>2001</year>
@@ -344,24 +362,6 @@
                     <loanDate>22-05-2023</loanDate>
                     <amount>4</amount>
                     <isReturned>true</isReturned>
-                    <discount>0.0</discount>
-                </orderDetail>
-            </singleItem>
-            <singleItem>
-                <item>
-                    <id>I002-2013</id>
-                    <title>PUBG</title>
-                    <year>2013</year>
-                    <itemType>Game</itemType>
-                    <loanType>7 days</loanType>
-                    <rentalFee>50.99</rentalFee>
-                    <image>pubg.jpg</image>
-                </item>
-                <orderDetail>
-                    <returnDate>28-05-2023</returnDate>
-                    <loanDate>22-05-2023</loanDate>
-                    <amount>2</amount>
-                    <isReturned>false</isReturned>
                     <discount>0.0</discount>
                 </orderDetail>
             </singleItem>
@@ -385,14 +385,13 @@
         <itemList>
             <singleItem>
                 <item>
-                    <id>I001-2019</id>
-                    <title>Our Beloved Summer</title>
-                    <year>2019</year>
-                    <itemType>DVD</itemType>
-                    <genre>Drama</genre>
+                    <id>I007-2011</id>
+                    <title>Minecraft</title>
+                    <year>2011</year>
+                    <itemType>Game</itemType>
                     <loanType>7 days</loanType>
-                    <rentalFee>15.99</rentalFee>
-                    <image>ourbelovedsummer.jpg</image>
+                    <rentalFee>19.59</rentalFee>
+                    <image>minecraft.png</image>
                 </item>
                 <orderDetail>
                     <returnDate>05-06-2023</returnDate>
@@ -404,13 +403,14 @@
             </singleItem>
             <singleItem>
                 <item>
-                    <id>I007-2011</id>
-                    <title>Minecraft</title>
-                    <year>2011</year>
-                    <itemType>Game</itemType>
+                    <id>I001-2019</id>
+                    <title>Our Beloved Summer</title>
+                    <year>2019</year>
+                    <itemType>DVD</itemType>
+                    <genre>Drama</genre>
                     <loanType>7 days</loanType>
-                    <rentalFee>19.59</rentalFee>
-                    <image>minecraft.png</image>
+                    <rentalFee>15.99</rentalFee>
+                    <image>ourbelovedsummer.jpg</image>
                 </item>
                 <orderDetail>
                     <returnDate>05-06-2023</returnDate>
