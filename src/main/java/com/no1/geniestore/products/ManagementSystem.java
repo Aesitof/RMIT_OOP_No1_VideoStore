@@ -21,6 +21,11 @@ import java.util.HashMap;
 import static com.no1.geniestore.accounts.Account.accountIdCounter;
 import static com.no1.geniestore.products.Stock.*;
 import static com.no1.geniestore.products.Order.orderIdCounter;
+import static com.no1.geniestore.storage.Storage.ACCOUNTS_FILE_PATH;
+import static com.no1.geniestore.storage.Storage.AMOUNT_FILE_PATH;
+import static com.no1.geniestore.storage.Storage.ITEMS_FILE_PATH;
+import static com.no1.geniestore.storage.Storage.ORDERS_FILE_PATH;
+
 public class ManagementSystem {
     public static ArrayList<Account> accountList;
     public static ArrayList<Order> orderList;
@@ -39,10 +44,10 @@ public class ManagementSystem {
     public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException, TransformerException {
         readTextFile();
         ItemListParser itemListParser = new ItemListParser();
-        itemList = itemListParser.parseItemTotal("xml/items.xml");
-        stockList = itemListParser.parseStockList("xml/items.xml");
-        accountList = (ArrayList<Account>) new AccountListParser().parse("xml/accounts.xml");
-        orderList = (ArrayList<Order>) new OrderListParser().parse("xml/orders.xml");
+        itemList = itemListParser.parseItemTotal(ITEMS_FILE_PATH);
+        stockList = itemListParser.parseStockList(ITEMS_FILE_PATH);
+        accountList = (ArrayList<Account>) new AccountListParser().parse(ACCOUNTS_FILE_PATH);
+        orderList = (ArrayList<Order>) new OrderListParser().parse(ORDERS_FILE_PATH);
 
 //        TEXT-BASED TESTING
 //        for (Order order : orderList) {
@@ -87,7 +92,7 @@ public class ManagementSystem {
     }
 
     public static void readTextFile() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("txt/amount.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(AMOUNT_FILE_PATH));
 
         itemIdCounter = Integer.parseInt(reader.readLine());
         accountIdCounter = Integer.parseInt(reader.readLine());
@@ -95,7 +100,7 @@ public class ManagementSystem {
     }
 
     public static void writeTextFile() throws IOException {
-        PrintWriter writer = new PrintWriter(new FileWriter("txt/amount.txt"));
+        PrintWriter writer = new PrintWriter(new FileWriter(AMOUNT_FILE_PATH));
         writer.printf("%d\n%d\n%d", itemIdCounter, accountIdCounter, orderIdCounter );
         writer.close();
     }
