@@ -79,15 +79,6 @@ public class ManagementSystem {
     }
 
     public static void saveData() throws ParserConfigurationException, IOException, TransformerException {
-        // Save items info to file before closing the application
-        // ItemListParser.saveItemFile();
-        // AccountListParser.accountsToXML();
-
-        // for (Order order : orderList) {
-        //     System.out.println(order);
-        // }
-        // OrderListParser.saveOrderFile();
-        // writeTextFile();
         storage.save();
     }
 
