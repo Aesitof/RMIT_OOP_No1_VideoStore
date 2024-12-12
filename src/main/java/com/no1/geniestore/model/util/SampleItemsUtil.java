@@ -44,8 +44,14 @@ public class SampleItemsUtil {
     /**
      * Returns a list of number of copies in total {@copies} of sample items.
      */
+    public static int[] getSampleCopies() {
+        return new int[] {1, 25, 5, 10, 20, 30, 15, 5, 20, 15};
+    }
     
     /**
      * Returns a list of number of copies remaining {@remaining} of sample items.
      */
+    public static int[] getSampleRemaining() {
+        return new int[] {0, 21, 3, 10, 18, 27, 13, 4, 19, 0};
+    }
 }
