@@ -48,7 +48,6 @@ public class ManagementSystem {
         ItemListParser itemListParser = new ItemListParser();
         itemList = itemListParser.parseItemTotal(ITEMS_FILE_PATH);
         stockList = itemListParser.parseStockList(ITEMS_FILE_PATH);
-        // accountList = (ArrayList<Account>) new AccountListParser().parse(ACCOUNTS_FILE_PATH);
         accountList = storage.getAccountList();
         orderList = (ArrayList<Order>) new OrderListParser().parse(ORDERS_FILE_PATH);
 
