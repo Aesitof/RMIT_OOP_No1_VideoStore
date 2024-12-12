@@ -33,7 +33,7 @@ public class SampleAccountsUtil {
     /**
      * Returns an {@code ArrayList} of sample accounts.
      */
-    public static ArrayList<Account> getAccountList() {
+    public static ArrayList<Account> getSampleAccountList() {
         return new ArrayList<>(Arrays.asList(getSampleAccounts()));
     }
 }

@@ -7,6 +7,7 @@ import com.no1.geniestore.controllers.AccountListParser;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.controllers.OrderListParser;
+import com.no1.geniestore.model.util.SampleAccountsUtil;
 import com.no1.geniestore.storage.Storage;
 
 import org.xml.sax.SAXException;
@@ -14,6 +15,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.*;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +48,8 @@ public class ManagementSystem {
         ItemListParser itemListParser = new ItemListParser();
         itemList = itemListParser.parseItemTotal(ITEMS_FILE_PATH);
         stockList = itemListParser.parseStockList(ITEMS_FILE_PATH);
-        accountList = (ArrayList<Account>) new AccountListParser().parse(ACCOUNTS_FILE_PATH);
+        // accountList = (ArrayList<Account>) new AccountListParser().parse(ACCOUNTS_FILE_PATH);
+        accountList = storage.getAccountList();
         orderList = (ArrayList<Order>) new OrderListParser().parse(ORDERS_FILE_PATH);
 
 //        TEXT-BASED TESTING

@@ -2,10 +2,14 @@ package com.no1.geniestore.storage;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
+import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.controllers.AccountListParser;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.controllers.OrderListParser;
+import com.no1.geniestore.model.util.SampleAccountsUtil;
 import com.no1.geniestore.products.ManagementSystem;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,6 +22,21 @@ public class Storage {
     public static String ACCOUNTS_FILE_PATH = XML_DIRECTORY + "accounts.xml";
     public static String ITEMS_FILE_PATH = XML_DIRECTORY + "items.xml";
     public static String ORDERS_FILE_PATH = XML_DIRECTORY + "orders.xml";
+    
+    /**
+     * Gets the list of {@code Account},
+     * either from the {@code ACCOUNTS_FILE_PATH} or sample accounts.
+     */
+    public ArrayList<Account> getAccountList() {
+        ArrayList<Account> accountList = new ArrayList<>();
+        try {
+            accountList = new AccountListParser().readAccountsFile(Paths.get(ACCOUNTS_FILE_PATH)).orElseGet(SampleAccountsUtil::getSampleAccountList);
+        } catch (ParserConfigurationException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return accountList;
+    }
     
     /**
      * Saves all the current data into the data files, whose paths indicated as static variables.

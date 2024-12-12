@@ -18,13 +18,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.no1.geniestore.products.ManagementSystem.accountList;
+import static java.util.Objects.requireNonNull;
 
 public class AccountListParser {
-    private DocumentBuilder builder;
+    private static DocumentBuilder builder;
 
     /**
      * Construct a parser that can parse account lists
@@ -32,6 +35,29 @@ public class AccountListParser {
     public AccountListParser() throws ParserConfigurationException
     {
         builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    }
+    
+    /**
+     * Reads an accounts file from the given file path and returns an {@code Optional} containing the parsed accounts list.
+     * If the file is not found or an error occurs during parsing, {@code Optional.empty()} is returned.
+     *
+     * @param filePath the path to the accounts file; cannot be null.
+     * @return an {@code Optional} containing the accounts list, or {@code Optional.empty()} if the file is not found or an error occurs.
+     * @throws NullPointerException if {@code filePath} is null.
+     */
+    public Optional<ArrayList<Account>> readAccountsFile(Path filePath) {
+        requireNonNull(filePath);
+
+        try {
+            ArrayList<Account> accountsList = (ArrayList<Account>) parse(filePath.toString());
+            return Optional.of(accountsList);
+        } catch (IOException | SAXException e) {
+            // Log the error if necessary
+            return Optional.empty();
+        } catch (ClassCastException e) {
+            // Handle case where the parsed object cannot be cast to T
+            throw new IllegalArgumentException("Parsed object cannot be cast to the expected type.", e);
+        }
     }
 
     /**
