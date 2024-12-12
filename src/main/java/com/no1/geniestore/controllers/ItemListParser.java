@@ -5,6 +5,9 @@
 
 package com.no1.geniestore.controllers;
 
+import static com.no1.geniestore.storage.Storage.ITEMS_FILE_PATH;
+import static java.util.Objects.requireNonNull;
+
 import com.no1.geniestore.Parser;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
@@ -20,16 +23,10 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Optional;
 
 public class ItemListParser {
     private DocumentBuilder builder;
@@ -40,7 +37,41 @@ public class ItemListParser {
     public ItemListParser() throws ParserConfigurationException {
         builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
     }
-
+    
+    /**
+     * Reads an items file from the given file path and returns an {@code Optional} containing the parsed items list {@code HashMap} with number of copies.
+     * If the file is not found or an error occurs during parsing, {@code Optional.empty()} is returned.
+     *
+     * @param filePath the path to the accounts file; cannot be null.
+     */
+    public Optional<HashMap<Item, Integer>> readItemsCopiesFile(String filePath) {
+        requireNonNull(filePath);
+        
+        try {
+             HashMap<Item, Integer> itemList = parseItemTotal(ITEMS_FILE_PATH);
+             return Optional.of(itemList);
+        } catch (SAXException | IOException e) {
+            return Optional.empty();
+        }
+    }
+    
+    /**
+     * Reads an items file from the given file path and returns an {@code Optional} containing the parsed stock list {@code HashMap} with number of remaining copies.
+     * If the file is not found or an error occurs during parsing, {@code Optional.empty()} is returned.
+     *
+     * @param filePath the path to the accounts file; cannot be null.
+     */
+    public Optional<HashMap<Item, Integer>> readItemsStockFile(String filePath) {
+        requireNonNull(filePath);
+        
+        try {
+            HashMap<Item, Integer> stockList = parseStockList(ITEMS_FILE_PATH);
+            return Optional.of(stockList);
+        } catch (SAXException | IOException e) {
+            return Optional.empty();
+        }
+    }
+    
     /**
      * Parses an XML file containing an item list. returns an array list
      * containing all items in the XML file
