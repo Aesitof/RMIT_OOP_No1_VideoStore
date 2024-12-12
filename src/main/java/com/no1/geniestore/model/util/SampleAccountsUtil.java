@@ -26,7 +26,7 @@ public class SampleAccountsUtil {
                 new Account("C007", "michaelne", "Michael", "Guest",
                         "23 Fl Rd", "0932444666", "guest123", 0, 0),
                 new Account("C008", "ngaodg4f", "NgaoDGF", "Guest",
-                        "hihihihi", "0123456789", "hehehehe", 2, 2)
+                        "hihihihi", "0123456789", "hehehehe", 2, 0)
         };
     }
     
