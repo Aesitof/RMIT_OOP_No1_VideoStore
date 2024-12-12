@@ -10,6 +10,8 @@ import static com.no1.geniestore.constants.LoanType.ONE_WEEK_LOAN;
 import static com.no1.geniestore.constants.LoanType.TWO_DAY_LOAN;
 
 
+import java.util.HashMap;
+
 import com.no1.geniestore.products.Item;
 
 public class SampleItemsUtil {
@@ -42,16 +44,44 @@ public class SampleItemsUtil {
     }
     
     /**
-     * Returns a list of number of copies in total {@copies} of sample items.
+     * Returns a list of number of copies in total {@code copies} of sample items.
      */
     public static int[] getSampleCopies() {
         return new int[] {1, 25, 5, 10, 20, 30, 15, 5, 20, 15};
     }
     
     /**
-     * Returns a list of number of copies remaining {@remaining} of sample items.
+     * Returns a list of number of copies remaining {@code remaining} of sample items.
      */
     public static int[] getSampleRemaining() {
         return new int[] {0, 21, 3, 10, 18, 27, 13, 4, 19, 0};
+    }
+    
+    /**
+     * Returns a {@code sampleItemList}, which is a {@code HashMap<Item, Integer>} of number of copies.
+     */
+    public static HashMap<Item, Integer> getSampleItemList() {
+        Item[] sampleItems = getSampleItems();
+        int[] sampleCopies = getSampleCopies();
+        HashMap<Item, Integer> sampleItemList = new HashMap<>();
+        for (int i = 0; i < sampleItems.length; i++) {
+            sampleItemList.put(sampleItems[i], sampleCopies[i]);
+        }
+        
+        return sampleItemList;
+    }
+    
+    /**
+     * Returns a {@code sampleStockList}, which is a {@code Hashmap<Item, Integer} of number of remaining copies.
+     */
+    public static HashMap<Item, Integer> getSampleStockList() {
+        Item[] sampleItems = getSampleItems();
+        int[] sampleRemaining = getSampleRemaining();
+        HashMap<Item, Integer> sampleStockList = new HashMap<>();
+        for (int i = 0; i < sampleItems.length; i++) {
+            sampleStockList.put(sampleItems[i], sampleRemaining[i]);
+        }
+        
+        return sampleStockList;
     }
 }
