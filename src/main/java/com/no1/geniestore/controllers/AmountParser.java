@@ -14,7 +14,7 @@ public class AmountParser {
      *
      * @param filePath the path to amount file; cannot be null.
      */
-    public Optional<Integer> readItemIdCounter(String filePath) {
+    public static Optional<Integer> readItemIdCounter(String filePath) {
         requireNonNull(filePath);
         
         try {
@@ -30,7 +30,7 @@ public class AmountParser {
      *
      * @param filePath the path to the amount file; cannot be null.
      */
-    public Optional<Integer> readAccountCounter(String filePath) {
+    public static Optional<Integer> readAccountCounter(String filePath) {
         requireNonNull(filePath);
         
         try {
@@ -47,7 +47,7 @@ public class AmountParser {
      *
      * @param filePath the path to the amount file; cannot be null.
      */
-    public Optional<Integer> readOrderCounter(String filePath) {
+    public static Optional<Integer> readOrderCounter(String filePath) {
         requireNonNull(filePath);
         
         try {

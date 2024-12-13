@@ -11,15 +11,21 @@ import javafx.collections.ObservableList;
 
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.controllers.AccountListParser;
+import com.no1.geniestore.controllers.AmountParser;
 import com.no1.geniestore.controllers.ItemData;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.controllers.OrderListParser;
 import com.no1.geniestore.model.util.SampleAccountsUtil;
+import com.no1.geniestore.model.util.SampleAmountUtil;
 import com.no1.geniestore.model.util.SampleItemsUtil;
 import com.no1.geniestore.model.util.SampleOrdersUtil;
 import com.no1.geniestore.products.Item;
 import com.no1.geniestore.products.ManagementSystem;
 import com.no1.geniestore.products.Order;
+
+import static com.no1.geniestore.accounts.Account.accountIdCounter;
+import static com.no1.geniestore.products.Stock.itemIdCounter;
+import static com.no1.geniestore.products.Order.orderIdCounter;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -106,6 +112,16 @@ public class Storage {
             System.out.println();
         }
         return orderList;
+    }
+    
+    /**
+     * Gets the required counters,
+     * either from the {@code AMOUNT_FILE_PATH} or sample amount data.
+     */
+    public void getAmountData() {
+        itemIdCounter = AmountParser.readItemIdCounter(AMOUNT_FILE_PATH).orElse(SampleAmountUtil.SAMPLE_ITEM_ID_COUNTER);
+        accountIdCounter = AmountParser.readItemIdCounter(AMOUNT_FILE_PATH).orElse(SampleAmountUtil.SAMPLE_ACCOUNT_ID_COUNTER);
+        orderIdCounter = AmountParser.readOrderCounter(AMOUNT_FILE_PATH).orElse(SampleAmountUtil.SAMPLE_ORDER_ID_COUNTER);
     }
     
     /**

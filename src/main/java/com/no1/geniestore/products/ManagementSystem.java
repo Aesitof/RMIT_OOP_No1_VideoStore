@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.no1.geniestore.accounts.Account.accountIdCounter;
-import static com.no1.geniestore.products.Stock.*;
+import static com.no1.geniestore.products.Stock.itemIdCounter;
+import static com.no1.geniestore.products.Stock.stockList;
 import static com.no1.geniestore.products.Order.orderIdCounter;
 import static com.no1.geniestore.storage.Storage.AMOUNT_FILE_PATH;
 
@@ -36,11 +37,11 @@ public class ManagementSystem {
     }
 
     public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException, TransformerException {
-        readTextFile();
+        // readTextFile();
+        storage.getAmountData();
         itemList = storage.getItemList();
         stockList = storage.getStockList();
         accountList = storage.getAccountList();
-        // orderList = (ArrayList<Order>) new OrderListParser().parse(ORDERS_FILE_PATH);
         orderList = storage.getOrderList();
 
 //        TEXT-BASED TESTING
