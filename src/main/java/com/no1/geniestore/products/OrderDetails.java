@@ -1,8 +1,11 @@
 package com.no1.geniestore.products;
 
-import java.lang.reflect.Constructor;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+
+import com.no1.geniestore.Parser;
+import com.no1.geniestore.model.util.DateFormatUtil;
 
 public class OrderDetails {
     private Date returnDate;
@@ -23,6 +26,23 @@ public class OrderDetails {
     public OrderDetails(Date returnDate, Date loanDate, int amount, boolean isReturned, double discount) {
         this.returnDate = returnDate;
         this.loanDate = loanDate;
+        this.amount = amount;
+        this.isReturned = isReturned;
+        this.discount = discount;
+    }
+    
+    public OrderDetails(String returnDate, String loanDate, int amount, boolean isReturned, double discount) {
+        Date rDate = new Date();
+        Date lDate = new Date();
+        try {
+            rDate = DateFormatUtil.stringToDate(returnDate);
+            lDate = DateFormatUtil.stringToDate(loanDate);
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        this.returnDate = rDate;
+        this.loanDate = lDate;
         this.amount = amount;
         this.isReturned = isReturned;
         this.discount = discount;

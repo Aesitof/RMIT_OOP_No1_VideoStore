@@ -3,11 +3,8 @@ package com.no1.geniestore.products;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
-import com.no1.geniestore.controllers.AccountListParser;
-import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.controllers.OrderListParser;
-import com.no1.geniestore.model.util.SampleAccountsUtil;
 import com.no1.geniestore.storage.Storage;
 
 import org.xml.sax.SAXException;
@@ -23,7 +20,6 @@ import static com.no1.geniestore.accounts.Account.accountIdCounter;
 import static com.no1.geniestore.products.Stock.*;
 import static com.no1.geniestore.products.Order.orderIdCounter;
 import static com.no1.geniestore.storage.Storage.AMOUNT_FILE_PATH;
-import static com.no1.geniestore.storage.Storage.ORDERS_FILE_PATH;
 
 public class ManagementSystem {
     public static ArrayList<Account> accountList;
@@ -42,12 +38,11 @@ public class ManagementSystem {
 
     public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException, TransformerException {
         readTextFile();
-        // itemList = itemListParser.parseItemTotal(ITEMS_FILE_PATH);
         itemList = storage.getItemList();
-        // stockList = itemListParser.parseStockList(ITEMS_FILE_PATH);
         stockList = storage.getStockList();
         accountList = storage.getAccountList();
-        orderList = (ArrayList<Order>) new OrderListParser().parse(ORDERS_FILE_PATH);
+        // orderList = (ArrayList<Order>) new OrderListParser().parse(ORDERS_FILE_PATH);
+        orderList = storage.getOrderList();
 
 //        TEXT-BASED TESTING
 //        for (Order order : orderList) {

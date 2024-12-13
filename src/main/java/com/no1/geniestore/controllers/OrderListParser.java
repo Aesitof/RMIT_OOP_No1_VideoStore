@@ -25,8 +25,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import static com.no1.geniestore.products.ManagementSystem.orderList;
+import static com.no1.geniestore.storage.Storage.ORDERS_FILE_PATH;
+import static java.util.Objects.requireNonNull;
 
 public class OrderListParser {
     private DocumentBuilder builder;
@@ -37,15 +40,32 @@ public class OrderListParser {
     public OrderListParser() throws ParserConfigurationException {
         builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
     }
-
+    
+    /**
+     * Reads an accounts file from the given file path and returns an {@code Optional} containing the parsed accounts list.
+     * If the file is not found or an error occurs during parsing, {@code Optional.empty()} is returned.
+     *
+     * @param filePath the path to the accounts file; cannot be null.
+     */
+    public Optional<ArrayList<Order>> readOrdersFile(String filePath) {
+        requireNonNull(filePath);
+        
+        try {
+            ArrayList<Order> orders = parse(ORDERS_FILE_PATH);
+            return Optional.of(orders);
+        } catch (ParserConfigurationException | SAXException | IOException | ParseException e) {
+            return Optional.empty();
+        }
+    }
+    
     /**
      * Parses an XML file containing an order list. returns an array list
      * containing all orders in the XML file
      */
-    public List<Order> parse(String fileName) throws SAXException, IOException, ParserConfigurationException, ParseException {
+    public ArrayList<Order> parse(String fileName) throws SAXException, IOException, ParserConfigurationException, ParseException {
         // get the <items> root element
         Element root = builder.parse(new File(fileName)).getDocumentElement();
-        return getOrders(root);
+        return (ArrayList<Order>) getOrders(root);
     }
 
     /**
@@ -232,7 +252,7 @@ public class OrderListParser {
             root.appendChild(orderToXML(order, document));
         }
 
-        Parser.writeXml(document, new FileOutputStream("xml/orders.xml"));
+        Parser.writeXml(document, new FileOutputStream(ORDERS_FILE_PATH));
     }
 
     public static Element orderToXML(Order newOrder, Document document) {

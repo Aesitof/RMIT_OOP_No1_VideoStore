@@ -44,10 +44,6 @@ public class Order {
         return orderID;
     }
 
-    public void setOrderID(String orderID) {
-        this.orderID = orderID;
-    }
-
     public Account getOwner() {
         return owner;
     }

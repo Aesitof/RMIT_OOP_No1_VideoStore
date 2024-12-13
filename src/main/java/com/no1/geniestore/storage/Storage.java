@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,8 +16,10 @@ import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.controllers.OrderListParser;
 import com.no1.geniestore.model.util.SampleAccountsUtil;
 import com.no1.geniestore.model.util.SampleItemsUtil;
+import com.no1.geniestore.model.util.SampleOrdersUtil;
 import com.no1.geniestore.products.Item;
 import com.no1.geniestore.products.ManagementSystem;
+import com.no1.geniestore.products.Order;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -94,6 +95,20 @@ public class Storage {
     }
     
     /**
+     * Gets the list of {@code Order},
+     * either from the {@code ORDERS_FILE_PATH} or sample orders.
+     */
+    public ArrayList<Order> getOrderList() {
+        ArrayList<Order> orderList = new ArrayList<>();
+        try {
+            orderList = new OrderListParser().readOrdersFile(ORDERS_FILE_PATH).orElseGet(SampleOrdersUtil::getSampleOrderList);
+        } catch (ParserConfigurationException e) {
+            System.out.println();
+        }
+        return orderList;
+    }
+    
+    /**
      * Saves all the current data into the data files, whose paths indicated as static variables.
      */
     public void save() {
@@ -103,7 +118,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (ParserConfigurationException | TransformerException e) {
-            System.out.println("Unable to convert to " + ITEMS_FILE_PATH + e.getMessage());
+            System.out.println("Unable to convert to " + ITEMS_FILE_PATH + " " + e.getMessage());
         }
         
         try {
@@ -112,7 +127,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (ParserConfigurationException | TransformerException e) {
-            System.out.println("Unable to convert to accounts.xml " + e.getMessage());
+            System.out.println("Unable to convert to " + ACCOUNTS_FILE_PATH + " " + e.getMessage());
         }
        
         try {
@@ -121,7 +136,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (ParserConfigurationException | TransformerException e) {
-            System.out.println("Unable to convert to orders.xml " + e.getMessage());
+            System.out.println("Unable to convert to " + ORDERS_FILE_PATH + " " + e.getMessage());
         }
        
         try {
