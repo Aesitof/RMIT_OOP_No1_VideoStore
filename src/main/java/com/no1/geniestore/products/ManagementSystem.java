@@ -45,9 +45,10 @@ public class ManagementSystem {
 
     public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException, TransformerException {
         readTextFile();
-        ItemListParser itemListParser = new ItemListParser();
-        itemList = itemListParser.parseItemTotal(ITEMS_FILE_PATH);
-        stockList = itemListParser.parseStockList(ITEMS_FILE_PATH);
+        // itemList = itemListParser.parseItemTotal(ITEMS_FILE_PATH);
+        itemList = storage.getItemList();
+        // stockList = itemListParser.parseStockList(ITEMS_FILE_PATH);
+        stockList = storage.getStockList();
         accountList = storage.getAccountList();
         orderList = (ArrayList<Order>) new OrderListParser().parse(ORDERS_FILE_PATH);
 

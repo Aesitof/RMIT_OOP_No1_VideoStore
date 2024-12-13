@@ -42,21 +42,16 @@ public class AccountListParser {
      * If the file is not found or an error occurs during parsing, {@code Optional.empty()} is returned.
      *
      * @param filePath the path to the accounts file; cannot be null.
-     * @return an {@code Optional} containing the accounts list, or {@code Optional.empty()} if the file is not found or an error occurs.
-     * @throws NullPointerException if {@code filePath} is null.
      */
-    public Optional<ArrayList<Account>> readAccountsFile(Path filePath) {
+    public Optional<ArrayList<Account>> readAccountsFile(String filePath) {
         requireNonNull(filePath);
 
         try {
-            ArrayList<Account> accountsList = (ArrayList<Account>) parse(filePath.toString());
-            return Optional.of(accountsList);
+            ArrayList<Account> accountList = (ArrayList<Account>) parse(filePath);
+            return Optional.of(accountList);
         } catch (IOException | SAXException e) {
             // Log the error if necessary
             return Optional.empty();
-        } catch (ClassCastException e) {
-            // Handle case where the parsed object cannot be cast to T
-            throw new IllegalArgumentException("Parsed object cannot be cast to the expected type.", e);
         }
     }
 
@@ -64,7 +59,7 @@ public class AccountListParser {
      * Parses an XML file containing an account list. returns an array list
      * containing all accounts in the XML file
      */
-    public List<Account> parse(String fileName) throws SAXException, IOException
+    private List<Account> parse(String fileName) throws SAXException, IOException
     {
         // get the <items> root element
         Element root = builder.parse(new File(fileName)).getDocumentElement();

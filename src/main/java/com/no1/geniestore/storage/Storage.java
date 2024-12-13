@@ -2,14 +2,17 @@ package com.no1.geniestore.storage;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.controllers.AccountListParser;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.controllers.OrderListParser;
 import com.no1.geniestore.model.util.SampleAccountsUtil;
+import com.no1.geniestore.model.util.SampleItemsUtil;
+import com.no1.geniestore.products.Item;
 import com.no1.geniestore.products.ManagementSystem;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -24,13 +27,44 @@ public class Storage {
     public static String ORDERS_FILE_PATH = XML_DIRECTORY + "orders.xml";
     
     /**
+     * Gets the {@code itemList},
+     * either from the {@code ITEMS_FILE_PATH} or sample items and copies.
+     */
+    public HashMap<Item, Integer> getItemList() {
+        HashMap<Item, Integer> itemList = new HashMap<>();
+        try {
+            ItemListParser itemListParser = new ItemListParser();
+            itemList = itemListParser.readItemsCopiesFile(ITEMS_FILE_PATH).orElseGet(SampleItemsUtil::getSampleItemList);
+        } catch (ParserConfigurationException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return itemList;
+    }
+    
+    /**
+     * Gets the {@code stockList},
+     * either from the {@code ITEMS_FILE_PATH} or sample items and remaining copies.
+     */
+    public HashMap<Item, Integer> getStockList() {
+        HashMap<Item, Integer> stockList = new HashMap<>();
+        try {
+            ItemListParser itemListParser = new ItemListParser();
+            stockList = itemListParser.readItemsStockFile(ITEMS_FILE_PATH).orElseGet(SampleItemsUtil::getSampleStockList);
+        } catch (ParserConfigurationException e) {
+            System.out.println(e.getMessage());
+        }
+        return stockList;
+    }
+    
+    /**
      * Gets the list of {@code Account},
      * either from the {@code ACCOUNTS_FILE_PATH} or sample accounts.
      */
     public ArrayList<Account> getAccountList() {
         ArrayList<Account> accountList = new ArrayList<>();
         try {
-            accountList = new AccountListParser().readAccountsFile(Paths.get(ACCOUNTS_FILE_PATH)).orElseGet(SampleAccountsUtil::getSampleAccountList);
+            accountList = new AccountListParser().readAccountsFile(ACCOUNTS_FILE_PATH).orElseGet(SampleAccountsUtil::getSampleAccountList);
         } catch (ParserConfigurationException e) {
             System.out.println(e.getMessage());
         }
