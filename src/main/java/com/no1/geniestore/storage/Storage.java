@@ -120,8 +120,8 @@ public class Storage {
      */
     public void getAmountData() {
         itemIdCounter = AmountParser.readItemIdCounter(AMOUNT_FILE_PATH).orElse(SampleAmountUtil.SAMPLE_ITEM_ID_COUNTER);
-        accountIdCounter = AmountParser.readItemIdCounter(AMOUNT_FILE_PATH).orElse(SampleAmountUtil.SAMPLE_ACCOUNT_ID_COUNTER);
-        orderIdCounter = AmountParser.readOrderCounter(AMOUNT_FILE_PATH).orElse(SampleAmountUtil.SAMPLE_ORDER_ID_COUNTER);
+        accountIdCounter = AmountParser.readAccountIdCounter(AMOUNT_FILE_PATH).orElse(SampleAmountUtil.SAMPLE_ACCOUNT_ID_COUNTER);
+        orderIdCounter = AmountParser.readOrderIdCounter(AMOUNT_FILE_PATH).orElse(SampleAmountUtil.SAMPLE_ORDER_ID_COUNTER);
     }
     
     /**
@@ -157,7 +157,7 @@ public class Storage {
        
         try {
             createFileIfNotExist(AMOUNT_FILE_PATH);
-            ManagementSystem.writeTextFile();
+            AmountParser.writeAmountData(AMOUNT_FILE_PATH);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

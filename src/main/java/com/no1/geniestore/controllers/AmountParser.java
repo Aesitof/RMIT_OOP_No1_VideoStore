@@ -1,10 +1,15 @@
 package com.no1.geniestore.controllers;
 
+import static com.no1.geniestore.accounts.Account.accountIdCounter;
+import static com.no1.geniestore.products.Order.orderIdCounter;
+import static com.no1.geniestore.products.Stock.itemIdCounter;
 import static java.util.Objects.requireNonNull;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Optional;
 
 public class AmountParser {
@@ -30,7 +35,7 @@ public class AmountParser {
      *
      * @param filePath the path to the amount file; cannot be null.
      */
-    public static Optional<Integer> readAccountCounter(String filePath) {
+    public static Optional<Integer> readAccountIdCounter(String filePath) {
         requireNonNull(filePath);
         
         try {
@@ -47,7 +52,7 @@ public class AmountParser {
      *
      * @param filePath the path to the amount file; cannot be null.
      */
-    public static Optional<Integer> readOrderCounter(String filePath) {
+    public static Optional<Integer> readOrderIdCounter(String filePath) {
         requireNonNull(filePath);
         
         try {
@@ -58,5 +63,19 @@ public class AmountParser {
         } catch (IOException e) {
             return Optional.empty();
         }
+    }
+    
+    /**
+     * Writes all required data into the amount text file.
+     *
+     * @param filePath the path to the amount file; cannot be null.
+     * @throws IOException if the file is not found.
+     */
+    public static void writeAmountData(String filePath) throws IOException {
+        requireNonNull(filePath);
+        
+        PrintWriter writer = new PrintWriter(new FileWriter(filePath));
+        writer.printf("%d\n%d\n%d", itemIdCounter, accountIdCounter, orderIdCounter);
+        writer.close();
     }
 }

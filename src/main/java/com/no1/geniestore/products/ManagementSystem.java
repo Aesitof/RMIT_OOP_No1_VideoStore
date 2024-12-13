@@ -37,7 +37,6 @@ public class ManagementSystem {
     }
 
     public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException, TransformerException {
-        // readTextFile();
         storage.getAmountData();
         itemList = storage.getItemList();
         stockList = storage.getStockList();
@@ -75,14 +74,6 @@ public class ManagementSystem {
 
     public static void saveData() throws ParserConfigurationException, IOException, TransformerException {
         storage.save();
-    }
-
-    public static void readTextFile() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(AMOUNT_FILE_PATH));
-
-        itemIdCounter = Integer.parseInt(reader.readLine());
-        accountIdCounter = Integer.parseInt(reader.readLine());
-        orderIdCounter = Integer.parseInt(reader.readLine());
     }
 
     public static void writeTextFile() throws IOException {
