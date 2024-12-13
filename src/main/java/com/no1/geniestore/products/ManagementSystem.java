@@ -4,7 +4,6 @@ import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
 import com.no1.geniestore.accounts.Account;
-import com.no1.geniestore.controllers.OrderListParser;
 import com.no1.geniestore.storage.Storage;
 
 import org.xml.sax.SAXException;
