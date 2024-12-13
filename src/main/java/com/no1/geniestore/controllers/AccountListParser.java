@@ -5,10 +5,11 @@
 
 package com.no1.geniestore.controllers;
 
-import com.no1.geniestore.Parser;
+import com.no1.geniestore.storage.Parser;
 import com.no1.geniestore.accounts.Account;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,7 +19,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +48,9 @@ public class AccountListParser {
 
         try {
             ArrayList<Account> accountList = (ArrayList<Account>) parse(filePath);
+            if (accountList.isEmpty()) {
+                return Optional.empty();
+            }
             return Optional.of(accountList);
         } catch (IOException | SAXException e) {
             // Log the error if necessary
@@ -63,6 +66,9 @@ public class AccountListParser {
     {
         // get the <items> root element
         Element root = builder.parse(new File(fileName)).getDocumentElement();
+        if (root == null) {
+            throw new SAXException(fileName + " is empty");
+        }
         return getAccounts(root);
     }
 

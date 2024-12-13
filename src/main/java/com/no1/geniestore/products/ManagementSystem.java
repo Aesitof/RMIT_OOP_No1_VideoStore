@@ -15,11 +15,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.no1.geniestore.accounts.Account.accountIdCounter;
-import static com.no1.geniestore.products.Stock.itemIdCounter;
 import static com.no1.geniestore.products.Stock.stockList;
-import static com.no1.geniestore.products.Order.orderIdCounter;
-import static com.no1.geniestore.storage.Storage.AMOUNT_FILE_PATH;
 
 public class ManagementSystem {
     public static ArrayList<Account> accountList;
@@ -74,12 +70,6 @@ public class ManagementSystem {
 
     public static void saveData() throws ParserConfigurationException, IOException, TransformerException {
         storage.save();
-    }
-
-    public static void writeTextFile() throws IOException {
-        PrintWriter writer = new PrintWriter(new FileWriter(AMOUNT_FILE_PATH));
-        writer.printf("%d\n%d\n%d", itemIdCounter, accountIdCounter, orderIdCounter );
-        writer.close();
     }
 
 //        ITEM METHODS

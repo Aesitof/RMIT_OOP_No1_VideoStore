@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.no1.geniestore.Parser;
 import com.no1.geniestore.model.util.DateFormatUtil;
 
 public class OrderDetails {

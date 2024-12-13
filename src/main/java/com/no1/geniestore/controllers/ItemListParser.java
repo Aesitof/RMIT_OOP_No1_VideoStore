@@ -8,7 +8,7 @@ package com.no1.geniestore.controllers;
 import static com.no1.geniestore.storage.Storage.ITEMS_FILE_PATH;
 import static java.util.Objects.requireNonNull;
 
-import com.no1.geniestore.Parser;
+import com.no1.geniestore.storage.Parser;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
@@ -96,6 +96,9 @@ public class ItemListParser {
     public ObservableList<ItemData> parse(String fileName) throws SAXException, IOException {
         // get the <items> root element
         Element root = builder.parse(new File(fileName)).getDocumentElement();
+        if (root == null) {
+            throw new SAXException(fileName + " is empty");
+        }
         return getItems(root);
     }
 
@@ -189,6 +192,9 @@ public class ItemListParser {
     public HashMap<Item, Integer> parseItemTotal(String fileName) throws SAXException, IOException {
         // get the <items> root element
         Element root = builder.parse(new File(fileName)).getDocumentElement();
+        if (root == null) {
+            throw new SAXException(fileName + " is empty");
+        }
         return getItemListTotal(root);
     }
 
@@ -218,6 +224,9 @@ public class ItemListParser {
     public HashMap<Item, Integer> parseStockList(String fileName) throws IOException, SAXException {
         // get the <items> root element
         Element root = builder.parse(new File(fileName)).getDocumentElement();
+        if (root == null) {
+            throw new SAXException(fileName + " is empty");
+        }
         return getStockList(root);
     }
 

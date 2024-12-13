@@ -5,7 +5,7 @@
 
 package com.no1.geniestore.controllers;
 
-import com.no1.geniestore.Parser;
+import com.no1.geniestore.storage.Parser;
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.products.*;
 import org.w3c.dom.*;

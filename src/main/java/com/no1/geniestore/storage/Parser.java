@@ -1,4 +1,4 @@
-package com.no1.geniestore;
+package com.no1.geniestore.storage;
 
 import org.w3c.dom.Document;
 
@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.OutputStream;
 
 public class Parser {
+    public static final String XSLT_FILEPATH = "xslt/format.xslt";
+    
     /**
      * Write new Doc to XML file
      * @param doc
@@ -22,11 +24,9 @@ public class Parser {
     public static void writeXml(Document doc,
                                 OutputStream output)
             throws TransformerException {
-        // XSLT for XML file format
-        String XSLT_FILENAME = "xslt/format.xslt";
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer(new StreamSource(new File(XSLT_FILENAME)));
+        Transformer transformer = transformerFactory.newTransformer(new StreamSource(new File(XSLT_FILEPATH)));
 
         // pretty print XML
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
