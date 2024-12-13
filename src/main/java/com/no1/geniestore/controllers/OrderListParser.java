@@ -65,6 +65,9 @@ public class OrderListParser {
     public ArrayList<Order> parse(String fileName) throws SAXException, IOException, ParserConfigurationException, ParseException {
         // get the <items> root element
         Element root = builder.parse(new File(fileName)).getDocumentElement();
+        if (root == null) {
+            throw new SAXException(fileName + " is empty");
+        }
         return (ArrayList<Order>) getOrders(root);
     }
 

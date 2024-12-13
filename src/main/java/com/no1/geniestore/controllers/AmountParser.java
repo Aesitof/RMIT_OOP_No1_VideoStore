@@ -24,7 +24,8 @@ public class AmountParser {
         
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            return Optional.of(Integer.parseInt(reader.readLine()));
+            String line = reader.readLine();
+            return Optional.ofNullable(line).map(Integer::parseInt);
         } catch (IOException e) {
             return Optional.empty();
         }
@@ -41,7 +42,8 @@ public class AmountParser {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             reader.readLine();
-            return Optional.of(Integer.parseInt(reader.readLine()));
+            String line = reader.readLine();
+            return Optional.ofNullable(line).map(Integer::parseInt);
         } catch (IOException e) {
             return Optional.empty();
         }
@@ -59,7 +61,8 @@ public class AmountParser {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             reader.readLine();
             reader.readLine();
-            return Optional.of(Integer.parseInt(reader.readLine()));
+            String line = reader.readLine();
+            return Optional.ofNullable(line).map(Integer::parseInt);
         } catch (IOException e) {
             return Optional.empty();
         }
