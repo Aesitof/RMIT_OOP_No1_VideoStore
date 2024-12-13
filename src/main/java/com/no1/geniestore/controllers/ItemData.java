@@ -3,6 +3,7 @@ package com.no1.geniestore.controllers;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
+import com.no1.geniestore.products.Item;
 
 public class ItemData {
     private String id;
@@ -25,6 +26,19 @@ public class ItemData {
         this.loanType = loanType;
         this.rentalFee = rentalFee;
         this.image = image;
+        this.totalCopies = totalCopies;
+        this.remainingCopies = remainingCopies;
+    }
+    
+    public ItemData(Item item, int totalCopies, int remainingCopies) {
+        this.id = item.getId();
+        this.title = item.getTitle();
+        this.year = item.getYear();
+        this.itemType = item.getItemType();
+        this.genre = item.getGenre();
+        this.loanType = item.getLoanType();
+        this.rentalFee = item.getRentalFee();
+        this.image = item.getImage();
         this.totalCopies = totalCopies;
         this.remainingCopies = remainingCopies;
     }

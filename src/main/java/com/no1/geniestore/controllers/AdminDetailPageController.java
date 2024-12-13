@@ -45,6 +45,7 @@ import java.util.*;
 
 import static com.no1.geniestore.products.ManagementSystem.*;
 import static com.no1.geniestore.products.Stock.stockList;
+import static com.no1.geniestore.storage.Storage.ITEMS_FILE_PATH;
 
 
 public class AdminDetailPageController implements Initializable {
@@ -1384,16 +1385,9 @@ public class AdminDetailPageController implements Initializable {
     /* Add Item Form initialize */
 
         // Parse from XML to ObservableList of ItemData, can use thread to be faster
-        try {
-            addItemList = new ItemListParser().parse("xml/items.xml");
-        } catch (SAXException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParserConfigurationException e) {
-            throw new RuntimeException(e);
-        }
-
+        // addItemList = new ItemListParser().parse(ITEMS_FILE_PATH);
+        addItemList = storage.getItemDataObservableList();
+        
         addItemShowListData();
 
         // Item ID

@@ -15,7 +15,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.*;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,9 +22,7 @@ import java.util.HashMap;
 import static com.no1.geniestore.accounts.Account.accountIdCounter;
 import static com.no1.geniestore.products.Stock.*;
 import static com.no1.geniestore.products.Order.orderIdCounter;
-import static com.no1.geniestore.storage.Storage.ACCOUNTS_FILE_PATH;
 import static com.no1.geniestore.storage.Storage.AMOUNT_FILE_PATH;
-import static com.no1.geniestore.storage.Storage.ITEMS_FILE_PATH;
 import static com.no1.geniestore.storage.Storage.ORDERS_FILE_PATH;
 
 public class ManagementSystem {

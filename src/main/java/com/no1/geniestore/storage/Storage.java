@@ -6,8 +6,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import com.no1.geniestore.accounts.Account;
 import com.no1.geniestore.controllers.AccountListParser;
+import com.no1.geniestore.controllers.ItemData;
 import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.controllers.OrderListParser;
 import com.no1.geniestore.model.util.SampleAccountsUtil;
@@ -58,6 +63,22 @@ public class Storage {
     }
     
     /**
+     * Gets the {@code ObservableList<ItemData>},
+     * either from the {@code ITEMS_FILE_PATH} or sample items and remaining copies.
+     */
+    public ObservableList<ItemData> getItemDataObservableList() {
+        ObservableList<ItemData> itemDataObservableList = FXCollections.observableArrayList();
+        try {
+            ItemListParser itemListParser = new ItemListParser();
+            itemDataObservableList = itemListParser.readItemsDataFromFile(ITEMS_FILE_PATH)
+                                                   .orElseGet(() -> FXCollections.observableArrayList(SampleItemsUtil.getSampleItemData()));
+        } catch (ParserConfigurationException e) {
+            System.out.println(e.getMessage());
+        }
+        return itemDataObservableList;
+    }
+    
+    /**
      * Gets the list of {@code Account},
      * either from the {@code ACCOUNTS_FILE_PATH} or sample accounts.
      */
@@ -82,7 +103,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (ParserConfigurationException | TransformerException e) {
-            System.out.println("Unable to convert to items.xml " + e.getMessage());
+            System.out.println("Unable to convert to " + ITEMS_FILE_PATH + e.getMessage());
         }
         
         try {

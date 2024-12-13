@@ -73,6 +73,23 @@ public class ItemListParser {
     }
     
     /**
+     * Reads an items file from the given file path and returns an {@code Optional} containing the parsed {@code Observable<ItemData>}.
+     * If the file is not found or an error occurs during parsing, {@code Optional.empty()} is returned.
+     *
+     * @param filePath the path to the accounts file; cannot be null.
+     */
+    public Optional<ObservableList<ItemData>> readItemsDataFromFile(String filePath) {
+        requireNonNull(filePath);
+        
+        try {
+            return Optional.of(parse(filePath));
+        } catch (SAXException | IOException e) {
+            return Optional.empty();
+        }
+    }
+    
+    
+    /**
      * Parses an XML file containing an item list. returns an array list
      * containing all items in the XML file
      */
@@ -333,7 +350,7 @@ public class ItemListParser {
             root.appendChild(itemToXML(item, document, ManagementSystem.itemList.get(item)));
         }
 
-        Parser.writeXml(document, new FileOutputStream("xml/items.xml"));
+        Parser.writeXml(document, new FileOutputStream(ITEMS_FILE_PATH));
     }
 
     public static Element itemToXML(Item newItem, Document document, int totalCopies) {

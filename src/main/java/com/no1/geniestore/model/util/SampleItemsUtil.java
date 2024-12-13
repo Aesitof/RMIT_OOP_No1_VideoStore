@@ -10,8 +10,11 @@ import static com.no1.geniestore.constants.LoanType.ONE_WEEK_LOAN;
 import static com.no1.geniestore.constants.LoanType.TWO_DAY_LOAN;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import com.no1.geniestore.controllers.ItemData;
 import com.no1.geniestore.products.Item;
 
 public class SampleItemsUtil {
@@ -83,5 +86,20 @@ public class SampleItemsUtil {
         }
         
         return sampleStockList;
+    }
+    
+    /**
+     * Returns an {@code ArrayList<ItemData>}.
+     */
+    public static ArrayList<ItemData> getSampleItemData() {
+        ArrayList<ItemData> sampleItemData = new ArrayList<>();
+        Item[] sampleItems = getSampleItems();
+        int[] sampleCopies = getSampleCopies();
+        int[] sampleRemaining = getSampleRemaining();
+        for (int i = 0; i < sampleItems.length; i++) {
+            sampleItemData.add(new ItemData(sampleItems[i], sampleCopies[i], sampleRemaining[i]));
+        }
+        
+        return sampleItemData;
     }
 }
