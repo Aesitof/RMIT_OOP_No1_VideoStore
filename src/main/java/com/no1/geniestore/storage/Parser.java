@@ -9,10 +9,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 
 import com.no1.geniestore.GenieStoreApplication;
 import com.no1.geniestore.commons.PathUtil;
@@ -30,22 +30,28 @@ public class Parser {
                                 OutputStream output)
             throws TransformerException, FileNotFoundException {
         
-        URL xsltUrl = Parser.class.getResource("/com/no1/geniestore/xslt/format.xslt");
-        if (xsltUrl == null) {
-            throw new FileNotFoundException("Could not find xslt file");
+       // Load XSLT file as a resource stream
+        try (InputStream xsltStream = Parser.class.getResourceAsStream("/com/no1/geniestore/xslt/format.xslt")) {
+            if (xsltStream == null) {
+                throw new FileNotFoundException("Could not find XSLT file at /com/no1/geniestore/xslt/format.xslt");
+            }
+
+            // Initialize TransformerFactory and Transformer using the StreamSource from the InputStream
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer(new StreamSource(xsltStream));
+    
+            // Pretty-print XML output
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+    
+            // Transform the XML Document to the specified OutputStream
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(output);
+    
+            transformer.transform(source, result);
+
+        } catch (IOException e) {
+            throw new TransformerException("Error reading XSLT file", e);
         }
-        File xsltFile = new File(xsltUrl.getFile());
-        
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer(new StreamSource(xsltFile));
-
-        // pretty print XML
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-        DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(output);
-
-        transformer.transform(source, result);
 
     }
 }
