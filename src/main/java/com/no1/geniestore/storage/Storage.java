@@ -20,7 +20,6 @@ import com.no1.geniestore.model.util.SampleAmountUtil;
 import com.no1.geniestore.model.util.SampleItemsUtil;
 import com.no1.geniestore.model.util.SampleOrdersUtil;
 import com.no1.geniestore.products.Item;
-import com.no1.geniestore.products.ManagementSystem;
 import com.no1.geniestore.products.Order;
 
 import static com.no1.geniestore.accounts.Account.accountIdCounter;
@@ -134,7 +133,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (ParserConfigurationException | TransformerException e) {
-            System.out.println("Unable to convert to " + ITEMS_FILE_PATH + " " + e.getMessage());
+            System.out.println("Unable to convert to " + ITEMS_FILE_PATH + " [" + e.getMessage() + "]");
         }
         
         try {
@@ -143,7 +142,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (ParserConfigurationException | TransformerException e) {
-            System.out.println("Unable to convert to " + ACCOUNTS_FILE_PATH + " " + e.getMessage());
+            System.out.println("Unable to convert to " + ACCOUNTS_FILE_PATH + " [" + e.getMessage() + "]");
         }
        
         try {
@@ -152,7 +151,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (ParserConfigurationException | TransformerException e) {
-            System.out.println("Unable to convert to " + ORDERS_FILE_PATH + " " + e.getMessage());
+            System.out.println("Unable to convert to " + ORDERS_FILE_PATH + " [" + e.getMessage() + "]");
         }
        
         try {

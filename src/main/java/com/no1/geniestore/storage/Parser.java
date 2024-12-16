@@ -10,10 +10,15 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.OutputStream;
+import java.net.URL;
+
+import com.no1.geniestore.GenieStoreApplication;
+import com.no1.geniestore.commons.PathUtil;
 
 public class Parser {
-    public static final String XSLT_FILEPATH = "xslt/format.xslt";
+    public static final String XSLT_FILEPATH = PathUtil.PATH_RESOURCES + "/xslt/format.xslt";
     
     /**
      * Write new Doc to XML file
@@ -23,10 +28,16 @@ public class Parser {
      */
     public static void writeXml(Document doc,
                                 OutputStream output)
-            throws TransformerException {
-
+            throws TransformerException, FileNotFoundException {
+        
+        URL xsltUrl = Parser.class.getResource("/com/no1/geniestore/xslt/format.xslt");
+        if (xsltUrl == null) {
+            throw new FileNotFoundException("Could not find xslt file");
+        }
+        File xsltFile = new File(xsltUrl.getFile());
+        
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer(new StreamSource(new File(XSLT_FILEPATH)));
+        Transformer transformer = transformerFactory.newTransformer(new StreamSource(xsltFile));
 
         // pretty print XML
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
