@@ -5,10 +5,11 @@
 
 package com.no1.geniestore.controllers;
 
-import com.no1.geniestore.Parser;
+import com.no1.geniestore.storage.Parser;
 import com.no1.geniestore.accounts.Account;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,11 +21,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.no1.geniestore.products.ManagementSystem.accountList;
+import static java.util.Objects.requireNonNull;
 
 public class AccountListParser {
-    private DocumentBuilder builder;
+    private static DocumentBuilder builder;
 
     /**
      * Construct a parser that can parse account lists
@@ -33,15 +36,39 @@ public class AccountListParser {
     {
         builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
     }
+    
+    /**
+     * Reads an accounts file from the given file path and returns an {@code Optional} containing the parsed accounts list.
+     * If the file is not found or an error occurs during parsing, {@code Optional.empty()} is returned.
+     *
+     * @param filePath the path to the accounts file; cannot be null.
+     */
+    public Optional<ArrayList<Account>> readAccountsFile(String filePath) {
+        requireNonNull(filePath);
+
+        try {
+            ArrayList<Account> accountList = (ArrayList<Account>) parse(filePath);
+            if (accountList.isEmpty()) {
+                return Optional.empty();
+            }
+            return Optional.of(accountList);
+        } catch (IOException | SAXException e) {
+            // Log the error if necessary
+            return Optional.empty();
+        }
+    }
 
     /**
      * Parses an XML file containing an account list. returns an array list
      * containing all accounts in the XML file
      */
-    public List<Account> parse(String fileName) throws SAXException, IOException
+    private List<Account> parse(String fileName) throws SAXException, IOException
     {
         // get the <items> root element
         Element root = builder.parse(new File(fileName)).getDocumentElement();
+        if (root == null) {
+            throw new SAXException(fileName + " is empty");
+        }
         return getAccounts(root);
     }
 

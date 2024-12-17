@@ -3,10 +3,9 @@ package com.no1.geniestore.products;
 import com.no1.geniestore.constants.Genre;
 import com.no1.geniestore.constants.ItemType;
 import com.no1.geniestore.constants.LoanType;
-import com.no1.geniestore.controllers.AccountListParser;
-import com.no1.geniestore.controllers.ItemListParser;
 import com.no1.geniestore.accounts.Account;
-import com.no1.geniestore.controllers.OrderListParser;
+import com.no1.geniestore.storage.Storage;
+
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -16,15 +15,15 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.no1.geniestore.accounts.Account.accountIdCounter;
-import static com.no1.geniestore.products.Stock.*;
-import static com.no1.geniestore.products.Order.orderIdCounter;
+import static com.no1.geniestore.products.Stock.stockList;
+
 public class ManagementSystem {
     public static ArrayList<Account> accountList;
     public static ArrayList<Order> orderList;
     public static HashMap<Item, Integer> itemList; // Total item copies
     public static Account currentUser;
     public static int currentUserRewardPoints;
+    public static final Storage storage = new Storage();
 
     public ManagementSystem() {
         accountList = new ArrayList<>();
@@ -34,12 +33,11 @@ public class ManagementSystem {
     }
 
     public static void main() throws ParserConfigurationException, IOException, SAXException, ParseException, TransformerException {
-        readTextFile();
-        ItemListParser itemListParser = new ItemListParser();
-        itemList = itemListParser.parseItemTotal("xml/items.xml");
-        stockList = itemListParser.parseStockList("xml/items.xml");
-        accountList = (ArrayList<Account>) new AccountListParser().parse("xml/accounts.xml");
-        orderList = (ArrayList<Order>) new OrderListParser().parse("xml/orders.xml");
+        storage.getAmountData();
+        itemList = storage.getItemList();
+        stockList = storage.getStockList();
+        accountList = storage.getAccountList();
+        orderList = storage.getOrderList();
 
 //        TEXT-BASED TESTING
 //        for (Order order : orderList) {
@@ -71,29 +69,7 @@ public class ManagementSystem {
     }
 
     public static void saveData() throws ParserConfigurationException, IOException, TransformerException {
-        // Save items info to file before closing the application
-        ItemListParser.saveItemFile();
-        AccountListParser.accountsToXML();
-
-        for (Order order : orderList) {
-            System.out.println(order);
-        }
-        OrderListParser.saveOrderFile();
-        writeTextFile();
-    }
-
-    public static void readTextFile() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("txt/amount.txt"));
-
-        itemIdCounter = Integer.parseInt(reader.readLine());
-        accountIdCounter = Integer.parseInt(reader.readLine());
-        orderIdCounter = Integer.parseInt(reader.readLine());
-    }
-
-    public static void writeTextFile() throws IOException {
-        PrintWriter writer = new PrintWriter(new FileWriter("txt/amount.txt"));
-        writer.printf("%d\n%d\n%d", itemIdCounter, accountIdCounter, orderIdCounter );
-        writer.close();
+        storage.save();
     }
 
 //        ITEM METHODS

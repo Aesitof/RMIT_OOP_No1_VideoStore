@@ -19,28 +19,6 @@ import java.util.List;
 
 public class ItemListParserTest {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException, TransformerException, ParseException {
-//        List<Item> items = new ItemListParser().parse("xml/items.xml");
-//        for (Item item : items) {
-//            System.out.println(item);
-//        }
-
-        ObservableList<ItemData> itemData = new ItemListParser().parse("xml/items.xml");
-        for (ItemData item : itemData) {
-            System.out.println(item);
-        }
-
-        ObservableList<ItemData> allItem = new ItemListParser().parse("xml/items.xml");
-        for (ItemData item : itemData) {
-            System.out.println(item);
-        }
-
-//        List<Account> accounts = new AccountListParser().parse("xml/accounts.xml");
-//        for (Account account : accounts) {
-//            System.out.println(account);
-//        }
-//        Account account = new Account();
-//        accounts.add(account);
-//        AccountListParser.accountsToXML(accounts);
 
         List<Order> orders = new OrderListParser().parse("xml/orders.xml");
         for (Order order : orders) {
